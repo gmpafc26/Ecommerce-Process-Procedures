@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Port Store — BigCommerce Editor</title>
+<title>Port Store — Website & Operations</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -38,10 +38,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .bc-cur{font-weight:700;color:var(--text);display:flex;align-items:center;gap:6px}
 
 /* ── HOME SELECTORS ── */
-.home-wrap{max-width:1180px;margin:0 auto;padding:36px 28px}
+.home-wrap{padding:36px 28px}
 .home-intro{margin-bottom:28px}
 .home-intro h2{font-size:22px;font-weight:800;margin-bottom:6px}
-.home-intro p{font-size:14px;color:var(--muted);line-height:1.7;max-width:560px}
+.home-intro p{font-size:14px;color:var(--muted);line-height:1.7}
 .sel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:20px}
 @media(max-width:860px){.sel-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.sel-grid{grid-template-columns:1fr}}
@@ -176,7 +176,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .ref-table tr:last-child td{border-bottom:none}
 
 /* OPERATIONS BOARD */
-.ops-home{max-width:1180px;margin:0 auto;padding:36px 28px}
+.ops-home{padding:36px 28px}
 .ops-sel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
 @media(max-width:900px){.ops-sel-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.ops-sel-grid{grid-template-columns:1fr}}
@@ -408,9 +408,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .gd-band code, .gs-band code, .csp-email-body { font-size: 12px; }
 
 /* ── GUIDE CONTENT READABLE WIDTH ── */
-.guide-pane > *, #sec-cs .csp-block, #sec-cs .gd-band {
-  max-width: 860px;
-}
+/* full width guide/cs content */
 .gd-fixed-row { grid-template-columns: repeat(3,1fr); }
 @media(max-width:700px){ .gd-fixed-row { grid-template-columns: 1fr 1fr; } }
 
@@ -421,13 +419,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 }
 
 /* ── CS PROCEDURES IMPROVED ── */
-.csp-block { 
-  background: #fff; 
-  border-radius: 12px; 
-  border: 1px solid var(--border);
-  padding: 20px 22px; 
-  margin-bottom: 16px;
-}
+.csp-block { background: #fff; border-radius: 12px; border: 1px solid var(--border); padding: 20px 22px; margin-bottom: 16px; width: 100%; box-sizing: border-box; }
 .csp-divider { margin: 8px 0; border: none; }
 .csp-hdr { padding: 0; margin-bottom: 16px; }
 .csp-scenario { margin-top: 12px; }
@@ -463,12 +455,59 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .ghost-steps-col { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
 .ghost-steps-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 18px; }
 
+
+/* ── STOCK SCENARIO TABS ── */
+.stock-tabs { display: flex; gap: 8px; margin-bottom: 0; flex-wrap: wrap; }
+.stock-tab {
+  flex: 1; min-width: 140px;
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--off);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  text-align: left;
+  transition: all 0.15s;
+  color: var(--muted);
+}
+.stock-tab:hover { border-color: var(--teal); background: var(--teal-dim); color: var(--text); }
+.stock-tab.active { border-color: var(--navy); background: var(--navy); color: #fff; }
+.stock-tab-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 800; flex-shrink: 0;
+  color: inherit;
+}
+.stock-tab:not(.active) .stock-tab-num { background: var(--grey-200, #e5e7eb); color: var(--muted); }
+.stock-tab-label { font-size: 13px; font-weight: 600; line-height: 1.4; }
+.stock-tab-label span { font-size: 11px; font-weight: 400; opacity: 0.75; }
+.stock-scenario { display: none; margin-top: 0; border: 1px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; overflow: hidden; }
+.stock-scenario.active { display: block; }
+.stock-tabs + .stock-scenario.active { border-radius: 0 0 10px 10px; }
+.stock-sc-header { padding: 14px 18px; font-size: 14px; color: var(--text); border-bottom: 1px solid var(--border); }
+.stock-sc-header-1 { background: #EBF2FF; }
+.stock-sc-header-2 { background: #FEF6E8; }
+.stock-sc-header-3 { background: #E8F8EE; }
+.stock-sc-body { padding: 18px 18px 6px; }
+.stock-dc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+@media(max-width: 600px) { .stock-dc-grid { grid-template-columns: 1fr; } .stock-tabs { flex-direction: column; } }
+.stock-dc { display: flex; gap: 10px; align-items: flex-start; border-radius: 8px; padding: 11px 13px; border: 1px solid transparent; }
+.stock-dc-warn  { background: #FFFBEB; border-color: rgba(245,166,35,.3); }
+.stock-dc-info  { background: #E6F8FB; border-color: rgba(0,180,200,.3); }
+.stock-dc-green { background: #E8F8EE; border-color: rgba(39,174,96,.3); }
+.stock-dc-icon  { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.stock-dc-title { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.stock-dc-desc  { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
 </style>
 </head>
 <body>
 
 <header class="hdr">
-  <div class="hdr-logo"><div class="hdr-icon">&#128722;</div>Port Store &#8212; BigCommerce Editor</div>
+  <div class="hdr-logo"><div class="hdr-icon">&#128722;</div>Port Store &#8212; Website &amp; Operations</div>
   <span class="hdr-badge">Internal Tool</span>
 </header>
 
@@ -950,53 +989,165 @@ Thanks, Port Store Team</div></div>
     <div class="csp-divider"></div>
 
     <div id="csp-stock" class="csp-block">
-      <div class="csp-hdr"><div class="csp-ico">&#128230;</div><div><div class="csp-title">Stock Issues</div><div class="csp-sub">When AWDS can&#8217;t fulfil an item &mdash; process differs based on order size</div></div></div>
-      <div class="gd-band gd-band-t" style="margin-bottom:16px"><span>&#128161;</span><div><strong>Always check before adjusting inventory.</strong> If the system shows 2+ units in stock but AWDS is showing zero, ask AWDS to do a physical stock check first before making any Lightspeed changes.</div></div>
-      <div class="csp-scenario csp-sc1">
-        <div class="csp-sc-hdr"><span style="font-size:20px">1&#65038;</span><div><div class="csp-sc-title">Single item order &mdash; item out of stock at AWDS</div><div class="csp-sc-sub">One item only and AWDS can&#8217;t fulfil it</div></div></div>
-        <div class="csp-sc-body">
-          <div class="csp-steps">
-            <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Ask AWDS to remove the order from their system</div></div></div>
-            <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Fulfil from Alberton &mdash; Samuel adds tracking in BigCommerce</div></div></div>
-            <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Transfer stock from Online to Alberton in Lightspeed</div>
-              <div class="csp-dc-row"><div class="csp-dc csp-dc-w"><div class="csp-dc-t">&#9888;&#65039; System shows 1 in stock (Online)</div><div class="csp-dc-d">Remove this unit from Online in Lightspeed &mdash; it&#8217;s being fulfilled from Alberton.</div></div><div class="csp-dc csp-dc-i"><div class="csp-dc-t">&#128269; System shows 2+ but AWDS has zero</div><div class="csp-dc-d">Ask AWDS for a physical stock check before making any changes.</div></div></div>
-            </div></div>
-          </div>
+      <div class="csp-hdr">
+        <div class="csp-ico">&#128230;</div>
+        <div>
+          <div class="csp-title">Stock Issues</div>
+          <div class="csp-sub">When AWDS can&#8217;t fulfil an item &#8212; process differs based on order size</div>
         </div>
       </div>
-      <div class="csp-scenario csp-sc2" style="margin-top:12px">
-        <div class="csp-sc-hdr"><span style="font-size:20px">2&#65038;</span><div><div class="csp-sc-title">Two item order &mdash; one item out of stock</div><div class="csp-sc-sub">Use judgment based on value difference between the two items</div></div></div>
-        <div class="csp-sc-body">
-          <div class="csp-steps">
-            <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Assess which item is unavailable</div>
-              <div class="csp-dc-row"><div class="csp-dc csp-dc-w"><div class="csp-dc-t">&#129405; High-value item unavailable (e.g. jacket)</div><div class="csp-dc-d">Email the customer and ask how they&#8217;d like to proceed &mdash; they likely won&#8217;t want to pay full shipping just for a keyring.</div></div><div class="csp-dc csp-dc-g"><div class="csp-dc-t">&#128273; Low-value item unavailable (e.g. keyring)</div><div class="csp-dc-d">Email customer advising you&#8217;ve refunded the unavailable item and dispatched the main item. Refund in BigCommerce.</div></div></div>
-            </div></div>
-            <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Adjust inventory in Lightspeed if needed</div>
-              <div class="csp-dc-row"><div class="csp-dc csp-dc-i"><div class="csp-dc-t">&#128269; System shows 2+ but AWDS has zero</div><div class="csp-dc-d">Ask AWDS for a physical stock check before adjusting. Transfer Online to Alberton once confirmed.</div></div></div>
-            </div></div>
-          </div>
-        </div>
-      </div>
-      <div class="csp-scenario csp-sc3" style="margin-top:12px">
-        <div class="csp-sc-hdr"><span style="font-size:20px">3&#65038;</span><div><div class="csp-sc-title">Three or more item order &mdash; one item out of stock</div><div class="csp-sc-sub">Refund the missing item and ship the rest</div></div></div>
-        <div class="csp-sc-body">
-          <div class="csp-steps">
-            <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Email the customer &mdash; notify and refund</div>
-              <div class="csp-email"><div class="csp-email-lbl">&#128231; Suggested email</div><div class="csp-email-body">Hi [Name],
 
-Thank you for your recent Port Store order. Unfortunately we&#8217;re unable to fulfil [item name] as it&#8217;s no longer available. We&#8217;ve processed a refund of [amount] back to your original payment method &mdash; this should appear within 3&#8211;5 business days.
+      <div class="gd-band gd-band-t" style="margin-bottom:20px">
+        <span>&#128161;</span>
+        <div><strong>Always check before adjusting inventory.</strong> If the system shows 2+ units in stock but AWDS is showing zero, ask AWDS to do a physical stock check before making any Lightspeed changes.</div>
+      </div>
+
+      <!-- Scenario picker tabs -->
+      <div class="stock-tabs">
+        <button class="stock-tab active" onclick="showScenario(1,this)">
+          <div class="stock-tab-num">1</div>
+          <div class="stock-tab-label">Single item<br><span>order can&#8217;t be fulfilled</span></div>
+        </button>
+        <button class="stock-tab" onclick="showScenario(2,this)">
+          <div class="stock-tab-num">2</div>
+          <div class="stock-tab-label">Two item order<br><span>one item can&#8217;t be fulfilled</span></div>
+        </button>
+        <button class="stock-tab" onclick="showScenario(3,this)">
+          <div class="stock-tab-num">3</div>
+          <div class="stock-tab-label">3+ item order<br><span>one item can&#8217;t be fulfilled</span></div>
+        </button>
+      </div>
+
+      <!-- Scenario 1 -->
+      <div class="stock-scenario active" id="stock-sc-1">
+        <div class="stock-sc-header stock-sc-header-1">
+          <strong>Single item order</strong> &#8212; AWDS can&#8217;t fulfil the item
+        </div>
+        <div class="stock-sc-body">
+          <div class="csp-steps">
+            <div class="csp-step">
+              <div class="csp-num">1</div>
+              <div class="csp-body">
+                <div class="csp-stitle">Ask AWDS to remove the order from their system</div>
+              </div>
+            </div>
+            <div class="csp-step">
+              <div class="csp-num">2</div>
+              <div class="csp-body">
+                <div class="csp-stitle">Fulfil from Alberton &mdash; Samuel adds tracking in BigCommerce</div>
+                <div class="csp-sdesc">Pick and dispatch from Alberton Oval. Samuel will enter the tracking number into BigCommerce once sent.</div>
+              </div>
+            </div>
+            <div class="csp-step">
+              <div class="csp-num">3</div>
+              <div class="csp-body">
+                <div class="csp-stitle">Transfer stock from Online to Alberton in Lightspeed</div>
+                <div class="stock-dc-grid">
+                  <div class="stock-dc stock-dc-warn">
+                    <div class="stock-dc-icon">&#9888;&#65039;</div>
+                    <div><div class="stock-dc-title">System shows 1 in stock (Online)</div><div class="stock-dc-desc">Remove this unit from the Online location in Lightspeed &mdash; it&#8217;s being fulfilled from Alberton.</div></div>
+                  </div>
+                  <div class="stock-dc stock-dc-info">
+                    <div class="stock-dc-icon">&#128269;</div>
+                    <div><div class="stock-dc-title">System shows 2+ but AWDS has zero</div><div class="stock-dc-desc">Ask AWDS for a physical stock check before making any changes.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scenario 2 -->
+      <div class="stock-scenario" id="stock-sc-2">
+        <div class="stock-sc-header stock-sc-header-2">
+          <strong>Two item order</strong> &#8212; one item can&#8217;t be fulfilled by AWDS
+        </div>
+        <div class="stock-sc-body">
+          <div class="gd-band gd-band-b" style="margin-bottom:16px">
+            <span>&#128161;</span>
+            <div>Use your judgment based on the value difference between the two items. The goal is always the best outcome for the customer.</div>
+          </div>
+          <div class="csp-steps">
+            <div class="csp-step">
+              <div class="csp-num">1</div>
+              <div class="csp-body">
+                <div class="csp-stitle">Assess which item is unavailable</div>
+                <div class="stock-dc-grid">
+                  <div class="stock-dc stock-dc-warn">
+                    <div class="stock-dc-icon">&#129405;</div>
+                    <div><div class="stock-dc-title">High-value item unavailable (e.g. jacket)</div><div class="stock-dc-desc">Email the customer and ask how they&#8217;d like to proceed. They likely won&#8217;t want to pay full shipping for just a keyring.</div></div>
+                  </div>
+                  <div class="stock-dc stock-dc-green">
+                    <div class="stock-dc-icon">&#128273;</div>
+                    <div><div class="stock-dc-title">Low-value item unavailable (e.g. keyring)</div><div class="stock-dc-desc">Email to advise you&#8217;ve refunded the unavailable item and dispatched the main item. Refund in BigCommerce.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="csp-step">
+              <div class="csp-num">2</div>
+              <div class="csp-body">
+                <div class="csp-stitle">Adjust inventory in Lightspeed if needed</div>
+                <div class="stock-dc-grid">
+                  <div class="stock-dc stock-dc-info">
+                    <div class="stock-dc-icon">&#128269;</div>
+                    <div><div class="stock-dc-title">System shows 2+ but AWDS has zero</div><div class="stock-dc-desc">Ask AWDS for a physical stock check before adjusting. Transfer Online to Alberton once confirmed.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scenario 3 -->
+      <div class="stock-scenario" id="stock-sc-3">
+        <div class="stock-sc-header stock-sc-header-3">
+          <strong>Three or more item order</strong> &#8212; one item can&#8217;t be fulfilled by AWDS
+        </div>
+        <div class="stock-sc-body">
+          <div class="csp-steps">
+            <div class="csp-step">
+              <div class="csp-num">1</div>
+              <div class="csp-body">
+                <div class="csp-stitle">Email the customer &#8212; notify and refund the unavailable item</div>
+                <div class="csp-email"><div class="csp-email-lbl">&#128231; Suggested email</div><div class="csp-email-body">Hi [Name],
+
+Thank you for your recent Port Store order. Unfortunately we&#8217;re unable to fulfil [item name] as it&#8217;s no longer available. We&#8217;ve processed a refund of [amount] back to your original payment method &#8212; this should appear within 3&#8211;5 business days.
 
 The rest of your order has been dispatched and you&#8217;ll receive tracking shortly.
 
 Thanks, Port Store Team</div></div>
-            </div></div>
-            <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Tell AWDS to ship the remainder of the order</div></div></div>
-            <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Adjust inventory in Lightspeed</div>
-              <div class="csp-dc-row"><div class="csp-dc csp-dc-w"><div class="csp-dc-t">&#9888;&#65039; System shows 1 in stock (Online)</div><div class="csp-dc-d">Remove from Online location in Lightspeed.</div></div><div class="csp-dc csp-dc-i"><div class="csp-dc-t">&#128269; System shows 2+ but AWDS has zero</div><div class="csp-dc-d">Ask AWDS for a physical stock check first.</div></div></div>
-            </div></div>
+              </div>
+            </div>
+            <div class="csp-step">
+              <div class="csp-num">2</div>
+              <div class="csp-body">
+                <div class="csp-stitle">Tell AWDS to ship the remainder of the order</div>
+              </div>
+            </div>
+            <div class="csp-step">
+              <div class="csp-num">3</div>
+              <div class="csp-body">
+                <div class="csp-stitle">Adjust inventory in Lightspeed</div>
+                <div class="stock-dc-grid">
+                  <div class="stock-dc stock-dc-warn">
+                    <div class="stock-dc-icon">&#9888;&#65039;</div>
+                    <div><div class="stock-dc-title">System shows 1 in stock (Online)</div><div class="stock-dc-desc">Remove from the Online location in Lightspeed.</div></div>
+                  </div>
+                  <div class="stock-dc stock-dc-info">
+                    <div class="stock-dc-icon">&#128269;</div>
+                    <div><div class="stock-dc-title">System shows 2+ but AWDS has zero</div><div class="stock-dc-desc">Ask AWDS for a physical stock check first.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+    </div>
     </div>
     <div class="csp-divider"></div>
 
@@ -1181,6 +1332,14 @@ function genGrid(){
   var code='<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet">\n\n<div id="ps-fn-grid">\n  <style>\n    #ps-fn-grid{font-family:\'Jost\',sans-serif;width:100%;box-sizing:border-box;background:#fff;padding:20px}\n    #ps-fn-grid *{box-sizing:border-box}\n    #ps-fn-grid .ps-grid{display:grid;grid-template-columns:repeat('+cols+',1fr);gap:12px}\n    @media(max-width:640px){#ps-fn-grid .ps-grid{grid-template-columns:repeat('+mob+',1fr)}}\n    #ps-fn-grid .ps-card{background:#fff;border:1px solid #efefef;overflow:hidden;display:flex;flex-direction:column}\n    #ps-fn-grid .ps-img-wrap{padding:20px;background:#fff}\n    #ps-fn-grid .ps-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}\n    #ps-fn-grid .ps-card-info{padding:10px;display:flex;flex-direction:column;flex:1}\n    #ps-fn-grid .ps-name{font-family:\'Jost\',sans-serif;font-weight:700;font-size:14px;color:#000;margin:0 0 5px;line-height:1.3}\n    #ps-fn-grid .ps-price{font-family:\'Jost\',sans-serif;font-size:12px;color:#000;margin:0 0 10px}\n    #ps-fn-grid .ps-btn{display:block;background:'+btn+';color:#fff;font-family:\'Jost\',sans-serif;font-size:10px;font-weight:700;text-align:center;padding:8px 6px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;margin-top:auto;transition:background 0.2s,color 0.2s}\n    #ps-fn-grid .ps-btn:hover{background:'+hov+';color:#000}\n  </style>\n  <div class="ps-grid">'+cards+'\n  </div>\n</div>';
   document.getElementById('pg-out').textContent=code;
   showToast('&#9989; Product grid code generated!');
+}
+
+function showScenario(n, btn) {
+  document.querySelectorAll('.stock-scenario').forEach(function(el){ el.classList.remove('active'); });
+  document.querySelectorAll('.stock-tab').forEach(function(b){ b.classList.remove('active'); });
+  var sc = document.getElementById('stock-sc-' + n);
+  if (sc) sc.classList.add('active');
+  if (btn) btn.classList.add('active');
 }
 
 function switchGuide(id){

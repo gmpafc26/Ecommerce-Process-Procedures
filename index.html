@@ -747,8 +747,8 @@ body.edit-mode [contenteditable]:focus {
           <div class="sb-grid">
             <div class="sb-cell"><span class="sb-label">Desktop Image</span><span class="sb-val">2100 &times; 700 px <span class="live-badge">&#9679; Live</span></span><span class="sb-note">Landscape. JPG or PNG.</span></div>
             <div class="sb-cell"><span class="sb-label">Mobile Image</span><span class="sb-val">767 &times; 960 px <span class="rec-badge">&#128161; Rec.</span></span><span class="sb-note">Portrait. Screens &#8804;767px.</span></div>
-            <div class="sb-cell"><span class="sb-label">Desktop file size</span><span class="sb-val">1-2 MB</span></div>
-            <div class="sb-cell"><span class="sb-label">Mobile file size</span><span class="sb-val">1 MB</span></div>
+            <div class="sb-cell"><span class="sb-label">Desktop file size</span><span class="sb-val">1–2 MB</span></div>
+            <div class="sb-cell"><span class="sb-label">Mobile file size</span><span class="sb-val">Under 1 MB</span></div>
             <div class="sb-cell full"><span class="sb-label">Get the URL</span><span class="sb-val">BC Admin &#8594; Storefront &#8594; Image Manager &#8594; Upload &#8594; copy CDN URL</span></div>
           </div>
         </div>
@@ -837,7 +837,7 @@ body.edit-mode [contenteditable]:focus {
           <div class="sb-grid">
             <div class="sb-cell"><span class="sb-label">Product image</span><span class="sb-val">600 &times; 800 px <span class="rec-badge">&#128161; Rec.</span></span><span class="sb-note">3:4 portrait. Matches live images.</span></div>
             <div class="sb-cell"><span class="sb-label">Desktop columns</span><span class="sb-val">4 columns <span class="live-badge">&#9679; Live</span></span></div>
-            <div class="sb-cell"><span class="sb-label">File size per image</span><span class="sb-val">Under 200 KB</span></div>
+            <div class="sb-cell"><span class="sb-label">File size per image</span><span class="sb-val">Under 1 MB</span></div>
             <div class="sb-cell"><span class="sb-label">Button</span><span class="sb-val">#000 / #00edff hover <span class="live-badge">&#9679; Live</span></span></div>
             <div class="sb-cell full"><span class="sb-label">Get image URLs</span><span class="sb-val">BC Image Manager OR right-click product image &#8594; Copy image address</span></div>
           </div>
@@ -1198,6 +1198,7 @@ body.edit-mode [contenteditable]:focus {
       <a href="#" onclick="csScroll('csp-stock');return false" class="csp-pill">&#128230; Stock Issues</a>
       <a href="#" onclick="csScroll('csp-cancel');return false" class="csp-pill">&#10060; Cancellations</a>
       <a href="#" onclick="csScroll('csp-missing');return false" class="csp-pill">&#128269; Missing Orders</a>
+      <a href="#" onclick="csScroll('csp-returns');return false" class="csp-pill">&#8617;&#65039; Returns</a>
     </div>
   </div>
   <div style="padding:24px 28px">
@@ -1428,6 +1429,59 @@ Thanks, Port Store Team</div></div>
     <div class="csp-divider"></div>
 
 
+
+
+    <div class="csp-divider"></div>
+
+    <div id="csp-returns" class="csp-block">
+      <div class="csp-hdr">
+        <div class="csp-ico">&#8617;&#65039;</div>
+        <div>
+          <div class="csp-title">Returns</div>
+          <div class="csp-sub">Ecommerce returns managed via AWDS warehouse</div>
+        </div>
+      </div>
+
+      <div class="gd-band gd-band-b" style="margin-bottom:16px">
+        <span>&#8505;&#65039;</span>
+        <div>AWDS manage all ecommerce returns at the warehouse. Stock is automatically returned to their system when a parcel arrives &#8212; but it won&#8217;t be available to customers until you process the refund in BigCommerce.</div>
+      </div>
+
+      <div class="csp-steps">
+
+        <div class="csp-step">
+          <div class="csp-num">1</div>
+          <div class="csp-body">
+            <div class="csp-stitle">AWDS receive the return &amp; email you a list</div>
+            <div class="csp-sdesc">When returned parcels arrive at the AWDS warehouse, they will email you with a list of items received. AWDS automatically add the stock back into their system at this point.</div>
+          </div>
+        </div>
+
+        <div class="csp-step">
+          <div class="csp-num">2</div>
+          <div class="csp-body">
+            <div class="csp-stitle">Log the return in the shared register</div>
+            <div class="csp-sdesc">Open the shared returns register and add an entry for each item returned.</div>
+            <a href="https://docs.google.com/spreadsheets/d/1bDn5F35szqt8iwiD8qifDZA0zbGQRPgVEH7VfX5eowo/edit?gid=936710020#gid=936710020" target="_blank" style="display:inline-flex;align-items:center;gap:7px;margin-top:8px;padding:8px 14px;background:#f0fdf4;border:1px solid #86efac;border-radius:7px;font-size:13px;font-weight:600;color:#166534;text-decoration:none;transition:all .15s" onmouseover="this.style.background='#dcfce7'" onmouseout="this.style.background='#f0fdf4'">
+              &#128202; Open Returns Register
+            </a>
+          </div>
+        </div>
+
+        <div class="csp-step">
+          <div class="csp-num">3</div>
+          <div class="csp-body">
+            <div class="csp-stitle">Process the refund in BigCommerce</div>
+            <div class="csp-sdesc">Go through the list of returns and refund each order in BigCommerce. Once refunded, the stock syncs through to Lightspeed and becomes available to customers again.</div>
+            <div class="gd-band gd-band-a" style="margin-top:10px">
+              <span>&#9888;&#65039;</span>
+              <div><strong>Stock won&#8217;t be available until you process the refund in BigCommerce.</strong> Even though AWDS have returned the item to their system, it won&#8217;t appear as available stock in Lightspeed until the return is completed on our side.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; Customer Service Procedures</div>
   </div>

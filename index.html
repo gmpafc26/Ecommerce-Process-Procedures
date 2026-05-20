@@ -538,6 +538,76 @@ body.edit-mode [contenteditable]:focus {
 }
 .edit-mode-banner.visible { display: flex; }
 
+
+/* ── IMAGE UPLOAD NOTICE ── */
+.img-upload-notice {
+  background: #f0f7ff;
+  border: 1px solid #bfdbfe;
+  border-left: 3px solid #3b82f6;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.img-upload-notice-row { display: flex; gap: 12px; align-items: flex-start; }
+.img-upload-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.img-upload-title { font-size: 13px; font-weight: 700; color: #1e40af; margin-bottom: 8px; }
+.img-upload-steps {
+  display: flex; align-items: center; gap: 6px;
+  flex-wrap: wrap; margin-bottom: 10px;
+}
+.img-upload-step {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; color: #1d4ed8;
+}
+.img-upload-step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #3b82f6; color: #fff;
+  font-size: 10px; font-weight: 700; flex-shrink: 0;
+}
+.img-upload-step-sep { color: #93c5fd; font-size: 14px; }
+.img-upload-example { background: #fff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px; }
+.img-upload-example-lbl { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #93c5fd; margin-bottom: 4px; }
+.img-upload-url { font-family: 'DM Mono', monospace; font-size: 11px; color: #1e40af; word-break: break-all; line-height: 1.6; }
+.img-upload-url strong { color: #1d4ed8; }
+
+
+/* ── PRODUCT VISIBILITY + LIGHTSPEED WARNING ── */
+.pm-overwrite-warn {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: #fff8ed;
+  border: 1px solid #fbbf24;
+  border-left: 4px solid #f59e0b;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.pm-overwrite-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.pm-overwrite-title { font-size: 14px; font-weight: 700; color: #92400e; margin-bottom: 5px; }
+.pm-overwrite-body { font-size: 13px; color: #92400e; line-height: 1.65; }
+.pm-vis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+@media(max-width: 700px) { .pm-vis-grid { grid-template-columns: 1fr; } }
+.pm-vis-card {
+  background: var(--off, #f8fafc);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 9px;
+  padding: 13px 15px;
+}
+.pm-vis-card-title {
+  font-size: 12px; font-weight: 700;
+  color: var(--text, #1a2b3c);
+  margin-bottom: 7px;
+}
+.pm-vis-card-body {
+  font-size: 13px; color: var(--muted, #6b7280);
+  line-height: 1.6; margin-bottom: 8px;
+}
+
 </style>
 </head>
 <body>
@@ -618,8 +688,8 @@ body.edit-mode [contenteditable]:focus {
           <div class="sb-grid">
             <div class="sb-cell"><span class="sb-label">Desktop Image</span><span class="sb-val">2100 &times; 700 px <span class="live-badge">&#9679; Live</span></span><span class="sb-note">Landscape. JPG or PNG.</span></div>
             <div class="sb-cell"><span class="sb-label">Mobile Image</span><span class="sb-val">767 &times; 960 px <span class="rec-badge">&#128161; Rec.</span></span><span class="sb-note">Portrait. Screens &#8804;767px.</span></div>
-            <div class="sb-cell"><span class="sb-label">Desktop file size</span><span class="sb-val">1-2 MB</span></div>
-            <div class="sb-cell"><span class="sb-label">Mobile file size</span><span class="sb-val">1 MB</span></div>
+            <div class="sb-cell"><span class="sb-label">Desktop file size</span><span class="sb-val">Under 400 KB</span></div>
+            <div class="sb-cell"><span class="sb-label">Mobile file size</span><span class="sb-val">Under 200 KB</span></div>
             <div class="sb-cell full"><span class="sb-label">Get the URL</span><span class="sb-val">BC Admin &#8594; Storefront &#8594; Image Manager &#8594; Upload &#8594; copy CDN URL</span></div>
           </div>
         </div>
@@ -627,8 +697,27 @@ body.edit-mode [contenteditable]:focus {
           <div class="card-hdr"><div class="card-ttl"><div class="card-ico" style="background:#eff6ff">&#128444;&#65039;</div>Main Hero Banner</div><span class="badge-html">HTML Widget</span></div>
           <div class="card-body">
             <div class="frow full"><div class="fg"><label class="fl">Banner Link URL <span class="req">*</span></label><input type="url" class="fc" id="b-link" value="https://portstore.com.au/first-nations-2026/"><span class="fhint">Where clicking the banner sends the customer</span></div></div>
-            <div class="frow full"><div class="fg"><label class="fl">Desktop Image URL <span class="req">*</span></label><input type="url" class="fc" id="b-desk" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/sdnr-desktop-banner.png?t=1778478293"><span class="fhint">&#128190; Upload at <strong>2100&times;700px</strong> &#8212; paste CDN URL here</span></div></div>
-            <div class="frow full"><div class="fg"><label class="fl">Mobile Image URL <span class="req">*</span></label><input type="url" class="fc" id="b-mob" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/sdnr-mobile-banner.png?t=1778478297"><span class="fhint">&#128190; Upload at <strong>767&times;960px portrait</strong></span></div></div>
+            <div class="img-upload-notice">
+  <div class="img-upload-notice-row">
+    <span class="img-upload-icon">&#128444;&#65039;</span>
+    <div>
+      <div class="img-upload-title">Images must be uploaded to BigCommerce first</div>
+      <div class="img-upload-steps">
+        <span class="img-upload-step"><span class="img-upload-step-num">1</span> BigCommerce Admin &rarr; <strong>Content</strong> &rarr; <strong>Image Manager</strong></span>
+        <span class="img-upload-step-sep">&rarr;</span>
+        <span class="img-upload-step"><span class="img-upload-step-num">2</span> Upload your image &amp; copy the URL</span>
+        <span class="img-upload-step-sep">&rarr;</span>
+        <span class="img-upload-step"><span class="img-upload-step-num">3</span> Paste the URL below</span>
+      </div>
+      <div class="img-upload-example">
+        <span class="img-upload-example-lbl">Example URL</span>
+        <code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code>
+      </div>
+    </div>
+  </div>
+</div>
+            <div class="frow full"><div class="fg"><label class="fl">Desktop Image URL <span class="req">*</span></label><input type="url" class="fc" id="b-desk" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/sdnr-desktop-banner.png?t=1778478293"><span class="fhint">&#128190; <strong>2100&times;700px</strong> &mdash; upload in BigCommerce &rarr; Content &rarr; Image Manager, then paste the CDN URL here</span></div></div>
+            <div class="frow full"><div class="fg"><label class="fl">Mobile Image URL <span class="req">*</span></label><input type="url" class="fc" id="b-mob" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/sdnr-mobile-banner.png?t=1778478297"><span class="fhint">&#128190; <strong>767&times;960px portrait</strong> &mdash; upload in BigCommerce &rarr; Content &rarr; Image Manager, then paste the CDN URL here</span></div></div>
             <div class="frow full"><div class="fg"><label class="fl">Alt Text</label><input type="text" class="fc" id="b-alt" value="Promotional Banner"></div></div>
             <button class="gen-btn" onclick="genBanner()">&#9889; Generate Banner Code</button>
           </div>
@@ -706,6 +795,23 @@ body.edit-mode [contenteditable]:focus {
               <div class="fg"><label class="fl">Button Hover</label><div class="color-row"><div class="cswatch"><input type="color" id="pg-hov" value="#00edff" oninput="document.getElementById('pg-hovhex').value=this.value"></div><input type="text" class="fc" id="pg-hovhex" value="#00edff" style="width:100px" oninput="syncC('pg-hov','pg-hovhex')"></div></div>
             </div>
             <div class="divider">Products (up to 12)</div>
+            <div class="img-upload-notice" style="margin:0 0 16px 0">
+  <div class="img-upload-notice-row">
+    <span class="img-upload-icon">&#128190;</span>
+    <div>
+      <div class="img-upload-title">Images must be uploaded to BigCommerce first</div>
+      <div class="img-upload-steps">
+        <span class="img-upload-step"><span class="img-upload-step-num">1</span> BC Admin &rarr; <strong>Content &rarr; Image Manager</strong> &rarr; Upload &amp; copy URL</span>
+        <span class="img-upload-step-sep">&rarr;</span>
+        <span class="img-upload-step"><span class="img-upload-step-num">2</span> Paste URL in the Image URL field on each product card</span>
+      </div>
+      <div class="img-upload-example">
+        <span class="img-upload-example-lbl">Example URL</span>
+        <code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>filename.png</strong></code>
+      </div>
+    </div>
+  </div>
+</div>
             <div id="pg-prods" style="display:flex;flex-direction:column;gap:11px"></div>
             <button class="add-btn" onclick="addProd()">+ Add Product</button>
             <button class="gen-btn" onclick="genGrid()">&#9889; Generate Product Grid Code</button>
@@ -724,7 +830,15 @@ body.edit-mode [contenteditable]:focus {
   <div class="subview" id="sv-products">
     <div class="ed-wrap" style="padding:24px 28px">
       <div class="icard" style="margin-bottom:24px"><div class="icard-ttl">&#128230; Managing Products in BigCommerce</div><p style="font-size:13px;color:var(--muted);line-height:1.7">How to find, edit and manage product listings. Covers the product list, editing basic info, categories, description and images.</p></div>
-      <div class="icard" style="margin-bottom:24px"><div class="icard-ttl">&#128205; How to get to products</div><div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BigCommerce Admin</span> &#8594; Products &#8594; View</div>
+      <div class="pm-overwrite-warn">
+  <div class="pm-overwrite-icon">&#9888;&#65039;</div>
+  <div>
+    <div class="pm-overwrite-title">Any changes made in Lightspeed will overwrite BigCommerce</div>
+    <div class="pm-overwrite-body">When stock is adjusted or new products are synced from Lightspeed, it overwrites the corresponding fields in BigCommerce — including product names, descriptions, and images. <strong>Make content changes (descriptions, images, names) in Lightspeed, not BigCommerce</strong>, otherwise they will be lost the next time a Lightspeed sync occurs.</div>
+  </div>
+</div>
+
+<div class="icard" style="margin-bottom:24px"><div class="icard-ttl">&#128205; How to get to products</div><div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BigCommerce Admin</span> &#8594; Products &#8594; View</div>
         <div class="pm-img" style="margin-top:10px"><img src="img-pm1.png" alt="Product list"><div class="pm-img-cap">The product list &#8212; click any product name to open the editor.</div></div></div>
       <div style="display:flex;flex-direction:column">
         <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody"><div class="pm-stitle">Find the product</div><div class="pm-sdesc">Search by name in the product list. Click the product name (blue link) to open the editor.</div><div class="pm-img"><img src="img-pm1.png" alt="Product list"><div class="pm-img-cap">Click any product name to open it. ENABLED = visible on storefront.</div></div><div class="pm-tip">&#128161; The ENABLED green badge means customers can see the product. DISABLED hides it.</div></div></div>
@@ -733,7 +847,34 @@ body.edit-mode [contenteditable]:focus {
         <div class="pm-step"><div class="pm-snum">4</div><div class="pm-sbody"><div class="pm-stitle">Manage Product Images</div><div class="pm-sdesc">Scroll to the Images section. The THUMBNAIL badge marks the main image shown in grids and search.</div><div class="pm-img"><img src="img-pm4.png" alt="Images"><div class="pm-img-cap">Images section &#8212; THUMBNAIL = main image. Click + to upload. Click Remove to delete.</div></div><div class="pm-fg"><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Thumbnail</div><div class="pm-fd">First image = thumbnail. Drag another image to the first position to change it.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Alt text</div><div class="pm-fd">Fill in for every image. E.g. <em>PA First Nations Guernsey front view</em>.</div></div></div><div class="pm-tip">&#128161; Best size: <strong>800&times;800px or larger</strong>, JPG or PNG, under 1MB.</div><div class="pm-warn">&#9888;&#65039; Deleting an image is permanent. Save the file locally before removing.</div></div></div>
         <div class="pm-step"><div class="pm-snum">5</div><div class="pm-sbody"><div class="pm-stitle">Save your changes</div><div class="pm-sdesc">Scroll to the bottom and click Save. Changes go live immediately &#8212; no separate publish step needed.</div><div class="pm-screen"><span class="pm-hl">Scroll to bottom</span> &#8594; click <span class="pm-hl">Save</span></div><div class="pm-warn">&#9888;&#65039; Product edits go live <strong>immediately</strong> on save. Double-check before saving.</div></div></div>
       </div>
-      <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128203; Quick Reference</div><table class="ref-table"><thead><tr><th>Section</th><th>What you can edit</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Basic Information</strong></td><td>Name, SKU, price, brand, product type</td><td>Don&#8217;t change SKU without checking inventory impact.</td></tr><tr><td><strong>Categories</strong></td><td>Which collection pages the product appears on</td><td>Tick multiple. Changes take effect immediately on save.</td></tr><tr><td><strong>Description</strong></td><td>Rich text product description</td><td>Use toolbar for formatting. Keep tone consistent.</td></tr><tr><td><strong>Images</strong></td><td>Add, reorder and remove product images</td><td>First image = thumbnail. Fill in alt text. Min 800&times;800px.</td></tr><tr><td><strong>Pricing</strong></td><td>Sale price, cost price, bulk pricing</td><td>Use <em>Sale Price</em> for promotions.</td></tr><tr><td><strong>Inventory</strong></td><td>Stock level, track inventory on/off</td><td>Only edit if managing inventory manually.</td></tr></tbody></table></div>
+
+        <div class="pm-step"><div class="pm-snum">6</div><div class="pm-sbody">
+          <div class="pm-stitle">Make the product visible on the storefront</div>
+          <div class="pm-sdesc">By default, products may not be visible to customers. You need to enable storefront visibility and publish to all relevant channels.</div>
+
+          <div class="pm-vis-grid">
+
+            <div class="pm-vis-card">
+              <div class="pm-vis-card-title">&#128065;&#65039; Step 1 — Enable storefront visibility</div>
+              <div class="pm-vis-card-body">In the product editor, scroll down to the <strong>Storefront</strong> section. Make sure <strong>Visible on storefront</strong> is ticked. If this is unticked, customers cannot see the product regardless of channel settings.</div>
+              <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; scroll to <span class="pm-hl">Storefront</span> &rarr; tick <span class="pm-hl">Visible on storefront</span></div>
+            </div>
+
+            <div class="pm-vis-card">
+              <div class="pm-vis-card-title">&#128279; Step 2 — Publish to all channels</div>
+              <div class="pm-vis-card-body">In the product editor, find the <strong>Channels</strong> section (or the channel listing in the right sidebar). Make sure the product is enabled on <strong>all relevant storefronts</strong> — typically the Port Store channel. Unticking a channel hides the product from that storefront only.</div>
+              <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Channels</span> section &rarr; tick all relevant storefronts</div>
+            </div>
+
+          </div>
+
+          <div class="pm-tip">&#128161; A product can be <strong>Enabled</strong> (status) but still invisible if storefront visibility is off or it isn&rsquo;t published to a channel. Both must be set correctly for the product to appear on the site.</div>
+          <div class="pm-warn">&#9888;&#65039; If a Lightspeed sync runs after you make visibility changes, check these settings haven&rsquo;t been reset — Lightspeed controls product status and may affect visibility flags.</div>
+        </div></div>
+      <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128203; Quick Reference</div><table class="ref-table"><thead><tr><th>Section</th><th>What you can edit</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Basic Information</strong></td><td>Name, SKU, price, brand, product type</td><td>Don&#8217;t change SKU without checking inventory impact.</td></tr><tr><td><strong>Categories</strong></td><td>Which collection pages the product appears on</td><td>Tick multiple. Changes take effect immediately on save.</td></tr><tr><td><strong>Description</strong></td><td>Rich text product description</td><td>Use toolbar for formatting. Keep tone consistent.</td></tr><tr><td><strong>Images</strong></td><td>Add, reorder and remove product images</td><td>First image = thumbnail. Fill in alt text. Min 800&times;800px.</td></tr><tr><td><strong>Pricing</strong></td><td>Sale price, cost price, bulk pricing</td><td>Use <em>Sale Price</em> for promotions.</td></tr><tr><td><strong>Inventory</strong></td><td>Stock level, track inventory on/off</td><td>Only edit if managing inventory manually.</td></tr>
+        <tr><td><strong>Storefront visibility</strong></td><td>Visible on storefront toggle</td><td>Must be ticked for the product to appear on site.</td></tr>
+        <tr><td><strong>Channels</strong></td><td>Which storefronts show the product</td><td>Must be published to the correct channel.</td></tr>
+        </tbody></table></div>
     </div>
   </div>
 
@@ -1360,7 +1501,7 @@ function renderProds(){
       +'<input type="url" class="fc" value="'+esc(p.url)+'" oninput="pgProds['+i+'].url=this.value"></div></div>'
       +'<div class="frow full"><div class="fg"><label class="fl">Image URL <span class="req">*</span></label>'
       +'<input type="url" class="fc" placeholder="https://cdn11.bigcommerce.com/..." value="'+esc(p.img)+'" oninput="pgProds['+i+'].img=this.value">'
-      +'<span class="fhint">Best: 600&times;800px. Right-click product image &#8594; Copy image address.</span></div></div>';
+      +'<span class="fhint">&#128190; Upload in BC &rarr; Content &rarr; Image Manager. Best: <strong>600&times;800px</strong>. Then paste the CDN URL.</span></div></div>';
     c.appendChild(d);
   });
 }

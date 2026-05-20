@@ -149,7 +149,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .icard-ttl{font-weight:700;font-size:13px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
 
 /* PRODUCT MGMT */
-.pm-wrap{max-width:920px;margin:0 auto;padding:32px 28px}
+.pm-wrap{padding:24px 28px}
 .pm-step{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--border)}
 .pm-step:last-child{border-bottom:none}
 .pm-snum{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
@@ -219,7 +219,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .item-link:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
 .item-date{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px}
 
-/* ADD ITEM MODAL */
+/* MODAL STYLES */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(13,27,42,.55);backdrop-filter:blur(3px);z-index:500;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.open{display:flex}
 .modal{background:#fff;border-radius:16px;width:100%;max-width:600px;box-shadow:var(--sh-lg);max-height:90vh;overflow-y:auto;animation:minIn .2s ease}
@@ -252,7 +252,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* HOW TO */
-.ht-wrap{max-width:860px;margin:0 auto;padding:32px 28px}
+.ht-wrap{padding:24px 28px}
 .ht-step{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--border)}
 .ht-step:last-child{border-bottom:none}
 .ht-snum{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
@@ -397,8 +397,73 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .csp-email-lbl{background:var(--navy);color:rgba(255,255,255,.65);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:5px 11px}
 .csp-email-body{padding:10px 12px;font-size:13px;color:var(--muted);line-height:1.7;white-space:pre-line}
 
+
+/* ── FULL WIDTH LAYOUT FIXES ── */
+.section { width: 100%; }
+.guide-pane, #sec-cs > div:last-child { width: 100%; max-width: 100%; }
+.gd-card { margin-bottom: 16px; }
+.gd-flow { flex-wrap: wrap; gap: 8px; }
+.gd-table { font-size: 13px; }
+.gd-table td, .gd-table th { padding: 10px 8px; }
+.gd-band code, .gs-band code, .csp-email-body { font-size: 12px; }
+
+/* ── GUIDE CONTENT READABLE WIDTH ── */
+.guide-pane > *, #sec-cs .csp-block, #sec-cs .gd-band {
+  max-width: 860px;
+}
+.gd-fixed-row { grid-template-columns: repeat(3,1fr); }
+@media(max-width:700px){ .gd-fixed-row { grid-template-columns: 1fr 1fr; } }
+
+/* ── SECTION CONTENT PADDING ── */
+#sec-guides .guide-pane,
+#sec-cs > div:not(.guide-header):not([style*='border-bottom']) {
+  padding: 24px 24px;
+}
+
+/* ── CS PROCEDURES IMPROVED ── */
+.csp-block { 
+  background: #fff; 
+  border-radius: 12px; 
+  border: 1px solid var(--border);
+  padding: 20px 22px; 
+  margin-bottom: 16px;
+}
+.csp-divider { margin: 8px 0; border: none; }
+.csp-hdr { padding: 0; margin-bottom: 16px; }
+.csp-scenario { margin-top: 12px; }
+.csp-email-body { 
+  font-size: 13px; 
+  line-height: 1.7; 
+  color: var(--text);
+  background: var(--grey-50, #f8fafc);
+}
+
+/* ── GUIDE CARDS IMPROVED ── */
+.gd-stitle { font-size: 14px; line-height: 1.4; }
+.gd-sdesc { line-height: 1.65; }
+.gd-band { font-size: 13px; line-height: 1.6; }
+.gd-tr { margin-bottom: 8px; }
+.gd-tr-a { line-height: 1.65; }
+
+
+/* ── GHOST IMAGERY LAYOUT ── */
+.ghost-wrap { padding: 24px 28px; }
+.ghost-page-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.ghost-page-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.ghost-page-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.ghost-page-sub { font-size: 14px; color: var(--muted); }
+.ghost-two-col { display: grid; grid-template-columns: 300px 1fr; gap: 28px; align-items: start; }
+@media(max-width: 860px) { .ghost-two-col { grid-template-columns: 1fr; } }
+.ghost-sidebar { display: flex; flex-direction: column; gap: 16px; }
+.ghost-sidebar-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+.ghost-sidebar-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-bottom: 12px; }
+.ghost-addr-card { background: var(--navy); border-radius: 12px; padding: 16px 18px; }
+.ghost-addr-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.4); margin-bottom: 8px; }
+.ghost-addr-text { font-size: 13px; font-weight: 600; color: #fff; line-height: 1.9; font-family: 'DM Mono', monospace; }
+.ghost-steps-col { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+.ghost-steps-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 18px; }
+
 </style>
-<script src="https://cdn.monday.com/apps/monday-sdk-js/lib/monday-sdk-js.min.js"></script>
 </head>
 <body>
 
@@ -409,7 +474,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 
 <nav class="main-tabs">
   <button class="mtab active" id="mt-website" onclick="switchTab('website',this)">&#127760; Website Operations</button>
-  <button class="mtab" id="mt-ops" onclick="switchTab('ops',this)">&#128203; Operations Board</button>
   <button class="mtab" id="mt-guides" onclick="switchTab('guides',this)">&#128218; Product Guides</button>
   <button class="mtab" id="mt-cs" onclick="switchTab('cs',this)">&#128172; Customer Service</button>
 </nav>
@@ -574,7 +638,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 
   <!-- MANAGING PRODUCTS (moved into Website Operations) -->
   <div class="subview" id="sv-products">
-    <div class="ed-wrap" style="max-width:920px;margin:0 auto;padding:32px 28px">
+    <div class="ed-wrap" style="padding:24px 28px">
       <div class="icard" style="margin-bottom:24px"><div class="icard-ttl">&#128230; Managing Products in BigCommerce</div><p style="font-size:13px;color:var(--muted);line-height:1.7">How to find, edit and manage product listings. Covers the product list, editing basic info, categories, description and images.</p></div>
       <div class="icard" style="margin-bottom:24px"><div class="icard-ttl">&#128205; How to get to products</div><div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BigCommerce Admin</span> &#8594; Products &#8594; View</div>
         <div class="pm-img" style="margin-top:10px"><img src="img-pm1.png" alt="Product list"><div class="pm-img-cap">The product list &#8212; click any product name to open the editor.</div></div></div>
@@ -591,43 +655,97 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 
   <!-- GHOST IMAGERY (Website Operations subview) -->
   <div class="subview" id="sv-ghost">
-    <div class="ed-wrap" style="max-width:860px;margin:0 auto;padding:32px 28px">
-      <div class="icard" style="margin-bottom:20px">
-        <div class="icard-ttl">&#128247; Ghost Imagery Requests &amp; Creation</div>
-        <p style="font-size:13px;color:var(--muted);line-height:1.7">Ghost mannequin &amp; flat lay photography via Virtue Creative Studios. Follow these steps for every new shoot request.</p>
+    <div class="ghost-wrap">
+
+      <div class="ghost-page-header">
+        <div class="ghost-page-icon">&#128247;</div>
+        <div>
+          <div class="ghost-page-title">Ghost Imagery Requests</div>
+          <div class="ghost-page-sub">Ghost mannequin &amp; flat lay photography via Virtue Creative Studios</div>
+        </div>
       </div>
-      <div class="icard" style="margin-bottom:20px">
-        <div class="icard-ttl">&#128172; Virtue Creative &#8212; Contacts</div>
-        <div class="ghost-contact"><div class="ghost-av">LK</div><div><div class="ghost-name">Lukas</div><a href="mailto:lukas@virtuecreative.com.au" class="ghost-email">lukas@virtuecreative.com.au</a></div></div>
-        <div class="ghost-contact"><div class="ghost-av">VC</div><div><div class="ghost-name">Virtue Creative Team</div><a href="mailto:team@virtuecreative.com.au" class="ghost-email">team@virtuecreative.com.au</a></div></div>
-      </div>
-      <div style="background:var(--navy);border-radius:10px;padding:15px 18px;margin-bottom:24px;display:flex;align-items:flex-start;gap:13px">
-        <div style="font-size:20px;flex-shrink:0;margin-top:2px">&#128230;</div>
-        <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:5px">Shipping Address</div>
-        <div style="font-size:13px;font-weight:600;color:#fff;line-height:1.9;font-family:'DM Mono',monospace">VIRTUE CREATIVE STUDIOS PTY LTD<br>U4 / 28-30 Lilian Fowler Place<br>Marrickville, NSW 2204</div></div>
-      </div>
-      <div class="ghost-steps">
-        <div class="ghost-step"><div class="ghost-num">1</div><div class="ghost-body"><div class="ghost-title">Fill out the Virtue onboarding form</div><div class="ghost-desc">Submit the request through Virtue&#8217;s onboarding form using the settings below every time.</div>
-          <a href="https://virtuecreative.com.au/onboarding-form/" target="_blank" class="ghost-link-btn">&#128279; Open Virtue Onboarding Form</a>
-          <div class="ghost-spec-row">
+
+      <div class="ghost-two-col">
+
+        <!-- LEFT: Contacts + Address -->
+        <div class="ghost-sidebar">
+          <div class="ghost-sidebar-card">
+            <div class="ghost-sidebar-label">&#128172; Virtue Creative Contacts</div>
+            <div class="ghost-contact"><div class="ghost-av">LK</div><div><div class="ghost-name">Lukas</div><a href="mailto:lukas@virtuecreative.com.au" class="ghost-email">lukas@virtuecreative.com.au</a></div></div>
+            <div class="ghost-contact"><div class="ghost-av">VC</div><div><div class="ghost-name">Virtue Creative Team</div><a href="mailto:team@virtuecreative.com.au" class="ghost-email">team@virtuecreative.com.au</a></div></div>
+          </div>
+          <div class="ghost-addr-card">
+            <div class="ghost-addr-label">&#128230; Shipping Address</div>
+            <div class="ghost-addr-text">VIRTUE CREATIVE STUDIOS PTY LTD<br>U4 / 28-30 Lilian Fowler Place<br>Marrickville, NSW 2204</div>
+          </div>
+          <div class="ghost-sidebar-card">
+            <div class="ghost-sidebar-label">&#128196; Templates &amp; Forms</div>
+            <a href="https://virtuecreative.com.au/onboarding-form/" target="_blank" class="ghost-link-btn" style="margin-bottom:8px;width:100%;justify-content:center;box-sizing:border-box">&#128279; Virtue Onboarding Form</a>
+            <a href="https://portadelaidefc.sharepoint.com/:x:/r/Marketing%20%20Media/Ecom/Procedures%20%26%20Guidelines/Virtue%20Imagery%20Requirements.xlsx?d=wdf3ec4d9be1f40599d79248cfc8d2c20&csf=1&web=1&e=8j46vd" target="_blank" class="ghost-file-btn" style="width:100%;justify-content:center;box-sizing:border-box;margin-bottom:6px">&#128202; Item &amp; Shot List Template</a>
+            <a href="https://portadelaidefc.sharepoint.com/:w:/r/Marketing%20%20Media/Ecom/Procedures%20%26%20Guidelines/Virtue%20GR%20Packing%20Slip%20VC-1623.docx?d=w30df5f318fe34b8e9903f464e0ba52f3&csf=1&web=1&e=dYnm98" target="_blank" class="ghost-file-btn" style="width:100%;justify-content:center;box-sizing:border-box">&#128196; Packing Slip Template</a>
+          </div>
+          <div class="ghost-spec-row" style="margin-top:0">
             <div class="ghost-spec"><div class="ghost-spec-lbl">Project Type</div><div class="ghost-spec-val">Ghost Mannequin &amp; Flat Lay</div></div>
             <div class="ghost-spec"><div class="ghost-spec-lbl">Shot Angles</div><div class="ghost-spec-val">Front, Side &amp; Back</div></div>
           </div>
-          <div class="ghost-attach-lbl">Attachments to include with the form</div>
-          <a href="https://portadelaidefc.sharepoint.com/:x:/r/Marketing%20%20Media/Ecom/Procedures%20%26%20Guidelines/Virtue%20Imagery%20Requirements.xlsx?d=wdf3ec4d9be1f40599d79248cfc8d2c20&csf=1&web=1&e=8j46vd" target="_blank" class="ghost-file-btn">&#128202; Item &amp; Shot List Template</a>
-        </div></div>
-        <div class="ghost-step"><div class="ghost-num">2</div><div class="ghost-body"><div class="ghost-title">Wait for Virtue to confirm with an order number</div><div class="ghost-desc">Virtue will reply by email to confirm the job. The order number starts with <strong>VC-</strong> (e.g. VC-1623). Keep this for reference throughout.</div></div></div>
-        <div class="ghost-step"><div class="ghost-num">3</div><div class="ghost-body"><div class="ghost-title">Pack the items and include a packing slip</div><div class="ghost-desc">Pack the garments and include a completed packing slip in the box. Usually send a <strong>Medium or Large</strong> size for ghost mannequin shoots.</div>
-          <a href="https://portadelaidefc.sharepoint.com/:w:/r/Marketing%20%20Media/Ecom/Procedures%20%26%20Guidelines/Virtue%20GR%20Packing%20Slip%20VC-1623.docx?d=w30df5f318fe34b8e9903f464e0ba52f3&csf=1&web=1&e=dYnm98" target="_blank" class="ghost-file-btn" style="margin-top:8px">&#128196; Packing Slip Template</a>
-        </div></div>
-        <div class="ghost-step"><div class="ghost-num">4</div><div class="ghost-body"><div class="ghost-title">Ship to Virtue via TNT or Australia Post</div>
-          <div style="background:var(--navy);border-radius:8px;padding:11px 15px;margin-top:8px;font-size:13px;font-family:'DM Mono',monospace;color:#7acad6;line-height:1.8">VIRTUE CREATIVE STUDIOS PTY LTD<br>U4 / 28-30 Lilian Fowler Place<br>Marrickville, NSW 2204</div>
-        </div></div>
-        <div class="ghost-step"><div class="ghost-num">5</div><div class="ghost-body"><div class="ghost-title">Virtue sends updates throughout the shoot &amp; edit</div><div class="ghost-desc">Monitor your inbox during the process &#8212; no action needed at this stage.</div></div></div>
-        <div class="ghost-step"><div class="ghost-num">6</div><div class="ghost-body"><div class="ghost-title">Receive completed imagery via Google Drive</div><div class="ghost-desc">Once complete, Virtue will email a Google Drive link with the final imagery. Download and save to the appropriate SharePoint folder.</div></div></div>
-        <div class="ghost-step last"><div class="ghost-num">7</div><div class="ghost-body"><div class="ghost-title">Create a return shipping label and email it to Virtue</div><div class="ghost-desc">Generate a return label for the garments and email it to Virtue.</div>
-          <div class="ghost-contact" style="margin-top:8px"><div class="ghost-av">VC</div><div><div class="ghost-name">Virtue Creative Team</div><a href="mailto:team@virtuecreative.com.au" class="ghost-email">team@virtuecreative.com.au</a></div></div>
-        </div></div>
+        </div>
+
+        <!-- RIGHT: Steps -->
+        <div class="ghost-steps-col">
+          <div class="ghost-steps-title">Process</div>
+          <div class="ghost-steps">
+            <div class="ghost-step">
+              <div class="ghost-num">1</div>
+              <div class="ghost-body">
+                <div class="ghost-title">Fill out the Virtue onboarding form</div>
+                <div class="ghost-desc">Submit through Virtue&#8217;s onboarding form with the settings shown on the left. Attach the Item &amp; Shot List template.</div>
+              </div>
+            </div>
+            <div class="ghost-step">
+              <div class="ghost-num">2</div>
+              <div class="ghost-body">
+                <div class="ghost-title">Wait for confirmation &amp; VC- order number</div>
+                <div class="ghost-desc">Virtue will reply by email with a job confirmation. The order number starts with <strong>VC-</strong> (e.g. VC-1623) &#8212; keep this for reference.</div>
+              </div>
+            </div>
+            <div class="ghost-step">
+              <div class="ghost-num">3</div>
+              <div class="ghost-body">
+                <div class="ghost-title">Pack items with a completed packing slip</div>
+                <div class="ghost-desc">Pack the garments and include a completed packing slip. Usually send a <strong>Medium or Large</strong> size for ghost mannequin shoots.</div>
+              </div>
+            </div>
+            <div class="ghost-step">
+              <div class="ghost-num">4</div>
+              <div class="ghost-body">
+                <div class="ghost-title">Ship via TNT or Australia Post</div>
+                <div class="ghost-desc">Send to the Virtue studio address shown on the left.</div>
+              </div>
+            </div>
+            <div class="ghost-step">
+              <div class="ghost-num">5</div>
+              <div class="ghost-body">
+                <div class="ghost-title">Monitor for updates during shoot &amp; edit</div>
+                <div class="ghost-desc">Virtue will send email updates throughout the process. No action needed &#8212; just monitor your inbox.</div>
+              </div>
+            </div>
+            <div class="ghost-step">
+              <div class="ghost-num">6</div>
+              <div class="ghost-body">
+                <div class="ghost-title">Receive completed imagery via Google Drive</div>
+                <div class="ghost-desc">Once complete, Virtue emails a Google Drive link with the final imagery. Download and save to the SharePoint folder.</div>
+              </div>
+            </div>
+            <div class="ghost-step last">
+              <div class="ghost-num">7</div>
+              <div class="ghost-body">
+                <div class="ghost-title">Send return shipping label to Virtue</div>
+                <div class="ghost-desc">Generate a return label for the garments and email it to <a href="mailto:team@virtuecreative.com.au" class="ghost-email">team@virtuecreative.com.au</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -654,148 +772,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
      MANAGING PRODUCTS
 ════════════════════════════════════════ -->
 <!-- ════════════════════════════════════════
-     OPERATIONS BOARD
-════════════════════════════════════════ -->
-<div class="section" id="sec-ops">
-  <div class="bc-bar" id="ops-bc" style="display:none">
-    <button class="bc-back" onclick="opsHome()">&#8592; All Operations</button>
-    <span class="bc-sep">/</span>
-    <span class="bc-cur" id="ops-bc-lbl"></span>
-  </div>
-
-  <!-- OPS HOME -->
-  <div class="subview active" id="sv-ops-home">
-    <div class="ops-home">
-      <div class="home-intro"><h2>Operations Board</h2><p>Select a section to view, manage and add entries. All data is stored on the monday.com board and loaded live.</p></div>
-      <div class="ops-sel-grid">
-        <div class="ops-card" onclick="opsGo('campaigns')">
-          <div class="ops-icon" style="background:#eff6ff">&#128444;&#65039;</div>
-          <div><div class="ops-title">Active Campaigns</div><div class="ops-desc">Current live campaigns with banner, announcement bar and product grid details.</div></div>
-          <div class="ops-count" id="cnt-campaigns">Loading...</div>
-          <button class="ops-btn">View Campaigns &#8594;</button>
-        </div>
-        <div class="ops-card" onclick="opsGo('history')">
-          <div class="ops-icon" style="background:#f0fdf4">&#128203;</div>
-          <div><div class="ops-title">Page Update History</div><div class="ops-desc">Log of every page update &#8212; who changed what and when.</div></div>
-          <div class="ops-count" id="cnt-history">Loading...</div>
-          <button class="ops-btn">View History &#8594;</button>
-        </div>
-        <div class="ops-card" onclick="opsGo('products')">
-          <div class="ops-icon" style="background:#fefce8">&#128717;</div>
-          <div><div class="ops-title">Product Grid Items</div><div class="ops-desc">All product grid cards with image URLs and pricing for each campaign.</div></div>
-          <div class="ops-count" id="cnt-products">Loading...</div>
-          <button class="ops-btn">View Products &#8594;</button>
-        </div>
-        <div class="ops-card" onclick="opsGo('cs')">
-          <div class="ops-icon" style="background:#fdf4ff">&#128172;</div>
-          <div><div class="ops-title">CS How To&#8217;s</div><div class="ops-desc">Step-by-step guides for refunds, returns, orders, stock and discount codes.</div></div>
-          <div class="ops-count" id="cnt-cs">Loading...</div>
-          <button class="ops-btn">View Guides &#8594;</button>
-        </div>
-      </div>
-      <div class="wide-card" onclick="window.open('https://pafc-team.monday.com/boards/18413991383','_blank')" style="cursor:pointer">
-        <div class="wide-icon" style="background:var(--navy)">&#128279;</div>
-        <div class="wide-body"><div class="wide-title">Open full board in monday.com</div><div class="wide-desc">View, edit and manage all items directly on the monday.com board in a new tab.</div></div>
-        <div class="wide-arrow">&#8594;</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CAMPAIGNS VIEW -->
-  <div class="subview" id="sv-campaigns">
-    <div class="board-view">
-      <div class="bv-hdr">
-        <div class="bv-title-row"><div class="bv-icon" style="background:#eff6ff">&#128444;&#65039;</div><div><div class="bv-title">Active Campaigns</div><div class="bv-sub">Current live campaigns and their assets</div></div></div>
-        <div class="bv-actions"><a href="https://pafc-team.monday.com/boards/18413991383?group=group_mm3hkbgm" target="_blank" class="bv-open-btn">&#128279; Open in monday</a><button class="bv-add-btn" onclick="openAddModal('campaigns')">&#43; Add Campaign Item</button></div>
-      </div>
-      <div class="items-list" id="list-campaigns"><div style="text-align:center;padding:40px;color:var(--muted)">&#9889; Loading...</div></div>
-    </div>
-  </div>
-
-  <!-- HISTORY VIEW -->
-  <div class="subview" id="sv-history">
-    <div class="board-view">
-      <div class="bv-hdr">
-        <div class="bv-title-row"><div class="bv-icon" style="background:#f0fdf4">&#128203;</div><div><div class="bv-title">Page Update History</div><div class="bv-sub">Log of every page update &#8212; add a new entry each time you publish</div></div></div>
-        <div class="bv-actions"><a href="https://pafc-team.monday.com/boards/18413991383?group=group_mm3hx9p2" target="_blank" class="bv-open-btn">&#128279; Open in monday</a><button class="bv-add-btn" onclick="openAddModal('history')">&#43; Log Update</button></div>
-      </div>
-      <div class="items-list" id="list-history"><div style="text-align:center;padding:40px;color:var(--muted)">&#9889; Loading...</div></div>
-    </div>
-  </div>
-
-  <!-- PRODUCTS VIEW -->
-  <div class="subview" id="sv-products-ops">
-    <div class="board-view">
-      <div class="bv-hdr">
-        <div class="bv-title-row"><div class="bv-icon" style="background:#fefce8">&#128717;</div><div><div class="bv-title">Product Grid Items</div><div class="bv-sub">Products with image URLs and pricing per campaign</div></div></div>
-        <div class="bv-actions"><a href="https://pafc-team.monday.com/boards/18413991383?group=group_mm3h8cjy" target="_blank" class="bv-open-btn">&#128279; Open in monday</a><button class="bv-add-btn" onclick="openAddModal('products-ops')">&#43; Add Product Item</button></div>
-      </div>
-      <div class="items-list" id="list-products-ops"><div style="text-align:center;padding:40px;color:var(--muted)">&#9889; Loading...</div></div>
-    </div>
-  </div>
-
-  <!-- CS HOW TO'S VIEW -->
-  <div class="subview" id="sv-cs">
-    <div class="board-view">
-      <div class="bv-hdr">
-        <div class="bv-title-row"><div class="bv-icon" style="background:#fdf4ff">&#128172;</div><div><div class="bv-title">Customer Service How To&#8217;s</div><div class="bv-sub">Guides for the CS team &#8212; refunds, returns, orders, stock, discounts</div></div></div>
-        <div class="bv-actions"><a href="https://pafc-team.monday.com/boards/18413991383?group=group_mm3hygfy" target="_blank" class="bv-open-btn">&#128279; Open in monday</a><button class="bv-add-btn" onclick="openAddModal('cs')">&#43; Add Guide</button></div>
-      </div>
-      <div class="items-list" id="list-cs"><div style="text-align:center;padding:40px;color:var(--muted)">&#9889; Loading...</div></div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ════ ADD ITEM MODAL ════ -->
-<div class="modal-overlay" id="add-modal">
-  <div class="modal">
-    <div class="modal-hdr">
-      <div class="modal-ttl" id="modal-ttl">&#43; Add New Item</div>
-      <button class="modal-cls" onclick="closeModal()">&times;</button>
-    </div>
-    <div class="modal-body">
-      <!-- AI suggest panel -->
-      <div class="ai-panel">
-        <div class="ai-panel-ttl">&#129302; AI Auto-fill</div>
-        <p style="font-size:12px;color:var(--muted);margin-bottom:8px">Describe what you want to add in plain English and AI will fill in the form for you.</p>
-        <div class="ai-input-row">
-          <input type="text" class="ai-input" id="ai-prompt" placeholder="e.g. How to update a product price in BC, or 2026 Prison Bar campaign banner...">
-          <button class="ai-go-btn" id="ai-go-btn" onclick="aiAutofill()">&#129302; <span id="ai-go-lbl">Auto-fill</span></button>
-        </div>
-        <div class="ai-result" id="ai-result"></div>
-      </div>
-
-      <div class="frow full"><div class="fg"><label class="fl">Item Name <span class="req">*</span></label><input type="text" class="fc" id="m-name" placeholder="e.g. 2026 Prison Bar — Main Banner"></div></div>
-      <div class="frow">
-        <div class="fg"><label class="fl">Campaign / Page</label><input type="text" class="fc" id="m-campaign" placeholder="e.g. Prison Bar 2026"></div>
-        <div class="fg"><label class="fl">Module</label><select class="fc" id="m-module"><option value="">Select...</option><option>Main Banner</option><option>Announcement Bar</option><option>Product Grid</option><option>Product Listing</option><option>Customer Service</option><option>Refunds &amp; Returns</option><option>General</option></select></div>
-      </div>
-      <div class="frow">
-        <div class="fg"><label class="fl">Date Updated</label><input type="date" class="fc" id="m-date"></div>
-        <div class="fg"><label class="fl">Updated By</label><input type="text" class="fc" id="m-by" placeholder="e.g. Jane Smith"></div>
-      </div>
-      <div id="m-url-fields">
-        <div class="frow full" style="margin-top:2px"><div class="fg"><label class="fl">Desktop Image URL</label><input type="url" class="fc" id="m-deskimg" placeholder="https://cdn11.bigcommerce.com/..."></div></div>
-        <div class="frow full"><div class="fg"><label class="fl">Mobile Image URL</label><input type="url" class="fc" id="m-mobimg" placeholder="https://cdn11.bigcommerce.com/..."></div></div>
-        <div class="frow full"><div class="fg"><label class="fl">Destination URL</label><input type="url" class="fc" id="m-desturl" placeholder="https://portstore.com.au/..."></div></div>
-      </div>
-      <div class="frow full"><div class="fg"><label class="fl">Notes / Instructions <span class="req">*</span></label><textarea class="fc" id="m-notes" rows="4" placeholder="Describe what this item is, how it works, or the step-by-step process..."></textarea></div></div>
-      <div class="frow full"><div class="fg"><label class="fl">Status</label><select class="fc" id="m-status"><option value="Live">Live</option><option value="Needs Update">Needs Update</option><option value="Draft">Draft</option><option value="Archived">Archived</option></select></div></div>
-    </div>
-    <div class="modal-ftr">
-      <span class="save-msg" id="modal-save-msg"></span>
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn-save" id="modal-save-btn" onclick="saveItem()">&#128190; Save to Board</button>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-
-
-<!-- ════════════════════════════════════════
      PRODUCT GUIDES
 ════════════════════════════════════════ -->
 <div class="section" id="sec-guides">
@@ -809,7 +785,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
   </div>
 
   <!-- LIGHTSPEED -->
-  <div id="sg-lightspeed" class="guide-pane" style="padding:24px 28px;max-width:900px">
+  <div id="sg-lightspeed" class="guide-pane" style="padding:24px 28px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
       <div><div style="font-size:16px;font-weight:700">Lightspeed Bulk Upload</div><div style="font-size:13px;color:var(--muted)">X Series &middot; Process guide</div></div>
       <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Upload%20Template.xlsx?d=wde106432a27f4e4d92ff8f55973c4d64&csf=1&web=1&e=3r8XQF" target="_blank">&#128229; Download Template</a>
@@ -873,7 +849,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
   </div>
 
   <!-- AWDS -->
-  <div id="sg-awds" class="guide-pane" style="display:none;padding:24px 28px;max-width:900px">
+  <div id="sg-awds" class="guide-pane" style="display:none;padding:24px 28px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
       <div><div style="font-size:16px;font-weight:700">AWDS Bulk Product Import</div><div style="font-size:13px;color:var(--muted)">Warehouse System &middot; Process guide</div></div>
       <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/AWDS%20Product%20Template.csv?d=w1c8e8290cc324beabcc7717fa0f43b29&csf=1&web=1&e=tydLjF" target="_blank">&#128229; Download Template</a>
@@ -940,7 +916,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
       <a href="#" onclick="csScroll('csp-missing');return false" class="csp-pill">&#128269; Missing Orders</a>
     </div>
   </div>
-  <div style="padding:24px 28px;max-width:860px">
+  <div style="padding:24px 28px">
 
     <div id="csp-address" class="csp-block">
       <div class="csp-hdr"><div class="csp-ico">&#128205;</div><div><div class="csp-title">Address Issues</div><div class="csp-sub">Flagged by AWDS when a delivery address can&#8217;t be resolved</div></div></div>
@@ -1052,6 +1028,11 @@ Thanks, Port Store Team</div></div>
         </div></div>
       </div>
     </div>
+
+    <div class="csp-divider"></div>
+
+
+
     <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; Customer Service Procedures</div>
   </div>
 </div>
@@ -1073,304 +1054,14 @@ Thanks, Port Store Team</div></div>
   for(var id in imgs){var el=document.getElementById(id);if(el)el.src=imgs[id];}
 })();
 
-// ── CONFIG ───────────────────────────────────
-var MONDAY_TOKEN='eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjY1NzcwMzM3NSwiYWFpIjoxMSwidWlkIjo4MjY0Njg5NiwiaWFkIjoiMjAyNi0wNS0xM1QwMDo0NjoxMC4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6NzA5Mjc2LCJyZ24iOiJ1c2UxIn0.yD_YwplvFrgMpNEUU-rGQNz6GscMVfTiomF1PW4fB0c';
-var BOARD_ID='18413991383';
-var GROUPS={};
-GROUPS['campaigns']='group_mm3hkbgm';
-GROUPS['history']='group_mm3hx9p2';
-GROUPS['products-ops']='group_mm3h8cjy';
-GROUPS['cs']='group_mm3hygfy';
 
-var COLS={};
-COLS.campaign='text_mm3hc5eh';
-COLS.module='dropdown_mm3hhpkb';
-COLS.date='date_mm3hvat3';
-COLS.updated_by='text_mm3hp0x1';
-COLS.desktop_img='link_mm3h42jb';
-COLS.mobile_img='link_mm3hhe1';
-COLS.dest_url='link_mm3hz4at';
-COLS.notes='long_text_mm3hqtqm';
-COLS.status='color_mm3hjxme';
 
-// ── TAB SWITCHING ────────────────────────────
-function switchGuide(id){
-  document.querySelectorAll('.guide-pane').forEach(function(el){el.style.display='none'});
-  document.querySelectorAll('.guide-nav-btn').forEach(function(b){b.classList.remove('active')});
-  document.getElementById('sg-'+id).style.display='block';
-  document.getElementById('gbtn-'+id).classList.add('active');
-}
-function csScroll(id){
-  var el=document.getElementById(id);
-  if(el){setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'})},80);}
-}
-function switchTab(tab,btn){
-  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active')});
-  document.querySelectorAll('.mtab').forEach(function(b){b.classList.remove('active')});
-  document.getElementById('sec-'+tab).classList.add('active');
-  btn.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(tab==='ops')loadAllGroups();
-}
-
-// ── WEBSITE MODULES ──────────────────────────
-var WM_META={
-  banner:{label:'Main Banner',icon:'&#128444;&#65039;'},
-  annbar:{label:'Announcement Bar',icon:'&#128226;'},
-  grid:{label:'Product Grid',icon:'&#128717;'},
-  products:{label:'Managing Products',icon:'&#128230;'},
-  ghost:{label:'Ghost Imagery',icon:'&#128247;'},
-  howto:{label:'How To Upload',icon:'&#128214;'}
-};
-function wmGo(id){
-  document.querySelectorAll('#sec-website .subview').forEach(function(v){v.classList.remove('active')});
-  document.getElementById('sv-'+id).classList.add('active');
-  var bc=document.getElementById('wm-bc'); bc.style.display='flex';
-  var m=WM_META[id];
-  document.getElementById('wm-bc-lbl').innerHTML=(m?m.icon+' '+m.label:id);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function wmHome(){
-  document.querySelectorAll('#sec-website .subview').forEach(function(v){v.classList.remove('active')});
-  document.getElementById('sv-home').classList.add('active');
-  document.getElementById('wm-bc').style.display='none';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-// ── OPERATIONS BOARD ─────────────────────────
-var OPS_META={
-  campaigns:{label:'Active Campaigns',icon:'&#128444;&#65039;',svId:'sv-campaigns',listId:'list-campaigns'},
-  history:{label:'Page Update History',icon:'&#128203;',svId:'sv-history',listId:'list-history'},
-  'products-ops':{label:'Product Grid Items',icon:'&#128717;',svId:'sv-products-ops',listId:'list-products-ops'},
-  cs:{label:'CS How Tos',icon:'&#128172;',svId:'sv-cs',listId:'list-cs'}
-};
-var boardData={};
-
-function opsGo(id){
-  document.querySelectorAll('#sec-ops .subview').forEach(function(v){v.classList.remove('active')});
-  var meta=OPS_META[id];
-  document.getElementById(meta.svId).classList.add('active');
-  var bc=document.getElementById('ops-bc'); bc.style.display='flex';
-  document.getElementById('ops-bc-lbl').innerHTML=meta.icon+' '+meta.label;
-  window.scrollTo({top:0,behavior:'smooth'});
-  loadGroup(id);
-}
-function opsHome(){
-  document.querySelectorAll('#sec-ops .subview').forEach(function(v){v.classList.remove('active')});
-  document.getElementById('sv-ops-home').classList.add('active');
-  document.getElementById('ops-bc').style.display='none';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
 
 // ── MONDAY API ───────────────────────────────
-function mondayQuery(query){
-  return fetch('https://api.monday.com/v2',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','Authorization':MONDAY_TOKEN,'API-Version':'2024-01'},
-    body:JSON.stringify({query:query})
-  }).then(function(r){return r.json()}).catch(function(e){console.warn('monday API error:',e);return null;});
-}
 
 // ── LOAD GROUP ITEMS ─────────────────────────
-function loadGroup(groupKey){
-  var meta=OPS_META[groupKey];
-  var listEl=document.getElementById(meta.listId);
-  if(!listEl)return;
-  listEl.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted)">&#9889; Loading from monday.com...</div>';
-  var gid=GROUPS[groupKey];
-  var q=`{ boards(ids:[${BOARD_ID}]){ items_page(limit:50){ items{ id name group{id} column_values{id text value} } } } }`;
-  mondayQuery(q).then(function(res){
-    if(!res||!res.data){ listEl.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted)">&#9888;&#65039; Could not load data. <a href="https://pafc-team.monday.com/boards/18413991383" target="_blank" style="color:var(--teal)">Open in monday.com &#8594;</a></div>'; return; }
-    var items=(res.data.boards[0]||{}).items_page.items.filter(function(it){return it.group.id===gid;});
-    boardData[groupKey]=items;
-    updateCount(groupKey,items.length);
-    renderItems(groupKey,items);
-  });
-}
-function loadAllGroups(){
-  var q=`{ boards(ids:[${BOARD_ID}]){ items_page(limit:200){ items{ id name group{id} column_values{id text value} } } } }`;
-  mondayQuery(q).then(function(res){
-    if(!res||!res.data)return;
-    var allItems=(res.data.boards[0]||{}).items_page.items;
-    Object.keys(OPS_META).forEach(function(key){
-      var gid=GROUPS[key];
-      var items=allItems.filter(function(it){return it.group.id===gid;});
-      boardData[key]=items;
-      updateCount(key,items.length);
-    });
-  });
-}
-function updateCount(key,count){
-  var el=document.getElementById('cnt-'+key.replace('products-ops','products'));
-  if(el)el.textContent=count+' item'+(count!==1?'s':'');
-}
 
-function getCV(item,colId){
-  var cv=(item.column_values||[]).find(function(c){return c.id===colId;});
-  return cv?cv.text||'':'';
-}
-function renderItems(groupKey,items){
-  var meta=OPS_META[groupKey];
-  var listEl=document.getElementById(meta.listId);
-  if(!items||!items.length){ listEl.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted)">No items yet. Click <strong>Add</strong> above to create the first one.</div>'; return; }
-  var html='';
-  items.forEach(function(item){
-    var status=getCV(item,COLS.status);
-    var campaign=getCV(item,COLS.campaign);
-    var module=getCV(item,COLS.module);
-    var dateVal=getCV(item,COLS.date);
-    var updBy=getCV(item,COLS.updated_by);
-    var notes=getCV(item,COLS.notes);
-    var deskImg=getCV(item,COLS.desktop_img);
-    var mobImg=getCV(item,COLS.mobile_img);
-    var destUrl=getCV(item,COLS.dest_url);
-    var stClass=status==='Live'?'live':status==='Needs Update'?'needs':'draft';
-    html+='<div class="item-card">';
-    html+='<div class="item-hdr"><div class="item-name">'+esc(item.name)+'</div>';
-    if(status)html+='<span class="item-tag '+stClass+'">'+esc(status)+'</span>';
-    html+='</div>';
-    html+='<div class="item-meta">';
-    if(campaign)html+='<span class="item-tag">&#127760; '+esc(campaign)+'</span>';
-    if(module)html+='<span class="item-tag">'+esc(module)+'</span>';
-    if(dateVal)html+='<span class="item-date">&#128197; '+esc(dateVal)+(updBy?' &mdash; '+esc(updBy):'')+'</span>';
-    html+='</div>';
-    if(notes)html+='<div class="item-notes">'+esc(notes).replace(/\n/g,'<br>')+'</div>';
-    var links=[];
-    if(deskImg)links.push('<a href="'+esc(deskImg)+'" target="_blank" class="item-link">&#128444;&#65039; Desktop Image</a>');
-    if(mobImg)links.push('<a href="'+esc(mobImg)+'" target="_blank" class="item-link">&#128241; Mobile Image</a>');
-    if(destUrl)links.push('<a href="'+esc(destUrl)+'" target="_blank" class="item-link">&#128279; Destination</a>');
-    if(links.length)html+='<div class="item-links">'+links.join('')+'</div>';
-    html+='</div>';
-  });
-  listEl.innerHTML=html;
-}
 
-// ── ADD ITEM MODAL ───────────────────────────
-var currentAddGroup='';
-function openAddModal(groupKey){
-  currentAddGroup=groupKey;
-  var meta=OPS_META[groupKey];
-  document.getElementById('modal-ttl').innerHTML='&#43; Add to '+meta.label;
-  clearModal();
-  var today=new Date().toISOString().slice(0,10);
-  document.getElementById('m-date').value=today;
-  var urlFields=document.getElementById('m-url-fields');
-  urlFields.style.display=(groupKey==='cs')?'none':'block';
-  document.getElementById('add-modal').classList.add('open');
-  document.getElementById('ai-prompt').placeholder=
-    groupKey==='cs'?'e.g. How to process a store credit refund for a damaged item...':
-    groupKey==='history'?'e.g. Updated First Nations 2026 banner and product grid on 20 May 2026...':
-    groupKey==='campaigns'?'e.g. New Prison Bar 2026 campaign launching 1 June, desktop banner 2100x700 linking to /prison-bar-2026...':
-    'e.g. Prison Bar Guernsey Adult $135 linking to portstore.com.au/...';
-}
-function closeModal(){
-  document.getElementById('add-modal').classList.remove('open');
-  document.getElementById('modal-save-msg').textContent='';
-  document.getElementById('modal-save-btn').disabled=false;
-  clearModal();
-}
-function clearModal(){
-  ['m-name','m-campaign','m-date','m-by','m-deskimg','m-mobimg','m-desturl','m-notes','ai-prompt'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
-  document.getElementById('m-module').value='';
-  document.getElementById('m-status').value='Live';
-  document.getElementById('ai-result').style.display='none';
-  document.getElementById('ai-go-lbl').textContent='Auto-fill';
-  document.getElementById('ai-go-btn').disabled=false;
-}
-
-// ── SAVE ITEM ────────────────────────────────
-function saveItem(){
-  var name=document.getElementById('m-name').value.trim();
-  var notes=document.getElementById('m-notes').value.trim();
-  if(!name){showToast('Enter an item name','err');return;}
-  var btn=document.getElementById('modal-save-btn');
-  btn.disabled=true;
-  btn.innerHTML='<span class="loader"></span> Saving...';
-  document.getElementById('modal-save-msg').textContent='Sending to monday.com...';
-  var cv={};
-  var campaign=document.getElementById('m-campaign').value.trim();
-  var module=document.getElementById('m-module').value;
-  var dateVal=document.getElementById('m-date').value;
-  var updBy=document.getElementById('m-by').value.trim();
-  var deskImg=document.getElementById('m-deskimg').value.trim();
-  var mobImg=document.getElementById('m-mobimg').value.trim();
-  var destUrl=document.getElementById('m-desturl').value.trim();
-  var status=document.getElementById('m-status').value;
-  if(campaign)cv[COLS.campaign]=campaign;
-  if(module)cv[COLS.module]=module;
-  if(dateVal)cv[COLS.date]={date:dateVal};
-  if(updBy)cv[COLS.updated_by]=updBy;
-  if(deskImg)cv[COLS.desktop_img]={url:deskImg,text:'Desktop Image'};
-  if(mobImg)cv[COLS.mobile_img]={url:mobImg,text:'Mobile Image'};
-  if(destUrl)cv[COLS.dest_url]={url:destUrl,text:'Destination'};
-  if(notes)cv[COLS.notes]={text:notes};
-  if(status)cv[COLS.status]={label:status};
-  var cvStr=JSON.stringify(JSON.stringify(cv));
-  var gid=GROUPS[currentAddGroup];
-  var mutation=`mutation{create_item(board_id:${BOARD_ID},group_id:"${gid}",item_name:${JSON.stringify(name)},column_values:${cvStr},create_labels_if_missing:true){id name}}`;
-  mondayQuery(mutation).then(function(res){
-    btn.innerHTML='&#128190; Save to Board';
-    btn.disabled=false;
-    if(res&&res.data&&res.data.create_item){
-      showToast('&#9989; Saved to monday.com!');
-      closeModal();
-      loadGroup(currentAddGroup);
-    } else {
-      document.getElementById('modal-save-msg').textContent='';
-      showToast('Could not save. Try opening the board directly.','err');
-    }
-  });
-}
-
-// ── AI AUTOFILL ──────────────────────────────
-function aiAutofill(){
-  var prompt=document.getElementById('ai-prompt').value.trim();
-  if(!prompt){showToast('Enter a description first','err');return;}
-  var btn=document.getElementById('ai-go-btn');
-  var lbl=document.getElementById('ai-go-lbl');
-  btn.disabled=true; lbl.textContent='Thinking...';
-  var resEl=document.getElementById('ai-result'); resEl.style.display='block'; resEl.textContent='&#129302; Generating...';
-  var groupLabel=OPS_META[currentAddGroup]?OPS_META[currentAddGroup].label:'';
-  var sys=`You are a data extractor for a BigCommerce store operations tool. The user will describe an item to add to the "${groupLabel}" section of a monday.com board. Extract the fields and return ONLY a JSON object with these keys (omit any you cannot determine): name, campaign, module (one of: Main Banner/Announcement Bar/Product Grid/Product Listing/Customer Service/Refunds & Returns/General), date (YYYY-MM-DD), updated_by, desktop_img_url, mobile_img_url, dest_url, notes, status (Live/Needs Update/Draft). Return ONLY the JSON object, no explanation, no markdown.`;
-  fetch('https://api.anthropic.com/v1/messages',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      model:'claude-sonnet-4-20250514',
-      max_tokens:600,
-      system:sys,
-      messages:[{role:'user',content:prompt}]
-    })
-  }).then(function(r){return r.json()}).then(function(data){
-    btn.disabled=false; lbl.textContent='Auto-fill';
-    var text=(data.content&&data.content[0])?data.content[0].text||'':'';
-    try{
-      var clean=text.replace(/```json|```/g,'').trim();
-      var obj=JSON.parse(clean);
-      if(obj.name)document.getElementById('m-name').value=obj.name;
-      if(obj.campaign)document.getElementById('m-campaign').value=obj.campaign;
-      if(obj.module)document.getElementById('m-module').value=obj.module;
-      if(obj.date)document.getElementById('m-date').value=obj.date;
-      if(obj.updated_by)document.getElementById('m-by').value=obj.updated_by;
-      if(obj.desktop_img_url)document.getElementById('m-deskimg').value=obj.desktop_img_url;
-      if(obj.mobile_img_url)document.getElementById('m-mobimg').value=obj.mobile_img_url;
-      if(obj.dest_url)document.getElementById('m-desturl').value=obj.dest_url;
-      if(obj.notes)document.getElementById('m-notes').value=obj.notes;
-      if(obj.status)document.getElementById('m-status').value=obj.status;
-      resEl.textContent='&#9989; Fields filled in &#8212; review and save when ready.';
-      resEl.style.color='var(--green)';
-    }catch(e){
-      resEl.textContent='&#9888;&#65039; Could not parse. Check the fields manually.';
-      resEl.style.color='var(--red)';
-    }
-  }).catch(function(){
-    btn.disabled=false; lbl.textContent='Auto-fill';
-    resEl.textContent='&#9888;&#65039; AI unavailable. Fill in the fields manually.';
-    resEl.style.color='var(--red)';
-  });
-}
-
-// ── UTILS ────────────────────────────────────
 function showToast(msg,type){var t=document.getElementById('toast');t.innerHTML=msg;t.className='toast show'+(type?' '+type:'');setTimeout(function(){t.className='toast'},3000);}
 function copyCode(outId,btnId){var el=document.getElementById(outId);if(!el||!el.textContent.trim()){showToast('Generate code first!','err');return;}navigator.clipboard.writeText(el.textContent).then(function(){var b=document.getElementById(btnId);b.textContent='Copied!';b.classList.add('copied');showToast('&#9989; Code copied to clipboard!');setTimeout(function(){b.innerHTML='&#128203; Copy';b.classList.remove('copied');},2200);});}
 function syncC(pid,hid){var h=document.getElementById(hid).value.trim();if(/^#[0-9a-fA-F]{6}$/.test(h))document.getElementById(pid).value=h;}
@@ -1492,13 +1183,53 @@ function genGrid(){
   showToast('&#9989; Product grid code generated!');
 }
 
+function switchGuide(id){
+  document.querySelectorAll('.guide-pane').forEach(function(el){el.style.display='none'});
+  document.querySelectorAll('.guide-nav-btn').forEach(function(b){b.classList.remove('active')});
+  document.getElementById('sg-'+id).style.display='block';
+  document.getElementById('gbtn-'+id).classList.add('active');
+}
+function csScroll(id){
+  var el=document.getElementById(id);
+  if(el){setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'})},80);}
+}
+function wmGo(id){
+  document.querySelectorAll('#sec-website .subview').forEach(function(v){v.classList.remove('active')});
+  var bc=document.getElementById('wm-bc');
+  var bcLbl=document.getElementById('wm-bc-lbl');
+  if(id==='home'){
+    document.getElementById('sv-home').classList.add('active');
+    if(bc)bc.style.display='none';
+  } else {
+    var sv=document.getElementById('sv-'+id);
+    if(sv){sv.classList.add('active');}
+    if(bc)bc.style.display='flex';
+    var meta=WM_META[id];
+    if(bcLbl&&meta)bcLbl.textContent=meta.label;
+  }
+}
+function switchTab(tab,btn){
+  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active')});
+  document.querySelectorAll('.mtab').forEach(function(b){b.classList.remove('active')});
+  var sec=document.getElementById('sec-'+tab);
+  if(sec)sec.classList.add('active');
+  if(btn)btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function handleHash(){
+  var hash=window.location.hash.replace('#','')||'website';
+  var valid=['website','guides','cs'];
+  var tab=valid.indexOf(hash)>=0?hash:'website';
+  var btn=document.getElementById('mt-'+tab);
+  switchTab(tab,btn);
+}
+window.addEventListener('hashchange',handleHash);
+
 document.addEventListener("DOMContentLoaded", function() {
-// ── INIT ─────────────────────────────────────
 renderMsgs();
 renderProds();
 genBanner();
-loadAllGroups();
-
+handleHash();
 });
 </script>
 </body>

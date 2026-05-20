@@ -1058,7 +1058,6 @@ Thanks, Port Store Team</div></div>
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
 
 // ── IMAGE INJECTION ──────────────────────────
 (function(){
@@ -1448,7 +1447,7 @@ function genAnnBar(){
     +'  <div class="bc-ab__mobile" id="bcAbMobile">\n'+mob+'\n  </div>\n'
     +'  <button class="bc-ab__close" onclick="document.getElementById(\'bcAb\').style.display=\'none\'" aria-label="Close">&times;</button>\n'
     +'</div>\n\n'
-    +'<script>\n(function(){\n  var msgs=document.querySelectorAll(\'#bcAbMobile .bc-ab__mobile-msg\');\n  if(!msgs.length)return;\n  var cur=0;\n  setInterval(function(){msgs[cur].classList.remove(\'is-active\');cur=(cur+1)%msgs.length;msgs[cur].classList.add(\'is-active\');},'+spd+');\n})();\n<\/script>';
+    +'<scr'+'ipt>\n(function(){\n  var msgs=document.querySelectorAll(\'#bcAbMobile .bc-ab__mobile-msg\');\n  if(!msgs.length)return;\n  var cur=0;\n  setInterval(function(){msgs[cur].classList.remove(\'is-active\');cur=(cur+1)%msgs.length;msgs[cur].classList.add(\'is-active\');},'+spd+');\n})();\n<\/'+'script>';
   document.getElementById('ab-out').textContent=code;
   showToast('&#9989; Announcement bar code generated!');
 }
@@ -1493,6 +1492,7 @@ function genGrid(){
   showToast('&#9989; Product grid code generated!');
 }
 
+document.addEventListener("DOMContentLoaded", function() {
 // ── INIT ─────────────────────────────────────
 renderMsgs();
 renderProds();

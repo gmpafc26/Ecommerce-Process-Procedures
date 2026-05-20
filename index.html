@@ -608,6 +608,43 @@ body.edit-mode [contenteditable]:focus {
   line-height: 1.6; margin-bottom: 8px;
 }
 
+
+/* ── HELP CONTACT CARD ── */
+.help-contact-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 12px);
+  padding: 18px 20px;
+  margin-top: 12px;
+  border-left: 4px solid var(--teal, #00B4C8);
+}
+.help-contact-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+.help-contact-body { flex: 1; min-width: 0; }
+.help-contact-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.help-contact-sub { font-size: 13px; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
+.help-contact-details { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.help-contact-person { display: flex; align-items: center; gap: 10px; }
+.help-contact-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--navy); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; flex-shrink: 0;
+}
+.help-contact-name { font-size: 14px; font-weight: 700; color: var(--text); }
+.help-contact-role { font-size: 12px; color: var(--muted); margin-top: 1px; }
+.help-contact-links { display: flex; flex-direction: column; gap: 6px; }
+.help-contact-email, .help-contact-phone {
+  font-size: 13px; font-weight: 500;
+  color: var(--teal-dark, #0093A8);
+  text-decoration: none;
+  font-family: 'DM Mono', monospace;
+  transition: color 0.15s;
+}
+.help-contact-email:hover, .help-contact-phone:hover { color: var(--teal, #00B4C8); }
+
 </style>
 </head>
 <body>
@@ -675,6 +712,28 @@ body.edit-mode [contenteditable]:focus {
         <div class="wide-body"><div class="wide-title">How to Upload to BigCommerce</div><div class="wide-desc">Step-by-step: upload images, generate code, paste into Page Builder and publish. Includes image size reference.</div></div>
         <div class="wide-arrow">&#8594;</div>
       </div>
+
+      <div class="help-contact-card">
+        <div class="help-contact-icon">&#128083;</div>
+        <div class="help-contact-body">
+          <div class="help-contact-title">Need help with the website?</div>
+          <div class="help-contact-sub">If you get stuck or something isn&#8217;t working, contact our Stack Sport developer.</div>
+          <div class="help-contact-details">
+            <div class="help-contact-person">
+              <div class="help-contact-avatar">AR</div>
+              <div>
+                <div class="help-contact-name">Anthony Richardson</div>
+                <div class="help-contact-role">Stack Sport</div>
+              </div>
+            </div>
+            <div class="help-contact-links">
+              <a href="mailto:anthony.richardson@stacksports.com" class="help-contact-email">&#128231; anthony.richardson@stacksports.com</a>
+              <a href="tel:0401779901" class="help-contact-phone">&#128222; 0401 779 901</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 

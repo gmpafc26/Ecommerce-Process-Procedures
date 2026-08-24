@@ -692,6 +692,194 @@ body.edit-mode [contenteditable]:focus {
   border-radius: 3px;
 }
 
+
+/* -- MODULE EDITOR UX REDESIGN -- */
+
+/* Workflow steps wrapper */
+.mod-steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 0; }
+.mod-step-block {
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.mod-step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--off, #f8fafc);
+  border-bottom: 1px solid var(--border);
+  cursor: default;
+}
+.mod-step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-size: 13px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.mod-step-title {
+  font-size: 14px; font-weight: 700;
+  color: var(--text);
+}
+.mod-step-sub {
+  font-size: 12px; color: var(--muted);
+  margin-top: 1px;
+}
+.mod-step-body {
+  padding: 18px 18px 14px;
+  background: #fff;
+}
+
+/* Reassurance banner */
+.mod-reassure {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #166534;
+  margin-bottom: 18px;
+}
+.mod-reassure strong { font-weight: 700; }
+
+/* Module intro banner */
+.mod-intro {
+  background: var(--navy);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.mod-intro-icon { font-size: 28px; flex-shrink: 0; }
+.mod-intro-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.mod-intro-desc { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+.mod-intro-location { display: inline-flex; align-items: center; gap: 5px; margin-top: 8px; font-size: 11px; font-weight: 600; color: var(--teal, #00B4C8); background: rgba(0,180,200,0.12); padding: 3px 9px; border-radius: 20px; }
+
+/* Generate button - make it the hero action */
+.gen-btn {
+  width: 100%;
+  height: 48px;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  background: var(--navy) !important;
+  color: #fff !important;
+  border: none !important;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s !important;
+  margin-top: 4px !important;
+}
+.gen-btn:hover { background: #1a3550 !important; }
+
+/* Code output - minimised visually, focus on copy */
+.code-output-block {
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  background: #fff;
+}
+.code-output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--off);
+  border-bottom: 1px solid var(--border);
+}
+.code-output-label {
+  font-size: 12px; font-weight: 600; color: var(--muted);
+  display: flex; align-items: center; gap: 6px;
+}
+.code-toggle {
+  font-size: 11px; color: var(--muted);
+  background: none; border: 1px solid var(--border);
+  border-radius: 5px; padding: 3px 8px;
+  cursor: pointer; font-family: inherit;
+  transition: all 0.15s;
+}
+.code-toggle:hover { border-color: var(--teal); color: var(--teal); }
+.code-collapsed { display: none; }
+.code-output-body { padding: 0; }
+
+/* Big copy button */
+.copy-big-btn {
+  width: 100%;
+  height: 52px;
+  background: var(--teal, #00B4C8);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s;
+  margin-bottom: 4px;
+}
+.copy-big-btn:hover { background: var(--teal-dark, #0093A8); }
+
+/* Next steps panel */
+.next-steps-panel {
+  border: 1.5px solid #bfdbfe;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #eff6ff;
+}
+.next-steps-header {
+  padding: 10px 16px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.next-steps-body { padding: 14px 16px; }
+.next-step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.next-step-row:last-child { margin-bottom: 0; }
+.next-step-n {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.next-step-text { font-size: 13px; color: #1e3a5f; line-height: 1.5; }
+.next-step-text strong { color: var(--navy); }
+.howto-link-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 10px; padding: 7px 13px;
+  background: var(--navy); color: #fff;
+  border: none; border-radius: 7px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: background 0.15s;
+}
+.howto-link-btn:hover { background: var(--teal); }
+
 </style>
 </head>
 <body>
@@ -789,158 +977,424 @@ body.edit-mode [contenteditable]:focus {
 
   <!-- BANNER EDITOR -->
   <div class="subview" id="sv-banner">
-    <div class="ed-wrap"><div class="ed-inner">
-      <div class="ed-left">
-        <div class="lp" style="margin-bottom:16px">
-          <div class="lp-label"><span class="dot"></span>Live example - current store</div>
-          <div class="lp-label" style="font-size:11px;opacity:.7;margin-bottom:4px">Desktop</div>
-          <img id="img-bp" src="AFLW-Banner-Desktop.png" alt="Banner Desktop">
-          <div class="lp-label" style="font-size:11px;opacity:.7;margin:8px 0 4px">Mobile</div>
-          <img id="img-bp-mob" src="AFLW-Banner-Mobile.png" alt="Banner Mobile" style="max-height:200px;width:auto;display:block;border-radius:4px">
-          <div class="lp-cap">&#128205; First HTML Widget on the landing page, directly below navigation</div>
+    <div style="padding:24px 28px">
+
+      <!-- Module intro -->
+      <div class="mod-intro">
+        <div class="mod-intro-icon">&#128444;&#65039;</div>
+        <div>
+          <div class="mod-intro-title">Main Banner</div>
+          <div class="mod-intro-desc">The full-width hero image at the top of the Port Store homepage. It links customers through to a collection or campaign page when clicked. You need a separate image for desktop and mobile screens.</div>
+          <div class="mod-intro-location">&#128205; First section on the homepage, directly below the navigation</div>
         </div>
-        <div class="sb" style="margin-bottom:16px">
-          <div class="sb-hdr">&#128190; Image Size Guide - Main Banner</div>
-          <div class="sb-grid">
-            <div class="sb-cell"><span class="sb-label">Desktop Image</span><span class="sb-val">2100 &times; 700 px <span class="live-badge">&#9679; Live</span></span><span class="sb-note">Landscape. JPG or PNG.</span></div>
-            <div class="sb-cell"><span class="sb-label">Mobile Image</span><span class="sb-val">767 &times; 960 px <span class="rec-badge">&#128161; Rec.</span></span><span class="sb-note">Portrait. Screens &#8804;767px.</span></div>
-            <div class="sb-cell"><span class="sb-label">Desktop file size</span><span class="sb-val">1–2 MB</span></div>
-            <div class="sb-cell"><span class="sb-label">Mobile file size</span><span class="sb-val">Under 1 MB</span></div>
-            <div class="sb-cell full"><span class="sb-label">Get the URL</span><span class="sb-val">BC Admin &#8594; Storefront &#8594; Image Manager &#8594; Upload &#8594; copy CDN URL</span></div>
+      </div>
+
+      <!-- Reassurance -->
+      <div class="mod-reassure">
+        <span style="font-size:16px">&#9989;</span>
+        <div><strong>You can't break the live site by editing here.</strong> Nothing changes until you paste the generated code into BigCommerce and click Publish.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
+
+        <!-- LEFT: Current preview + steps -->
+        <div>
+          <!-- Current live preview -->
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num" style="background:#10B981">&#9679;</div>
+              <div><div class="mod-step-title">Currently live on the store</div></div>
+            </div>
+            <div class="mod-step-body" style="padding:12px">
+              <div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600">DESKTOP</div>
+              <img id="img-bp" src="AFLW-Banner-Desktop.png" alt="Banner Desktop" style="width:100%;border-radius:6px;display:block;margin-bottom:8px">
+              <div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600">MOBILE</div>
+              <img id="img-bp-mob" src="AFLW-Banner-Mobile.png" alt="Banner Mobile" style="max-height:140px;width:auto;border-radius:6px;display:block">
+            </div>
+          </div>
+
+          <!-- Image size guide -->
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num" style="background:#6366f1">&#128190;</div>
+              <div><div class="mod-step-title">Image requirements</div><div class="mod-step-sub">Upload images to BigCommerce first, then paste the URL below</div></div>
+            </div>
+            <div class="mod-step-body">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+                <div style="background:var(--off);border-radius:8px;padding:10px 12px;border:1px solid var(--border)">
+                  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px">Desktop</div>
+                  <div style="font-size:14px;font-weight:700;color:var(--text)">2100 x 700 px</div>
+                  <div style="font-size:11px;color:var(--muted);margin-top:2px">1-2 MB max. JPG or PNG.</div>
+                </div>
+                <div style="background:var(--off);border-radius:8px;padding:10px 12px;border:1px solid var(--border)">
+                  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px">Mobile</div>
+                  <div style="font-size:14px;font-weight:700;color:var(--text)">767 x 960 px</div>
+                  <div style="font-size:11px;color:var(--muted);margin-top:2px">Under 1 MB. Portrait format.</div>
+                </div>
+              </div>
+              <div class="img-upload-notice" style="margin-bottom:0">
+                <div class="img-upload-notice-row">
+                  <span class="img-upload-icon">&#128190;</span>
+                  <div>
+                    <div class="img-upload-title">How to get the image URL</div>
+                    <div class="img-upload-steps">
+                      <span class="img-upload-step"><span class="img-upload-step-num">1</span> BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span>
+                      <span class="img-upload-step-sep">&rarr;</span>
+                      <span class="img-upload-step"><span class="img-upload-step-num">2</span> Upload image &rarr; copy the CDN URL</span>
+                    </div>
+                    <div class="img-upload-example">
+                      <span class="img-upload-example-lbl">Example URL format</span>
+                      <code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-hdr"><div class="card-ttl"><div class="card-ico" style="background:#eff6ff">&#128444;&#65039;</div>Main Hero Banner</div><span class="badge-html">HTML Widget</span></div>
-          <div class="card-body">
-            <div class="frow full"><div class="fg"><label class="fl">Banner Link URL <span class="req">*</span></label><input type="url" class="fc" id="b-link" value="https://portstore.com.au/aflw/"><span class="fhint">Where clicking the banner sends the customer</span></div></div>
-            <div class="img-upload-notice">
-  <div class="img-upload-notice-row">
-    <span class="img-upload-icon">&#128444;&#65039;</span>
-    <div>
-      <div class="img-upload-title">Images must be uploaded to BigCommerce first</div>
-      <div class="img-upload-steps">
-        <span class="img-upload-step"><span class="img-upload-step-num">1</span> BigCommerce Admin &rarr; <strong>Content</strong> &rarr; <strong>Image Manager</strong></span>
-        <span class="img-upload-step-sep">&rarr;</span>
-        <span class="img-upload-step"><span class="img-upload-step-num">2</span> Upload your image &amp; copy the URL</span>
-        <span class="img-upload-step-sep">&rarr;</span>
-        <span class="img-upload-step"><span class="img-upload-step-num">3</span> Paste the URL below</span>
-      </div>
-      <div class="img-upload-example">
-        <span class="img-upload-example-lbl">Example URL</span>
-        <code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code>
+
+        <!-- RIGHT: Edit steps -->
+        <div>
+          <!-- Step 1: Fill in details -->
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num">1</div>
+              <div><div class="mod-step-title">Fill in the details</div><div class="mod-step-sub">Update any fields you want to change</div></div>
+            </div>
+            <div class="mod-step-body">
+              <div class="frow full" style="margin-bottom:14px"><div class="fg">
+                <label class="fl">Where does the banner link to? <span class="req">*</span></label>
+                <input type="url" class="fc" id="b-link" value="https://portstore.com.au/aflw/">
+                <span class="fhint">The page customers land on when they click the banner (e.g. a collection or campaign page)</span>
+              </div></div>
+              <div class="frow full" style="margin-bottom:14px"><div class="fg">
+                <label class="fl">Desktop image URL <span class="req">*</span></label>
+                <input type="url" class="fc" id="b-desk" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner-26-1-.png?t=1786696060">
+                <span class="fhint">Paste the BigCommerce CDN URL for your desktop image (2100 x 700px)</span>
+              </div></div>
+              <div class="frow full" style="margin-bottom:14px"><div class="fg">
+                <label class="fl">Mobile image URL <span class="req">*</span></label>
+                <input type="url" class="fc" id="b-mob" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner.png?t=1786695857">
+                <span class="fhint">Paste the BigCommerce CDN URL for your mobile image (767 x 960px)</span>
+              </div></div>
+              <div class="frow full"><div class="fg">
+                <label class="fl">Image description (alt text)</label>
+                <input type="text" class="fc" id="b-alt" value="Promotional Banner">
+                <span class="fhint">A short description of the image for accessibility. E.g. "AFLW 2026 Range - Shop Now"</span>
+              </div></div>
+            </div>
+          </div>
+
+          <!-- Step 2: Generate -->
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num">2</div>
+              <div><div class="mod-step-title">Generate the code</div><div class="mod-step-sub">Click the button to build your updated banner code</div></div>
+            </div>
+            <div class="mod-step-body">
+              <button class="gen-btn" onclick="genBanner()">&#9889; Generate Banner Code</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Copy & paste -->
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num">3</div>
+              <div><div class="mod-step-title">Copy and paste into BigCommerce</div><div class="mod-step-sub">Copy the code, then follow the steps below to publish</div></div>
+            </div>
+            <div class="mod-step-body">
+              <button class="copy-big-btn" id="b-cpbtn" onclick="copyCode('b-out','b-cpbtn')">&#128203; Copy Banner Code</button>
+              <!-- Collapsed code view -->
+              <div class="code-output-block" style="margin-bottom:14px">
+                <div class="code-output-header">
+                  <span class="code-output-label">&#128196; Generated code</span>
+                  <button class="code-toggle" onclick="toggleCode('b-code-body',this)">Show code</button>
+                </div>
+                <div id="b-code-body" class="code-collapsed">
+                  <div class="out-code" id="b-out"></div>
+                </div>
+              </div>
+              <!-- Next steps -->
+              <div class="next-steps-panel">
+                <div class="next-steps-header">&#128205; How to publish in BigCommerce</div>
+                <div class="next-steps-body">
+                  <div class="next-step-row"><div class="next-step-n">1</div><div class="next-step-text">Open <strong>BigCommerce Admin</strong> and go to <strong>Storefront &rarr; Page Builder</strong></div></div>
+                  <div class="next-step-row"><div class="next-step-n">2</div><div class="next-step-text">Find the <strong>Main Banner</strong> HTML widget on the homepage and click it to open</div></div>
+                  <div class="next-step-row"><div class="next-step-n">3</div><div class="next-step-text">Select all the existing code inside the widget (<strong>Ctrl+A</strong> or <strong>Cmd+A</strong>) and delete it</div></div>
+                  <div class="next-step-row"><div class="next-step-n">4</div><div class="next-step-text">Paste your copied code (<strong>Ctrl+V</strong> or <strong>Cmd+V</strong>) and click <strong>Apply</strong></div></div>
+                  <div class="next-step-row"><div class="next-step-n">5</div><div class="next-step-text">Click <strong>Publish</strong> in the top right. Your banner is now live.</div></div>
+                  <button class="howto-link-btn" onclick="wmGo('howto')">&#128214; View full step-by-step guide</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
-</div>
-            <div class="frow full"><div class="fg"><label class="fl">Desktop Image URL <span class="req">*</span></label><input type="url" class="fc" id="b-desk" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner-26-1-.png?t=1786696060"><span class="fhint">&#128190; <strong>2100&times;700px</strong> - upload in BigCommerce &rarr; Content &rarr; Image Manager, then paste the CDN URL here</span></div></div>
-            <div class="frow full"><div class="fg"><label class="fl">Mobile Image URL <span class="req">*</span></label><input type="url" class="fc" id="b-mob" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner.png?t=1786695857"><span class="fhint">&#128190; <strong>767&times;960px portrait</strong> - upload in BigCommerce &rarr; Content &rarr; Image Manager, then paste the CDN URL here</span></div></div>
-            <div class="frow full"><div class="fg"><label class="fl">Alt Text</label><input type="text" class="fc" id="b-alt" value="Promotional Banner"></div></div>
-            <button class="gen-btn" onclick="genBanner()">&#9889; Generate Banner Code</button>
-          </div>
-        </div>
-      </div>
-      <div class="ed-right">
-        <div class="out-hdr"><div class="out-fname">&#128196; main-banner.html</div><button class="copy-btn" id="b-cpbtn" onclick="copyCode('b-out','b-cpbtn')">&#128203; Copy</button></div>
-        <div class="out-code" id="b-out"></div>
-        <div class="icard"><div class="icard-ttl">&#128161; Next step</div><p style="font-size:13px;color:var(--muted);line-height:1.7">Copy above &#8594; Page Builder &#8594; banner widget &#8594; select all &#8594; paste &#8594; Apply &#8594; Publish. See <button onclick="wmGo('howto')" style="background:none;border:none;color:var(--teal);font-weight:600;cursor:pointer;font-size:13px;padding:0;text-decoration:underline">How To Upload</button>.</p></div>
-      </div>
-    </div></div>
-  </div>
+
 
   <!-- ANNOUNCEMENT BMH EDITOR -->
   <div class="subview" id="sv-annbar">
-    <div class="ed-wrap"><div class="ed-inner">
-      <div class="ed-left">
-        <div class="lp" style="margin-bottom:16px"><div class="lp-label"><span class="dot"></span>Live example - current store</div><img id="img-ap" src="" alt="Ann Bar" style="max-height:110px;object-fit:cover;object-position:bottom"><div class="lp-cap">&#128205; Teal strip below the store header. All messages side-by-side desktop, rotates mobile.</div></div>
-        <div class="sb" style="margin-bottom:16px">
-          <div class="sb-hdr">&#128161; Content Guide - Announcement Bar</div>
-          <div class="sb-grid">
-            <div class="sb-cell"><span class="sb-label">Background colour</span><span class="sb-val"><span style="width:13px;height:13px;background:#0097B0;border-radius:3px;border:1px solid rgba(0,0,0,.1);flex-shrink:0;display:inline-block"></span>#0097B0 <span class="live-badge">&#9679; Live</span></span></div>
-            <div class="sb-cell"><span class="sb-label">Desktop messages</span><span class="sb-val">3 messages <span class="live-badge">&#9679; Live</span></span></div>
-            <div class="sb-cell"><span class="sb-label">Mobile rotation</span><span class="sb-val">3.5 sec <span class="live-badge">&#9679; Live</span></span></div>
-            <div class="sb-cell"><span class="sb-label">Text limit</span><span class="sb-val">Under 50 characters</span></div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-hdr"><div class="card-ttl"><div class="card-ico" style="background:#fefce8">&#128226;</div>Announcement Bar</div><span class="badge-html">HTML Widget</span></div>
-          <div class="card-body">
-            <div class="frow">
-              <div class="fg"><label class="fl">Background Colour</label><div class="color-row"><div class="cswatch"><input type="color" id="ab-bg" value="#0097B0" oninput="document.getElementById('ab-bghex').value=this.value"></div><input type="text" class="fc" id="ab-bghex" value="#0097B0" style="width:100px" oninput="syncC('ab-bg','ab-bghex')"></div></div>
-              <div class="fg"><label class="fl">Text Colour</label><div class="color-row"><div class="cswatch"><input type="color" id="ab-tc" value="#ffffff" oninput="document.getElementById('ab-tchex').value=this.value"></div><input type="text" class="fc" id="ab-tchex" value="#ffffff" style="width:100px" oninput="syncC('ab-tc','ab-tchex')"></div></div>
-            </div>
-            <div class="frow full"><div class="fg"><label class="fl">Mobile rotation speed</label><select class="fc" id="ab-spd"><option value="2500">Fast (2.5s)</option><option value="3500" selected>Normal (3.5s) - live</option><option value="5000">Slow (5s)</option><option value="7000">Very Slow (7s)</option></select></div></div>
-            <div class="divider">Messages (up to 5)</div>
-            <div id="ab-msgs" style="display:flex;flex-direction:column;gap:9px"></div>
-            <button class="add-btn" id="ab-addbtn" onclick="addMsg()">+ Add Message</button>
-            <button class="gen-btn" onclick="genAnnBar()">&#9889; Generate Announcement Bar Code</button>
-          </div>
-        </div>
-      </div>
-      <div class="ed-right">
-        <div class="out-hdr"><div class="out-fname">&#128196; announcement-bar.html</div><button class="copy-btn" id="ab-cpbtn" onclick="copyCode('ab-out','ab-cpbtn')">&#128203; Copy</button></div>
-        <div class="out-code" id="ab-out"></div>
-        <div class="icard"><div class="icard-ttl">&#128161; Tips</div><ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:18px"><li>Leave Link URL blank if no link needed</li><li>Link Text = clickable words e.g. <em>Shop Now</em></li><li>Keep under 50 characters per message</li></ul></div>
-      </div>
-    </div></div>
-  </div>
+    <div style="padding:24px 28px">
 
-  <!-- PRODUCT GRID EDITOR -->
-  <div class="subview" id="sv-grid">
-    <div class="ed-wrap"><div class="ed-inner">
-      <div class="ed-left">
-        <div class="lp" style="margin-bottom:16px"><div class="lp-label"><span class="dot"></span>Live example - current store</div><img id="img-gp" src="" alt="Grid"><div class="lp-cap">&#128205; Below the banner. 4-column grid with image, name, price and Shop Now button.</div></div>
-        <div class="sb" style="margin-bottom:16px">
-          <div class="sb-hdr">&#128190; Image Size Guide - Product Grid</div>
-          <div class="sb-grid">
-            <div class="sb-cell"><span class="sb-label">Product image</span><span class="sb-val">600 &times; 800 px <span class="rec-badge">&#128161; Rec.</span></span><span class="sb-note">3:4 portrait. Matches live images.</span></div>
-            <div class="sb-cell"><span class="sb-label">Desktop columns</span><span class="sb-val">4 columns <span class="live-badge">&#9679; Live</span></span></div>
-            <div class="sb-cell"><span class="sb-label">File size per image</span><span class="sb-val">Under 1 MB</span></div>
-            <div class="sb-cell"><span class="sb-label">Button</span><span class="sb-val">#000 / #00edff hover <span class="live-badge">&#9679; Live</span></span></div>
-            <div class="sb-cell full"><span class="sb-label">Get image URLs</span><span class="sb-val">BC Image Manager OR right-click product image &#8594; Copy image address</span></div>
+      <div class="mod-intro">
+        <div class="mod-intro-icon">&#128226;</div>
+        <div>
+          <div class="mod-intro-title">Announcement Bar</div>
+          <div class="mod-intro-desc">The teal strip that appears directly below the site header. It displays short messages to customers — promotions, shipping info, events. On desktop all messages show side by side, on mobile they rotate automatically.</div>
+          <div class="mod-intro-location">&#128205; Top of every page, directly below the site header</div>
+        </div>
+      </div>
+
+      <div class="mod-reassure">
+        <span style="font-size:16px">&#9989;</span>
+        <div><strong>You can't break the live site by editing here.</strong> Nothing changes until you paste the generated code into BigCommerce and click Publish.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
+
+        <!-- LEFT: Preview + guide -->
+        <div>
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num" style="background:#10B981">&#9679;</div>
+              <div><div class="mod-step-title">Currently live on the store</div></div>
+            </div>
+            <div class="mod-step-body" style="padding:10px">
+              <img id="img-ap" src="" alt="Announcement Bar" style="width:100%;border-radius:4px;display:block;max-height:80px;object-fit:cover;object-position:bottom">
+            </div>
+          </div>
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num" style="background:#6366f1">&#128161;</div>
+              <div><div class="mod-step-title">Tips for writing messages</div></div>
+            </div>
+            <div class="mod-step-body">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;gap:8px;font-size:13px;color:var(--text)"><span>&#128073;</span><span>Keep each message <strong>under 50 characters</strong> so it fits on smaller screens</span></div>
+                <div style="display:flex;gap:8px;font-size:13px;color:var(--text)"><span>&#128073;</span><span>You can add up to <strong>5 messages</strong></span></div>
+                <div style="display:flex;gap:8px;font-size:13px;color:var(--text)"><span>&#128073;</span><span>Each message can optionally <strong>link to a page</strong> - leave the link field blank if not needed</span></div>
+                <div style="display:flex;gap:8px;font-size:13px;color:var(--text)"><span>&#128073;</span><span>The background is currently <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:#0097B0;border-radius:2px;border:1px solid rgba(0,0,0,.15);display:inline-block"></span><strong>#0097B0</strong></span> - only change if you have a specific requirement</span></div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-hdr"><div class="card-ttl"><div class="card-ico" style="background:#f0fdf4">&#128717;</div>Product Grid</div><span class="badge-html">HTML Widget</span></div>
-          <div class="card-body">
-            <div class="frow">
-              <div class="fg"><label class="fl">Columns (desktop)</label><select class="fc" id="pg-cols"><option value="3">3 columns</option><option value="4" selected>4 columns - live</option><option value="5">5 columns</option></select></div>
-              <div class="fg"><label class="fl">Columns (mobile)</label><select class="fc" id="pg-mob"><option value="1">1 column</option><option value="2" selected>2 columns - live</option></select></div>
+
+        <!-- RIGHT: Edit steps -->
+        <div>
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num">1</div>
+              <div><div class="mod-step-title">Edit your messages</div><div class="mod-step-sub">Update existing messages or add new ones</div></div>
             </div>
-            <div class="frow">
-              <div class="fg"><label class="fl">Button Colour</label><div class="color-row"><div class="cswatch"><input type="color" id="pg-btn" value="#000000" oninput="document.getElementById('pg-btnhex').value=this.value"></div><input type="text" class="fc" id="pg-btnhex" value="#000000" style="width:100px" oninput="syncC('pg-btn','pg-btnhex')"></div></div>
-              <div class="fg"><label class="fl">Button Hover</label><div class="color-row"><div class="cswatch"><input type="color" id="pg-hov" value="#00edff" oninput="document.getElementById('pg-hovhex').value=this.value"></div><input type="text" class="fc" id="pg-hovhex" value="#00edff" style="width:100px" oninput="syncC('pg-hov','pg-hovhex')"></div></div>
+            <div class="mod-step-body">
+              <div class="frow" style="margin-bottom:12px">
+                <div class="fg"><label class="fl">Background colour</label><div class="color-row"><div class="cswatch"><input type="color" id="ab-bg" value="#0097B0" oninput="document.getElementById('ab-bghex').value=this.value"></div><input type="text" class="fc" id="ab-bghex" value="#0097B0" style="width:100px" oninput="syncC('ab-bg','ab-bghex')"></div><span class="fhint">Default teal - only change for special campaigns</span></div>
+                <div class="fg"><label class="fl">Text colour</label><div class="color-row"><div class="cswatch"><input type="color" id="ab-tc" value="#ffffff" oninput="document.getElementById('ab-tchex').value=this.value"></div><input type="text" class="fc" id="ab-tchex" value="#ffffff" style="width:100px" oninput="syncC('ab-tc','ab-tchex')"></div></div>
+              </div>
+              <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Mobile rotation speed</label><select class="fc" id="ab-spd"><option value="2500">Fast (2.5s)</option><option value="3500" selected>Normal (3.5s) - currently live</option><option value="5000">Slow (5s)</option><option value="7000">Very slow (7s)</option></select><span class="fhint">How long each message shows for on mobile before rotating to the next</span></div></div>
+              <div class="divider">Messages (up to 5)</div>
+              <div id="ab-msgs" style="display:flex;flex-direction:column;gap:9px"></div>
+              <button class="add-btn" id="ab-addbtn" onclick="addMsg()">+ Add Message</button>
             </div>
-            <div class="divider">Products (up to 12)</div>
-            <div class="img-upload-notice" style="margin:0 0 16px 0">
-  <div class="img-upload-notice-row">
-    <span class="img-upload-icon">&#128190;</span>
-    <div>
-      <div class="img-upload-title">Images must be uploaded to BigCommerce first</div>
-      <div class="img-upload-steps">
-        <span class="img-upload-step"><span class="img-upload-step-num">1</span> BC Admin &rarr; <strong>Content &rarr; Image Manager</strong> &rarr; Upload &amp; copy URL</span>
-        <span class="img-upload-step-sep">&rarr;</span>
-        <span class="img-upload-step"><span class="img-upload-step-num">2</span> Paste URL in the Image URL field on each product card</span>
-      </div>
-      <div class="img-upload-example">
-        <span class="img-upload-example-lbl">Example URL</span>
-        <code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>filename.png</strong></code>
+          </div>
+
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num">2</div>
+              <div><div class="mod-step-title">Generate the code</div></div>
+            </div>
+            <div class="mod-step-body">
+              <button class="gen-btn" onclick="genAnnBar()">&#9889; Generate Announcement Bar Code</button>
+            </div>
+          </div>
+
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num">3</div>
+              <div><div class="mod-step-title">Copy and paste into BigCommerce</div></div>
+            </div>
+            <div class="mod-step-body">
+              <button class="copy-big-btn" id="ab-cpbtn" onclick="copyCode('ab-out','ab-cpbtn')">&#128203; Copy Announcement Bar Code</button>
+              <div class="code-output-block" style="margin-bottom:14px">
+                <div class="code-output-header">
+                  <span class="code-output-label">&#128196; Generated code</span>
+                  <button class="code-toggle" onclick="toggleCode('ab-code-body',this)">Show code</button>
+                </div>
+                <div id="ab-code-body" class="code-collapsed">
+                  <div class="out-code" id="ab-out"></div>
+                </div>
+              </div>
+              <div class="next-steps-panel">
+                <div class="next-steps-header">&#128205; How to publish in BigCommerce</div>
+                <div class="next-steps-body">
+                  <div class="next-step-row"><div class="next-step-n">1</div><div class="next-step-text">Open <strong>BigCommerce Admin</strong> and go to <strong>Storefront &rarr; Page Builder</strong></div></div>
+                  <div class="next-step-row"><div class="next-step-n">2</div><div class="next-step-text">Find the <strong>Announcement Bar</strong> HTML widget and click it to open</div></div>
+                  <div class="next-step-row"><div class="next-step-n">3</div><div class="next-step-text">Select all (<strong>Ctrl+A</strong> / <strong>Cmd+A</strong>), delete, paste your copied code, click <strong>Apply</strong></div></div>
+                  <div class="next-step-row"><div class="next-step-n">4</div><div class="next-step-text">Click <strong>Publish</strong> top right. Your announcement bar is now live.</div></div>
+                  <button class="howto-link-btn" onclick="wmGo('howto')">&#128214; View full step-by-step guide</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-            <div id="pg-prods" style="display:flex;flex-direction:column;gap:11px"></div>
-            <button class="add-btn" onclick="addProd()">+ Add Product</button>
-            <button class="gen-btn" onclick="genGrid()">&#9889; Generate Product Grid Code</button>
+
+
+  <!-- PRODUCT GRID EDITOR -->
+  <div class="subview" id="sv-grid">
+    <div style="padding:24px 28px">
+
+      <div class="mod-intro">
+        <div class="mod-intro-icon">&#128717;</div>
+        <div>
+          <div class="mod-intro-title">Product Grid</div>
+          <div class="mod-intro-desc">A featured product grid that sits below the main banner on the homepage. Each product card shows an image, product name, price, and a Shop Now button. Typically used to highlight key range products or bestsellers.</div>
+          <div class="mod-intro-location">&#128205; Below the main banner on the homepage</div>
+        </div>
+      </div>
+
+      <div class="mod-reassure">
+        <span style="font-size:16px">&#9989;</span>
+        <div><strong>You can't break the live site by editing here.</strong> Nothing changes until you paste the generated code into BigCommerce and click Publish.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
+
+        <!-- LEFT: Preview + image guide -->
+        <div>
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num" style="background:#10B981">&#9679;</div>
+              <div><div class="mod-step-title">Currently live on the store</div></div>
+            </div>
+            <div class="mod-step-body" style="padding:10px">
+              <img id="img-gp" src="" alt="Product Grid" style="width:100%;border-radius:6px;display:block">
+            </div>
+          </div>
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num" style="background:#6366f1">&#128190;</div>
+              <div><div class="mod-step-title">Product image requirements</div></div>
+            </div>
+            <div class="mod-step-body">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+                <div style="background:var(--off);border-radius:8px;padding:10px 12px;border:1px solid var(--border)">
+                  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px">Size</div>
+                  <div style="font-size:14px;font-weight:700;color:var(--text)">600 x 800 px</div>
+                  <div style="font-size:11px;color:var(--muted);margin-top:2px">Portrait (3:4). Under 1 MB.</div>
+                </div>
+                <div style="background:var(--off);border-radius:8px;padding:10px 12px;border:1px solid var(--border)">
+                  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px">Source</div>
+                  <div style="font-size:13px;font-weight:600;color:var(--text)">BC Image Manager</div>
+                  <div style="font-size:11px;color:var(--muted);margin-top:2px">Or right-click product image &rarr; Copy image address</div>
+                </div>
+              </div>
+              <div class="img-upload-notice" style="margin-bottom:0">
+                <div class="img-upload-notice-row">
+                  <span class="img-upload-icon">&#128190;</span>
+                  <div>
+                    <div class="img-upload-title">How to get product image URLs</div>
+                    <div class="img-upload-steps">
+                      <span class="img-upload-step"><span class="img-upload-step-num">A</span> BC Admin &rarr; <strong>Content &rarr; Image Manager</strong> &rarr; upload &amp; copy URL</span>
+                    </div>
+                    <div class="img-upload-steps" style="margin-top:4px">
+                      <span class="img-upload-step"><span class="img-upload-step-num">B</span> Or right-click the product image on the live store &rarr; <strong>Copy image address</strong></span>
+                    </div>
+                    <div class="img-upload-example">
+                      <span class="img-upload-example-lbl">Example URL format</span>
+                      <code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>filename.png</strong></code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Edit steps -->
+        <div>
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num">1</div>
+              <div><div class="mod-step-title">Set up the grid</div><div class="mod-step-sub">Choose layout and add your products</div></div>
+            </div>
+            <div class="mod-step-body">
+              <div class="frow" style="margin-bottom:14px">
+                <div class="fg"><label class="fl">Columns (desktop)</label><select class="fc" id="pg-cols"><option value="3">3 columns</option><option value="4" selected>4 columns - currently live</option><option value="5">5 columns</option></select></div>
+                <div class="fg"><label class="fl">Columns (mobile)</label><select class="fc" id="pg-mcols"><option value="1">1 column</option><option value="2" selected>2 columns - currently live</option><option value="3">3 columns</option></select></div>
+              </div>
+              <div class="frow" style="margin-bottom:14px">
+                <div class="fg"><label class="fl">Button colour</label><div class="color-row"><div class="cswatch"><input type="color" id="pg-bc" value="#000000" oninput="document.getElementById('pg-bchex').value=this.value"></div><input type="text" class="fc" id="pg-bchex" value="#000000" style="width:100px" oninput="syncC('pg-bc','pg-bchex')"></div></div>
+                <div class="fg"><label class="fl">Button hover colour</label><div class="color-row"><div class="cswatch"><input type="color" id="pg-hc" value="#00edff" oninput="document.getElementById('pg-hchex').value=this.value"></div><input type="text" class="fc" id="pg-hchex" value="#00edff" style="width:100px" oninput="syncC('pg-hc','pg-hchex')"></div></div>
+              </div>
+              <div class="divider">Products</div>
+              <div class="img-upload-notice" style="margin:0 0 12px">
+                <div class="img-upload-notice-row">
+                  <span class="img-upload-icon">&#128073;</span>
+                  <div>
+                    <div class="img-upload-title">Each product needs 4 things</div>
+                    <div class="img-upload-steps" style="flex-direction:column;gap:3px">
+                      <span class="img-upload-step"><span class="img-upload-step-num">1</span> <strong>Product name</strong> - shown under the image</span>
+                      <span class="img-upload-step"><span class="img-upload-step-num">2</span> <strong>Price</strong> - shown under the name (e.g. $89.99)</span>
+                      <span class="img-upload-step"><span class="img-upload-step-num">3</span> <strong>Image URL</strong> - from BigCommerce (see guide on the left)</span>
+                      <span class="img-upload-step"><span class="img-upload-step-num">4</span> <strong>Product page link</strong> - the URL customers go to when clicking Shop Now</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="pg-prods" style="display:flex;flex-direction:column;gap:11px"></div>
+              <button class="add-btn" onclick="addProd()">+ Add Product</button>
+            </div>
+          </div>
+
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num">2</div>
+              <div><div class="mod-step-title">Generate the code</div></div>
+            </div>
+            <div class="mod-step-body">
+              <button class="gen-btn" onclick="genGrid()">&#9889; Generate Product Grid Code</button>
+            </div>
+          </div>
+
+          <div class="mod-step-block">
+            <div class="mod-step-header">
+              <div class="mod-step-num">3</div>
+              <div><div class="mod-step-title">Copy and paste into BigCommerce</div></div>
+            </div>
+            <div class="mod-step-body">
+              <button class="copy-big-btn" id="pg-cpbtn" onclick="copyCode('pg-out','pg-cpbtn')">&#128203; Copy Product Grid Code</button>
+              <div class="code-output-block" style="margin-bottom:14px">
+                <div class="code-output-header">
+                  <span class="code-output-label">&#128196; Generated code</span>
+                  <button class="code-toggle" onclick="toggleCode('pg-code-body',this)">Show code</button>
+                </div>
+                <div id="pg-code-body" class="code-collapsed">
+                  <div class="out-code" id="pg-out"></div>
+                </div>
+              </div>
+              <div class="next-steps-panel">
+                <div class="next-steps-header">&#128205; How to publish in BigCommerce</div>
+                <div class="next-steps-body">
+                  <div class="next-step-row"><div class="next-step-n">1</div><div class="next-step-text">Open <strong>BigCommerce Admin</strong> and go to <strong>Storefront &rarr; Page Builder</strong></div></div>
+                  <div class="next-step-row"><div class="next-step-n">2</div><div class="next-step-text">Find the <strong>Product Grid</strong> HTML widget and click it to open</div></div>
+                  <div class="next-step-row"><div class="next-step-n">3</div><div class="next-step-text">Select all (<strong>Ctrl+A</strong> / <strong>Cmd+A</strong>), delete, paste your copied code, click <strong>Apply</strong></div></div>
+                  <div class="next-step-row"><div class="next-step-n">4</div><div class="next-step-text">Click <strong>Publish</strong> top right. Your product grid is now live.</div></div>
+                  <button class="howto-link-btn" onclick="wmGo('howto')">&#128214; View full step-by-step guide</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="ed-right">
-        <div class="out-hdr"><div class="out-fname">&#128196; product-grid.html</div><button class="copy-btn" id="pg-cpbtn" onclick="copyCode('pg-out','pg-cpbtn')">&#128203; Copy</button></div>
-        <div class="out-code" id="pg-out"></div>
-        <div class="icard"><div class="icard-ttl">&#128161; Tips</div><ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:18px"><li>Best ratio: <strong>3:4 portrait</strong> (600&times;800px)</li><li>Right-click any live product image &#8594; <em>Copy image address</em></li><li>4 products fills the grid cleanly</li></ul></div>
-      </div>
-    </div></div>
+    </div>
   </div>
+
 
   <!-- MANAGING PRODUCTS (moved into Website Operations) -->
   <div class="subview" id="sv-products">
@@ -1779,6 +2233,14 @@ function exportHTML() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
   showToast('&#9989; File exported - push to GitHub to publish your changes.');
+}
+
+function toggleCode(bodyId, btn) {
+  var body = document.getElementById(bodyId);
+  if (!body) return;
+  var collapsed = body.classList.contains('code-collapsed');
+  body.classList.toggle('code-collapsed', !collapsed);
+  btn.textContent = collapsed ? 'Hide code' : 'Show code';
 }
 
 function showScenario(n, btn) {

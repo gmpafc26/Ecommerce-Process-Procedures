@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Port Store — Website & Operations</title>
+<title>Port Store - Website & Operations</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -100,7 +100,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .live-badge{background:#f0fdf4;border:1px solid #bbf7d0;color:var(--green);font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px}
 .rec-badge{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px}
 
-/* CARD */
+/* CMHD */
 .card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
 .card-hdr{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#f8fafc}
 .card-ttl{font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px}
@@ -144,7 +144,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .out-code{font-family:'Courier New',monospace;font-size:11px;line-height:1.7;padding:14px;background:#0d1b2a;color:#a8c6d4;border-radius:0 0 10px 10px;white-space:pre-wrap;word-break:break-all;max-height:380px;overflow-y:auto;border:1px solid #1e3a52;border-top:none}
 .out-code:empty::before{content:"Fill in the form and click Generate...";color:#4a6b7e;font-style:italic}
 
-/* INFO CARD */
+/* INFO CMHD */
 .icard{background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:16px;box-shadow:var(--sh)}
 .icard-ttl{font-weight:700;font-size:13px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
 
@@ -175,7 +175,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .ref-table td{padding:10px 13px;border-bottom:1px solid var(--border);vertical-align:top}
 .ref-table tr:last-child td{border-bottom:none}
 
-/* OPERATIONS BOARD */
+/* OPERATIONS BOMHD */
 .ops-home{padding:36px 28px}
 .ops-sel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
 @media(max-width:900px){.ops-sel-grid{grid-template-columns:1fr 1fr}}
@@ -189,7 +189,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .ops-btn{width:100%;padding:8px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;margin-top:4px;transition:background .18s}
 .ops-btn:hover{background:var(--teal)}
 
-/* BOARD VIEW */
+/* BOMHD VIEW */
 .board-view{padding:24px 28px;max-width:100%}
 .bv-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px}
 .bv-title-row{display:flex;align-items:center;gap:12px}
@@ -430,7 +430,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
   background: var(--grey-50, #f8fafc);
 }
 
-/* ── GUIDE CARDS IMPROVED ── */
+/* ── GUIDE CMHDS IMPROVED ── */
 .gd-stitle { font-size: 14px; line-height: 1.4; }
 .gd-sdesc { line-height: 1.65; }
 .gd-band { font-size: 13px; line-height: 1.6; }
@@ -456,7 +456,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .ghost-steps-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 18px; }
 
 
-/* ── STOCK SCENARIO TABS ── */
+/* ── STOCK SCENMHIO TABS ── */
 .stock-tabs { display: flex; gap: 8px; margin-bottom: 0; flex-wrap: wrap; }
 .stock-tab {
   flex: 1; min-width: 140px;
@@ -572,7 +572,7 @@ body.edit-mode [contenteditable]:focus {
 .img-upload-url strong { color: #1d4ed8; }
 
 
-/* ── PRODUCT VISIBILITY + LIGHTSPEED WARNING ── */
+/* ── PRODUCT VISIBILITY + LIGHTSPEED WMHNING ── */
 .pm-overwrite-warn {
   display: flex; gap: 14px; align-items: flex-start;
   background: #fff8ed;
@@ -609,7 +609,7 @@ body.edit-mode [contenteditable]:focus {
 }
 
 
-/* ── HELP CONTACT CARD ── */
+/* ── HELP CONTACT CMHD ── */
 .help-contact-card {
   display: flex;
   gap: 16px;
@@ -645,12 +645,59 @@ body.edit-mode [contenteditable]:focus {
 }
 .help-contact-email:hover, .help-contact-phone:hover { color: var(--teal, #00B4C8); }
 
+
+/* -- DUAL DESKTOP/MOBILE PREVIEW -- */
+.sel-card-img-dual {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  overflow: hidden;
+  position: relative;
+}
+.sel-preview-desktop {
+  flex: 3;
+  position: relative;
+  overflow: hidden;
+}
+.sel-preview-desktop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.sel-preview-mobile {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-left: 2px solid rgba(255,255,255,0.15);
+}
+.sel-preview-mobile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+.sel-preview-label {
+  position: absolute;
+  bottom: 5px;
+  left: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.45);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
 </style>
 </head>
 <body>
 
 <header class="hdr">
-  <div class="hdr-logo"><div class="hdr-icon">&#128722;</div>Port Store &#8212; Website &amp; Operations</div>
+  <div class="hdr-logo"><div class="hdr-icon">&#128722;</div>Port Store - Website &amp; Operations</div>
   <span class="hdr-badge">Internal Tool</span>
   <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
     <button id="edit-toggle-btn" onclick="toggleEditMode()" style="display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:6px;border:1.5px solid rgba(255,255,255,0.25);background:transparent;color:rgba(255,255,255,0.65);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;white-space:nowrap">&#9998; Edit</button>
@@ -669,7 +716,7 @@ body.edit-mode [contenteditable]:focus {
      WEBSITE MODULES
 ════════════════════════════════════════ -->
 <div class="edit-mode-banner" id="edit-banner">
-  &#9998;&nbsp; <strong>Edit Mode</strong> &mdash; Click any text to edit it. Use <strong>Export &amp; Save</strong> when done, then push to GitHub.
+  &#9998;&nbsp; <strong>Edit Mode</strong> - Click any text to edit it. Use <strong>Export &amp; Save</strong> when done, then push to GitHub.
 </div>
 
 <div class="section active" id="sec-website">
@@ -682,10 +729,14 @@ body.edit-mode [contenteditable]:focus {
   <!-- HOME -->
   <div class="subview active" id="sv-home">
     <div class="home-wrap">
-      <div class="home-intro"><h2>Website Operations</h2><p>Select an area below to get started — generate BigCommerce code, manage products, submit ghost imagery requests, or access upload guides.</p></div>
+      <div class="home-intro"><h2>Website Operations</h2><p>Select an area below to get started - generate BigCommerce code, manage products, submit ghost imagery requests, or access upload guides.</p></div>
       <div class="sel-grid">
         <div class="sel-card" onclick="wmGo('banner')">
-          <div class="sel-card-img"><img id="img-bc" src="" alt="Banner"><div class="sel-overlay"></div><div class="live-pill"><span class="dot"></span>Live</div></div>
+          <div class="sel-card-img sel-card-img-dual">
+            <div class="sel-preview-desktop"><img id="img-bc" src="AFLW-Banner-Desktop.png" alt="Banner Desktop"><div class="sel-preview-label">Desktop</div></div>
+            <div class="sel-preview-mobile"><img id="img-bc-mob" src="AFLW-Banner-Mobile.png" alt="Banner Mobile"><div class="sel-preview-label">Mobile</div></div>
+            <div class="sel-overlay"></div><div class="live-pill"><span class="dot"></span>Live</div>
+          </div>
           <div class="sel-body"><div class="sel-title">&#128444;&#65039; Main Banner</div><div class="sel-desc">Full-width clickable hero image. Uses separate desktop and mobile images.</div><div class="sel-specs"><span class="stag live">&#9679; 2100&times;700px desktop</span><span class="stag live">&#9679; 767&times;960px mobile</span></div><button class="sel-btn">Edit Banner &#8594;</button></div>
         </div>
         <div class="sel-card" onclick="wmGo('annbar')">
@@ -699,7 +750,7 @@ body.edit-mode [contenteditable]:focus {
       </div>
       <div class="wide-card" onclick="wmGo('products')">
         <div class="wide-icon" style="background:#f0fdf4">&#128230;</div>
-        <div class="wide-body"><div class="wide-title">Managing Products</div><div class="wide-desc">Find, edit and manage BigCommerce product listings — basic info, categories, descriptions and images.</div></div>
+        <div class="wide-body"><div class="wide-title">Managing Products</div><div class="wide-desc">Find, edit and manage BigCommerce product listings - basic info, categories, descriptions and images.</div></div>
         <div class="wide-arrow">&#8594;</div>
       </div>
       <div class="wide-card" onclick="wmGo('ghost')">
@@ -717,18 +768,17 @@ body.edit-mode [contenteditable]:focus {
         <div class="help-contact-icon">&#128083;</div>
         <div class="help-contact-body">
           <div class="help-contact-title">Need help with the website?</div>
-          <div class="help-contact-sub">If you get stuck or something isn&#8217;t working, contact our Stack Sport developer.</div>
+          <div class="help-contact-sub">If you get stuck or something isn&#8217;t working, contact our My Game Day developer.</div>
           <div class="help-contact-details">
             <div class="help-contact-person">
-              <div class="help-contact-avatar">AR</div>
+              <div class="help-contact-avatar">MH</div>
               <div>
-                <div class="help-contact-name">Anthony Richardson</div>
-                <div class="help-contact-role">Stack Sport</div>
+                <div class="help-contact-name">Mark Haywood</div>
+                <div class="help-contact-role">My Game Day</div>
               </div>
             </div>
             <div class="help-contact-links">
-              <a href="mailto:anthony.richardson@stacksports.com" class="help-contact-email">&#128231; anthony.richardson@stacksports.com</a>
-              <a href="tel:0401779901" class="help-contact-phone">&#128222; 0401 779 901</a>
+              <a href="mailto:mark.haywood@mygameday.app" class="help-contact-email">&#128231; mark.haywood@mygameday.app</a>
             </div>
           </div>
         </div>
@@ -741,9 +791,16 @@ body.edit-mode [contenteditable]:focus {
   <div class="subview" id="sv-banner">
     <div class="ed-wrap"><div class="ed-inner">
       <div class="ed-left">
-        <div class="lp" style="margin-bottom:16px"><div class="lp-label"><span class="dot"></span>Live example &#8212; current store</div><img id="img-bp" src="" alt="Banner"><div class="lp-cap">&#128205; First HTML Widget on the landing page, directly below navigation</div></div>
+        <div class="lp" style="margin-bottom:16px">
+          <div class="lp-label"><span class="dot"></span>Live example - current store</div>
+          <div class="lp-label" style="font-size:11px;opacity:.7;margin-bottom:4px">Desktop</div>
+          <img id="img-bp" src="AFLW-Banner-Desktop.png" alt="Banner Desktop">
+          <div class="lp-label" style="font-size:11px;opacity:.7;margin:8px 0 4px">Mobile</div>
+          <img id="img-bp-mob" src="AFLW-Banner-Mobile.png" alt="Banner Mobile" style="max-height:200px;width:auto;display:block;border-radius:4px">
+          <div class="lp-cap">&#128205; First HTML Widget on the landing page, directly below navigation</div>
+        </div>
         <div class="sb" style="margin-bottom:16px">
-          <div class="sb-hdr">&#128190; Image Size Guide &#8212; Main Banner</div>
+          <div class="sb-hdr">&#128190; Image Size Guide - Main Banner</div>
           <div class="sb-grid">
             <div class="sb-cell"><span class="sb-label">Desktop Image</span><span class="sb-val">2100 &times; 700 px <span class="live-badge">&#9679; Live</span></span><span class="sb-note">Landscape. JPG or PNG.</span></div>
             <div class="sb-cell"><span class="sb-label">Mobile Image</span><span class="sb-val">767 &times; 960 px <span class="rec-badge">&#128161; Rec.</span></span><span class="sb-note">Portrait. Screens &#8804;767px.</span></div>
@@ -755,7 +812,7 @@ body.edit-mode [contenteditable]:focus {
         <div class="card">
           <div class="card-hdr"><div class="card-ttl"><div class="card-ico" style="background:#eff6ff">&#128444;&#65039;</div>Main Hero Banner</div><span class="badge-html">HTML Widget</span></div>
           <div class="card-body">
-            <div class="frow full"><div class="fg"><label class="fl">Banner Link URL <span class="req">*</span></label><input type="url" class="fc" id="b-link" value="https://portstore.com.au/first-nations-2026/"><span class="fhint">Where clicking the banner sends the customer</span></div></div>
+            <div class="frow full"><div class="fg"><label class="fl">Banner Link URL <span class="req">*</span></label><input type="url" class="fc" id="b-link" value="https://portstore.com.au/aflw/"><span class="fhint">Where clicking the banner sends the customer</span></div></div>
             <div class="img-upload-notice">
   <div class="img-upload-notice-row">
     <span class="img-upload-icon">&#128444;&#65039;</span>
@@ -775,8 +832,8 @@ body.edit-mode [contenteditable]:focus {
     </div>
   </div>
 </div>
-            <div class="frow full"><div class="fg"><label class="fl">Desktop Image URL <span class="req">*</span></label><input type="url" class="fc" id="b-desk" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/sdnr-desktop-banner.png?t=1778478293"><span class="fhint">&#128190; <strong>2100&times;700px</strong> &mdash; upload in BigCommerce &rarr; Content &rarr; Image Manager, then paste the CDN URL here</span></div></div>
-            <div class="frow full"><div class="fg"><label class="fl">Mobile Image URL <span class="req">*</span></label><input type="url" class="fc" id="b-mob" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/sdnr-mobile-banner.png?t=1778478297"><span class="fhint">&#128190; <strong>767&times;960px portrait</strong> &mdash; upload in BigCommerce &rarr; Content &rarr; Image Manager, then paste the CDN URL here</span></div></div>
+            <div class="frow full"><div class="fg"><label class="fl">Desktop Image URL <span class="req">*</span></label><input type="url" class="fc" id="b-desk" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner-26-1-.png?t=1786696060"><span class="fhint">&#128190; <strong>2100&times;700px</strong> - upload in BigCommerce &rarr; Content &rarr; Image Manager, then paste the CDN URL here</span></div></div>
+            <div class="frow full"><div class="fg"><label class="fl">Mobile Image URL <span class="req">*</span></label><input type="url" class="fc" id="b-mob" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner.png?t=1786695857"><span class="fhint">&#128190; <strong>767&times;960px portrait</strong> - upload in BigCommerce &rarr; Content &rarr; Image Manager, then paste the CDN URL here</span></div></div>
             <div class="frow full"><div class="fg"><label class="fl">Alt Text</label><input type="text" class="fc" id="b-alt" value="Promotional Banner"></div></div>
             <button class="gen-btn" onclick="genBanner()">&#9889; Generate Banner Code</button>
           </div>
@@ -790,13 +847,13 @@ body.edit-mode [contenteditable]:focus {
     </div></div>
   </div>
 
-  <!-- ANNOUNCEMENT BAR EDITOR -->
+  <!-- ANNOUNCEMENT BMH EDITOR -->
   <div class="subview" id="sv-annbar">
     <div class="ed-wrap"><div class="ed-inner">
       <div class="ed-left">
-        <div class="lp" style="margin-bottom:16px"><div class="lp-label"><span class="dot"></span>Live example &#8212; current store</div><img id="img-ap" src="" alt="Ann Bar" style="max-height:110px;object-fit:cover;object-position:bottom"><div class="lp-cap">&#128205; Teal strip below the store header. All messages side-by-side desktop, rotates mobile.</div></div>
+        <div class="lp" style="margin-bottom:16px"><div class="lp-label"><span class="dot"></span>Live example - current store</div><img id="img-ap" src="" alt="Ann Bar" style="max-height:110px;object-fit:cover;object-position:bottom"><div class="lp-cap">&#128205; Teal strip below the store header. All messages side-by-side desktop, rotates mobile.</div></div>
         <div class="sb" style="margin-bottom:16px">
-          <div class="sb-hdr">&#128161; Content Guide &#8212; Announcement Bar</div>
+          <div class="sb-hdr">&#128161; Content Guide - Announcement Bar</div>
           <div class="sb-grid">
             <div class="sb-cell"><span class="sb-label">Background colour</span><span class="sb-val"><span style="width:13px;height:13px;background:#0097B0;border-radius:3px;border:1px solid rgba(0,0,0,.1);flex-shrink:0;display:inline-block"></span>#0097B0 <span class="live-badge">&#9679; Live</span></span></div>
             <div class="sb-cell"><span class="sb-label">Desktop messages</span><span class="sb-val">3 messages <span class="live-badge">&#9679; Live</span></span></div>
@@ -811,7 +868,7 @@ body.edit-mode [contenteditable]:focus {
               <div class="fg"><label class="fl">Background Colour</label><div class="color-row"><div class="cswatch"><input type="color" id="ab-bg" value="#0097B0" oninput="document.getElementById('ab-bghex').value=this.value"></div><input type="text" class="fc" id="ab-bghex" value="#0097B0" style="width:100px" oninput="syncC('ab-bg','ab-bghex')"></div></div>
               <div class="fg"><label class="fl">Text Colour</label><div class="color-row"><div class="cswatch"><input type="color" id="ab-tc" value="#ffffff" oninput="document.getElementById('ab-tchex').value=this.value"></div><input type="text" class="fc" id="ab-tchex" value="#ffffff" style="width:100px" oninput="syncC('ab-tc','ab-tchex')"></div></div>
             </div>
-            <div class="frow full"><div class="fg"><label class="fl">Mobile rotation speed</label><select class="fc" id="ab-spd"><option value="2500">Fast (2.5s)</option><option value="3500" selected>Normal (3.5s) &#8212; live</option><option value="5000">Slow (5s)</option><option value="7000">Very Slow (7s)</option></select></div></div>
+            <div class="frow full"><div class="fg"><label class="fl">Mobile rotation speed</label><select class="fc" id="ab-spd"><option value="2500">Fast (2.5s)</option><option value="3500" selected>Normal (3.5s) - live</option><option value="5000">Slow (5s)</option><option value="7000">Very Slow (7s)</option></select></div></div>
             <div class="divider">Messages (up to 5)</div>
             <div id="ab-msgs" style="display:flex;flex-direction:column;gap:9px"></div>
             <button class="add-btn" id="ab-addbtn" onclick="addMsg()">+ Add Message</button>
@@ -831,9 +888,9 @@ body.edit-mode [contenteditable]:focus {
   <div class="subview" id="sv-grid">
     <div class="ed-wrap"><div class="ed-inner">
       <div class="ed-left">
-        <div class="lp" style="margin-bottom:16px"><div class="lp-label"><span class="dot"></span>Live example &#8212; current store</div><img id="img-gp" src="" alt="Grid"><div class="lp-cap">&#128205; Below the banner. 4-column grid with image, name, price and Shop Now button.</div></div>
+        <div class="lp" style="margin-bottom:16px"><div class="lp-label"><span class="dot"></span>Live example - current store</div><img id="img-gp" src="" alt="Grid"><div class="lp-cap">&#128205; Below the banner. 4-column grid with image, name, price and Shop Now button.</div></div>
         <div class="sb" style="margin-bottom:16px">
-          <div class="sb-hdr">&#128190; Image Size Guide &#8212; Product Grid</div>
+          <div class="sb-hdr">&#128190; Image Size Guide - Product Grid</div>
           <div class="sb-grid">
             <div class="sb-cell"><span class="sb-label">Product image</span><span class="sb-val">600 &times; 800 px <span class="rec-badge">&#128161; Rec.</span></span><span class="sb-note">3:4 portrait. Matches live images.</span></div>
             <div class="sb-cell"><span class="sb-label">Desktop columns</span><span class="sb-val">4 columns <span class="live-badge">&#9679; Live</span></span></div>
@@ -846,8 +903,8 @@ body.edit-mode [contenteditable]:focus {
           <div class="card-hdr"><div class="card-ttl"><div class="card-ico" style="background:#f0fdf4">&#128717;</div>Product Grid</div><span class="badge-html">HTML Widget</span></div>
           <div class="card-body">
             <div class="frow">
-              <div class="fg"><label class="fl">Columns (desktop)</label><select class="fc" id="pg-cols"><option value="3">3 columns</option><option value="4" selected>4 columns &#8212; live</option><option value="5">5 columns</option></select></div>
-              <div class="fg"><label class="fl">Columns (mobile)</label><select class="fc" id="pg-mob"><option value="1">1 column</option><option value="2" selected>2 columns &#8212; live</option></select></div>
+              <div class="fg"><label class="fl">Columns (desktop)</label><select class="fc" id="pg-cols"><option value="3">3 columns</option><option value="4" selected>4 columns - live</option><option value="5">5 columns</option></select></div>
+              <div class="fg"><label class="fl">Columns (mobile)</label><select class="fc" id="pg-mob"><option value="1">1 column</option><option value="2" selected>2 columns - live</option></select></div>
             </div>
             <div class="frow">
               <div class="fg"><label class="fl">Button Colour</label><div class="color-row"><div class="cswatch"><input type="color" id="pg-btn" value="#000000" oninput="document.getElementById('pg-btnhex').value=this.value"></div><input type="text" class="fc" id="pg-btnhex" value="#000000" style="width:100px" oninput="syncC('pg-btn','pg-btnhex')"></div></div>
@@ -893,18 +950,18 @@ body.edit-mode [contenteditable]:focus {
   <div class="pm-overwrite-icon">&#9888;&#65039;</div>
   <div>
     <div class="pm-overwrite-title">Any changes made in Lightspeed will overwrite BigCommerce</div>
-    <div class="pm-overwrite-body">When stock is adjusted or new products are synced from Lightspeed, it overwrites the corresponding fields in BigCommerce — including product names, descriptions, and images. <strong>Make content changes (descriptions, images, names) in Lightspeed, not BigCommerce</strong>, otherwise they will be lost the next time a Lightspeed sync occurs.</div>
+    <div class="pm-overwrite-body">When stock is adjusted or new products are synced from Lightspeed, it overwrites the corresponding fields in BigCommerce - including product names, descriptions, and images. <strong>Make content changes (descriptions, images, names) in Lightspeed, not BigCommerce</strong>, otherwise they will be lost the next time a Lightspeed sync occurs.</div>
   </div>
 </div>
 
 <div class="icard" style="margin-bottom:24px"><div class="icard-ttl">&#128205; How to get to products</div><div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BigCommerce Admin</span> &#8594; Products &#8594; View</div>
-        <div class="pm-img" style="margin-top:10px"><img src="img-pm1.png" alt="Product list"><div class="pm-img-cap">The product list &#8212; click any product name to open the editor.</div></div></div>
+        <div class="pm-img" style="margin-top:10px"><img src="img-pm1.png" alt="Product list"><div class="pm-img-cap">The product list - click any product name to open the editor.</div></div></div>
       <div style="display:flex;flex-direction:column">
         <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody"><div class="pm-stitle">Find the product</div><div class="pm-sdesc">Search by name in the product list. Click the product name (blue link) to open the editor.</div><div class="pm-img"><img src="img-pm1.png" alt="Product list"><div class="pm-img-cap">Click any product name to open it. ENABLED = visible on storefront.</div></div><div class="pm-tip">&#128161; The ENABLED green badge means customers can see the product. DISABLED hides it.</div></div></div>
-        <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody"><div class="pm-stitle">Edit Basic Information</div><div class="pm-sdesc">The first section when you open a product. Update core details here.</div><div class="pm-img"><img src="img-pm2.png" alt="Basic info"><div class="pm-img-cap">Basic Information &#8212; Product Name, SKU, Price, Brand and Product Type.</div></div><div class="pm-fg"><div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Product Name</div><div class="pm-fd">Shown on storefront and search results. Keep consistent with other products.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>SKU</div><div class="pm-fd">Internal product code. Don&#8217;t change unless instructed.</div></div><div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Default Price</div><div class="pm-fd">Price including tax shown to customers.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Brand</div><div class="pm-fd">Select from the dropdown &#8212; don&#8217;t add a new one without approval.</div></div></div><div class="pm-warn">&#9888;&#65039; Always click <strong>Save</strong> at the bottom after making changes. Navigating away loses edits.</div></div></div>
-        <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody"><div class="pm-stitle">Edit Categories and Description</div><div class="pm-sdesc">Scroll down past Basic Information to find Categories and Description.</div><div class="pm-img"><img src="img-pm3.png" alt="Categories"><div class="pm-img-cap">Categories (top) &#8212; tick/untick to add/remove from collection pages. Description (bottom).</div></div><div class="pm-fg"><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Categories</div><div class="pm-fd">Tick to add the product to a collection page. You can tick multiple categories.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Description</div><div class="pm-fd">Rich text shown on the product detail page. Keep tone consistent.</div></div></div><div class="pm-tip">&#128161; If a product isn&#8217;t showing on a collection page, check the correct category is ticked here.</div></div></div>
-        <div class="pm-step"><div class="pm-snum">4</div><div class="pm-sbody"><div class="pm-stitle">Manage Product Images</div><div class="pm-sdesc">Scroll to the Images section. The THUMBNAIL badge marks the main image shown in grids and search.</div><div class="pm-img"><img src="img-pm4.png" alt="Images"><div class="pm-img-cap">Images section &#8212; THUMBNAIL = main image. Click + to upload. Click Remove to delete.</div></div><div class="pm-fg"><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Thumbnail</div><div class="pm-fd">First image = thumbnail. Drag another image to the first position to change it.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Alt text</div><div class="pm-fd">Fill in for every image. E.g. <em>PA First Nations Guernsey front view</em>.</div></div></div><div class="pm-tip">&#128161; Best size: <strong>800&times;800px or larger</strong>, JPG or PNG, under 1MB.</div><div class="pm-warn">&#9888;&#65039; Deleting an image is permanent. Save the file locally before removing.</div></div></div>
-        <div class="pm-step"><div class="pm-snum">5</div><div class="pm-sbody"><div class="pm-stitle">Save your changes</div><div class="pm-sdesc">Scroll to the bottom and click Save. Changes go live immediately &#8212; no separate publish step needed.</div><div class="pm-screen"><span class="pm-hl">Scroll to bottom</span> &#8594; click <span class="pm-hl">Save</span></div><div class="pm-warn">&#9888;&#65039; Product edits go live <strong>immediately</strong> on save. Double-check before saving.</div></div></div>
+        <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody"><div class="pm-stitle">Edit Basic Information</div><div class="pm-sdesc">The first section when you open a product. Update core details here.</div><div class="pm-img"><img src="img-pm2.png" alt="Basic info"><div class="pm-img-cap">Basic Information - Product Name, SKU, Price, Brand and Product Type.</div></div><div class="pm-fg"><div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Product Name</div><div class="pm-fd">Shown on storefront and search results. Keep consistent with other products.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>SKU</div><div class="pm-fd">Internal product code. Don&#8217;t change unless instructed.</div></div><div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Default Price</div><div class="pm-fd">Price including tax shown to customers.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Brand</div><div class="pm-fd">Select from the dropdown - don&#8217;t add a new one without approval.</div></div></div><div class="pm-warn">&#9888;&#65039; Always click <strong>Save</strong> at the bottom after making changes. Navigating away loses edits.</div></div></div>
+        <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody"><div class="pm-stitle">Edit Categories and Description</div><div class="pm-sdesc">Scroll down past Basic Information to find Categories and Description.</div><div class="pm-img"><img src="img-pm3.png" alt="Categories"><div class="pm-img-cap">Categories (top) - tick/untick to add/remove from collection pages. Description (bottom).</div></div><div class="pm-fg"><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Categories</div><div class="pm-fd">Tick to add the product to a collection page. You can tick multiple categories.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Description</div><div class="pm-fd">Rich text shown on the product detail page. Keep tone consistent.</div></div></div><div class="pm-tip">&#128161; If a product isn&#8217;t showing on a collection page, check the correct category is ticked here.</div></div></div>
+        <div class="pm-step"><div class="pm-snum">4</div><div class="pm-sbody"><div class="pm-stitle">Manage Product Images</div><div class="pm-sdesc">Scroll to the Images section. The THUMBNAIL badge marks the main image shown in grids and search.</div><div class="pm-img"><img src="img-pm4.png" alt="Images"><div class="pm-img-cap">Images section - THUMBNAIL = main image. Click + to upload. Click Remove to delete.</div></div><div class="pm-fg"><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Thumbnail</div><div class="pm-fd">First image = thumbnail. Drag another image to the first position to change it.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Alt text</div><div class="pm-fd">Fill in for every image. E.g. <em>PA First Nations Guernsey front view</em>.</div></div></div><div class="pm-tip">&#128161; Best size: <strong>800&times;800px or larger</strong>, JPG or PNG, under 1MB.</div><div class="pm-warn">&#9888;&#65039; Deleting an image is permanent. Save the file locally before removing.</div></div></div>
+        <div class="pm-step"><div class="pm-snum">5</div><div class="pm-sbody"><div class="pm-stitle">Save your changes</div><div class="pm-sdesc">Scroll to the bottom and click Save. Changes go live immediately - no separate publish step needed.</div><div class="pm-screen"><span class="pm-hl">Scroll to bottom</span> &#8594; click <span class="pm-hl">Save</span></div><div class="pm-warn">&#9888;&#65039; Product edits go live <strong>immediately</strong> on save. Double-check before saving.</div></div></div>
       </div>
 
         <div class="pm-step"><div class="pm-snum">6</div><div class="pm-sbody">
@@ -914,21 +971,21 @@ body.edit-mode [contenteditable]:focus {
           <div class="pm-vis-grid">
 
             <div class="pm-vis-card">
-              <div class="pm-vis-card-title">&#128065;&#65039; Step 1 — Enable storefront visibility</div>
+              <div class="pm-vis-card-title">&#128065;&#65039; Step 1 - Enable storefront visibility</div>
               <div class="pm-vis-card-body">In the product editor, scroll down to the <strong>Storefront</strong> section. Make sure <strong>Visible on storefront</strong> is ticked. If this is unticked, customers cannot see the product regardless of channel settings.</div>
               <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; scroll to <span class="pm-hl">Storefront</span> &rarr; tick <span class="pm-hl">Visible on storefront</span></div>
             </div>
 
             <div class="pm-vis-card">
-              <div class="pm-vis-card-title">&#128279; Step 2 — Publish to all channels</div>
-              <div class="pm-vis-card-body">In the product editor, find the <strong>Channels</strong> section (or the channel listing in the right sidebar). Make sure the product is enabled on <strong>all relevant storefronts</strong> — typically the Port Store channel. Unticking a channel hides the product from that storefront only.</div>
+              <div class="pm-vis-card-title">&#128279; Step 2 - Publish to all channels</div>
+              <div class="pm-vis-card-body">In the product editor, find the <strong>Channels</strong> section (or the channel listing in the right sidebar). Make sure the product is enabled on <strong>all relevant storefronts</strong> - typically the Port Store channel. Unticking a channel hides the product from that storefront only.</div>
               <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Channels</span> section &rarr; tick all relevant storefronts</div>
             </div>
 
           </div>
 
           <div class="pm-tip">&#128161; A product can be <strong>Enabled</strong> (status) but still invisible if storefront visibility is off or it isn&rsquo;t published to a channel. Both must be set correctly for the product to appear on the site.</div>
-          <div class="pm-warn">&#9888;&#65039; If a Lightspeed sync runs after you make visibility changes, check these settings haven&rsquo;t been reset — Lightspeed controls product status and may affect visibility flags.</div>
+          <div class="pm-warn">&#9888;&#65039; If a Lightspeed sync runs after you make visibility changes, check these settings haven&rsquo;t been reset - Lightspeed controls product status and may affect visibility flags.</div>
         </div></div>
       <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128203; Quick Reference</div><table class="ref-table"><thead><tr><th>Section</th><th>What you can edit</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Basic Information</strong></td><td>Name, SKU, price, brand, product type</td><td>Don&#8217;t change SKU without checking inventory impact.</td></tr><tr><td><strong>Categories</strong></td><td>Which collection pages the product appears on</td><td>Tick multiple. Changes take effect immediately on save.</td></tr><tr><td><strong>Description</strong></td><td>Rich text product description</td><td>Use toolbar for formatting. Keep tone consistent.</td></tr><tr><td><strong>Images</strong></td><td>Add, reorder and remove product images</td><td>First image = thumbnail. Fill in alt text. Min 800&times;800px.</td></tr><tr><td><strong>Pricing</strong></td><td>Sale price, cost price, bulk pricing</td><td>Use <em>Sale Price</em> for promotions.</td></tr><tr><td><strong>Inventory</strong></td><td>Stock level, track inventory on/off</td><td>Only edit if managing inventory manually.</td></tr>
         <tr><td><strong>Storefront visibility</strong></td><td>Visible on storefront toggle</td><td>Must be ticked for the product to appear on site.</td></tr>
@@ -989,7 +1046,7 @@ body.edit-mode [contenteditable]:focus {
               <div class="ghost-num">2</div>
               <div class="ghost-body">
                 <div class="ghost-title">Wait for confirmation &amp; VC- order number</div>
-                <div class="ghost-desc">Virtue will reply by email with a job confirmation. The order number starts with <strong>VC-</strong> (e.g. VC-1623) &#8212; keep this for reference.</div>
+                <div class="ghost-desc">Virtue will reply by email with a job confirmation. The order number starts with <strong>VC-</strong> (e.g. VC-1623) - keep this for reference.</div>
               </div>
             </div>
             <div class="ghost-step">
@@ -1010,7 +1067,7 @@ body.edit-mode [contenteditable]:focus {
               <div class="ghost-num">5</div>
               <div class="ghost-body">
                 <div class="ghost-title">Monitor for updates during shoot &amp; edit</div>
-                <div class="ghost-desc">Virtue will send email updates throughout the process. No action needed &#8212; just monitor your inbox.</div>
+                <div class="ghost-desc">Virtue will send email updates throughout the process. No action needed - just monitor your inbox.</div>
               </div>
             </div>
             <div class="ghost-step">
@@ -1037,17 +1094,17 @@ body.edit-mode [contenteditable]:focus {
   <!-- HOW TO UPLOAD -->
   <div class="subview" id="sv-howto">
     <div class="ht-wrap">
-      <div class="icard" style="margin-bottom:20px"><div class="icard-ttl">&#128214; How to update the Port Store landing page</div><p style="font-size:13px;color:var(--muted);line-height:1.7">Step-by-step guide. You need BC admin login &#8212; contact the ecommerce manager if you don&#8217;t have access.</p></div>
+      <div class="icard" style="margin-bottom:20px"><div class="icard-ttl">&#128214; How to update the Port Store landing page</div><p style="font-size:13px;color:var(--muted);line-height:1.7">Step-by-step guide. You need BC admin login - contact the ecommerce manager if you don&#8217;t have access.</p></div>
       <div style="display:flex;flex-direction:column">
-        <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Upload your images to BigCommerce first</div><div class="ht-sdesc">Upload all images to BC Image Manager before generating code.</div><div class="ht-screen"><span class="hl">BC Admin</span> &#8594; Storefront &#8594; Image Manager &#8594; Upload Files<br>Click the image &#8594; copy URL starting with <span class="hl">cdn11.bigcommerce.com</span></div><div class="ht-tip">&#128161; Upload the largest version you have &#8212; BigCommerce resizes automatically.</div></div></div>
+        <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Upload your images to BigCommerce first</div><div class="ht-sdesc">Upload all images to BC Image Manager before generating code.</div><div class="ht-screen"><span class="hl">BC Admin</span> &#8594; Storefront &#8594; Image Manager &#8594; Upload Files<br>Click the image &#8594; copy URL starting with <span class="hl">cdn11.bigcommerce.com</span></div><div class="ht-tip">&#128161; Upload the largest version you have - BigCommerce resizes automatically.</div></div></div>
         <div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Select a module and generate your code</div><div class="ht-sdesc">Go to All Modules, fill in the fields, click <strong>Generate Code</strong> then <strong>Copy</strong>.</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px"><div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)"><div style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:5px 9px">&#128226; Ann. Bar</div><img id="img-ht1" src="" style="width:100%;display:block;max-height:50px;object-fit:cover;object-position:bottom"></div><div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)"><div style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:5px 9px">&#128444;&#65039; Banner</div><img id="img-ht2" src="" style="width:100%;display:block;max-height:50px;object-fit:cover"></div><div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)"><div style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:5px 9px">&#128717; Grid</div><img id="img-ht3" src="" style="width:100%;display:block;max-height:50px;object-fit:cover;object-position:top"></div></div><div class="ht-tip">&#128161; You can update each module independently.</div></div></div>
         <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &#8594; Storefront &#8594; My Themes &#8594; Customize<br>Navigate to the landing page URL inside Page Builder</div></div></div>
-        <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Click the correct HTML Widget</div><div class="ht-sdesc">Hover over the section &#8212; a pencil icon appears. Click it to open the code editor.</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div class="ht-img"><img id="img-ht4" src="" alt="Ann bar"><div class="ht-img-cap">&#128226; Hover over the teal strip</div></div><div class="ht-img"><img id="img-ht5" src="" alt="Banner"><div class="ht-img-cap">&#128444;&#65039; Hover over the full-width image</div></div></div><div class="ht-img" style="margin-top:10px"><img id="img-ht6" src="" alt="Grid"><div class="ht-img-cap">&#128717; Hover over the product cards below the banner</div></div><div class="ht-warn">&#9888;&#65039; Make sure you click the <strong>correct</strong> widget. Check it visually matches what you want to change.</div></div></div>
-        <div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Select all and replace</div><div class="ht-screen">Select all: <span class="hl">Ctrl + A</span> / <span class="hl">Cmd + A</span> &nbsp; Paste: <span class="hl">Ctrl + V</span> / <span class="hl">Cmd + V</span></div><div class="ht-tip">&#128161; Always replace completely &#8212; never paste on top of old code.</div></div></div>
+        <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Click the correct HTML Widget</div><div class="ht-sdesc">Hover over the section - a pencil icon appears. Click it to open the code editor.</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div class="ht-img"><img id="img-ht4" src="" alt="Ann bar"><div class="ht-img-cap">&#128226; Hover over the teal strip</div></div><div class="ht-img"><img id="img-ht5" src="" alt="Banner"><div class="ht-img-cap">&#128444;&#65039; Hover over the full-width image</div></div></div><div class="ht-img" style="margin-top:10px"><img id="img-ht6" src="" alt="Grid"><div class="ht-img-cap">&#128717; Hover over the product cards below the banner</div></div><div class="ht-warn">&#9888;&#65039; Make sure you click the <strong>correct</strong> widget. Check it visually matches what you want to change.</div></div></div>
+        <div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Select all and replace</div><div class="ht-screen">Select all: <span class="hl">Ctrl + A</span> / <span class="hl">Cmd + A</span> &nbsp; Paste: <span class="hl">Ctrl + V</span> / <span class="hl">Cmd + V</span></div><div class="ht-tip">&#128161; Always replace completely - never paste on top of old code.</div></div></div>
         <div class="ht-step"><div class="ht-snum">6</div><div class="ht-sbody"><div class="ht-stitle">Save widget, then Publish the page</div><div class="ht-screen">Widget editor &#8594; <span class="hl">Apply</span><br>Page Builder toolbar (top right) &#8594; <span class="hl">Publish</span></div><div class="ht-warn">&#9888;&#65039; <em>Apply</em> alone does <strong>not</strong> make it live. You must also click <strong>Publish</strong>.</div></div></div>
         <div class="ht-step"><div class="ht-snum">7</div><div class="ht-sbody"><div class="ht-stitle">Check the live store</div><div class="ht-screen">Hard refresh: <span class="hl">Ctrl+Shift+R</span> / <span class="hl">Cmd+Shift+R</span></div><div class="ht-tip">&#128161; Use F12 &#8594; mobile icon in DevTools to check mobile layout without a phone.</div></div></div>
       </div>
-      <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128190; Quick Image Size Reference</div><table class="ref-table"><thead><tr><th>Module</th><th>Image</th><th>Size</th><th>Format</th><th>Max size</th></tr></thead><tbody><tr><td>&#128444;&#65039; Banner</td><td>Desktop</td><td><strong>2100&times;700px</strong></td><td>JPG/PNG</td><td>400KB</td></tr><tr><td>&#128444;&#65039; Banner</td><td>Mobile</td><td><strong>767&times;960px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128717; Grid</td><td>Per product</td><td><strong>600&times;800px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128226; Ann. Bar</td><td>Text only</td><td>No images</td><td>&#8212;</td><td>&#8212;</td></tr></tbody></table></div>
+      <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128190; Quick Image Size Reference</div><table class="ref-table"><thead><tr><th>Module</th><th>Image</th><th>Size</th><th>Format</th><th>Max size</th></tr></thead><tbody><tr><td>&#128444;&#65039; Banner</td><td>Desktop</td><td><strong>2100&times;700px</strong></td><td>JPG/PNG</td><td>400KB</td></tr><tr><td>&#128444;&#65039; Banner</td><td>Mobile</td><td><strong>767&times;960px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128717; Grid</td><td>Per product</td><td><strong>600&times;800px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128226; Ann. Bar</td><td>Text only</td><td>No images</td><td>-</td><td>-</td></tr></tbody></table></div>
     </div>
   </div>
 </div>
@@ -1081,19 +1138,19 @@ body.edit-mode [contenteditable]:focus {
       <div class="gd-node"><div class="gd-ico gd-n">&#128269;</div><div class="gd-num">Verify</div><div class="gd-lbl">Check<br>results</div></div><div class="gd-arr">&#8250;</div>
       <div class="gd-node"><div class="gd-ico gd-g">&#9989;</div><div class="gd-num">Done</div><div class="gd-lbl">Products<br>live</div></div>
     </div>
-    <div class="gd-lbl-sec">Stage 1 &mdash; Prepare the file</div>
+    <div class="gd-lbl-sec">Stage 1 - Prepare the file</div>
     <div class="gd-card">
       <div class="gd-steps">
-        <div class="gd-step"><div class="gd-sico gd-n">&#128229;</div><div class="gd-sbody"><div class="gd-stitle">Download the template</div><div class="gd-sdesc">Always start from the Port Store template. Column names must match exactly &mdash; don&rsquo;t rename or add columns.</div><a class="guide-dl-lnk" style="margin:8px 0 12px;display:inline-flex" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Upload%20Template.xlsx?d=wde106432a27f4e4d92ff8f55973c4d64&csf=1&web=1&e=3r8XQF" target="_blank">&#128229; Download Lightspeed Upload Template</a></div></div>
-        <div class="gd-step"><div class="gd-sico gd-t">&#128196;</div><div class="gd-sbody"><div class="gd-stitle">One row per variant</div><div class="gd-sdesc">Each size gets its own row. Product name, category, prices, brand and supplier repeat on every row &mdash; only SKU, barcode and size change per row.</div><div class="gd-band gd-band-b"><span>&#8505;&#65039;</span><div>Products with no variants still get one row &mdash; leave <code>variant_option_one_name</code> and <code>variant_option_one_value</code> blank.</div></div></div></div>
-        <div class="gd-step"><div class="gd-sico gd-b">&#128190;</div><div class="gd-sbody"><div class="gd-stitle">Save as CSV UTF-8</div><div class="gd-sdesc">Save using <code>File &rarr; Save As &rarr; CSV UTF-8 (Comma delimited)</code>.</div><div class="gd-band gd-band-a"><span>&#9888;&#65039;</span><div><strong>Don&rsquo;t use &ldquo;CSV (MS-DOS)&rdquo;</strong> &mdash; it breaks special characters on import.</div></div></div></div>
-        <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; Barcode column formatted as <strong>Text</strong> &mdash; prevents <code>8.05E+12</code></div><div class="gd-chk">&#128247; Every row has a unique <code>sku_code_custom</code></div><div class="gd-chk">&#128176; Prices are numbers only &mdash; no <code>$</code> symbols</div><div class="gd-chk">&#128221; Product names <strong>identical</strong> across all rows for the same product</div><div class="gd-chk">&#128247; Tags semicolon-separated: <code>2026 Macron Range;2026 SDNR</code></div></div></div></div>
+        <div class="gd-step"><div class="gd-sico gd-n">&#128229;</div><div class="gd-sbody"><div class="gd-stitle">Download the template</div><div class="gd-sdesc">Always start from the Port Store template. Column names must match exactly - don&rsquo;t rename or add columns.</div><a class="guide-dl-lnk" style="margin:8px 0 12px;display:inline-flex" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Upload%20Template.xlsx?d=wde106432a27f4e4d92ff8f55973c4d64&csf=1&web=1&e=3r8XQF" target="_blank">&#128229; Download Lightspeed Upload Template</a></div></div>
+        <div class="gd-step"><div class="gd-sico gd-t">&#128196;</div><div class="gd-sbody"><div class="gd-stitle">One row per variant</div><div class="gd-sdesc">Each size gets its own row. Product name, category, prices, brand and supplier repeat on every row - only SKU, barcode and size change per row.</div><div class="gd-band gd-band-b"><span>&#8505;&#65039;</span><div>Products with no variants still get one row - leave <code>variant_option_one_name</code> and <code>variant_option_one_value</code> blank.</div></div></div></div>
+        <div class="gd-step"><div class="gd-sico gd-b">&#128190;</div><div class="gd-sbody"><div class="gd-stitle">Save as CSV UTF-8</div><div class="gd-sdesc">Save using <code>File &rarr; Save As &rarr; CSV UTF-8 (Comma delimited)</code>.</div><div class="gd-band gd-band-a"><span>&#9888;&#65039;</span><div><strong>Don&rsquo;t use &ldquo;CSV (MS-DOS)&rdquo;</strong> - it breaks special characters on import.</div></div></div></div>
+        <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; Barcode column formatted as <strong>Text</strong> - prevents <code>8.05E+12</code></div><div class="gd-chk">&#128247; Every row has a unique <code>sku_code_custom</code></div><div class="gd-chk">&#128176; Prices are numbers only - no <code>$</code> symbols</div><div class="gd-chk">&#128221; Product names <strong>identical</strong> across all rows for the same product</div><div class="gd-chk">&#128247; Tags semicolon-separated: <code>2026 Macron Range;2026 SDNR</code></div></div></div></div>
       </div>
     </div>
     <div class="gd-divider"></div>
-    <div class="gd-lbl-sec">Stage 2 &mdash; Column reference</div>
+    <div class="gd-lbl-sec">Stage 2 - Column reference</div>
     <div class="gd-card">
-      <div class="gd-band gd-band-t" style="margin-bottom:14px"><span>&#128161;</span><div>Column headers are <strong>case-sensitive</strong>. Copy directly from the template &mdash; don&rsquo;t rename them.</div></div>
+      <div class="gd-band gd-band-t" style="margin-bottom:14px"><span>&#128161;</span><div>Column headers are <strong>case-sensitive</strong>. Copy directly from the template - don&rsquo;t rename them.</div></div>
       <div class="gd-fixed-row"><div class="gd-fixed"><div class="gd-fixed-lbl">tax_name</div><div class="gd-fixed-val">Default Tax</div></div><div class="gd-fixed"><div class="gd-fixed-lbl">active</div><div class="gd-fixed-val">1</div></div><div class="gd-fixed"><div class="gd-fixed-lbl">track_inventory</div><div class="gd-fixed-val">1</div></div></div>
       <table class="gd-table" style="margin-top:16px"><thead><tr><th>Column</th><th>Required?</th><th>Notes</th><th>Example</th></tr></thead><tbody>
         <tr><td><code>sku_code_custom</code></td><td><span class="gpill gpill-r">Required</span></td><td>Unique per variant. No spaces.</td><td><code>PAM26SNDR01-M</code></td></tr>
@@ -1105,17 +1162,17 @@ body.edit-mode [contenteditable]:focus {
         <tr><td><code>supply_price</code></td><td><span class="gpill gpill-r">Required</span></td><td>Ex-GST cost price. Numbers only.</td><td><code>67</code></td></tr>
         <tr><td><code>retail_price</code></td><td><span class="gpill gpill-r">Required</span></td><td>Incl. GST sell price. Numbers only.</td><td><code>135.00</code></td></tr>
         <tr><td><code>tags</code></td><td><span class="gpill gpill-t">Optional</span></td><td>Semicolon-separated, no spaces.</td><td><code>2026 Macron Range;2026 SDNR</code></td></tr>
-        <tr><td><code>brand_name</code></td><td><span class="gpill gpill-t">Optional</span></td><td>Used for filtering in Back Office.</td><td><code>MACRON TECHNICAL SPORTSWEAR</code></td></tr>
-        <tr><td><code>supplier_name</code></td><td><span class="gpill gpill-a">If using POs</span></td><td>Must match existing supplier exactly.</td><td><code>MACRON TECHNICAL SPORTSWEAR</code></td></tr>
+        <tr><td><code>brand_name</code></td><td><span class="gpill gpill-t">Optional</span></td><td>Used for filtering in Back Office.</td><td><code>MACRON TECHNICAL SPORTSWEMH</code></td></tr>
+        <tr><td><code>supplier_name</code></td><td><span class="gpill gpill-a">If using POs</span></td><td>Must match existing supplier exactly.</td><td><code>MACRON TECHNICAL SPORTSWEMH</code></td></tr>
       </tbody></table>
     </div>
     <div class="gd-divider"></div>
-    <div class="gd-lbl-sec">Stage 3 &mdash; Run the import</div>
+    <div class="gd-lbl-sec">Stage 3 - Run the import</div>
     <div class="gd-card">
       <div class="gd-band gd-band-a" style="margin-bottom:14px"><span>&#9888;&#65039;</span><div><strong>Test first.</strong> Run a small file of 5&ndash;10 products before your full upload.</div></div>
       <div class="gd-steps">
         <div class="gd-step"><div class="gd-sico gd-t">&#128187;</div><div class="gd-sbody"><div class="gd-stitle">Navigate to the import tool</div><div style="display:flex;align-items:center;gap:6px;margin-top:5px;flex-wrap:wrap"><code>Products</code><span style="color:var(--muted)">&rsaquo;</span><code>Import / Export</code><span style="color:var(--muted)">&rsaquo;</span><code>Import Products</code></div></div></div>
-        <div class="gd-step"><div class="gd-sico gd-b">&#9745;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Select import type</div><div class="gd-sdesc">Choose <strong>Add new products</strong> for a new range.</div><div class="gd-band gd-band-r"><span>&#128683;</span><div><strong>Don&rsquo;t use &ldquo;Update existing&rdquo;</strong> for a new range &mdash; rows with no existing match are silently skipped.</div></div></div></div>
+        <div class="gd-step"><div class="gd-sico gd-b">&#9745;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Select import type</div><div class="gd-sdesc">Choose <strong>Add new products</strong> for a new range.</div><div class="gd-band gd-band-r"><span>&#128683;</span><div><strong>Don&rsquo;t use &ldquo;Update existing&rdquo;</strong> for a new range - rows with no existing match are silently skipped.</div></div></div></div>
         <div class="gd-step"><div class="gd-sico gd-t">&#128228;</div><div class="gd-sbody"><div class="gd-stitle">Upload CSV and confirm mapping</div><div class="gd-sdesc">Click <strong>Choose File</strong>, select your CSV, then <strong>Next</strong>. Manually assign anything showing &ldquo;Not mapped&rdquo;.</div></div></div>
         <div class="gd-step last"><div class="gd-sico gd-n">&#9654;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Run the import</div><div class="gd-sdesc">Click <strong>Import</strong> and don&rsquo;t navigate away. Any skips above zero need investigating.</div></div></div>
       </div>
@@ -1125,7 +1182,7 @@ body.edit-mode [contenteditable]:focus {
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="gd-tr"><div class="gd-tr-q">&#9888;&#65039; Rows being skipped with no error</div><div class="gd-tr-a">Usually a column mapping issue or wrong import type. Check headers match the template exactly and confirm you chose <strong>Add new products</strong>.</div></div>
       <div class="gd-tr"><div class="gd-tr-q">&#128290; Barcodes show as scientific notation (8.05E+12)</div><div class="gd-tr-a">The barcode column is formatted as a number. Select the column, format as <strong>Text</strong>, re-paste barcodes as values, then re-export the CSV.</div></div>
-      <div class="gd-tr"><div class="gd-tr-q">&#128196; Duplicate products instead of variants</div><div class="gd-tr-a">A variant row has a slightly different product name &mdash; even a trailing space causes Lightspeed to create a new product. Use Excel find-replace to standardise.</div></div>
+      <div class="gd-tr"><div class="gd-tr-q">&#128196; Duplicate products instead of variants</div><div class="gd-tr-a">A variant row has a slightly different product name - even a trailing space causes Lightspeed to create a new product. Use Excel find-replace to standardise.</div></div>
       <div class="gd-tr"><div class="gd-tr-q">&#128193; Category not found</div><div class="gd-tr-a">Category name doesn&rsquo;t exactly match Lightspeed. Pull the exact name from <code>Products &rarr; Categories</code> in Back Office.</div></div>
       <div class="gd-tr"><div class="gd-tr-q">&#128176; Prices show as $0.00 after import</div><div class="gd-tr-a">Price columns contain a <code>$</code> symbol or comma. Remove with find-replace, re-export, then re-import using <strong>Update existing products</strong>.</div></div>
     </div>
@@ -1144,9 +1201,9 @@ body.edit-mode [contenteditable]:focus {
       <div class="gd-node"><div class="gd-ico gd-n">&#9993;&#65039;</div><div class="gd-num">Stage 3</div><div class="gd-lbl">Send to<br>AWDS</div></div><div class="gd-arr">&#8250;</div>
       <div class="gd-node"><div class="gd-ico gd-g">&#9989;</div><div class="gd-num">Done</div><div class="gd-lbl">Products<br>in AWDS</div></div>
     </div>
-    <div class="gd-lbl-sec">Stage 1 &mdash; Get your data</div>
+    <div class="gd-lbl-sec">Stage 1 - Get your data</div>
     <div class="gd-card">
-      <div class="gd-sdesc" style="margin-bottom:14px">Two ways to source product data &mdash; use the original product spreadsheet wherever possible.</div>
+      <div class="gd-sdesc" style="margin-bottom:14px">Two ways to source product data - use the original product spreadsheet wherever possible.</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
         <div style="border-radius:11px;border:1.5px solid var(--teal);background:var(--teal-dim);padding:15px">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="font-size:18px">&#128202;</span><div style="font-size:13px;font-weight:700">From the product spreadsheet</div><span style="margin-left:auto;font-size:10px;font-weight:600;background:var(--teal);color:#fff;padding:2px 7px;border-radius:20px">Recommended</span></div>
@@ -1162,17 +1219,17 @@ body.edit-mode [contenteditable]:focus {
       <div class="gd-band gd-band-r"><span>&#9888;&#65039;</span><div>For any range larger than a handful of products, use the product spreadsheet path wherever possible.</div></div>
     </div>
     <div class="gd-divider"></div>
-    <div class="gd-lbl-sec">Stage 2 &mdash; Prepare the file</div>
+    <div class="gd-lbl-sec">Stage 2 - Prepare the file</div>
     <div class="gd-card">
       <div class="gd-steps">
         <div class="gd-step"><div class="gd-sico gd-n">&#128229;</div><div class="gd-sbody"><div class="gd-stitle">Download the AWDS template</div><div class="gd-sdesc">Always use the Port Store AWDS template. Column names and order must match exactly.</div><a class="guide-dl-lnk" style="margin:8px 0 12px;display:inline-flex" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/AWDS%20Product%20Template.csv?d=w1c8e8290cc324beabcc7717fa0f43b29&csf=1&web=1&e=tydLjF" target="_blank">&#128229; Download AWDS Product Template</a></div></div>
-        <div class="gd-step"><div class="gd-sico gd-t">&#128196;</div><div class="gd-sbody"><div class="gd-stitle">One row per variant</div><div class="gd-sdesc">Each size gets its own row with a unique <code>ProductCode</code> and <code>ItemBarcode</code>. Description repeats across all rows for the same product.</div><div class="gd-band gd-band-b"><span>&#8505;&#65039;</span><div>The <code>Description</code> must be identical across all variant rows &mdash; never include size in the description.</div></div></div></div>
+        <div class="gd-step"><div class="gd-sico gd-t">&#128196;</div><div class="gd-sbody"><div class="gd-stitle">One row per variant</div><div class="gd-sdesc">Each size gets its own row with a unique <code>ProductCode</code> and <code>ItemBarcode</code>. Description repeats across all rows for the same product.</div><div class="gd-band gd-band-b"><span>&#8505;&#65039;</span><div>The <code>Description</code> must be identical across all variant rows - never include size in the description.</div></div></div></div>
         <div class="gd-step"><div class="gd-sico gd-b">&#128190;</div><div class="gd-sbody"><div class="gd-stitle">Save as CSV UTF-8</div><div class="gd-sdesc">Save using <code>File &rarr; Save As &rarr; CSV UTF-8 (Comma delimited)</code>.</div></div></div>
-        <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; <code>ItemBarcode</code> column formatted as <strong>Text</strong></div><div class="gd-chk">&#128247; Every row has a unique <code>ProductCode</code></div><div class="gd-chk">&#128221; <code>Description</code> does <strong>not</strong> include size &mdash; identical across all rows for the same product</div><div class="gd-chk">&#128274; <code>DRCode</code> is <strong>3027</strong> on every row</div></div></div></div>
+        <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; <code>ItemBarcode</code> column formatted as <strong>Text</strong></div><div class="gd-chk">&#128247; Every row has a unique <code>ProductCode</code></div><div class="gd-chk">&#128221; <code>Description</code> does <strong>not</strong> include size - identical across all rows for the same product</div><div class="gd-chk">&#128274; <code>DRCode</code> is <strong>3027</strong> on every row</div></div></div></div>
       </div>
     </div>
     <div class="gd-divider"></div>
-    <div class="gd-lbl-sec">Stage 3 &mdash; Email to AWDS</div>
+    <div class="gd-lbl-sec">Stage 3 - Email to AWDS</div>
     <div class="gd-card">
       <div class="gd-sdesc" style="margin-bottom:14px">Once the CSV is complete and checked, email it to all three contacts. File name: <code>YYYYMMDD_RangeName_AWDS_import.csv</code></div>
       <div style="display:flex;flex-direction:column;gap:10px">
@@ -1205,13 +1262,13 @@ body.edit-mode [contenteditable]:focus {
 
     <div id="csp-address" class="csp-block">
       <div class="csp-hdr"><div class="csp-ico">&#128205;</div><div><div class="csp-title">Address Issues</div><div class="csp-sub">Flagged by AWDS when a delivery address can&#8217;t be resolved</div></div></div>
-      <div class="gd-band gd-band-b" style="margin-bottom:14px"><span>&#8505;&#65039;</span><div>AWDS will contact you directly when they can&#8217;t deliver to an address &mdash; typically the suburb, city or postcode was entered incorrectly at checkout.</div></div>
+      <div class="gd-band gd-band-b" style="margin-bottom:14px"><span>&#8505;&#65039;</span><div>AWDS will contact you directly when they can&#8217;t deliver to an address - typically the suburb, city or postcode was entered incorrectly at checkout.</div></div>
       <div class="csp-steps">
         <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Google the address</div><div class="csp-sdesc">Take the street number and name from the order and search Google Maps to confirm the correct suburb and postcode. Resolves most cases without contacting the customer.</div></div></div>
-        <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">If you can&#8217;t confirm &mdash; email the customer</div><div class="csp-sdesc">Ask the customer to confirm their full delivery address including suburb and postcode.</div>
+        <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">If you can&#8217;t confirm - email the customer</div><div class="csp-sdesc">Ask the customer to confirm their full delivery address including suburb and postcode.</div>
           <div class="csp-email"><div class="csp-email-lbl">&#128231; Suggested email</div><div class="csp-email-body">Hi [Name],
 
-We&#8217;re getting in touch regarding your recent Port Store order. Our fulfilment team has encountered an issue with the delivery address we have on file. Could you please confirm your full delivery address &#8212; including street, suburb and postcode &#8212; so we can get your order on its way?
+We&#8217;re getting in touch regarding your recent Port Store order. Our fulfilment team has encountered an issue with the delivery address we have on file. Could you please confirm your full delivery address - including street, suburb and postcode - so we can get your order on its way?
 
 Thanks, Port Store Team</div></div>
         </div></div>
@@ -1222,7 +1279,7 @@ Thanks, Port Store Team</div></div>
 
     <div id="csp-intl" class="csp-block">
       <div class="csp-hdr"><div class="csp-ico">&#9992;&#65039;</div><div><div class="csp-title">International Orders &amp; Tracking</div><div class="csp-sub">Tracking numbers don&#8217;t automatically appear in BigCommerce for international orders</div></div></div>
-      <div class="gd-band gd-band-a" style="margin-bottom:14px"><span>&#9888;&#65039;</span><div><strong>Expected behaviour &mdash; not a system error.</strong> The customer receives a dispatch confirmation but without tracking. Must be sourced manually from AWDS.</div></div>
+      <div class="gd-band gd-band-a" style="margin-bottom:14px"><span>&#9888;&#65039;</span><div><strong>Expected behaviour - not a system error.</strong> The customer receives a dispatch confirmation but without tracking. Must be sourced manually from AWDS.</div></div>
       <div class="csp-steps">
         <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Customer asks where their tracking is</div><div class="csp-sdesc">When an international customer contacts you about missing tracking, follow this process.</div></div></div>
         <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Reach out to Steve &amp; Rebecca at AWDS with the order number</div>
@@ -1239,7 +1296,7 @@ Thanks, Port Store Team</div></div>
         <div class="csp-ico">&#128230;</div>
         <div>
           <div class="csp-title">Stock Issues</div>
-          <div class="csp-sub">When AWDS can&#8217;t fulfil an item &#8212; process differs based on order size</div>
+          <div class="csp-sub">When AWDS can&#8217;t fulfil an item - process differs based on order size</div>
         </div>
       </div>
 
@@ -1267,7 +1324,7 @@ Thanks, Port Store Team</div></div>
       <!-- Scenario 1 -->
       <div class="stock-scenario active" id="stock-sc-1">
         <div class="stock-sc-header stock-sc-header-1">
-          <strong>Single item order</strong> &#8212; AWDS can&#8217;t fulfil the item
+          <strong>Single item order</strong> - AWDS can&#8217;t fulfil the item
         </div>
         <div class="stock-sc-body">
           <div class="csp-steps">
@@ -1280,7 +1337,7 @@ Thanks, Port Store Team</div></div>
             <div class="csp-step">
               <div class="csp-num">2</div>
               <div class="csp-body">
-                <div class="csp-stitle">Fulfil from Alberton &mdash; Samuel adds tracking in BigCommerce</div>
+                <div class="csp-stitle">Fulfil from Alberton - Samuel adds tracking in BigCommerce</div>
                 <div class="csp-sdesc">Pick and dispatch from Alberton Oval. Samuel will enter the tracking number into BigCommerce once sent.</div>
               </div>
             </div>
@@ -1291,7 +1348,7 @@ Thanks, Port Store Team</div></div>
                 <div class="stock-dc-grid">
                   <div class="stock-dc stock-dc-warn">
                     <div class="stock-dc-icon">&#9888;&#65039;</div>
-                    <div><div class="stock-dc-title">System shows 1 in stock (Online)</div><div class="stock-dc-desc">Remove this unit from the Online location in Lightspeed &mdash; it&#8217;s being fulfilled from Alberton.</div></div>
+                    <div><div class="stock-dc-title">System shows 1 in stock (Online)</div><div class="stock-dc-desc">Remove this unit from the Online location in Lightspeed - it&#8217;s being fulfilled from Alberton.</div></div>
                   </div>
                   <div class="stock-dc stock-dc-info">
                     <div class="stock-dc-icon">&#128269;</div>
@@ -1307,7 +1364,7 @@ Thanks, Port Store Team</div></div>
       <!-- Scenario 2 -->
       <div class="stock-scenario" id="stock-sc-2">
         <div class="stock-sc-header stock-sc-header-2">
-          <strong>Two item order</strong> &#8212; one item can&#8217;t be fulfilled by AWDS
+          <strong>Two item order</strong> - one item can&#8217;t be fulfilled by AWDS
         </div>
         <div class="stock-sc-body">
           <div class="gd-band gd-band-b" style="margin-bottom:16px">
@@ -1350,17 +1407,17 @@ Thanks, Port Store Team</div></div>
       <!-- Scenario 3 -->
       <div class="stock-scenario" id="stock-sc-3">
         <div class="stock-sc-header stock-sc-header-3">
-          <strong>Three or more item order</strong> &#8212; one item can&#8217;t be fulfilled by AWDS
+          <strong>Three or more item order</strong> - one item can&#8217;t be fulfilled by AWDS
         </div>
         <div class="stock-sc-body">
           <div class="csp-steps">
             <div class="csp-step">
               <div class="csp-num">1</div>
               <div class="csp-body">
-                <div class="csp-stitle">Email the customer &#8212; notify and refund the unavailable item</div>
+                <div class="csp-stitle">Email the customer - notify and refund the unavailable item</div>
                 <div class="csp-email"><div class="csp-email-lbl">&#128231; Suggested email</div><div class="csp-email-body">Hi [Name],
 
-Thank you for your recent Port Store order. Unfortunately we&#8217;re unable to fulfil [item name] as it&#8217;s no longer available. We&#8217;ve processed a refund of [amount] back to your original payment method &#8212; this should appear within 3&#8211;5 business days.
+Thank you for your recent Port Store order. Unfortunately we&#8217;re unable to fulfil [item name] as it&#8217;s no longer available. We&#8217;ve processed a refund of [amount] back to your original payment method - this should appear within 3&#8211;5 business days.
 
 The rest of your order has been dispatched and you&#8217;ll receive tracking shortly.
 
@@ -1399,14 +1456,14 @@ Thanks, Port Store Team</div></div>
 
     <div id="csp-cancel" class="csp-block">
       <div class="csp-hdr"><div class="csp-ico">&#10060;</div><div><div class="csp-title">Cancelling Orders</div><div class="csp-sub">We don&#8217;t officially offer cancellations, but we try to help wherever possible</div></div></div>
-      <div class="gd-band gd-band-a" style="margin-bottom:14px"><span>&#9888;&#65039;</span><div><strong>Policy reminder:</strong> Our website states we do not facilitate cancellations. That said, always try to assist &mdash; the earlier the request, the more likely AWDS can hold the order before packing.</div></div>
+      <div class="gd-band gd-band-a" style="margin-bottom:14px"><span>&#9888;&#65039;</span><div><strong>Policy reminder:</strong> Our website states we do not facilitate cancellations. That said, always try to assist - the earlier the request, the more likely AWDS can hold the order before packing.</div></div>
       <div class="csp-steps">
         <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Contact Steve &amp; Rebecca at AWDS immediately</div><div class="csp-sdesc">Email AWDS with the order number and ask whether it&#8217;s been packed yet.</div>
           <div class="ghost-contact"><div class="ghost-av">SA</div><div><div class="ghost-name">Steve Anderson</div><a href="mailto:sanderson@awds.com.au" class="ghost-email">sanderson@awds.com.au</a></div></div>
           <div class="ghost-contact"><div class="ghost-av">RC</div><div><div class="ghost-name">Rebecca Cunningham</div><a href="mailto:rcunningham@awds.com.au" class="ghost-email">rcunningham@awds.com.au</a></div></div>
         </div></div>
         <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Respond to the customer based on AWDS&#8217;s answer</div>
-          <div class="csp-dc-row"><div class="csp-dc csp-dc-g"><div class="csp-dc-t">&#9989; Not yet packed &mdash; can cancel</div><div class="csp-dc-d">Confirm cancellation to the customer. Cancel in BigCommerce and process any applicable refund.</div></div><div class="csp-dc csp-dc-w"><div class="csp-dc-t">&#128666; Already dispatched &mdash; can&#8217;t cancel</div><div class="csp-dc-d">Advise the customer the order is already on its way. Direct to returns process if needed.</div></div></div>
+          <div class="csp-dc-row"><div class="csp-dc csp-dc-g"><div class="csp-dc-t">&#9989; Not yet packed - can cancel</div><div class="csp-dc-d">Confirm cancellation to the customer. Cancel in BigCommerce and process any applicable refund.</div></div><div class="csp-dc csp-dc-w"><div class="csp-dc-t">&#128666; Already dispatched - can&#8217;t cancel</div><div class="csp-dc-d">Advise the customer the order is already on its way. Direct to returns process if needed.</div></div></div>
         </div></div>
       </div>
     </div>
@@ -1418,8 +1475,8 @@ Thanks, Port Store Team</div></div>
         <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Check tracking in BigCommerce before responding</div><div class="csp-sdesc">Look up the order and review the tracking status. In many cases the parcel has been delivered to the customer&#8217;s local post office and they haven&#8217;t been notified.</div>
           <div class="gd-band gd-band-t" style="margin-top:8px"><span>&#128161;</span><div>A &ldquo;delivered&rdquo; scan at a nearby post office is the most common cause. Let the customer know to check their local post office with ID before escalating.</div></div>
         </div></div>
-        <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">If delivered but not received &mdash; escalate to AWDS</div><div class="csp-sdesc">AWDS hold the Australia Post account and must manage all postal investigations on our behalf.</div>
-          <div class="gd-band gd-band-r" style="margin-top:8px"><span>&#128683;</span><div><strong>Do not contact Australia Post directly</strong> &mdash; AWDS must manage all postal enquiries and investigations on our behalf.</div></div>
+        <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">If delivered but not received - escalate to AWDS</div><div class="csp-sdesc">AWDS hold the Australia Post account and must manage all postal investigations on our behalf.</div>
+          <div class="gd-band gd-band-r" style="margin-top:8px"><span>&#128683;</span><div><strong>Do not contact Australia Post directly</strong> - AWDS must manage all postal enquiries and investigations on our behalf.</div></div>
           <div class="ghost-contact" style="margin-top:8px"><div class="ghost-av">SA</div><div><div class="ghost-name">Steve Anderson</div><a href="mailto:sanderson@awds.com.au" class="ghost-email">sanderson@awds.com.au</a></div></div>
           <div class="ghost-contact"><div class="ghost-av">RC</div><div><div class="ghost-name">Rebecca Cunningham</div><a href="mailto:rcunningham@awds.com.au" class="ghost-email">rcunningham@awds.com.au</a></div></div>
         </div></div>
@@ -1484,7 +1541,7 @@ Thanks, Port Store Team</div></div>
 // ── IMAGE INJECTION ──────────────────────────
 (function(){
   var imgs={
-    'img-bc':'img-banner.png','img-bp':'img-banner.png','img-ht2':'img-banner.png','img-ht5':'img-banner.png',
+    'img-bc':'AFLW-Banner-Desktop.png','img-bp':'AFLW-Banner-Desktop.png','img-bc-mob':'AFLW-Banner-Mobile.png','img-bp-mob':'AFLW-Banner-Mobile.png','img-ht2':'AFLW-Banner-Desktop.png','img-ht5':'AFLW-Banner-Desktop.png',
     'img-ac':'img-annbar.png','img-ap':'img-annbar.png','img-ht1':'img-annbar.png','img-ht4':'img-annbar.png',
     'img-gc':'img-grid.png','img-gp':'img-grid.png','img-ht3':'img-grid.png','img-ht6':'img-grid.png',
     'img-pm1':'img-pm1.png','img-pm1b':'img-pm1.png','img-pm1sv':'img-pm1.png','img-pm1bsv':'img-pm1.png',
@@ -1527,7 +1584,7 @@ function genBanner(){
   showToast('&#9989; Banner code generated!');
 }
 
-// ── ANNOUNCEMENT BAR ────────────────────────
+// ── ANNOUNCEMENT BMH ────────────────────────
 var abMsgs=[
   {text:'100% PROFITS STAY WITH THE CLUB',lt:'',lu:''},
   {text:'FIRST NATIONS 2026\u2014',lt:'Shop Now',lu:'https://portstore.com.au/first-nations-2026/'},
@@ -1721,7 +1778,7 @@ function exportHTML() {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  showToast('&#9989; File exported — push to GitHub to publish your changes.');
+  showToast('&#9989; File exported - push to GitHub to publish your changes.');
 }
 
 function showScenario(n, btn) {

@@ -1234,7 +1234,7 @@ body.edit-mode [contenteditable]:focus {
       
       <div class="wide-card" onclick="wmGo('products')">
         <div class="wide-icon" style="background:#f0fdf4">&#128230;</div>
-        <div class="wide-body"><div class="wide-title">Managing Products</div><div class="wide-desc">Find, edit and manage BigCommerce product listings - basic info, categories, descriptions and images.</div></div>
+        <div class="wide-body"><div class="wide-title">Product Management</div><div class="wide-desc">How products flow from Lightspeed into BigCommerce, what to edit where, and how to manage visibility and listings.</div></div>
         <div class="wide-arrow">&#8594;</div>
       </div>
       <div class="wide-card" onclick="wmGo('ghost')">
@@ -1269,53 +1269,132 @@ body.edit-mode [contenteditable]:focus {
 
   <!-- MANAGING PRODUCTS (moved into Website Operations) -->
   <div class="subview" id="sv-products">
-    <div class="ed-wrap" style="padding:24px 28px">
-      <div class="icard" style="margin-bottom:24px"><div class="icard-ttl">&#128230; Managing Products in BigCommerce</div><p style="font-size:13px;color:var(--muted);line-height:1.7">How to find, edit and manage product listings. Covers the product list, editing basic info, categories, description and images.</p></div>
-      <div class="pm-overwrite-warn">
-  <div class="pm-overwrite-icon">&#9888;&#65039;</div>
-  <div>
-    <div class="pm-overwrite-title">Any changes made in Lightspeed will overwrite BigCommerce</div>
-    <div class="pm-overwrite-body">When stock is adjusted or new products are synced from Lightspeed, it overwrites the corresponding fields in BigCommerce - including product names, descriptions, and images. <strong>Make content changes (descriptions, images, names) in Lightspeed, not BigCommerce</strong>, otherwise they will be lost the next time a Lightspeed sync occurs.</div>
-  </div>
-</div>
+    <div style="padding:24px 28px">
 
-<div class="icard" style="margin-bottom:24px"><div class="icard-ttl">&#128205; How to get to products</div><div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BigCommerce Admin</span> &#8594; Products &#8594; View</div>
-        <div class="pm-img" style="margin-top:10px"><img src="img-pm1.png" alt="Product list"><div class="pm-img-cap">The product list - click any product name to open the editor.</div></div></div>
-      <div style="display:flex;flex-direction:column">
-        <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody"><div class="pm-stitle">Find the product</div><div class="pm-sdesc">Search by name in the product list. Click the product name (blue link) to open the editor.</div><div class="pm-img"><img src="img-pm1.png" alt="Product list"><div class="pm-img-cap">Click any product name to open it. ENABLED = visible on storefront.</div></div><div class="pm-tip">&#128161; The ENABLED green badge means customers can see the product. DISABLED hides it.</div></div></div>
-        <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody"><div class="pm-stitle">Edit Basic Information</div><div class="pm-sdesc">The first section when you open a product. Update core details here.</div><div class="pm-img"><img src="img-pm2.png" alt="Basic info"><div class="pm-img-cap">Basic Information - Product Name, SKU, Price, Brand and Product Type.</div></div><div class="pm-fg"><div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Product Name</div><div class="pm-fd">Shown on storefront and search results. Keep consistent with other products.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>SKU</div><div class="pm-fd">Internal product code. Don&#8217;t change unless instructed.</div></div><div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Default Price</div><div class="pm-fd">Price including tax shown to customers.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Brand</div><div class="pm-fd">Select from the dropdown - don&#8217;t add a new one without approval.</div></div></div><div class="pm-warn">&#9888;&#65039; Always click <strong>Save</strong> at the bottom after making changes. Navigating away loses edits.</div></div></div>
-        <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody"><div class="pm-stitle">Edit Categories and Description</div><div class="pm-sdesc">Scroll down past Basic Information to find Categories and Description.</div><div class="pm-img"><img src="img-pm3.png" alt="Categories"><div class="pm-img-cap">Categories (top) - tick/untick to add/remove from collection pages. Description (bottom).</div></div><div class="pm-fg"><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Categories</div><div class="pm-fd">Tick to add the product to a collection page. You can tick multiple categories.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Description</div><div class="pm-fd">Rich text shown on the product detail page. Keep tone consistent.</div></div></div><div class="pm-tip">&#128161; If a product isn&#8217;t showing on a collection page, check the correct category is ticked here.</div></div></div>
-        <div class="pm-step"><div class="pm-snum">4</div><div class="pm-sbody"><div class="pm-stitle">Manage Product Images</div><div class="pm-sdesc">Scroll to the Images section. The THUMBNAIL badge marks the main image shown in grids and search.</div><div class="pm-img"><img src="img-pm4.png" alt="Images"><div class="pm-img-cap">Images section - THUMBNAIL = main image. Click + to upload. Click Remove to delete.</div></div><div class="pm-fg"><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Thumbnail</div><div class="pm-fd">First image = thumbnail. Drag another image to the first position to change it.</div></div><div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Alt text</div><div class="pm-fd">Fill in for every image. E.g. <em>PA First Nations Guernsey front view</em>.</div></div></div><div class="pm-tip">&#128161; Best size: <strong>800&times;800px or larger</strong>, JPG or PNG, under 1MB.</div><div class="pm-warn">&#9888;&#65039; Deleting an image is permanent. Save the file locally before removing.</div></div></div>
-        <div class="pm-step"><div class="pm-snum">5</div><div class="pm-sbody"><div class="pm-stitle">Save your changes</div><div class="pm-sdesc">Scroll to the bottom and click Save. Changes go live immediately - no separate publish step needed.</div><div class="pm-screen"><span class="pm-hl">Scroll to bottom</span> &#8594; click <span class="pm-hl">Save</span></div><div class="pm-warn">&#9888;&#65039; Product edits go live <strong>immediately</strong> on save. Double-check before saving.</div></div></div>
+      <!-- ONE-WAY SYNC BANNER -->
+      <div class="pm-overwrite-warn" style="margin-bottom:24px">
+        <div class="pm-overwrite-icon">&#8644;&#65039;</div>
+        <div>
+          <div class="pm-overwrite-title">Lightspeed syncs one way into BigCommerce - not back</div>
+          <div class="pm-overwrite-body">Any product data managed in Lightspeed (name, description, images, price) will overwrite BigCommerce when a sync runs. <strong>Always make content changes in Lightspeed first</strong>, then publish to BigCommerce. Changes made directly in BigCommerce will be lost on the next sync.</div>
+        </div>
       </div>
 
-        <div class="pm-step"><div class="pm-snum">6</div><div class="pm-sbody">
-          <div class="pm-stitle">Make the product visible on the storefront</div>
-          <div class="pm-sdesc">By default, products may not be visible to customers. You need to enable storefront visibility and publish to all relevant channels.</div>
+      <!-- SECTION 1: LIGHTSPEED -->
+      <div class="icard" style="margin-bottom:8px">
+        <div class="icard-ttl">&#128203; 1. Managing products in Lightspeed</div>
+      </div>
 
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:8px">
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Once a product has been created in Lightspeed, all ongoing edits to product content must happen here. This is the source of truth - anything you change here will flow through to BigCommerce on the next sync.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+          <div style="background:var(--off);border-radius:9px;padding:13px 15px;border:1px solid var(--border)">
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px">&#9989; Edit in Lightspeed</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.7">Product name<br>Description<br>Images<br>Price &amp; sale price<br>SKU / barcode<br>Categories &amp; tags<br>Brand</div>
+          </div>
+          <div style="background:#fef2f2;border-radius:9px;padding:13px 15px;border:1px solid #fecaca">
+            <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:6px">&#10060; Do not edit in BigCommerce</div>
+            <div style="font-size:12px;color:#7f1d1d;line-height:1.7">These will be overwritten by Lightspeed on the next stock sync or product update.</div>
+          </div>
+        </div>
+
+        <div class="gd-band gd-band-b" style="margin-bottom:0">
+          <span>&#128161;</span>
+          <div>Images and descriptions added directly in BigCommerce will be lost the next time a sync runs - even if no stock changes have been made. Always start in Lightspeed.</div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: PUBLISHING LIGHTSPEED → BIGCOMMERCE -->
+      <div class="icard" style="margin-bottom:8px;margin-top:20px">
+        <div class="icard-ttl">&#128257; 2. Publishing products from Lightspeed to BigCommerce</div>
+      </div>
+
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:8px">
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Once a product is ready in Lightspeed, follow these steps to make it live on the Port Store website.</p>
+
+        <div class="csp-steps">
+          <div class="csp-step">
+            <div class="csp-num">1</div>
+            <div class="csp-body">
+              <div class="csp-stitle">Complete the product in Lightspeed</div>
+              <div class="csp-sdesc">Ensure name, description, images, price and categories are all set. The product should be in <strong>Active</strong> status.</div>
+            </div>
+          </div>
+          <div class="csp-step">
+            <div class="csp-num">2</div>
+            <div class="csp-body">
+              <div class="csp-stitle">Sync triggers automatically or manually</div>
+              <div class="csp-sdesc">Lightspeed syncs to BigCommerce automatically when stock is updated or on a scheduled interval. To force a sync, adjust the inventory quantity by 0 (set to same number) to trigger the update.</div>
+            </div>
+          </div>
+          <div class="csp-step">
+            <div class="csp-num">3</div>
+            <div class="csp-body">
+              <div class="csp-stitle">Check the product in BigCommerce</div>
+              <div class="csp-sdesc">Find the product in BC Admin and confirm name, description, price and images have come through correctly. See the BigCommerce section below for how to navigate to the product.</div>
+            </div>
+          </div>
+          <div class="csp-step">
+            <div class="csp-num">4</div>
+            <div class="csp-body">
+              <div class="csp-stitle">Set storefront visibility and publish to channels</div>
+              <div class="csp-sdesc">New products may not be visible by default. See the visibility steps below.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: BIGCOMMERCE -->
+      <div class="icard" style="margin-bottom:8px;margin-top:20px">
+        <div class="icard-ttl">&#127760; 3. Managing products in BigCommerce</div>
+      </div>
+
+      <div class="gd-band gd-band-a" style="margin-bottom:12px">
+        <span>&#9888;&#65039;</span>
+        <div><strong>Only use BigCommerce for things Lightspeed doesn&rsquo;t control</strong> - primarily visibility settings, channel publishing, and categories not managed by Lightspeed. Don&rsquo;t edit names, descriptions or images here.</div>
+      </div>
+
+      <div class="icard" style="margin-bottom:8px"><div class="icard-ttl">&#128205; How to get to products</div>
+        <div class="pm-screen"><span class="pm-hl">BC Admin</span> &rarr; Products &rarr; View</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px">Use the search bar to find by name or SKU. Click the product name to open the editor.</div>
+      </div>
+
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;margin-bottom:8px;overflow:hidden">
+        <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody"><div class="pm-stitle">Find the product</div><div class="pm-sdesc">Go to Products &rarr; View. Use the search bar to find by name or SKU. Click the product name to open the editor.</div></div></div>
+        <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody"><div class="pm-stitle">Edit categories (if needed)</div><div class="pm-sdesc">In the product editor, go to the <strong>Categories</strong> section. Tick which collection pages the product should appear on. Multiple categories can be selected.</div><div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Categories</span></div></div></div>
+        <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody"><div class="pm-stitle">Make the product visible on the storefront</div>
+          <div class="pm-sdesc" style="margin-bottom:12px">New products from Lightspeed may not be visible to customers. Both settings below must be correct.</div>
           <div class="pm-vis-grid">
-
             <div class="pm-vis-card">
               <div class="pm-vis-card-title">&#128065;&#65039; Step 1 - Enable storefront visibility</div>
-              <div class="pm-vis-card-body">In the product editor, scroll down to the <strong>Storefront</strong> section. Make sure <strong>Visible on storefront</strong> is ticked. If this is unticked, customers cannot see the product regardless of channel settings.</div>
-              <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; scroll to <span class="pm-hl">Storefront</span> &rarr; tick <span class="pm-hl">Visible on storefront</span></div>
+              <div class="pm-vis-card-body">In the product editor, scroll to <strong>Storefront</strong>. Tick <strong>Visible on storefront</strong>. If unticked, customers cannot see the product regardless of channel settings.</div>
+              <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Storefront</span> &rarr; tick <span class="pm-hl">Visible on storefront</span></div>
             </div>
-
             <div class="pm-vis-card">
               <div class="pm-vis-card-title">&#128279; Step 2 - Publish to all channels</div>
-              <div class="pm-vis-card-body">In the product editor, find the <strong>Channels</strong> section (or the channel listing in the right sidebar). Make sure the product is enabled on <strong>all relevant storefronts</strong> - typically the Port Store channel. Unticking a channel hides the product from that storefront only.</div>
-              <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Channels</span> section &rarr; tick all relevant storefronts</div>
+              <div class="pm-vis-card-body">In the product editor, find the <strong>Channels</strong> section. Make sure the product is enabled on all relevant storefronts - typically the Port Store channel.</div>
+              <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Channels</span> &rarr; tick all relevant storefronts</div>
             </div>
-
           </div>
-
-          <div class="pm-tip">&#128161; A product can be <strong>Enabled</strong> (status) but still invisible if storefront visibility is off or it isn&rsquo;t published to a channel. Both must be set correctly for the product to appear on the site.</div>
-          <div class="pm-warn">&#9888;&#65039; If a Lightspeed sync runs after you make visibility changes, check these settings haven&rsquo;t been reset - Lightspeed controls product status and may affect visibility flags.</div>
+          <div class="pm-tip" style="margin-top:10px">&#128161; A product can be <strong>Enabled</strong> in status but still invisible if storefront visibility is off or it isn&rsquo;t published to a channel. Both must be set correctly.</div>
+          <div class="pm-warn">&#9888;&#65039; If a Lightspeed sync runs after you make visibility changes, check these settings haven&rsquo;t been reset.</div>
         </div></div>
-      <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128203; Quick Reference</div><table class="ref-table"><thead><tr><th>Section</th><th>What you can edit</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Basic Information</strong></td><td>Name, SKU, price, brand, product type</td><td>Don&#8217;t change SKU without checking inventory impact.</td></tr><tr><td><strong>Categories</strong></td><td>Which collection pages the product appears on</td><td>Tick multiple. Changes take effect immediately on save.</td></tr><tr><td><strong>Description</strong></td><td>Rich text product description</td><td>Use toolbar for formatting. Keep tone consistent.</td></tr><tr><td><strong>Images</strong></td><td>Add, reorder and remove product images</td><td>First image = thumbnail. Fill in alt text. Min 800&times;800px.</td></tr><tr><td><strong>Pricing</strong></td><td>Sale price, cost price, bulk pricing</td><td>Use <em>Sale Price</em> for promotions.</td></tr><tr><td><strong>Inventory</strong></td><td>Stock level, track inventory on/off</td><td>Only edit if managing inventory manually.</td></tr>
-        <tr><td><strong>Storefront visibility</strong></td><td>Visible on storefront toggle</td><td>Must be ticked for the product to appear on site.</td></tr>
-        <tr><td><strong>Channels</strong></td><td>Which storefronts show the product</td><td>Must be published to the correct channel.</td></tr>
-        </tbody></table></div>
+        <div class="pm-step"><div class="pm-snum">4</div><div class="pm-sbody"><div class="pm-stitle">Save your changes</div><div class="pm-sdesc">Scroll to the bottom and click <strong>Save</strong>. Changes go live immediately - no separate publish step needed.</div></div></div>
+      </div>
+
+      <!-- QUICK REF -->
+      <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128203; Quick Reference - Edit in Lightspeed vs BigCommerce</div><table class="ref-table"><thead><tr><th>What you want to change</th><th>Where to do it</th><th>Notes</th></tr></thead><tbody>
+        <tr><td><strong>Product name</strong></td><td>&#128203; Lightspeed</td><td>Will sync to BC on next update</td></tr>
+        <tr><td><strong>Description</strong></td><td>&#128203; Lightspeed</td><td>BC description will be overwritten on sync</td></tr>
+        <tr><td><strong>Images</strong></td><td>&#128203; Lightspeed</td><td>Upload images in Lightspeed - they sync to BC</td></tr>
+        <tr><td><strong>Price</strong></td><td>&#128203; Lightspeed</td><td>Retail price syncs automatically</td></tr>
+        <tr><td><strong>Categories</strong></td><td>&#127760; BigCommerce</td><td>Which collection pages the product appears on</td></tr>
+        <tr><td><strong>Storefront visibility</strong></td><td>&#127760; BigCommerce</td><td>Must be ticked for the product to appear on site</td></tr>
+        <tr><td><strong>Channel publishing</strong></td><td>&#127760; BigCommerce</td><td>Must be published to the correct channel</td></tr>
+        <tr><td><strong>Inventory</strong></td><td>&#128203; Lightspeed</td><td>Stock level managed in Lightspeed and synced</td></tr>
+      </tbody></table></div>
+
     </div>
   </div>
 
@@ -1889,9 +1968,7 @@ body.edit-mode [contenteditable]:focus {
     <div class="gd-card">
       <div class="gd-sdesc" style="margin-bottom:14px">Once the CSV is complete and checked, email it to all three contacts. File name: <code>YYYYMMDD_RangeName_AWDS_import.csv</code></div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <div class="ghost-contact"><div class="ghost-av">SA</div><div><div class="ghost-name">Steve Anderson</div><a href="mailto:sanderson@awds.com.au" class="ghost-email">sanderson@awds.com.au</a></div></div>
-        <div class="ghost-contact"><div class="ghost-av">PA</div><div><div class="ghost-name">Phil Aberle</div><a href="mailto:paberle@awds.com.au" class="ghost-email">paberle@awds.com.au</a></div></div>
-        <div class="ghost-contact"><div class="ghost-av">RC</div><div><div class="ghost-name">Rebecca Cunningham</div><a href="mailto:rcunningham@awds.com.au" class="ghost-email">rcunningham@awds.com.au</a></div></div>
+        <div class="ghost-contact"><div class="ghost-av">AP</div><div><div class="ghost-name">Alex Perry</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div></div>
       </div>
     </div>
     <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; AWDS &middot; Bulk Product Import Process</div>
@@ -1941,8 +2018,7 @@ Thanks, Port Store Team</div></div>
       <div class="csp-steps">
         <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Customer asks where their tracking is</div><div class="csp-sdesc">When an international customer contacts you about missing tracking, follow this process.</div></div></div>
         <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Reach out to Steve &amp; Rebecca at AWDS with the order number</div>
-          <div class="ghost-contact"><div class="ghost-av">SA</div><div><div class="ghost-name">Steve Anderson</div><a href="mailto:sanderson@awds.com.au" class="ghost-email">sanderson@awds.com.au</a></div></div>
-          <div class="ghost-contact"><div class="ghost-av">RC</div><div><div class="ghost-name">Rebecca Cunningham</div><a href="mailto:rcunningham@awds.com.au" class="ghost-email">rcunningham@awds.com.au</a></div></div>
+          <div class="ghost-contact"><div class="ghost-av">AP</div><div><div class="ghost-name">Alex Perry</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div></div>
         </div></div>
         <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Forward the tracking number to the customer</div><div class="csp-sdesc">Once AWDS provides it, send the tracking number to the customer via email.</div></div></div>
       </div>
@@ -2117,8 +2193,7 @@ Thanks, Port Store Team</div></div>
       <div class="gd-band gd-band-a" style="margin-bottom:14px"><span>&#9888;&#65039;</span><div><strong>Policy reminder:</strong> Our website states we do not facilitate cancellations. That said, always try to assist - the earlier the request, the more likely AWDS can hold the order before packing.</div></div>
       <div class="csp-steps">
         <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Contact Steve &amp; Rebecca at AWDS immediately</div><div class="csp-sdesc">Email AWDS with the order number and ask whether it&#8217;s been packed yet.</div>
-          <div class="ghost-contact"><div class="ghost-av">SA</div><div><div class="ghost-name">Steve Anderson</div><a href="mailto:sanderson@awds.com.au" class="ghost-email">sanderson@awds.com.au</a></div></div>
-          <div class="ghost-contact"><div class="ghost-av">RC</div><div><div class="ghost-name">Rebecca Cunningham</div><a href="mailto:rcunningham@awds.com.au" class="ghost-email">rcunningham@awds.com.au</a></div></div>
+          <div class="ghost-contact"><div class="ghost-av">AP</div><div><div class="ghost-name">Alex Perry</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div></div>
         </div></div>
         <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Respond to the customer based on AWDS&#8217;s answer</div>
           <div class="csp-dc-row"><div class="csp-dc csp-dc-g"><div class="csp-dc-t">&#9989; Not yet packed - can cancel</div><div class="csp-dc-d">Confirm cancellation to the customer. Cancel in BigCommerce and process any applicable refund.</div></div><div class="csp-dc csp-dc-w"><div class="csp-dc-t">&#128666; Already dispatched - can&#8217;t cancel</div><div class="csp-dc-d">Advise the customer the order is already on its way. Direct to returns process if needed.</div></div></div>
@@ -2135,8 +2210,7 @@ Thanks, Port Store Team</div></div>
         </div></div>
         <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">If delivered but not received - escalate to AWDS</div><div class="csp-sdesc">AWDS hold the Australia Post account and must manage all postal investigations on our behalf.</div>
           <div class="gd-band gd-band-r" style="margin-top:8px"><span>&#128683;</span><div><strong>Do not contact Australia Post directly</strong> - AWDS must manage all postal enquiries and investigations on our behalf.</div></div>
-          <div class="ghost-contact" style="margin-top:8px"><div class="ghost-av">SA</div><div><div class="ghost-name">Steve Anderson</div><a href="mailto:sanderson@awds.com.au" class="ghost-email">sanderson@awds.com.au</a></div></div>
-          <div class="ghost-contact"><div class="ghost-av">RC</div><div><div class="ghost-name">Rebecca Cunningham</div><a href="mailto:rcunningham@awds.com.au" class="ghost-email">rcunningham@awds.com.au</a></div></div>
+          <div class="ghost-contact" style="margin-top:8px"><div class="ghost-av">SA</div><div><div class="ghost-name">Alex Perry</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div></div>
         </div></div>
       </div>
     </div>

@@ -2017,7 +2017,7 @@ body.edit-mode [contenteditable]:focus {
 
     <div class="mod-step-block" id="cats-preview-block">
       <div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you edit categories</div></div></div>
-      <div class="mod-step-body" style="padding:12px"><div id="cats-preview-frame" style="width:100%;border-radius:6px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:56px;display:flex;align-items:center;justify-content:center"><span id="cats-preview-placeholder" style="font-size:12px;color:#9ca3af">Click &#9889; Generate to preview your categories</span></div></div>
+      <div class="mod-step-body" style="padding:12px"><div id="cats-preview-frame" style="width:100%;border-radius:6px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:180px;display:flex;align-items:center;justify-content:center"><span id="cats-preview-placeholder" style="font-size:12px;color:#9ca3af">Click &#9889; Generate to preview your categories</span></div></div>
     </div>
 
     <div class="mod-step-block">
@@ -3308,7 +3308,7 @@ function renderPreview(module, code) {
     var vw = viewportWidth ? viewportWidth : 1200;
     var doc = iframe.contentDocument || iframe.contentWindow.document;
     doc.open();
-    doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=' + vw + ',initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Jost:wght@900&display=swap" rel="stylesheet"><style>*{box-sizing:border-box;margin:0;padding:0}body{background:#fff;font-family:sans-serif;overflow-x:auto}a{color:inherit;text-decoration:none}.halo-block .container{display:flex;flex-wrap:wrap;gap:16px;padding:16px}</style></head><body>' + code + '</body></html>');
+    doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=' + vw + ',initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Jost:wght@900&display=swap" rel="stylesheet"><style>*{box-sizing:border-box;margin:0;padding:0}body{background:#fff;font-family:sans-serif;overflow-x:auto}a{color:inherit;text-decoration:none}.halo-block .container{display:flex;flex-wrap:wrap;gap:24px;padding:24px 32px;justify-content:center}.halo-block .item-content{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none}.halo-block .item-img{display:flex;align-items:center;justify-content:center;width:88px;height:88px}.halo-block .item-img img{max-width:100%;max-height:100%;object-fit:contain}.halo-block .item{font-size:13px;font-weight:700;text-align:center;color:#1a2636;margin:0}.halo-block .text{font-size:13px;font-weight:700}</style></head><body>' + code + '</body></html>');
     doc.close();
     setTimeout(function(){
       try {

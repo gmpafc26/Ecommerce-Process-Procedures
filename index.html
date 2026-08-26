@@ -1334,26 +1334,22 @@ body.edit-mode [contenteditable]:focus {
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
 
-        <div class="wide-card" onclick="wmGo('bigcommerce')" style="flex-direction:column;gap:12px">
-          <div style="display:flex;align-items:center;gap:12px">
-            <div class="wide-icon" style="background:#eff6ff;font-size:22px">&#127760;</div>
-            <div class="wide-body">
-              <div class="wide-title">BigCommerce</div>
-              <div class="wide-desc">Managing products, visibility, categories and orders in the BC storefront admin.</div>
-            </div>
-            <div class="wide-arrow"></div>
+        <div class="wide-card" onclick="wmGo('bigcommerce')">
+          <div class="wide-icon" style="background:#eff6ff;font-size:22px">&#127760;</div>
+          <div class="wide-body">
+            <div class="wide-title">BigCommerce</div>
+            <div class="wide-desc">Managing products, visibility, categories and orders in the BC storefront admin.</div>
           </div>
+          <div class="wide-arrow"></div>
         </div>
 
-        <div class="wide-card" onclick="wmGo('lightspeed')" style="flex-direction:column;gap:12px">
-          <div style="display:flex;align-items:center;gap:12px">
-            <div class="wide-icon" style="background:#f0fdf4;font-size:22px">&#128203;</div>
-            <div class="wide-body">
-              <div class="wide-title">Lightspeed</div>
-              <div class="wide-desc">Creating and managing products, stock and pricing in the Lightspeed POS system.</div>
-            </div>
-            <div class="wide-arrow"></div>
+        <div class="wide-card" onclick="wmGo('lightspeed')">
+          <div class="wide-icon" style="background:#f0fdf4;font-size:22px">&#128203;</div>
+          <div class="wide-body">
+            <div class="wide-title">Lightspeed</div>
+            <div class="wide-desc">Creating and managing products, stock and pricing in the Lightspeed POS system.</div>
           </div>
+          <div class="wide-arrow"></div>
         </div>
 
       </div>
@@ -1817,7 +1813,19 @@ body.edit-mode [contenteditable]:focus {
           <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Upload your completed Lightspeed bulk upload CSV and this tool will generate a ready-to-send AWDS Product Advice CSV for Alex Perry.</p>
 
           <div style="background:var(--off);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px;font-size:12px;color:var(--muted)">
-            &#128161; The converter maps Lightspeed columns to AWDS format automatically. Check the preview before downloading &mdash; review any rows flagged in orange.
+            <div style="font-weight:700;color:var(--text);margin-bottom:8px">&#128161; How it works</div>
+            <div style="margin-bottom:10px">Upload your completed Lightspeed CSV and the tool generates a ready-to-send AWDS Product Advice file with these 6 columns:</div>
+            <table style="font-size:12px;border-collapse:collapse;width:100%">
+              <thead><tr style="background:var(--navy);color:#fff"><th style="padding:5px 10px;text-align:left">AWDS Column</th><th style="padding:5px 10px;text-align:left">Source</th></tr></thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px"><strong>ProductCode</strong></td><td style="padding:5px 10px;color:var(--muted)">sku_code_custom</td></tr>
+                <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px"><strong>Description</strong></td><td style="padding:5px 10px;color:var(--muted)">name</td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#f8fafc"><td style="padding:5px 10px"><strong>ProductGroup</strong></td><td style="padding:5px 10px;color:var(--teal)">Fixed: MERCH</td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#f8fafc"><td style="padding:5px 10px"><strong>ItemsPerOuter</strong></td><td style="padding:5px 10px;color:var(--teal)">Fixed: 100</td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#f8fafc"><td style="padding:5px 10px"><strong>OutersPerPallet</strong></td><td style="padding:5px 10px;color:var(--teal)">Fixed: 100</td></tr>
+                <tr><td style="padding:5px 10px"><strong>ItemBarcode</strong></td><td style="padding:5px 10px;color:var(--muted)">sku_code_barcode</td></tr>
+              </tbody>
+            </table>
           </div>
 
           <!-- Upload area -->
@@ -3164,16 +3172,12 @@ var awdsRows = [];
 
 // Column mapping: AWDS column → Lightspeed source column (or fixed value)
 var AWDS_MAP = [
-  {awds: 'ProductCode',      ls: 'sku_code_custom',          fixed: null,    note: 'Unique SKU per variant'},
-  {awds: 'ItemBarcode',      ls: 'sku_code_barcode',         fixed: null,    note: 'EAN-13 barcode'},
-  {awds: 'Description',      ls: 'name',                     fixed: null,    note: 'Product name — must be identical across all variants'},
-  {awds: 'VariantSize',      ls: 'variant_option_one_value', fixed: null,    note: 'Size per variant row'},
-  {awds: 'RetailPrice',      ls: 'retail_price',             fixed: null,    note: 'Incl. GST'},
-  {awds: 'SupplyPrice',      ls: 'supply_price',             fixed: null,    note: 'Ex-GST cost price'},
-  {awds: 'DRCode',           ls: null,                       fixed: '3027',  note: 'Always 3027'},
-  {awds: 'Category',         ls: 'product_category',         fixed: null,    note: 'Lightspeed category'},
-  {awds: 'Brand',            ls: 'brand_name',               fixed: null,    note: 'Brand name'},
-  {awds: 'Tags',             ls: 'tags',                     fixed: null,    note: 'Semicolon-separated tags'},
+  {awds: 'ProductCode',      ls: 'sku_code_custom',          fixed: null,     note: 'Unique SKU — from sku_code_custom'},
+  {awds: 'Description',      ls: 'name',                     fixed: null,     note: 'Product name — from name'},
+  {awds: 'ProductGroup',     ls: null,                       fixed: 'MERCH',  note: 'Always MERCH'},
+  {awds: 'ItemsPerOuter',    ls: null,                       fixed: '100',    note: 'Always 100'},
+  {awds: 'OutersPerPallet',  ls: null,                       fixed: '100',    note: 'Always 100'},
+  {awds: 'ItemBarcode',      ls: 'sku_code_barcode',         fixed: null,     note: 'Barcode — from sku_code_barcode'},
 ];
 
 function awdsHandleDrop(e) {

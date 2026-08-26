@@ -1756,7 +1756,69 @@ body.edit-mode [contenteditable]:focus {
           <span class="bc-section-arrow"></span>
         </button>
         <div class="bc-section-body" id="awds-newproduct">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin:16px 0;flex-wrap:wrap;gap:10px">
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px">Choose how you want to create the AWDS Product Advice file.</p>
+
+          <!-- Method toggle -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
+            <div id="awds-method-auto-card" class="awds-method-card awds-method-active" onclick="awdsSwitchMethod('auto')" style="border:2px solid var(--teal);background:var(--teal-dim);border-radius:10px;padding:14px;cursor:pointer;transition:all .15s">
+              <div style="font-size:20px;margin-bottom:6px">&#9889;</div>
+              <div style="font-size:13px;font-weight:700;color:var(--text)">Auto converter</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:3px">Upload your Lightspeed CSV or Excel file and download a ready-made AWDS file</div>
+            </div>
+            <div id="awds-method-manual-card" class="awds-method-card" onclick="awdsSwitchMethod('manual')" style="border:2px solid var(--border);background:#fff;border-radius:10px;padding:14px;cursor:pointer;transition:all .15s">
+              <div style="font-size:20px;margin-bottom:6px">&#128196;</div>
+              <div style="font-size:13px;font-weight:700;color:var(--text)">Manual process</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:3px">Step-by-step guide for creating the AWDS file manually</div>
+            </div>
+          </div>
+
+          <!-- Auto converter panel -->
+          <div id="awds-panel-auto">
+            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Upload your completed Lightspeed bulk upload CSV and this tool will generate a ready-to-send AWDS Product Advice CSV for Alex Perry.</p>
+
+          <div style="background:var(--off);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px;font-size:12px;color:var(--muted)">
+            <div style="font-weight:700;color:var(--text);margin-bottom:8px">&#128161; How it works</div>
+            <div style="margin-bottom:10px">Upload your completed Lightspeed CSV and the tool generates a ready-to-send AWDS Product Advice file with these 6 columns:</div>
+            <table style="font-size:12px;border-collapse:collapse;width:100%">
+              <thead><tr style="background:var(--navy);color:#fff"><th style="padding:5px 10px;text-align:left">AWDS Column</th><th style="padding:5px 10px;text-align:left">Source</th></tr></thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px"><strong>ProductCode</strong></td><td style="padding:5px 10px;color:var(--muted)">sku_code_custom</td></tr>
+                <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px"><strong>Description</strong></td><td style="padding:5px 10px;color:var(--muted)">name</td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#f8fafc"><td style="padding:5px 10px"><strong>ProductGroup</strong></td><td style="padding:5px 10px;color:var(--teal)">Fixed: MERCH</td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#f8fafc"><td style="padding:5px 10px"><strong>ItemsPerOuter</strong></td><td style="padding:5px 10px;color:var(--teal)">Fixed: 100</td></tr>
+                <tr style="border-bottom:1px solid var(--border);background:#f8fafc"><td style="padding:5px 10px"><strong>OutersPerPallet</strong></td><td style="padding:5px 10px;color:var(--teal)">Fixed: 100</td></tr>
+                <tr><td style="padding:5px 10px"><strong>ItemBarcode</strong></td><td style="padding:5px 10px;color:var(--muted)">sku_code_barcode</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Upload area -->
+          <div id="awds-upload-area" style="border:2px dashed var(--border);border-radius:10px;padding:28px 20px;text-align:center;cursor:pointer;transition:border-color .15s;margin-bottom:14px" onclick="document.getElementById('awds-csv-input').click()" ondragover="event.preventDefault();this.style.borderColor='var(--teal)'" ondragleave="this.style.borderColor='var(--border)'" ondrop="awdsHandleDrop(event)">
+            <div style="font-size:28px;margin-bottom:8px">&#128228;</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Drop your Lightspeed file here</div>
+            <div style="font-size:12px;color:var(--muted)">or click to browse &mdash; CSV or Excel (.xlsx)</div>
+            <input type="file" id="awds-csv-input" accept=".csv,.xlsx,.xls" style="display:none" onchange="awdsLoadFile(this.files[0])">
+          </div>
+
+          <!-- Status + preview -->
+          <div id="awds-status" style="display:none;margin-bottom:12px"></div>
+          <div id="awds-preview-wrap" style="display:none">
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px">Preview <span id="awds-row-count"></span></div>
+            <div style="overflow-x:auto;border-radius:8px;border:1px solid var(--border)">
+              <table id="awds-preview-table" style="width:100%;border-collapse:collapse;font-size:12px">
+                <thead id="awds-preview-head" style="background:var(--navy);color:#fff"></thead>
+                <tbody id="awds-preview-body"></tbody>
+              </table>
+            </div>
+            <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+              <button id="awds-dl-btn" onclick="awdsDownload()" style="padding:10px 20px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:7px">&#128229; Download AWDS Product Advice CSV</button>
+              <button onclick="awdsReset()" style="padding:10px 16px;background:var(--off);color:var(--muted);border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:12px;cursor:pointer">&#8635; Start over</button>
+            </div>
+          </div>
+
+          <!-- Manual process panel -->
+          <div id="awds-panel-manual" style="display:none">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin:16px 0;flex-wrap:wrap;gap:10px">
           <div><div style="font-size:16px;font-weight:700">AWDS Bulk Product Import</div><div style="font-size:13px;color:var(--muted)">Warehouse System &middot; Process guide</div></div>
           <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/AWDS%20Product%20Template.csv?d=w1c8e8290cc324beabcc7717fa0f43b29&csf=1&web=1&e=tydLjF" target="_blank">&#128229; Download Template</a>
         </div>
@@ -1800,57 +1862,6 @@ body.edit-mode [contenteditable]:focus {
           <div class="ghost-contact"><div class="ghost-av">AP</div><div><div class="ghost-name">Alex Perry</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div></div>
         </div>
         <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; AWDS &middot; Bulk Product Import Process</div>
-        </div>
-      </div>
-
-      <!-- ── LS → AWDS CONVERTER ─────────────────────── -->
-      <div class="bc-section">
-        <button class="bc-section-btn" onclick="toggleBcSection('awds-converter',this)">
-          <div class="bc-section-btn-left"><span class="bc-section-icon">&#9889;</span><span class="bc-section-title">Lightspeed CSV &rarr; AWDS Product Advice</span></div>
-          <span class="bc-section-arrow"></span>
-        </button>
-        <div class="bc-section-body" id="awds-converter">
-          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Upload your completed Lightspeed bulk upload CSV and this tool will generate a ready-to-send AWDS Product Advice CSV for Alex Perry.</p>
-
-          <div style="background:var(--off);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px;font-size:12px;color:var(--muted)">
-            <div style="font-weight:700;color:var(--text);margin-bottom:8px">&#128161; How it works</div>
-            <div style="margin-bottom:10px">Upload your completed Lightspeed CSV and the tool generates a ready-to-send AWDS Product Advice file with these 6 columns:</div>
-            <table style="font-size:12px;border-collapse:collapse;width:100%">
-              <thead><tr style="background:var(--navy);color:#fff"><th style="padding:5px 10px;text-align:left">AWDS Column</th><th style="padding:5px 10px;text-align:left">Source</th></tr></thead>
-              <tbody>
-                <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px"><strong>ProductCode</strong></td><td style="padding:5px 10px;color:var(--muted)">sku_code_custom</td></tr>
-                <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px"><strong>Description</strong></td><td style="padding:5px 10px;color:var(--muted)">name</td></tr>
-                <tr style="border-bottom:1px solid var(--border);background:#f8fafc"><td style="padding:5px 10px"><strong>ProductGroup</strong></td><td style="padding:5px 10px;color:var(--teal)">Fixed: MERCH</td></tr>
-                <tr style="border-bottom:1px solid var(--border);background:#f8fafc"><td style="padding:5px 10px"><strong>ItemsPerOuter</strong></td><td style="padding:5px 10px;color:var(--teal)">Fixed: 100</td></tr>
-                <tr style="border-bottom:1px solid var(--border);background:#f8fafc"><td style="padding:5px 10px"><strong>OutersPerPallet</strong></td><td style="padding:5px 10px;color:var(--teal)">Fixed: 100</td></tr>
-                <tr><td style="padding:5px 10px"><strong>ItemBarcode</strong></td><td style="padding:5px 10px;color:var(--muted)">sku_code_barcode</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Upload area -->
-          <div id="awds-upload-area" style="border:2px dashed var(--border);border-radius:10px;padding:28px 20px;text-align:center;cursor:pointer;transition:border-color .15s;margin-bottom:14px" onclick="document.getElementById('awds-csv-input').click()" ondragover="event.preventDefault();this.style.borderColor='var(--teal)'" ondragleave="this.style.borderColor='var(--border)'" ondrop="awdsHandleDrop(event)">
-            <div style="font-size:28px;margin-bottom:8px">&#128228;</div>
-            <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Drop your Lightspeed CSV here</div>
-            <div style="font-size:12px;color:var(--muted)">or click to browse &mdash; CSV UTF-8 format</div>
-            <input type="file" id="awds-csv-input" accept=".csv" style="display:none" onchange="awdsLoadFile(this.files[0])">
-          </div>
-
-          <!-- Status + preview -->
-          <div id="awds-status" style="display:none;margin-bottom:12px"></div>
-          <div id="awds-preview-wrap" style="display:none">
-            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px">Preview <span id="awds-row-count"></span></div>
-            <div style="overflow-x:auto;border-radius:8px;border:1px solid var(--border)">
-              <table id="awds-preview-table" style="width:100%;border-collapse:collapse;font-size:12px">
-                <thead id="awds-preview-head" style="background:var(--navy);color:#fff"></thead>
-                <tbody id="awds-preview-body"></tbody>
-              </table>
-            </div>
-            <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-              <button id="awds-dl-btn" onclick="awdsDownload()" style="padding:10px 20px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:7px">&#128229; Download AWDS Product Advice CSV</button>
-              <button onclick="awdsReset()" style="padding:10px 16px;background:var(--off);color:var(--muted);border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:12px;cursor:pointer">&#8635; Start over</button>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -3180,6 +3191,29 @@ var AWDS_MAP = [
   {awds: 'ItemBarcode',      ls: 'sku_code_barcode',         fixed: null,     note: 'Barcode — from sku_code_barcode'},
 ];
 
+function awdsSwitchMethod(method) {
+  var autoCard   = document.getElementById('awds-method-auto-card');
+  var manualCard = document.getElementById('awds-method-manual-card');
+  var autoPanel  = document.getElementById('awds-panel-auto');
+  var manualPanel= document.getElementById('awds-panel-manual');
+  if (!autoCard) return;
+  if (method === 'auto') {
+    autoCard.style.border   = '2px solid var(--teal)';
+    autoCard.style.background = 'var(--teal-dim)';
+    manualCard.style.border = '2px solid var(--border)';
+    manualCard.style.background = '#fff';
+    autoPanel.style.display   = 'block';
+    manualPanel.style.display = 'none';
+  } else {
+    manualCard.style.border   = '2px solid var(--teal)';
+    manualCard.style.background = 'var(--teal-dim)';
+    autoCard.style.border   = '2px solid var(--border)';
+    autoCard.style.background = '#fff';
+    manualPanel.style.display = 'block';
+    autoPanel.style.display   = 'none';
+  }
+}
+
 function awdsHandleDrop(e) {
   e.preventDefault();
   document.getElementById('awds-upload-area').style.borderColor = 'var(--border)';
@@ -3188,15 +3222,30 @@ function awdsHandleDrop(e) {
 }
 
 function awdsLoadFile(file) {
-  if (!file || !file.name.endsWith('.csv')) {
-    awdsShowStatus('&#10060; Please upload a CSV file.', 'err');
-    return;
+  if (!file) return;
+  var name = file.name.toLowerCase();
+  if (name.endsWith('.xlsx') || name.endsWith('.xls')) {
+    // Excel: read as ArrayBuffer and parse with SheetJS loaded inline
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        var data = new Uint8Array(e.target.result);
+        var wb = XLSX.read(data, {type:'array'});
+        var ws = wb.Sheets[wb.SheetNames[0]];
+        var csv = XLSX.utils.sheet_to_csv(ws);
+        awdsParseCSV(csv);
+      } catch(err) {
+        awdsShowStatus('&#10060; Could not read Excel file. Try saving as CSV first.', 'err');
+      }
+    };
+    reader.readAsArrayBuffer(file);
+  } else if (name.endsWith('.csv')) {
+    var reader = new FileReader();
+    reader.onload = function(e) { awdsParseCSV(e.target.result); };
+    reader.readAsText(file);
+  } else {
+    awdsShowStatus('&#10060; Please upload a CSV or Excel (.xlsx) file.', 'err');
   }
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    awdsParseCSV(e.target.result);
-  };
-  reader.readAsText(file);
 }
 
 function awdsParseCSV(text) {
@@ -3481,14 +3530,16 @@ function wmGo(id) {
 }
 
 // ── MODULE GENERATOR NAV ──────────────────────────────────────────────
+var genAutoTriggered = false;
 function switchModule(id, btn) {
   document.querySelectorAll('.gen-module').forEach(function(el){ el.classList.remove('active'); });
   document.querySelectorAll('.gen-picker-tab').forEach(function(b){ b.classList.remove('active'); });
   var mod = document.getElementById('gmod-' + id);
   if (mod) mod.classList.add('active');
   if (btn) btn.classList.add('active');
-  // Trigger preview generation when switching to a module
+  // Auto-generate preview silently (no button flash)
   setTimeout(function(){
+    genAutoTriggered = true;
     try{
       if(id==='banner') genBanner();
       else if(id==='annbar') genAnnBar();
@@ -3496,6 +3547,7 @@ function switchModule(id, btn) {
       else if(id==='cats') genCats();
       else if(id==='catbanner') genCatBanner();
     }catch(e){}
+    genAutoTriggered = false;
   }, 100);
 }
 
@@ -3558,13 +3610,13 @@ function toggleImgGuide(btn) {
 }
 
 function flashGenBtn(id) {
+  if (genAutoTriggered) return;
   var btn = document.getElementById(id);
   if (!btn) return;
-  btn.textContent = '&#10003; Code Generated';
   btn.innerHTML = '&#10003; Code Generated';
   btn.style.background = '#16a34a';
   setTimeout(function() {
-    btn.innerHTML = btn.getAttribute('data-orig') || btn.innerHTML.replace('&#10003; Code Generated', '&#9889; Generate ' + (id==='b-genbtn'?'Banner':id==='ab-genbtn'?'Announcement Bar':'Product Grid') + ' Code');
+    btn.innerHTML = '&#9889; Generate';
     btn.style.background = '';
   }, 2500);
 }
@@ -3634,8 +3686,11 @@ document.addEventListener("DOMContentLoaded", function() {
   renderCats();
   handleHash();
   // Generate banner preview after a short delay so DOM is settled
-  setTimeout(function(){ try{ genBanner(); } catch(e){} }, 200);
+  setTimeout(function(){ genAutoTriggered = true; try{ genBanner(); } catch(e){} genAutoTriggered = false; }, 200);
 });
 </script>
 </body>
-</html>
+</html
+          </div>
+
+>

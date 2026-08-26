@@ -68,8 +68,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 .wide-body{flex:1}
 .wide-title{font-weight:800;font-size:15px;margin-bottom:3px}
 .wide-desc{font-size:12px;color:var(--muted);line-height:1.6}
-.wide-arrow{font-size:18px;color:var(--muted);transition:all .2s}
-.wide-card:hover .wide-arrow{color:var(--navy);transform:translateX(3px)}
+.wide-arrow{
+  width:20px; height:20px; flex-shrink:0;
+  position:relative; transition:all .2s;
+}
+.wide-arrow::before{
+  content:''; display:block;
+  width:8px; height:8px;
+  border-right:2.5px solid var(--muted);
+  border-top:2.5px solid var(--muted);
+  transform:rotate(45deg);
+  position:absolute; top:5px; left:3px;
+  border-radius:1px; transition:border-color .2s;
+}
+.wide-card:hover .wide-arrow{transform:translateX(3px)}
+.wide-card:hover .wide-arrow::before{border-color:var(--navy)}
 
 /* ── EDITOR LAYOUT ── */
 .ed-wrap{max-width:100%;padding:0}
@@ -957,10 +970,21 @@ body.edit-mode [contenteditable]:focus {
 }
 .gen-accordion-btn:hover { background: #f0f0f0; }
 .gen-accordion-arrow {
-  font-size: 20px;
-  color: var(--muted);
-  transition: transform .2s;
+  width: 20px; height: 20px;
   flex-shrink: 0;
+  position: relative;
+  transition: transform .2s;
+}
+.gen-accordion-arrow::before {
+  content: '';
+  display: block;
+  width: 9px; height: 9px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 3px; left: 5px;
+  border-radius: 1px;
 }
 .gen-accordion-body {
   display: none;
@@ -1151,10 +1175,21 @@ body.edit-mode [contenteditable]:focus {
 }
 .img-upload-toggle:hover { background: rgba(59,130,246,.04); }
 .img-upload-arrow {
-  font-size: 16px;
-  color: #93c5fd;
-  transition: transform .2s;
+  width: 18px; height: 18px;
   flex-shrink: 0;
+  position: relative;
+  transition: transform .2s;
+}
+.img-upload-arrow::before {
+  content: '';
+  display: block;
+  width: 8px; height: 8px;
+  border-right: 2px solid #93c5fd;
+  border-bottom: 2px solid #93c5fd;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 2px; left: 4px;
+  border-radius: 1px;
 }
 .img-upload-body { padding: 0 14px 12px; }
 
@@ -1193,6 +1228,51 @@ body.edit-mode [contenteditable]:focus {
   margin: 14px 0 8px;
 }
 
+
+/* -- BC SECTION ACCORDIONS -- */
+.bc-section {
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.bc-section-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--off);
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background .15s;
+  text-align: left;
+}
+.bc-section-btn:hover { background: #eef0f3; }
+.bc-section-btn-left { display: flex; align-items: center; gap: 12px; }
+.bc-section-icon { font-size: 20px; }
+.bc-section-title { font-size: 15px; font-weight: 700; color: var(--text); }
+.bc-section-arrow {
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+  position: relative;
+  transition: transform .2s;
+}
+.bc-section-arrow::before {
+  content: '';
+  display: block;
+  width: 9px; height: 9px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 3px; left: 5px;
+  border-radius: 1px;
+}
+.bc-section-body { display: none; padding: 16px 18px; background: #fff; border-top: 1px solid var(--border); }
+.bc-section-body.bc-open { display: block; }
+
 </style>
 </head>
 <body>
@@ -1230,17 +1310,38 @@ body.edit-mode [contenteditable]:focus {
   <!-- HOME -->
   <div class="subview active" id="sv-home">
     <div class="home-wrap">
-      <div class="home-intro"><h2>Website Operations</h2><p>Select an area to manage products or request ghost imagery. Use the <strong>BC Module Generator</strong> tab above to update the homepage banner, announcement bar or product grid.</p></div>
-      
-      <div class="wide-card" onclick="wmGo('products')">
-        <div class="wide-icon" style="background:#f0fdf4">&#128230;</div>
-        <div class="wide-body"><div class="wide-title">Product Management</div><div class="wide-desc">How products flow from Lightspeed into BigCommerce, what to edit where, and how to manage visibility and listings.</div></div>
-        <div class="wide-arrow">&#8594;</div>
+      <div class="home-intro"><h2>Website Operations</h2><p>Select a platform or area below. Use the <strong>BC Module Generator</strong> tab above to update the homepage banner, announcement bar, product carousel or categories.</p></div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+
+        <div class="wide-card" onclick="wmGo('bigcommerce')" style="flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="wide-icon" style="background:#eff6ff;font-size:22px">&#127760;</div>
+            <div class="wide-body">
+              <div class="wide-title">BigCommerce</div>
+              <div class="wide-desc">Managing products, visibility, categories and orders in the BC storefront admin.</div>
+            </div>
+            <div class="wide-arrow">&#8594;</div>
+          </div>
+        </div>
+
+        <div class="wide-card" onclick="wmGo('lightspeed')" style="flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="wide-icon" style="background:#f0fdf4;font-size:22px">&#128203;</div>
+            <div class="wide-body">
+              <div class="wide-title">Lightspeed</div>
+              <div class="wide-desc">Creating and managing products, stock and pricing in the Lightspeed POS system.</div>
+            </div>
+            <div class="wide-arrow">&#8594;</div>
+          </div>
+        </div>
+
       </div>
+
       <div class="wide-card" onclick="wmGo('ghost')">
         <div class="wide-icon" style="background:#fdf4ff">&#128247;</div>
         <div class="wide-body"><div class="wide-title">Ghost Imagery Requests</div><div class="wide-desc">Submit a ghost mannequin or flat lay shoot request to Virtue Creative Studios and manage the process end-to-end.</div></div>
-        <div class="wide-arrow">&#8594;</div>
+        <div class="wide-arrow"></div>
       </div>
       
 
@@ -1268,52 +1369,153 @@ body.edit-mode [contenteditable]:focus {
   </div>
 
   <!-- MANAGING PRODUCTS (moved into Website Operations) -->
-  <div class="subview" id="sv-products">
+  <div class="subview" id="sv-bigcommerce">
     <div style="padding:24px 28px">
 
-      <!-- ONE-WAY SYNC BANNER -->
+      <div class="icard" style="margin-bottom:16px">
+        <div class="icard-ttl">&#127760; BigCommerce</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-top:6px">Managing the Port Store website. Use BigCommerce for visibility, channels, categories, orders and customers. Product <em>content</em> (names, descriptions, images, prices) is managed in Lightspeed and syncs across automatically.</p>
+      </div>
+
+      <div class="pm-overwrite-warn" style="margin-bottom:20px">
+        <div class="pm-overwrite-icon">&#8644;&#65039;</div>
+        <div>
+          <div class="pm-overwrite-title">Lightspeed syncs one way into BigCommerce</div>
+          <div class="pm-overwrite-body">Product names, descriptions, images and prices set in Lightspeed will overwrite BigCommerce on each sync. <strong>Only use BigCommerce to manage visibility, channels and categories.</strong> Changes to product content made directly in BC will be lost on the next sync.</div>
+        </div>
+      </div>
+
+      <!-- ── PRODUCTS ─────────────────────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('bc-products',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128230;</span><span class="bc-section-title">Products</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="bc-products">
+
+          <div class="icard" style="margin-bottom:8px"><div class="icard-ttl">&#128205; How to get to products</div>
+            <div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BC Admin</span> &rarr; Products &rarr; View</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px">Use the search bar to find by name or SKU. Click the product name to open the editor.</div>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;margin-bottom:16px;overflow:hidden">
+            <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody"><div class="pm-stitle">Find the product</div><div class="pm-sdesc">Go to Products &rarr; View. Use the search bar to find by name or SKU. Click the product name (blue link) to open the editor.</div></div></div>
+            <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody"><div class="pm-stitle">Set storefront visibility &amp; publish to channels</div>
+              <div class="pm-sdesc" style="margin-bottom:12px">New products from Lightspeed may not be visible by default. Both settings must be correct for customers to see the product.</div>
+              <div class="pm-vis-grid">
+                <div class="pm-vis-card">
+                  <div class="pm-vis-card-title">&#128065;&#65039; Enable storefront visibility</div>
+                  <div class="pm-vis-card-body">Scroll to <strong>Storefront</strong> in the product editor. Tick <strong>Visible on storefront</strong>. If unticked, customers cannot see the product regardless of channel settings.</div>
+                  <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Storefront</span> &rarr; tick <span class="pm-hl">Visible on storefront</span></div>
+                </div>
+                <div class="pm-vis-card">
+                  <div class="pm-vis-card-title">&#128279; Publish to channels</div>
+                  <div class="pm-vis-card-body">Find the <strong>Channels</strong> section in the product editor. Make sure the product is enabled on all relevant storefronts — typically the Port Store channel.</div>
+                  <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Channels</span> &rarr; tick all relevant storefronts</div>
+                </div>
+              </div>
+              <div class="pm-tip" style="margin-top:10px">&#128161; A product can be <strong>Enabled</strong> in status but still invisible if storefront visibility is off or it isn&rsquo;t published to a channel. Both must be correct.</div>
+              <div class="pm-warn">&#9888;&#65039; If a Lightspeed sync runs after you make visibility changes, check these settings haven&rsquo;t been reset.</div>
+            </div></div>
+            <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody"><div class="pm-stitle">Save your changes</div><div class="pm-sdesc">Scroll to the bottom and click <strong>Save</strong>. Changes go live immediately.</div><div class="pm-warn">&#9888;&#65039; Product edits go live <strong>immediately</strong> on save. Double-check before saving.</div></div></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── CATEGORIES ────────────────────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('bc-categories',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128193;</span><span class="bc-section-title">Categories</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="bc-categories">
+
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;margin-bottom:16px;overflow:hidden">
+            <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody"><div class="pm-stitle">Assign a product to a category</div><div class="pm-sdesc">Open the product editor, scroll to the <strong>Categories</strong> section, and tick which collection pages the product should appear on. Multiple categories can be selected. Changes take effect immediately on save.</div><div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Categories</span></div><div class="pm-tip" style="margin-top:8px">&#128161; If a product isn&rsquo;t showing on a collection page, check the correct category is ticked here.</div></div></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── CUSTOMERS ─────────────────────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('bc-customers',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128100;</span><span class="bc-section-title">Customers</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="bc-customers">
+          <div class="gd-band gd-band-t" style="margin-bottom:0">
+            <span>&#128221;</span>
+            <div>Content coming soon. Add customer management procedures here.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ORDERS ────────────────────────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('bc-orders',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128666;</span><span class="bc-section-title">Orders</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="bc-orders">
+          <div class="gd-band gd-band-t" style="margin-bottom:0">
+            <span>&#128221;</span>
+            <div>Content coming soon. Add order management procedures here.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GIFT CERTIFICATES ─────────────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('bc-giftcerts',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#127873;</span><span class="bc-section-title">Gift Certificates</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="bc-giftcerts">
+          <div class="gd-band gd-band-t" style="margin-bottom:0">
+            <span>&#128221;</span>
+            <div>Content coming soon. Add gift certificate procedures here.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- LIGHTSPEED -->
+  <div class="subview" id="sv-lightspeed">
+    <div style="padding:24px 28px">
+
+      <div class="icard" style="margin-bottom:20px">
+        <div class="icard-ttl">&#128203; Lightspeed</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-top:6px">Lightspeed is the source of truth for all product content. Any changes made here sync automatically into BigCommerce. Always start here when creating or updating products.</p>
+      </div>
+
       <div class="pm-overwrite-warn" style="margin-bottom:24px">
         <div class="pm-overwrite-icon">&#8644;&#65039;</div>
         <div>
-          <div class="pm-overwrite-title">Lightspeed syncs one way into BigCommerce - not back</div>
-          <div class="pm-overwrite-body">Any product data managed in Lightspeed (name, description, images, price) will overwrite BigCommerce when a sync runs. <strong>Always make content changes in Lightspeed first</strong>, then publish to BigCommerce. Changes made directly in BigCommerce will be lost on the next sync.</div>
+          <div class="pm-overwrite-title">Lightspeed syncs one way into BigCommerce — not back</div>
+          <div class="pm-overwrite-body">Product names, descriptions, images and prices set here will overwrite BigCommerce on each sync. Changes made directly in BigCommerce to these fields will be lost. <strong>Always make product content changes here first.</strong></div>
         </div>
       </div>
 
-      <!-- SECTION 1: LIGHTSPEED -->
-      <div class="icard" style="margin-bottom:8px">
-        <div class="icard-ttl">&#128203; 1. Managing products in Lightspeed</div>
+      <!-- What to manage in Lightspeed -->
+      <div class="icard" style="margin-bottom:8px"><div class="icard-ttl">&#9989; What to manage in Lightspeed</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+        <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Product name</div><div class="pm-fd">Shown on storefront and search results. Keep consistent across variants.</div></div>
+        <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Description</div><div class="pm-fd">Rich text product description. Syncs to BC on the next update.</div></div>
+        <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Images</div><div class="pm-fd">Upload product images here — they sync through to BC automatically.</div></div>
+        <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Price &amp; sale price</div><div class="pm-fd">Retail and sale pricing. Numbers only, no $ symbol.</div></div>
+        <div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>SKU / barcode</div><div class="pm-fd">Internal product codes. Don&rsquo;t change SKU without checking inventory impact.</div></div>
+        <div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Brand &amp; tags</div><div class="pm-fd">Used for filtering in Back Office and synced to BC.</div></div>
       </div>
 
-      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:8px">
-        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Once a product has been created in Lightspeed, all ongoing edits to product content must happen here. This is the source of truth - anything you change here will flow through to BigCommerce on the next sync.</p>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
-          <div style="background:var(--off);border-radius:9px;padding:13px 15px;border:1px solid var(--border)">
-            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px">&#9989; Edit in Lightspeed</div>
-            <div style="font-size:12px;color:var(--muted);line-height:1.7">Product name<br>Description<br>Images<br>Price &amp; sale price<br>SKU / barcode<br>Categories &amp; tags<br>Brand</div>
-          </div>
-          <div style="background:#fef2f2;border-radius:9px;padding:13px 15px;border:1px solid #fecaca">
-            <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:6px">&#10060; Do not edit in BigCommerce</div>
-            <div style="font-size:12px;color:#7f1d1d;line-height:1.7">These will be overwritten by Lightspeed on the next stock sync or product update.</div>
-          </div>
-        </div>
-
-        <div class="gd-band gd-band-b" style="margin-bottom:0">
-          <span>&#128161;</span>
-          <div>Images and descriptions added directly in BigCommerce will be lost the next time a sync runs - even if no stock changes have been made. Always start in Lightspeed.</div>
-        </div>
-      </div>
-
-      <!-- SECTION 2: PUBLISHING LIGHTSPEED → BIGCOMMERCE -->
-      <div class="icard" style="margin-bottom:8px;margin-top:20px">
-        <div class="icard-ttl">&#128257; 2. Publishing products from Lightspeed to BigCommerce</div>
-      </div>
-
-      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:8px">
-        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Once a product is ready in Lightspeed, follow these steps to make it live on the Port Store website.</p>
-
-        <div class="csp-steps">
+      <!-- Publishing process -->
+      <div class="icard" style="margin-bottom:8px"><div class="icard-ttl">&#128257; Publishing products from Lightspeed to BigCommerce</div></div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;margin-bottom:20px;overflow:hidden">
+        <div class="csp-steps" style="padding:0 18px">
           <div class="csp-step">
             <div class="csp-num">1</div>
             <div class="csp-body">
@@ -1324,79 +1526,40 @@ body.edit-mode [contenteditable]:focus {
           <div class="csp-step">
             <div class="csp-num">2</div>
             <div class="csp-body">
-              <div class="csp-stitle">Sync triggers automatically or manually</div>
-              <div class="csp-sdesc">Lightspeed syncs to BigCommerce automatically when stock is updated or on a scheduled interval. To force a sync, adjust the inventory quantity by 0 (set to same number) to trigger the update.</div>
+              <div class="csp-stitle">Trigger a sync</div>
+              <div class="csp-sdesc">Lightspeed syncs to BigCommerce automatically when stock is updated. To force a manual sync, adjust the inventory quantity to the same number (e.g. set 5 &rarr; 5) to trigger an update without changing stock.</div>
             </div>
           </div>
           <div class="csp-step">
             <div class="csp-num">3</div>
             <div class="csp-body">
               <div class="csp-stitle">Check the product in BigCommerce</div>
-              <div class="csp-sdesc">Find the product in BC Admin and confirm name, description, price and images have come through correctly. See the BigCommerce section below for how to navigate to the product.</div>
+              <div class="csp-sdesc">Open BC Admin &rarr; Products and confirm the name, description, price and images have come through correctly.</div>
             </div>
           </div>
           <div class="csp-step">
             <div class="csp-num">4</div>
             <div class="csp-body">
-              <div class="csp-stitle">Set storefront visibility and publish to channels</div>
-              <div class="csp-sdesc">New products may not be visible by default. See the visibility steps below.</div>
+              <div class="csp-stitle">Set visibility and channels in BigCommerce</div>
+              <div class="csp-sdesc">New products may not be visible by default. See the <strong>BigCommerce</strong> section for the visibility and channel steps.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SECTION 3: BIGCOMMERCE -->
-      <div class="icard" style="margin-bottom:8px;margin-top:20px">
-        <div class="icard-ttl">&#127760; 3. Managing products in BigCommerce</div>
-      </div>
-
-      <div class="gd-band gd-band-a" style="margin-bottom:12px">
-        <span>&#9888;&#65039;</span>
-        <div><strong>Only use BigCommerce for things Lightspeed doesn&rsquo;t control</strong> - primarily visibility settings, channel publishing, and categories not managed by Lightspeed. Don&rsquo;t edit names, descriptions or images here.</div>
-      </div>
-
-      <div class="icard" style="margin-bottom:8px"><div class="icard-ttl">&#128205; How to get to products</div>
-        <div class="pm-screen"><span class="pm-hl">BC Admin</span> &rarr; Products &rarr; View</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:6px">Use the search bar to find by name or SKU. Click the product name to open the editor.</div>
-      </div>
-
-      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;margin-bottom:8px;overflow:hidden">
-        <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody"><div class="pm-stitle">Find the product</div><div class="pm-sdesc">Go to Products &rarr; View. Use the search bar to find by name or SKU. Click the product name to open the editor.</div></div></div>
-        <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody"><div class="pm-stitle">Edit categories (if needed)</div><div class="pm-sdesc">In the product editor, go to the <strong>Categories</strong> section. Tick which collection pages the product should appear on. Multiple categories can be selected.</div><div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Categories</span></div></div></div>
-        <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody"><div class="pm-stitle">Make the product visible on the storefront</div>
-          <div class="pm-sdesc" style="margin-bottom:12px">New products from Lightspeed may not be visible to customers. Both settings below must be correct.</div>
-          <div class="pm-vis-grid">
-            <div class="pm-vis-card">
-              <div class="pm-vis-card-title">&#128065;&#65039; Step 1 - Enable storefront visibility</div>
-              <div class="pm-vis-card-body">In the product editor, scroll to <strong>Storefront</strong>. Tick <strong>Visible on storefront</strong>. If unticked, customers cannot see the product regardless of channel settings.</div>
-              <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Storefront</span> &rarr; tick <span class="pm-hl">Visible on storefront</span></div>
-            </div>
-            <div class="pm-vis-card">
-              <div class="pm-vis-card-title">&#128279; Step 2 - Publish to all channels</div>
-              <div class="pm-vis-card-body">In the product editor, find the <strong>Channels</strong> section. Make sure the product is enabled on all relevant storefronts - typically the Port Store channel.</div>
-              <div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Channels</span> &rarr; tick all relevant storefronts</div>
-            </div>
-          </div>
-          <div class="pm-tip" style="margin-top:10px">&#128161; A product can be <strong>Enabled</strong> in status but still invisible if storefront visibility is off or it isn&rsquo;t published to a channel. Both must be set correctly.</div>
-          <div class="pm-warn">&#9888;&#65039; If a Lightspeed sync runs after you make visibility changes, check these settings haven&rsquo;t been reset.</div>
-        </div></div>
-        <div class="pm-step"><div class="pm-snum">4</div><div class="pm-sbody"><div class="pm-stitle">Save your changes</div><div class="pm-sdesc">Scroll to the bottom and click <strong>Save</strong>. Changes go live immediately - no separate publish step needed.</div></div></div>
-      </div>
-
-      <!-- QUICK REF -->
-      <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128203; Quick Reference - Edit in Lightspeed vs BigCommerce</div><table class="ref-table"><thead><tr><th>What you want to change</th><th>Where to do it</th><th>Notes</th></tr></thead><tbody>
-        <tr><td><strong>Product name</strong></td><td>&#128203; Lightspeed</td><td>Will sync to BC on next update</td></tr>
-        <tr><td><strong>Description</strong></td><td>&#128203; Lightspeed</td><td>BC description will be overwritten on sync</td></tr>
-        <tr><td><strong>Images</strong></td><td>&#128203; Lightspeed</td><td>Upload images in Lightspeed - they sync to BC</td></tr>
-        <tr><td><strong>Price</strong></td><td>&#128203; Lightspeed</td><td>Retail price syncs automatically</td></tr>
-        <tr><td><strong>Categories</strong></td><td>&#127760; BigCommerce</td><td>Which collection pages the product appears on</td></tr>
-        <tr><td><strong>Storefront visibility</strong></td><td>&#127760; BigCommerce</td><td>Must be ticked for the product to appear on site</td></tr>
-        <tr><td><strong>Channel publishing</strong></td><td>&#127760; BigCommerce</td><td>Must be published to the correct channel</td></tr>
-        <tr><td><strong>Inventory</strong></td><td>&#128203; Lightspeed</td><td>Stock level managed in Lightspeed and synced</td></tr>
+      <div class="icard"><div class="icard-ttl">&#128203; Quick Reference — what to manage in Lightspeed</div><table class="ref-table"><thead><tr><th>What</th><th>Notes</th></tr></thead><tbody>
+        <tr><td><strong>Product name</strong></td><td>Must be identical across all variant rows</td></tr>
+        <tr><td><strong>Description</strong></td><td>Syncs to BC — don&rsquo;t edit in BC</td></tr>
+        <tr><td><strong>Images</strong></td><td>Upload here, sync to BC — don&rsquo;t upload directly in BC</td></tr>
+        <tr><td><strong>Price &amp; sale price</strong></td><td>Numbers only, no $ symbol</td></tr>
+        <tr><td><strong>Stock levels</strong></td><td>Managed here, synced to BC</td></tr>
+        <tr><td><strong>SKU / barcode</strong></td><td>Don&rsquo;t change SKU without checking inventory impact</td></tr>
+        <tr><td><strong>Categories (Lightspeed)</strong></td><td>Used for Back Office filtering — separate from BC category pages</td></tr>
       </tbody></table></div>
 
     </div>
   </div>
+
 
   <!-- GHOST IMAGERY (Website Operations subview) -->
   <div class="subview" id="sv-ghost">
@@ -1525,6 +1688,10 @@ body.edit-mode [contenteditable]:focus {
         <span class="gen-picker-icon">&#127991;</span>
         <span class="gen-picker-name">Popular Categories</span>
       </button>
+      <button class="gen-picker-tab" id="gpick-catbanner" onclick="switchModule('catbanner',this)">
+        <span class="gen-picker-icon">&#127991;&#65039;</span>
+        <span class="gen-picker-name">Category Header</span>
+      </button>
     </div>
   </div>
 
@@ -1556,7 +1723,7 @@ body.edit-mode [contenteditable]:focus {
                   <button class="img-upload-toggle" onclick="toggleImgGuide(this)" type="button">
                     <span class="img-upload-icon" style="font-size:16px">&#128190;</span>
                     <span style="font-size:13px;font-weight:700;color:#1e40af;flex:1;text-align:left">How to get your image URL from BigCommerce</span>
-                    <span class="img-upload-arrow">&#8964;</span>
+                    <span class="img-upload-arrow"></span>
                   </button>
                   <div class="img-upload-body" style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:50%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:50%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div>
         <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Where does the banner link to? <span class="req">*</span></label><input type="url" class="fc" id="b-link" oninput="genBanner()" value="https://portstore.com.au/aflw/"><span class="fhint">The page customers land on when they click the banner</span></div></div>
@@ -1588,7 +1755,7 @@ body.edit-mode [contenteditable]:focus {
                   <button class="img-upload-toggle" onclick="toggleImgGuide(this)" type="button">
                     <span class="img-upload-icon" style="font-size:16px">&#128190;</span>
                     <span style="font-size:13px;font-weight:700;color:#1e40af;flex:1;text-align:left">How to get your image URL from BigCommerce</span>
-                    <span class="img-upload-arrow">&#8964;</span>
+                    <span class="img-upload-arrow"></span>
                   </button>
                   <div class="img-upload-body" style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:50%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:50%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div>
     </div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div>
@@ -1761,7 +1928,7 @@ body.edit-mode [contenteditable]:focus {
                   <button class="img-upload-toggle" onclick="toggleImgGuide(this)" type="button">
                     <span class="img-upload-icon" style="font-size:16px">&#128190;</span>
                     <span style="font-size:13px;font-weight:700;color:#1e40af;flex:1;text-align:left">How to get your image URL from BigCommerce</span>
-                    <span class="img-upload-arrow">&#8964;</span>
+                    <span class="img-upload-arrow"></span>
                   </button>
                   <div class="img-upload-body" style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:50%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:50%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div>
     </div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div></div>
@@ -1839,12 +2006,82 @@ body.edit-mode [contenteditable]:focus {
 
   </div>
   </div>
+
+
+  <div class="gen-module" id="gmod-catbanner">
+  <div style="padding:24px 28px">
+    <div class="mod-intro">
+      <div class="mod-intro-icon">&#127991;&#65039;</div>
+      <div>
+        <div class="mod-intro-title">Category Page Header</div>
+        <div class="mod-intro-desc">The full-width banner that appears at the top of every category page. The background image stays the same — only the heading text changes per category.</div>
+        <div class="mod-intro-location">&#128205; Top of each category page, above the product listing</div>
+      </div>
+    </div>
+    <div class="mod-reassure">
+      <span style="font-size:16px">&#9989;</span>
+      <div><strong>Nothing changes on the live site until you paste the code into BigCommerce and publish.</strong></div>
+    </div>
+
+    <div class="mod-step-block" id="catbanner-preview-block">
+      <div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you type</div></div></div>
+      <div class="mod-step-body" style="padding:12px">
+        <div id="catbanner-preview-frame" style="width:100%;border-radius:6px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:56px;display:flex;align-items:center;justify-content:center">
+          <span id="catbanner-preview-placeholder" style="font-size:12px;color:#9ca3af">Click &#9889; Generate to preview</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mod-step-block">
+      <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Enter the category name</div><div class="mod-step-sub">This is the only thing that changes between category pages</div></div></div>
+      <div class="mod-step-body">
+        <div class="frow full">
+          <div class="fg">
+            <label class="fl">Category heading text <span class="req">*</span></label>
+            <input type="text" class="fc" id="cb-text" value="ALL AFL" oninput="genCatBanner()" placeholder="e.g. ALL AFL, HEADWEAR, APPAREL" style="font-size:18px;font-weight:700;letter-spacing:.05em">
+            <span class="fhint">Displayed in large bold white text over the banner. Use uppercase to match the live site style.</span>
+          </div>
+        </div>
+        <div style="margin-top:14px;background:var(--off);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--muted)">
+          &#128161; The background image (<code>pattern4.png</code>) is fixed — it&rsquo;s the same across all category pages. Only the heading text above needs to change.
+        </div>
+      </div>
+    </div>
+
+    <div class="mod-step-block">
+      <div class="mod-step-header"><div class="mod-step-num">2</div><div><div class="mod-step-title">Generate &amp; copy the code</div><div class="mod-step-sub">Generate first, then paste into the category page HTML widget in BigCommerce</div></div></div>
+      <div class="mod-step-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+          <button class="gen-btn" id="cb-genbtn" onclick="genCatBanner()">&#9889; Generate Header Code</button>
+          <button class="copy-big-btn" id="cb-cpbtn" onclick="copyCode('cb-out','cb-cpbtn')">&#128203; Copy Code</button>
+        </div>
+        <div class="code-output-block" style="margin-bottom:0"><div class="code-output-header"><span class="code-output-label">&#128196; Generated code</span><button class="code-toggle" onclick="toggleCode('cb-out-body',this)">Show code</button></div><div id="cb-out-body" class="code-collapsed"><div class="out-code" id="cb-out"></div></div></div>
+      </div>
+    </div>
+
+    <div class="mod-howto-section">
+      <div class="mod-howto-header">
+        <div class="mod-intro-icon" style="font-size:20px">&#128214;</div>
+        <div>
+          <div class="mod-intro-title" style="font-size:14px">How to publish this to BigCommerce</div>
+          <div class="mod-intro-desc" style="font-size:12px">Each category page has its own HTML widget for the header — paste your generated code there</div>
+        </div>
+      </div>
+      <div class="mod-howto-body"><div style="padding:4px 20px 4px"><div style="display:flex;flex-direction:column">
+        <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Navigate to the category page in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Products &rarr; Categories &rarr; select the category &rarr; <span class="hl">Edit</span></div></div></div>
+        <div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder and find the category header widget</div><div class="ht-sdesc">Navigate to the category page on the storefront, open Page Builder via the paintbrush icon, and click the header HTML widget.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">View on Storefront then click paintbrush</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div>
+        <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Replace the old code with the new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste &rarr; click <span class="hl">Apply</span></div></div></div>
+        <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div>
+      </div></div></div>
+    </div>
+
+  </div>
+  </div>
 </div>
 </div>
 </div>
 
 </div>
-
 
 
 <!-- ════════════════════════════════════════
@@ -2384,6 +2621,42 @@ function genAnnBar(){
 }
 
 // ── PRODUCT GRID ─────────────────────────────
+// ── CATEGORY PAGE HEADER ─────────────────────────────────────────────
+function genCatBanner(){
+  var text = (document.getElementById('cb-text') && document.getElementById('cb-text').value.trim()) || 'ALL AFL';
+  var imgUrl = 'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/pattern4.png?t=1760936075';
+
+  var code = '<style>\n'
+    +'  .custom-category-banner { position:relative; width:100%; max-width:2100px; height:200px; margin:0 auto; overflow:hidden; }\n'
+    +'  .custom-category-banner img.desktop-banner { width:100%; height:250px; object-fit:cover; display:block; }\n'
+    +'  .custom-category-banner img.tablet-banner, .custom-category-banner img.mobile-banner { display:none; }\n'
+    +'  .custom-category-banner .overlay-text { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#fff; text-align:center; margin:0; padding:0 20px; font-size:80px; font-weight:bold; text-shadow:2px 2px 5px rgba(0,0,0,0.6); }\n'
+    +'  @media only screen and (min-width:769px) and (max-width:1024px){\n'
+    +'    .custom-category-banner { height:200px; max-width:1280px; }\n'
+    +'    .custom-category-banner img.desktop-banner, .custom-category-banner img.mobile-banner { display:none; }\n'
+    +'    .custom-category-banner img.tablet-banner { display:block; width:100%; height:250px; object-fit:cover; }\n'
+    +'    .custom-category-banner .overlay-text { font-size:36px; }\n'
+    +'  }\n'
+    +'  @media only screen and (max-width:768px){\n'
+    +'    .custom-category-banner { height:100px; max-width:1080px; }\n'
+    +'    .custom-category-banner img.desktop-banner, .custom-category-banner img.tablet-banner { display:none; }\n'
+    +'    .custom-category-banner img.mobile-banner { display:block; width:100%; height:100px; object-fit:cover; }\n'
+    +'    .custom-category-banner .overlay-text { font-size:40px; padding:0; }\n'
+    +'  }\n'
+    +'</style>\n'
+    +'<div class="custom-category-banner">\n'
+    +'  <img src="'+imgUrl+'" alt="Desktop Banner" class="desktop-banner" />\n'
+    +'  <img src="'+imgUrl+'" alt="Tablet Banner" class="tablet-banner" />\n'
+    +'  <img src="'+imgUrl+'" alt="Mobile Banner" class="mobile-banner" />\n'
+    +'  <h1 class="overlay-text">'+esc(text)+'</h1>\n'
+    +'</div>';
+
+  document.getElementById('cb-out').textContent = code;
+  renderPreview('catbanner', code);
+  flashGenBtn('cb-genbtn');
+  showToast('&#9989; Category header code generated!');
+}
+
 // ── POPULAR CATEGORIES ───────────────────────────────────────────────
 var pcCats = [
   {label:'APPAREL',    url:'/apparel/',               img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/apparel-1-.png?t=1770961027',    fontSize:'14px'},
@@ -2407,7 +2680,7 @@ function renderCats(){
         +'<div class="pblk-title"><span class="pblk-num">'+(i+1)+'</span>Category '+(i+1)+namePreview+'</div>'
         +'<div class="pblk-actions">'
           +(pcCats.length>1?'<button class="blk-del" onclick="event.stopPropagation();delCat('+i+')">&times;</button>':'')
-          +'<span class="pblk-toggle open">&#8964;</span>'
+          +'<span class="pblk-toggle open"></span>'
         +'</div>'
       +'</div>'
       +'<div class="pblk-body">'
@@ -2493,7 +2766,7 @@ function renderProds(){
         +'<div class="pblk-title"><span class="pblk-num">'+(i+1)+'</span>Product '+(i+1)+namePreview+'</div>'
         +'<div class="pblk-actions">'
           +(pgProds.length>1?'<button class="blk-del" onclick="event.stopPropagation();delProd('+i+')">&times;</button>':'')
-          +'<span class="pblk-toggle open">&#8964;</span>'
+          +'<span class="pblk-toggle open"></span>'
         +'</div>'
       +'</div>'
       +'<div class="pblk-body">'
@@ -2642,6 +2915,15 @@ function genGrid(){
 
 
 // ── GRID TOGGLE HELPERS ───────────────────────────────────────────────
+function toggleBcSection(id, btn) {
+  var body = document.getElementById(id);
+  if (!body) return;
+  var isOpen = body.classList.contains('bc-open');
+  body.classList.toggle('bc-open', !isOpen);
+  var arrow = btn ? btn.querySelector('.bc-section-arrow') : null;
+  if (arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
 function toggleSaleMode(){
   var cb = document.getElementById('pg-sale-toggle');
   var sw = document.getElementById('pg-sale-switch');
@@ -2815,6 +3097,7 @@ function switchModule(id, btn) {
       else if(id==='annbar') genAnnBar();
       else if(id==='grid') genGrid();
       else if(id==='cats') genCats();
+      else if(id==='catbanner') genCatBanner();
     }catch(e){}
   }, 100);
 }

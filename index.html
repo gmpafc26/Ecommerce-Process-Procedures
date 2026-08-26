@@ -1803,6 +1803,7 @@ body.edit-mode [contenteditable]:focus {
 
           <!-- Status + preview -->
           <div id="awds-status" style="display:none;margin-bottom:12px"></div>
+          <div id="awds-mapping-wrap" style="display:none;margin-bottom:12px"></div>
           <div id="awds-preview-wrap" style="display:none">
             <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px">Preview <span id="awds-row-count"></span></div>
             <div style="overflow-x:auto;border-radius:8px;border:1px solid var(--border)">
@@ -3263,46 +3264,114 @@ function awdsParseCSV(text) {
   var lines = text.split(/\r?\n/).filter(function(l){ return l.trim(); });
   if (lines.length < 2) { awdsShowStatus('&#10060; File appears to be empty.', 'err'); return; }
 
-  // Parse header
-  var headers = awdsParseRow(lines[0]);
-  var dataRows = lines.slice(1).map(function(l){ return awdsParseRow(l); });
+  awdsFileHeaders = awdsParseRow(lines[0]).map(function(h){ return h.trim(); });
+  awdsFileRows = lines.slice(1).map(function(l){ return awdsParseRow(l); });
 
-  // Build index of LS column → position
+  // Build auto-match index
   var lsIdx = {};
-  headers.forEach(function(h, i){ lsIdx[h.trim()] = i; });
+  awdsFileHeaders.forEach(function(h, i){ lsIdx[h] = i; });
 
-  // Check required columns present
-  var missing = [];
-  AWDS_MAP.forEach(function(m){
-    if (m.ls && lsIdx[m.ls] === undefined) missing.push(m.ls);
-  });
-  if (missing.length > 0) {
-    awdsShowStatus('&#9888;&#65039; Columns not found in your file: <strong>' + missing.join(', ') + '</strong>.<br>Check your CSV was exported from the Port Store Lightspeed template.', 'warn');
+  // Check which mapped columns are missing
+  var anyMissing = AWDS_MAP.some(function(m){ return m.ls && lsIdx[m.ls] === undefined; });
+
+  if (anyMissing) {
+    awdsShowMappingUI(lsIdx);
+  } else {
+    awdsApplyMapping(lsIdx);
   }
+}
 
-  // Convert rows
-  awdsRows = dataRows.map(function(row){
+var awdsFileHeaders = [];
+var awdsFileRows = [];
+var awdsUserMapping = {}; // awds column → file header override
+
+function awdsShowMappingUI(lsIdx) {
+  var wrap = document.getElementById('awds-mapping-wrap');
+  if (!wrap) return;
+
+  var rows = AWDS_MAP.filter(function(m){ return m.ls !== null; }).map(function(m){
+    var found = lsIdx[m.ls] !== undefined;
+    var optionsHtml = '<option value="">— skip this column —</option>'
+      + awdsFileHeaders.map(function(h){
+          var sel = (h === m.ls || awdsUserMapping[m.awds] === h) ? ' selected' : '';
+          if (!sel && found && h === m.ls) sel = ' selected';
+          return '<option value="' + esc(h) + '"' + sel + '>' + esc(h) + '</option>';
+        }).join('');
+
+    var status = found
+      ? '<span style="color:#16a34a;font-weight:700">&#10003; Auto-matched</span>'
+      : '<span style="color:#d97706;font-weight:700">&#9888; Not found</span>';
+
+    return '<tr style="border-bottom:1px solid var(--border)">'
+      + '<td style="padding:8px 10px;font-weight:700;white-space:nowrap">' + esc(m.awds) + '</td>'
+      + '<td style="padding:8px 10px;font-size:11px;color:var(--muted)">' + esc(m.note) + '</td>'
+      + '<td style="padding:8px 4px">' + status + '</td>'
+      + '<td style="padding:8px 10px"><select class="fc" style="font-size:12px;padding:4px 6px" data-awds="' + esc(m.awds) + '" onchange="awdsUserMapping[this.dataset.awds]=this.value">'
+      + optionsHtml + '</select></td>'
+      + '</tr>';
+  }).join('');
+
+  wrap.innerHTML = '<div style="margin-bottom:12px">'
+    + '<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">&#128279; Column Mapping</div>'
+    + '<div style="font-size:12px;color:var(--muted);margin-bottom:12px">Some columns weren\'t automatically matched. Review the mapping below and choose the correct column from your file for any unmatched rows, then click Generate.</div>'
+    + '<div style="overflow-x:auto;border-radius:8px;border:1px solid var(--border)">'
+    + '<table style="width:100%;border-collapse:collapse;font-size:12px">'
+    + '<thead><tr style="background:var(--navy);color:#fff">'
+    + '<th style="padding:8px 10px;text-align:left">AWDS Column</th>'
+    + '<th style="padding:8px 10px;text-align:left">Description</th>'
+    + '<th style="padding:8px 10px;text-align:left">Status</th>'
+    + '<th style="padding:8px 10px;text-align:left">Map to column in your file</th>'
+    + '</tr></thead><tbody>' + rows + '</tbody></table></div>'
+    + '<button onclick="awdsConfirmMapping()" style="margin-top:12px;padding:10px 20px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">&#9889; Generate with this mapping</button>'
+    + '</div>';
+  wrap.style.display = 'block';
+  document.getElementById('awds-preview-wrap').style.display = 'none';
+}
+
+function awdsConfirmMapping() {
+  // Build lsIdx from user mapping overrides + auto-matches
+  var lsIdx = {};
+  awdsFileHeaders.forEach(function(h, i){ lsIdx[h] = i; });
+  // Apply user overrides to AWDS_MAP temporarily
+  var resolvedIdx = {};
+  AWDS_MAP.forEach(function(m){
+    if (m.ls === null) return;
+    var col = awdsUserMapping[m.awds] || m.ls;
+    if (col && lsIdx[col] !== undefined) resolvedIdx[m.awds] = lsIdx[col];
+  });
+  awdsApplyMappingResolved(resolvedIdx);
+}
+
+function awdsApplyMapping(lsIdx) {
+  // Standard auto-match path
+  var resolvedIdx = {};
+  AWDS_MAP.forEach(function(m){
+    if (m.ls !== null && lsIdx[m.ls] !== undefined) resolvedIdx[m.awds] = lsIdx[m.ls];
+  });
+  awdsApplyMappingResolved(resolvedIdx);
+}
+
+function awdsApplyMappingResolved(resolvedIdx) {
+  awdsRows = awdsFileRows.map(function(row){
     var out = {};
     var warnings = [];
     AWDS_MAP.forEach(function(m){
       if (m.fixed !== null) {
         out[m.awds] = m.fixed;
-      } else if (m.ls && lsIdx[m.ls] !== undefined) {
-        out[m.awds] = (row[lsIdx[m.ls]] || '').trim();
+      } else if (resolvedIdx[m.awds] !== undefined) {
+        out[m.awds] = (row[resolvedIdx[m.awds]] || '').trim();
       } else {
         out[m.awds] = '';
       }
-      // Flag issues
-      if (m.awds === 'ItemBarcode' && out[m.awds] && isNaN(out[m.awds].replace(/\s/g,''))) {
-        warnings.push('Barcode may be invalid');
-      }
       if (m.awds === 'ProductCode' && !out[m.awds]) warnings.push('Missing SKU');
       if (m.awds === 'Description' && !out[m.awds]) warnings.push('Missing description');
+      if (m.awds === 'ItemBarcode' && !out[m.awds]) warnings.push('Missing barcode');
     });
     out._warnings = warnings;
     return out;
-  }).filter(function(r){ return r.ProductCode || r.Description; }); // skip blank rows
+  }).filter(function(r){ return r.ProductCode || r.Description; });
 
+  document.getElementById('awds-mapping-wrap').style.display = 'none';
   awdsShowPreview();
 }
 
@@ -3365,8 +3434,13 @@ function awdsDownload() {
 
 function awdsReset() {
   awdsRows = [];
+  awdsFileHeaders = [];
+  awdsFileRows = [];
+  awdsUserMapping = {};
   document.getElementById('awds-preview-wrap').style.display = 'none';
   document.getElementById('awds-status').style.display = 'none';
+  var mw = document.getElementById('awds-mapping-wrap');
+  if (mw) { mw.style.display = 'none'; mw.innerHTML = ''; }
   document.getElementById('awds-csv-input').value = '';
 }
 

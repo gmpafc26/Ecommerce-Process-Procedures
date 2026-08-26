@@ -1321,7 +1321,7 @@ body.edit-mode [contenteditable]:focus {
               <div class="wide-title">BigCommerce</div>
               <div class="wide-desc">Managing products, visibility, categories and orders in the BC storefront admin.</div>
             </div>
-            <div class="wide-arrow">&#8594;</div>
+            <div class="wide-arrow"></div>
           </div>
         </div>
 
@@ -1332,7 +1332,7 @@ body.edit-mode [contenteditable]:focus {
               <div class="wide-title">Lightspeed</div>
               <div class="wide-desc">Creating and managing products, stock and pricing in the Lightspeed POS system.</div>
             </div>
-            <div class="wide-arrow">&#8594;</div>
+            <div class="wide-arrow"></div>
           </div>
         </div>
 
@@ -1431,8 +1431,74 @@ body.edit-mode [contenteditable]:focus {
         </button>
         <div class="bc-section-body" id="bc-categories">
 
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Categories are what BigCommerce uses in the navigation to group products. The dropdowns and main links in the navigation bar are all categories. Here&rsquo;s how to create and manage them.</p>
+
+          <!-- Create / edit categories -->
+          <div class="icard" style="margin-bottom:8px"><div class="icard-ttl">&#128193; Creating &amp; editing categories</div></div>
           <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;margin-bottom:16px;overflow:hidden">
-            <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody"><div class="pm-stitle">Assign a product to a category</div><div class="pm-sdesc">Open the product editor, scroll to the <strong>Categories</strong> section, and tick which collection pages the product should appear on. Multiple categories can be selected. Changes take effect immediately on save.</div><div class="pm-screen"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Categories</span></div><div class="pm-tip" style="margin-top:8px">&#128161; If a product isn&rsquo;t showing on a collection page, check the correct category is ticked here.</div></div></div>
+
+            <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody">
+              <div class="pm-stitle">Navigate to Categories</div>
+              <div class="pm-sdesc">From the BC Admin home page, go to the <strong>Products</strong> dropdown in the left sidebar and select <strong>Categories</strong>.</div>
+              <div class="pm-screen"><span class="pm-hl">BC Admin</span> &rarr; Products &rarr; Categories</div>
+              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/adding-new-category.jpg?t=1787720325" style="width:50%;display:block;border-radius:6px"><div class="pm-img-cap">The Categories page — existing categories listed on the left</div></div>
+            </div></div>
+
+            <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody">
+              <div class="pm-stitle">Create a new category or sub-category</div>
+              <div class="pm-sdesc">To create a top-level category, click <strong>Create a Category</strong>. To create a sub-category under an existing one, click the <strong>three dots</strong> to the right of the parent category and select <strong>Create Sub Category</strong>.</div>
+              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-143041.png?t=1787720472" style="width:50%;display:block;border-radius:6px"><div class="pm-img-cap">The new category panel — only the name is required</div></div>
+              <div class="pm-tip" style="margin-top:8px">&#128161; You only need to enter the <strong>category name</strong> and click <strong>Save &amp; Edit</strong>. This takes you to another page — just click <strong>Save</strong> again and the category is created.</div>
+            </div></div>
+
+            <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody">
+              <div class="pm-stitle">Assign products to the new category</div>
+              <div class="pm-sdesc">There are two ways to add products to a category — from the individual product page, or by selecting multiple products at once from the product list.</div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0">
+                <div class="pm-vis-card">
+                  <div class="pm-vis-card-title">&#128196; Single product</div>
+                  <div class="pm-vis-card-body">Open the product editor, scroll to the <strong>Categories</strong> section, tick the category and save. Multiple categories can be selected.</div>
+                  <div class="pm-screen" style="margin-top:8px"><span class="pm-hl">Product editor</span> &rarr; <span class="pm-hl">Categories</span> &rarr; tick &rarr; <span class="pm-hl">Save</span></div>
+                </div>
+                <div class="pm-vis-card">
+                  <div class="pm-vis-card-title">&#9989; Multiple products at once</div>
+                  <div class="pm-vis-card-body">Select products using the checkboxes on the right of the product list. Click the <strong>three dots</strong> next to the Actions button and choose <strong>Add to Categories</strong>. Categories are listed under the first sales channel — <strong>Port Store</strong>.</div>
+                  <div class="pm-screen" style="margin-top:8px"><span class="pm-hl">Products &rarr; View</span> &rarr; tick products &rarr; <span class="pm-hl">&hellip;</span> &rarr; <span class="pm-hl">Add to Categories</span></div>
+                </div>
+              </div>
+
+              <div class="pm-img" style="margin-top:2px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-144043.png?t=1787721062" style="width:50%;display:block;border-radius:6px"><div class="pm-img-cap">Selecting multiple products and using the three dots menu to add to categories</div></div>
+              <div class="pm-tip" style="margin-top:8px">&#128161; If a product isn&rsquo;t showing on a collection page, check the correct category is ticked and the product is saved.</div>
+            </div></div>
+
+          </div>
+
+          <!-- Customer group visibility -->
+          <div class="icard" style="margin-bottom:8px"><div class="icard-ttl">&#128100; Making new categories visible to all customers</div></div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;margin-bottom:8px;overflow:hidden">
+
+            <div class="pm-warn" style="margin:14px 16px 0;border-radius:8px">&#9888;&#65039; Because Port Store has member-exclusive products, new categories are not automatically visible to all customers. You must update customer group access for each new category you create.</div>
+
+            <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody">
+              <div class="pm-stitle">Navigate to Customer Groups</div>
+              <div class="pm-sdesc">Go to <strong>Customers &rarr; Customer Groups</strong> in the BC Admin sidebar.</div>
+              <div class="pm-screen"><span class="pm-hl">BC Admin</span> &rarr; Customers &rarr; Customer Groups</div>
+              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/updating-customer-groups-for-categories.jpg?t=1787720265" style="width:50%;display:block;border-radius:6px"><div class="pm-img-cap">Customer Groups — update <strong>Normal</strong> and <strong>Not Current Member</strong> one at a time</div></div>
+            </div></div>
+
+            <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody">
+              <div class="pm-stitle">Edit the &ldquo;Normal&rdquo; customer group</div>
+              <div class="pm-sdesc">Click on the <strong>Normal</strong> customer group to open it. In the <strong>Group Access</strong> section, click the <strong>search icon</strong>. This pulls up a list of all categories — find and select the new category to add it to the group&rsquo;s access.</div>
+              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/adding-category-to-customer-group.png?t=1787720265" style="width:50%;display:block;border-radius:6px"><div class="pm-img-cap">Search for the new category in Group Access and select it</div></div>
+              <div class="pm-tip" style="margin-top:8px">&#128161; Save the customer group once you&rsquo;ve added the category.</div>
+            </div></div>
+
+            <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody">
+              <div class="pm-stitle">Repeat for &ldquo;Not Current Member&rdquo;</div>
+              <div class="pm-sdesc">Go back to Customer Groups and repeat the same process for the <strong>Not Current Member</strong> group. Both groups need to be updated separately for the category to be visible to all non-member customers.</div>
+            </div></div>
+
           </div>
 
         </div>
@@ -1846,8 +1912,8 @@ body.edit-mode [contenteditable]:focus {
               <div class="pg-toggle-sub">Show a crossed-out original price and a red sale price on each card</div>
             </div>
             <div class="pg-toggle-switch-wrap">
-              <input type="checkbox" id="pg-sale-toggle" style="display:none" onchange="renderProds()">
-              <div class="pg-toggle-switch" id="pg-sale-switch"></div>
+              <input type="checkbox" id="pg-sale-toggle" style="display:none" onchange="renderProds()" checked>
+              <div class="pg-toggle-switch on" id="pg-sale-switch"></div>
             </div>
           </label>
           <!-- Leading tile toggle -->
@@ -2064,14 +2130,61 @@ body.edit-mode [contenteditable]:focus {
         <div class="mod-intro-icon" style="font-size:20px">&#128214;</div>
         <div>
           <div class="mod-intro-title" style="font-size:14px">How to publish this to BigCommerce</div>
-          <div class="mod-intro-desc" style="font-size:12px">Each category page has its own HTML widget for the header — paste your generated code there</div>
+          <div class="mod-intro-desc" style="font-size:12px">The category must be active and visible before you can add a header &mdash; hidden categories won&rsquo;t appear in Page Builder</div>
         </div>
       </div>
       <div class="mod-howto-body"><div style="padding:4px 20px 4px"><div style="display:flex;flex-direction:column">
-        <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Navigate to the category page in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Products &rarr; Categories &rarr; select the category &rarr; <span class="hl">Edit</span></div></div></div>
-        <div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder and find the category header widget</div><div class="ht-sdesc">Navigate to the category page on the storefront, open Page Builder via the paintbrush icon, and click the header HTML widget.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">View on Storefront then click paintbrush</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div>
-        <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Replace the old code with the new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste &rarr; click <span class="hl">Apply</span></div></div></div>
-        <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div>
+
+        <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody">
+          <div class="ht-stitle">Generate and copy your category header code</div>
+          <div class="ht-sdesc">Use the generator above to enter the category name, click Generate, then Copy Code.</div>
+          <div class="ht-warn">&#9888;&#65039; The category must be <strong>active and visible</strong> before continuing. If the category isn&rsquo;t showing on the storefront yet, enable visibility first &mdash; see BigCommerce &rarr; Products &rarr; Visibility.</div>
+        </div></div>
+
+        <div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody">
+          <div class="ht-stitle">Open the category in Page Builder</div>
+          <div class="ht-sdesc">Go to <strong>Products &rarr; Categories</strong>. Find your category, click the <strong>three dots</strong> on the right and select <strong>View in Page Builder</strong>.</div>
+          <div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BC Admin</span> &rarr; Products &rarr; Categories &rarr; &hellip; &rarr; <span class="pm-hl">View in Page Builder</span></div>
+          <div style="margin-top:10px">
+            <div class="sc-step-label">Three dots menu &rarr; View in Page Builder</div>
+            <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-144855.png?t=1787721671" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
+          </div>
+        </div></div>
+
+        <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody">
+          <div class="ht-stitle">Drag a Layout module to the top of the page</div>
+          <div class="ht-sdesc">In Page Builder, find the <strong>Layout</strong> module in the left panel and drag it to the very top of the page &mdash; above the existing content.</div>
+          <div style="margin-top:10px">
+            <div class="sc-step-label">Drag Layout to top of page</div>
+            <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/page-builder-for-category-pages.jpg?t=1787721896" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
+          </div>
+        </div></div>
+
+        <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody">
+          <div class="ht-stitle">Change the layout to 1 column</div>
+          <div class="ht-sdesc">The layout will default to 2 columns. Click it to select it and change to <strong>1 column</strong>.</div>
+          <div style="margin-top:10px">
+            <div class="sc-step-label">Change from 2 columns to 1 column</div>
+            <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-145254.png?t=1787721999" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
+          </div>
+        </div></div>
+
+        <div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody">
+          <div class="ht-stitle">Drag an HTML module inside the layout</div>
+          <div class="ht-sdesc">From the left panel, drag an <strong>HTML</strong> module into the single-column layout you just created.</div>
+          <div style="margin-top:10px">
+            <div class="sc-step-label">Drag HTML module into the layout column</div>
+            <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/html-element.png?t=1787722105" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
+          </div>
+        </div></div>
+
+        <div class="ht-step"><div class="ht-snum">6</div><div class="ht-sbody">
+          <div class="ht-stitle">Paste your code and publish</div>
+          <div class="ht-sdesc">Click the HTML module to open it, paste your copied code, and click <strong>Apply</strong>. Then click <strong>Publish</strong> in the top right to make it live.</div>
+          <div class="pm-screen" style="margin-top:8px">Paste code &rarr; click <span class="pm-hl">Apply</span> &rarr; click <span class="pm-hl">Publish</span></div>
+          <div class="ht-tip" style="margin-top:8px">&#128161; Repeat this process for each new category &mdash; the layout and HTML module only need to be added once per category page.</div>
+        </div></div>
+
       </div></div></div>
     </div>
 
@@ -2630,7 +2743,7 @@ function genCatBanner(){
     +'  .custom-category-banner { position:relative; width:100%; max-width:2100px; height:200px; margin:0 auto; overflow:hidden; }\n'
     +'  .custom-category-banner img.desktop-banner { width:100%; height:250px; object-fit:cover; display:block; }\n'
     +'  .custom-category-banner img.tablet-banner, .custom-category-banner img.mobile-banner { display:none; }\n'
-    +'  .custom-category-banner .overlay-text { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#fff; text-align:center; margin:0; padding:0 20px; font-size:80px; font-weight:bold; text-shadow:2px 2px 5px rgba(0,0,0,0.6); }\n'
+    +'  .custom-category-banner .overlay-text { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#fff; text-align:center; margin:0; padding:0 20px; font-size:80px; font-weight:bold; font-family:\'Pressio\',\'Jost\',sans-serif; text-shadow:2px 2px 5px rgba(0,0,0,0.6); letter-spacing:-0.02em; text-transform:uppercase; }\n'
     +'  @media only screen and (min-width:769px) and (max-width:1024px){\n'
     +'    .custom-category-banner { height:200px; max-width:1280px; }\n'
     +'    .custom-category-banner img.desktop-banner, .custom-category-banner img.mobile-banner { display:none; }\n'
@@ -2721,9 +2834,9 @@ function genCats(){
   var items = valid.map(function(cat, i){
     return '\n    <a class="item-content halo-fadeInUp" data-halo-animate="'+i+'" href="'+esc(cat.url)+'">'
       +'\n      <div class="item-img">'
-      +'\n        <img class="lazyload" src="https://cdn11.bigcommerce.com/s-ucs8oemrab/content/loading/loading.svg"'
+      +'\n        <img src="'+esc(cat.img)+'"'
       +'\n          alt="'+esc(cat.label)+'"'
-      +'\n          data-src="'+esc(cat.img)+'">'
+      +'\n          style="max-width:88px;max-height:83px;object-fit:contain">'
       +'\n      </div>'
       +'\n      <p class="item"><span class="text" style="font-size: '+cat.fontSize+';">'+esc(cat.label)+'</span></p>'
       +'\n    </a>';
@@ -2740,10 +2853,10 @@ function genCats(){
 }
 
 var pgProds=[
-  {name:'PA Macron 2026 First Nations Guernsey - Adult',price:'$135.00 AUD',salePrice:'',discount:'',url:'https://portstore.com.au/pa-macron-2026-first-nations-guernsey-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0155.jpg?t=1778821345'},
-  {name:'PA 2026 First Nations Fleece Hoodie - Adult',price:'$80.00 AUD',salePrice:'',discount:'',url:'https://portstore.com.au/pa-2026-first-nations-fleece-hoodie-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0168.jpg?t=1778821347'},
-  {name:'PA Macron 2026 First Nations Guernsey LS - Adult',price:'$140.00 AUD',salePrice:'',discount:'',url:'https://portstore.com.au/pa-macron-2026-first-nations-guernsey-ls-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0162.jpg?t=1778821348'},
-  {name:'PA Macron 2026 First Nations Run Out Tee - Adult',price:'$80.00 AUD',salePrice:'',discount:'',url:'https://portstore.com.au/pa-macron-2026-first-nations-run-out-tee-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0150.jpg?t=1778821343'}
+  {name:'PA Macron 2026 Fully Charged Jacket',price:'$180',salePrice:'$126',discount:'30% Off',url:'https://portstore.com.au/pa-macron-2026-gather-round-jacket-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/on-field-sale-carousel-fc-jacket.png?t=1786683483'},
+  {name:'PA Macron 2026 AFL Home Guernsey',price:'$135',salePrice:'$81',discount:'40% Off',url:'https://portstore.com.au/pa-macron-2026-afl-home-guernsey-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/onfield-sale-carousel-3.png?t=1786417491'},
+  {name:'PA Macron 2026 First Nations Run Out Tee',price:'$80',salePrice:'$56',discount:'30% Off',url:'https://portstore.com.au/pa-macron-2026-training-singlet-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/on-field-sale-carousel-sdnr-run-out.png?t=1786683496'},
+  {name:'PA Macron AFL Training Shirt',price:'$75',salePrice:'$45',discount:'40% Off',url:'https://portstore.com.au/pa-macron-afl-training-shirt-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/onfield-sale-carousel-1.png?t=1786417457'}
 ];
 function renderProds(){
   var isSale = document.getElementById('pg-sale-toggle') && document.getElementById('pg-sale-toggle').checked;

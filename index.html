@@ -1820,78 +1820,41 @@ body.edit-mode [contenteditable]:focus {
 
           <!-- Manual process panel -->
           <div id="awds-panel-manual" style="display:none">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin:16px 0;flex-wrap:wrap;gap:10px">
-          <div><div style="font-size:16px;font-weight:700">AWDS Bulk Product Import</div><div style="font-size:13px;color:var(--muted)">Warehouse System &middot; Process guide</div></div>
-          <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/AWDS%20Product%20Template.csv?d=w1c8e8290cc324beabcc7717fa0f43b29&csf=1&web=1&e=tydLjF" target="_blank">&#128229; Download Template</a>
-        </div>
-        <div class="gd-flow">
-          <div class="gd-node"><div class="gd-ico gd-t">&#128202;</div><div class="gd-num">Stage 1</div><div class="gd-lbl">Get your<br>data</div></div><div class="gd-arr">&#8250;</div>
-          <div class="gd-node"><div class="gd-ico gd-b">&#128203;</div><div class="gd-num">Stage 2</div><div class="gd-lbl">Prepare<br>the file</div></div><div class="gd-arr">&#8250;</div>
-          <div class="gd-node"><div class="gd-ico gd-n">&#9993;&#65039;</div><div class="gd-num">Stage 3</div><div class="gd-lbl">Send to<br>AWDS</div></div><div class="gd-arr">&#8250;</div>
-          <div class="gd-node"><div class="gd-ico gd-g">&#9989;</div><div class="gd-num">Done</div><div class="gd-lbl">Products<br>in AWDS</div></div>
-        </div>
-        <div class="gd-lbl-sec">Stage 1 &mdash; Get your data</div>
-        <div class="gd-card">
-          <div class="gd-sdesc" style="margin-bottom:14px">Two ways to source product data &mdash; use the original product spreadsheet wherever possible.</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-            <div style="border-radius:11px;border:1.5px solid var(--teal);background:var(--teal-dim);padding:15px">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="font-size:18px">&#128202;</span><div style="font-size:13px;font-weight:700">From the product spreadsheet</div><span style="margin-left:auto;font-size:10px;font-weight:600;background:var(--teal);color:#fff;padding:2px 7px;border-radius:20px">Recommended</span></div>
-              <div style="font-size:13px;color:var(--teal);line-height:1.6;margin-bottom:7px">Use the pre-built range spreadsheet. SKUs, descriptions, categories and barcodes all in one place.</div>
-              <div style="font-size:12px;color:var(--teal)">&#10003; Barcodes already present<br>&#10003; Clean and consistently formatted<br>&#10003; Much faster for large ranges</div>
-            </div>
-            <div style="border-radius:11px;border:1px solid var(--border);background:#fff;padding:15px">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="font-size:18px">&#128187;</span><div style="font-size:13px;font-weight:700">From a Lightspeed export</div></div>
-              <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:7px">Export from Lightspeed Back Office. Only use when you don&rsquo;t have the original spreadsheet.</div>
-              <div style="font-size:12px;color:var(--muted)">&#10003; Useful for products already in Lightspeed<br><span style="color:var(--red)">&#10007; <strong>Lightspeed does not export barcodes</strong></span></div>
+            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Use this process when you don&rsquo;t have a Lightspeed CSV, or want to create the AWDS Product Advice file manually from the AWDS template.</p>
+
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">
+              <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody">
+                <div class="pm-stitle">Download the AWDS template</div>
+                <div class="pm-sdesc">Always use the Port Store AWDS template. Column names and order must match exactly.</div>
+                <a class="guide-dl-lnk" style="display:inline-flex;margin-top:8px" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/AWDS%20Product%20Template.csv?d=w1c8e8290cc324beabcc7717fa0f43b29&csf=1&web=1&e=tydLjF" target="_blank">&#128229; Download AWDS Product Template</a>
+              </div></div>
+              <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody">
+                <div class="pm-stitle">Fill in the columns</div>
+                <div class="pm-sdesc">One row per variant. The template has 6 columns:</div>
+                <table class="ref-table" style="margin-top:10px"><thead><tr><th>Column</th><th>What to enter</th></tr></thead><tbody>
+                  <tr><td><code>ProductCode</code></td><td>Unique SKU per variant (from sku_code_custom in Lightspeed)</td></tr>
+                  <tr><td><code>Description</code></td><td>Product name — must be identical across all variant rows</td></tr>
+                  <tr><td><code>ProductGroup</code></td><td>Always <strong>MERCH</strong></td></tr>
+                  <tr><td><code>ItemsPerOuter</code></td><td>Always <strong>100</strong></td></tr>
+                  <tr><td><code>OutersPerPallet</code></td><td>Always <strong>100</strong></td></tr>
+                  <tr><td><code>ItemBarcode</code></td><td>EAN-13 barcode — format column as Text to prevent scientific notation</td></tr>
+                </tbody></table>
+                <div class="pm-warn" style="margin-top:10px">&#9888;&#65039; Format the <strong>ItemBarcode</strong> column as <strong>Text</strong> before entering barcodes — otherwise Excel converts them to scientific notation (e.g. 8.88E+11).</div>
+              </div></div>
+              <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody">
+                <div class="pm-stitle">Save as CSV UTF-8</div>
+                <div class="pm-sdesc">File &rarr; Save As &rarr; <strong>CSV UTF-8 (Comma delimited)</strong>. Name the file: <code>YYYYMMDD_RangeName_AWDS_Product_Advice.csv</code></div>
+              </div></div>
+              <div class="pm-step"><div class="pm-snum">4</div><div class="pm-sbody">
+                <div class="pm-stitle">Email to Alex Perry</div>
+                <div class="pm-sdesc">Send the completed CSV to AWDS.</div>
+                <div style="margin-top:10px" class="ghost-contact"><div class="ghost-av">AP</div><div><div class="ghost-name">Alex Perry &mdash; AWDS</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div></div>
+              </div></div>
             </div>
           </div>
-          <div class="gd-band gd-band-r"><span>&#9888;&#65039;</span><div>For any range larger than a handful of products, use the product spreadsheet path wherever possible.</div></div>
-        </div>
-        <div class="gd-divider"></div>
-        <div class="gd-lbl-sec">Stage 2 &mdash; Prepare the file</div>
-        <div class="gd-card">
-          <div class="gd-steps">
-            <div class="gd-step"><div class="gd-sico gd-n">&#128229;</div><div class="gd-sbody"><div class="gd-stitle">Download the AWDS template</div><div class="gd-sdesc">Always use the Port Store AWDS template. Column names and order must match exactly.</div><a class="guide-dl-lnk" style="margin:8px 0 12px;display:inline-flex" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/AWDS%20Product%20Template.csv?d=w1c8e8290cc324beabcc7717fa0f43b29&csf=1&web=1&e=tydLjF" target="_blank">&#128229; Download AWDS Product Template</a></div></div>
-            <div class="gd-step"><div class="gd-sico gd-t">&#128196;</div><div class="gd-sbody"><div class="gd-stitle">One row per variant</div><div class="gd-sdesc">Each size gets its own row with a unique <code>ProductCode</code> and <code>ItemBarcode</code>. Description repeats across all rows for the same product.</div><div class="gd-band gd-band-b"><span>&#8505;&#65039;</span><div>The <code>Description</code> must be identical across all variant rows &mdash; never include size in the description.</div></div></div></div>
-            <div class="gd-step"><div class="gd-sico gd-b">&#128190;</div><div class="gd-sbody"><div class="gd-stitle">Save as CSV UTF-8</div><div class="gd-sdesc">Save using <code>File &rarr; Save As &rarr; CSV UTF-8 (Comma delimited)</code>.</div></div></div>
-            <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; <code>ItemBarcode</code> column formatted as <strong>Text</strong></div><div class="gd-chk">&#128247; Every row has a unique <code>ProductCode</code></div><div class="gd-chk">&#128221; <code>Description</code> does <strong>not</strong> include size &mdash; identical across all rows for the same product</div><div class="gd-chk">&#128274; <code>DRCode</code> is <strong>3027</strong> on every row</div></div></div></div>
-          </div>
-        </div>
-        <div class="gd-divider"></div>
-        <div class="gd-lbl-sec">Stage 3 &mdash; Email to AWDS</div>
-        <div class="gd-card">
-          <div class="gd-sdesc" style="margin-bottom:14px">Once the CSV is complete and checked, email it to Alex Perry. File name: <code>YYYYMMDD_RangeName_AWDS_import.csv</code></div>
-          <div class="ghost-contact"><div class="ghost-av">AP</div><div><div class="ghost-name">Alex Perry</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div></div>
-        </div>
-        <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; AWDS &middot; Bulk Product Import Process</div>
-        </div>
       </div>
 
-      <div style="margin-top:8px;margin-bottom:4px;padding:10px 0 4px;border-top:2px solid var(--border)">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Other AWDS Procedures</div>
-      </div>
 
-      <!-- ── FULFILMENT ─────────────────────────────────── -->
-      <div class="bc-section">
-        <button class="bc-section-btn" onclick="toggleBcSection('awds-fulfilment',this)">
-          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128666;</span><span class="bc-section-title">Fulfilment</span></div>
-          <span class="bc-section-arrow"></span>
-        </button>
-        <div class="bc-section-body" id="awds-fulfilment">
-          <div class="gd-band gd-band-t"><span>&#128221;</span><div>Content coming soon. Add AWDS fulfilment procedures here.</div></div>
-        </div>
-      </div>
-
-      <!-- ── RETURNS ────────────────────────────────────── -->
-      <div class="bc-section">
-        <button class="bc-section-btn" onclick="toggleBcSection('awds-returns',this)">
-          <div class="bc-section-btn-left"><span class="bc-section-icon">&#8617;&#65039;</span><span class="bc-section-title">Returns</span></div>
-          <span class="bc-section-arrow"></span>
-        </button>
-        <div class="bc-section-body" id="awds-returns">
-          <div class="gd-band gd-band-t"><span>&#128221;</span><div>Content coming soon. Add AWDS returns procedures here.</div></div>
-        </div>
-      </div>
 
     </div>
   </div>

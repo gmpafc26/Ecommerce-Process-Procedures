@@ -968,6 +968,176 @@ body.edit-mode [contenteditable]:focus {
 }
 .gen-accordion-body.open { display: block; }
 
+
+/* -- BRAND COLOUR SWATCHES -- */
+.bc-swatches {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.bc-swatch {
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+  border: 2px solid rgba(0,0,0,0.15);
+  cursor: pointer;
+  padding: 0;
+  transition: transform .12s, box-shadow .12s;
+  flex-shrink: 0;
+}
+.bc-swatch:hover {
+  transform: scale(1.18);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+/* white swatch needs visible border */
+.bc-swatch[style*="background: #ffffff"],
+.bc-swatch[style*="background:#ffffff"] {
+  border-color: #d1d5db;
+}
+
+/* -- COLLAPSIBLE PRODUCT CARDS -- */
+.pblk {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.pblk-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--off);
+  cursor: pointer;
+  user-select: none;
+  gap: 8px;
+}
+.pblk-hdr:hover { background: #f0f0f0; }
+.pblk-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+.pblk-num {
+  background: var(--teal);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pblk-name-preview {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+.pblk-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.pblk-toggle {
+  font-size: 14px;
+  color: var(--muted);
+  transition: transform .2s;
+  line-height: 1;
+}
+.pblk-toggle.open { transform: rotate(180deg); }
+.pblk-body {
+  padding: 14px;
+  border-top: 1px solid var(--border);
+}
+.pblk-body.collapsed { display: none; }
+
+
+/* -- GRID TOGGLE OPTIONS -- */
+.pg-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color .15s;
+  user-select: none;
+}
+.pg-toggle-row:hover { border-color: var(--teal); }
+.pg-toggle-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.pg-toggle-body { flex: 1; min-width: 0; }
+.pg-toggle-title { font-size: 13px; font-weight: 700; color: var(--text); }
+.pg-toggle-sub { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+.pg-toggle-switch-wrap { flex-shrink: 0; }
+.pg-toggle-switch {
+  width: 38px; height: 22px;
+  border-radius: 11px;
+  background: #d1d5db;
+  position: relative;
+  transition: background .2s;
+}
+.pg-toggle-switch::after {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  top: 3px; left: 3px;
+  transition: transform .2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+.pg-toggle-switch.on {
+  background: var(--teal);
+}
+.pg-toggle-switch.on::after {
+  transform: translateX(16px);
+}
+
+
+/* -- COLLAPSIBLE IMAGE GUIDE -- */
+.img-upload-collapsible { padding: 0 !important; }
+.img-upload-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-align: left;
+}
+.img-upload-toggle:hover { background: rgba(59,130,246,.04); }
+.img-upload-arrow {
+  font-size: 16px;
+  color: #93c5fd;
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+.img-upload-body { padding: 0 14px 12px; }
+
 </style>
 </head>
 <body>
@@ -1005,25 +1175,8 @@ body.edit-mode [contenteditable]:focus {
   <!-- HOME -->
   <div class="subview active" id="sv-home">
     <div class="home-wrap">
-      <div class="home-intro"><h2>Website Operations</h2><p>Select an area below. To generate or update the Main Banner, Announcement Bar, or Product Grid, use the <strong>BC Module Generator</strong> tab above.</p></div>
-      <div class="sel-grid">
-        <div class="sel-card" onclick="wmGo('banner')">
-          <div class="sel-card-img sel-card-img-dual">
-            <div class="sel-preview-desktop"><img id="img-bc" src="AFLW-Banner-Desktop.png" alt="Banner Desktop"><div class="sel-preview-label">Desktop</div></div>
-            <div class="sel-preview-mobile"><img id="img-bc-mob" src="AFLW-Banner-Mobile.png" alt="Banner Mobile"><div class="sel-preview-label">Mobile</div></div>
-            <div class="sel-overlay"></div><div class="live-pill"><span class="dot"></span>Live</div>
-          </div>
-          <div class="sel-body"><div class="sel-title">&#128444;&#65039; Main Banner</div><div class="sel-desc">Full-width clickable hero image. Uses separate desktop and mobile images.</div><div class="sel-specs"><span class="stag live">&#9679; 2100&times;700px desktop</span><span class="stag live">&#9679; 767&times;960px mobile</span></div><button class="sel-btn">Edit Banner &#8594;</button></div>
-        </div>
-        <div class="sel-card" onclick="wmGo('annbar')">
-          <div class="sel-card-img"><img id="img-ac" src="" alt="Ann Bar" style="object-position:bottom"><div class="sel-overlay"></div><div class="live-pill"><span class="dot"></span>Live</div></div>
-          <div class="sel-body"><div class="sel-title">&#128226; Announcement Bar</div><div class="sel-desc">Teal strip at the top. All messages side-by-side on desktop, rotates on mobile.</div><div class="sel-specs"><span class="stag live">&#9679; 3 messages</span><span class="stag live">&#9679; #0097B0</span><span class="stag">No images</span></div><button class="sel-btn">Edit Bar &#8594;</button></div>
-        </div>
-        <div class="sel-card" onclick="wmGo('grid')">
-          <div class="sel-card-img"><img id="img-gc" src="" alt="Grid"><div class="sel-overlay"></div><div class="live-pill"><span class="dot"></span>Live</div></div>
-          <div class="sel-body"><div class="sel-title">&#128717; Product Grid</div><div class="sel-desc">4-column grid with image, name, price and Shop Now button.</div><div class="sel-specs"><span class="stag live">&#9679; 4 cols desktop</span><span class="stag live">&#9679; 600&times;800px</span></div><button class="sel-btn">Edit Grid &#8594;</button></div>
-        </div>
-      </div>
+      <div class="home-intro"><h2>Website Operations</h2><p>Select an area to manage products or request ghost imagery. Use the <strong>BC Module Generator</strong> tab above to update the homepage banner, announcement bar or product grid.</p></div>
+      
       <div class="wide-card" onclick="wmGo('products')">
         <div class="wide-icon" style="background:#f0fdf4">&#128230;</div>
         <div class="wide-body"><div class="wide-title">Managing Products</div><div class="wide-desc">Find, edit and manage BigCommerce product listings - basic info, categories, descriptions and images.</div></div>
@@ -1253,7 +1406,7 @@ body.edit-mode [contenteditable]:focus {
       <span style="font-size:16px">&#9989;</span>
       <div><strong>Nothing changes on the live site until you paste the code into BigCommerce and publish.</strong></div>
     </div>
-    <div class="mod-step-block" id="banner-preview-block" style="display:none"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates live as you fill in the fields</div></div></div><div class="mod-step-body" style="padding:12px"><div id="banner-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div><div style="margin-top:8px;display:flex;gap:6px"><button id="banner-prev-desk" onclick="togglePreviewSize('banner','desk')" style="padding:4px 12px;border-radius:5px;border:1.5px solid var(--teal);background:var(--teal-dim);color:var(--teal);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer">&#128187; Desktop</button><button id="banner-prev-mob" onclick="togglePreviewSize('banner','mob')" style="padding:4px 12px;border-radius:5px;border:1.5px solid var(--border);background:var(--off);color:var(--muted);font-family:inherit;font-size:11px;font-weight:600;cursor:pointer">&#128247; Mobile</button></div></div></div>
+    <div class="mod-step-block" id="banner-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates live as you fill in the fields</div></div></div><div class="mod-step-body" style="padding:12px"><div id="banner-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div><div style="margin-top:8px;display:flex;gap:6px"><button id="banner-prev-desk" onclick="togglePreviewSize('banner','desk')" style="padding:4px 12px;border-radius:5px;border:1.5px solid var(--teal);background:var(--teal-dim);color:var(--teal);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer">&#128187; Desktop</button><button id="banner-prev-mob" onclick="togglePreviewSize('banner','mob')" style="padding:4px 12px;border-radius:5px;border:1.5px solid var(--border);background:var(--off);color:var(--muted);font-family:inherit;font-size:11px;font-weight:600;cursor:pointer">&#128247; Mobile</button></div></div></div>
     <div class="mod-step-block">
       <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Fill in the details</div><div class="mod-step-sub">The preview above updates automatically as you type</div></div></div>
       <div class="mod-step-body">
@@ -1261,16 +1414,28 @@ body.edit-mode [contenteditable]:focus {
           <div style="background:var(--off);border-radius:8px;padding:10px 12px;border:1px solid var(--border)"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px">Desktop image</div><div style="font-size:14px;font-weight:700">2100 x 700 px</div><div style="font-size:11px;color:var(--muted);margin-top:2px">1-2 MB max. JPG or PNG.</div></div>
           <div style="background:var(--off);border-radius:8px;padding:10px 12px;border:1px solid var(--border)"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px">Mobile image</div><div style="font-size:14px;font-weight:700">767 x 960 px</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Under 1 MB. Portrait.</div></div>
         </div>
-        <div class="img-upload-notice"><div class="img-upload-notice-row"><span class="img-upload-icon">&#128190;</span><div><div class="img-upload-title">How to get your image URL from BigCommerce</div><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:100%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:100%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div>
+        <div class="img-upload-notice img-upload-collapsible">
+                  <button class="img-upload-toggle" onclick="toggleImgGuide(this)" type="button">
+                    <span class="img-upload-icon" style="font-size:16px">&#128190;</span>
+                    <span style="font-size:13px;font-weight:700;color:#1e40af;flex:1;text-align:left">How to get your image URL from BigCommerce</span>
+                    <span class="img-upload-arrow">&#8964;</span>
+                  </button>
+                  <div class="img-upload-body" style="display:none"><div><div style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:100%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:100%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div>
         <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Where does the banner link to? <span class="req">*</span></label><input type="url" class="fc" id="b-link" oninput="genBanner()" value="https://portstore.com.au/aflw/"><span class="fhint">The page customers land on when they click the banner</span></div></div>
         <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Desktop image URL <span class="req">*</span></label><input type="url" class="fc" id="b-desk" oninput="genBanner()" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner-26-1-.png?t=1786696060"><span class="fhint">2100 x 700px - paste the BigCommerce CDN URL</span></div></div>
         <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Mobile image URL <span class="req">*</span></label><input type="url" class="fc" id="b-mob" oninput="genBanner()" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner.png?t=1786695857"><span class="fhint">767 x 960px - paste the BigCommerce CDN URL</span></div></div>
         <div class="frow full"><div class="fg"><label class="fl">Image description (alt text)</label><input type="text" class="fc" id="b-alt" oninput="genBanner()" value="Promotional Banner"><span class="fhint">Short description for accessibility</span></div></div>
       </div>
     </div>
-    <div class="mod-step-block"><div class="mod-step-header"><div class="mod-step-num">2</div><div><div class="mod-step-title">Generate the code</div></div></div><div class="mod-step-body"><button class="gen-btn" onclick="genBanner()">&#9889; Generate Banner Code</button></div></div>
+    <div class="mod-step-block"><div class="mod-step-header"><div class="mod-step-num">2</div><div><div class="mod-step-title">Generate the code</div></div></div><div class="mod-step-body"><button class="gen-btn" id="b-genbtn" onclick="genBanner()">&#9889; Generate Banner Code</button></div></div>
     <div class="mod-step-block"><div class="mod-step-header"><div class="mod-step-num">3</div><div><div class="mod-step-title">Copy and paste into BigCommerce</div></div></div><div class="mod-step-body"><button class="copy-big-btn" id="b-cpbtn" onclick="copyCode('b-out','b-cpbtn')">&#128203; Copy Banner Code</button><div class="code-output-block" style="margin-bottom:0"><div class="code-output-header"><span class="code-output-label">&#128196; Generated code</span><button class="code-toggle" onclick="toggleCode('b-out-body',this)">Show code</button></div><div id="b-out-body" class="code-collapsed"><div class="out-code" id="b-out"></div></div></div></div></div>
-    <div class="gen-accordion mod-howto-accordion"><button class="gen-accordion-btn" onclick="toggleAccordion('banner-howto-body',this)"><span>&#128214; How to publish this to BigCommerce</span><span class="gen-accordion-arrow">&#8964;</span></button><div class="gen-accordion-body" id="banner-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Upload your images to BigCommerce first</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Content &rarr; Image Manager &rarr; Upload Files</div><div class="img-upload-notice"><div class="img-upload-notice-row"><span class="img-upload-icon">&#128190;</span><div><div class="img-upload-title">How to get your image URL from BigCommerce</div><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:100%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:100%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div></div>
+    <div class="gen-accordion mod-howto-accordion"><button class="gen-accordion-btn" onclick="toggleAccordion('banner-howto-body',this)"><span>&#128214; How to publish this to BigCommerce</span><span class="gen-accordion-arrow">&#8964;</span></button><div class="gen-accordion-body" id="banner-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Upload your images to BigCommerce first</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Content &rarr; Image Manager &rarr; Upload Files</div><div class="img-upload-notice img-upload-collapsible">
+                  <button class="img-upload-toggle" onclick="toggleImgGuide(this)" type="button">
+                    <span class="img-upload-icon" style="font-size:16px">&#128190;</span>
+                    <span style="font-size:13px;font-weight:700;color:#1e40af;flex:1;text-align:left">How to get your image URL from BigCommerce</span>
+                    <span class="img-upload-arrow">&#8964;</span>
+                  </button>
+                  <div class="img-upload-body" style="display:none"><div><div style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:100%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:100%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div></div>
   </div>
 </div>
 
@@ -1288,7 +1453,7 @@ body.edit-mode [contenteditable]:focus {
       <span style="font-size:16px">&#9989;</span>
       <div><strong>Nothing changes on the live site until you paste the code into BigCommerce and publish.</strong></div>
     </div>
-    <div class="mod-step-block" id="annbar-preview-block" style="display:none"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you edit messages and colours</div></div></div><div class="mod-step-body" style="padding:12px"><div id="annbar-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div></div></div>
+    <div class="mod-step-block" id="annbar-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you edit messages and colours</div></div></div><div class="mod-step-body" style="padding:12px"><div id="annbar-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div></div></div>
     <div class="mod-step-block">
       <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Set up the bar</div><div class="mod-step-sub">Choose colours, speed, and messages</div></div></div>
       <div class="mod-step-body">
@@ -1303,7 +1468,7 @@ body.edit-mode [contenteditable]:focus {
         <button class="add-btn" id="ab-addbtn" onclick="addMsg()">+ Add Message</button>
       </div>
     </div>
-    <div class="mod-step-block"><div class="mod-step-header"><div class="mod-step-num">2</div><div><div class="mod-step-title">Generate the code</div></div></div><div class="mod-step-body"><button class="gen-btn" onclick="genAnnBar()">&#9889; Generate Announcement Bar Code</button></div></div>
+    <div class="mod-step-block"><div class="mod-step-header"><div class="mod-step-num">2</div><div><div class="mod-step-title">Generate the code</div></div></div><div class="mod-step-body"><button class="gen-btn" id="ab-genbtn" onclick="genAnnBar()">&#9889; Generate Announcement Bar Code</button></div></div>
     <div class="mod-step-block"><div class="mod-step-header"><div class="mod-step-num">3</div><div><div class="mod-step-title">Copy and paste into BigCommerce</div></div></div><div class="mod-step-body"><button class="copy-big-btn" id="ab-cpbtn" onclick="copyCode('ab-out','ab-cpbtn')">&#128203; Copy Announcement Bar Code</button><div class="code-output-block" style="margin-bottom:0"><div class="code-output-header"><span class="code-output-label">&#128196; Generated code</span><button class="code-toggle" onclick="toggleCode('ab-out-body',this)">Show code</button></div><div id="ab-out-body" class="code-collapsed"><div class="out-code" id="ab-out"></div></div></div></div></div>
     <div class="gen-accordion mod-howto-accordion"><button class="gen-accordion-btn" onclick="toggleAccordion('annbar-howto-body',this)"><span>&#128214; How to publish this to BigCommerce</span><span class="gen-accordion-arrow">&#8964;</span></button><div class="gen-accordion-body" id="annbar-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div></div>
   </div>
@@ -1323,7 +1488,7 @@ body.edit-mode [contenteditable]:focus {
       <span style="font-size:16px">&#9989;</span>
       <div><strong>Nothing changes on the live site until you paste the code into BigCommerce and publish.</strong></div>
     </div>
-    <div class="mod-step-block" id="grid-preview-block" style="display:none"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you add products - loads your actual BigCommerce images</div></div></div><div class="mod-step-body" style="padding:12px"><div id="grid-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div></div></div>
+    <div class="mod-step-block" id="grid-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you add products - loads your actual BigCommerce images</div></div></div><div class="mod-step-body" style="padding:12px"><div id="grid-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div></div></div>
     <div class="mod-step-block">
       <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Set up the grid</div><div class="mod-step-sub">Choose layout and colours, then add your products</div></div></div>
       <div class="mod-step-body">
@@ -1331,19 +1496,92 @@ body.edit-mode [contenteditable]:focus {
           <div class="fg"><label class="fl">Columns (desktop)</label><select class="fc" id="pg-cols" oninput="genGrid()"><option value="3">3 columns</option><option value="4" selected>4 columns</option><option value="5">5 columns</option></select></div>
           <div class="fg"><label class="fl">Columns (mobile)</label><select class="fc" id="pg-mob" oninput="genGrid()"><option value="1">1 column</option><option value="2" selected>2 columns</option><option value="3">3 columns</option></select></div>
         </div>
+
+        <!-- Grid type options -->
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+          <!-- Sale toggle -->
+          <label class="pg-toggle-row" onclick="toggleSaleMode()">
+            <div class="pg-toggle-icon" style="background:#fef2f2">&#127991;</div>
+            <div class="pg-toggle-body">
+              <div class="pg-toggle-title">Sale prices</div>
+              <div class="pg-toggle-sub">Show a crossed-out original price and a red sale price on each card</div>
+            </div>
+            <div class="pg-toggle-switch-wrap">
+              <input type="checkbox" id="pg-sale-toggle" style="display:none" onchange="renderProds()">
+              <div class="pg-toggle-switch" id="pg-sale-switch"></div>
+            </div>
+          </label>
+          <!-- Leading tile toggle -->
+          <label class="pg-toggle-row" onclick="toggleLeaderMode()">
+            <div class="pg-toggle-icon" style="background:#f0f7ff">&#127976;</div>
+            <div class="pg-toggle-body">
+              <div class="pg-toggle-title">Leading tile</div>
+              <div class="pg-toggle-sub">Add a large feature tile as the first item in the grid (e.g. SALE or a campaign image)</div>
+            </div>
+            <div class="pg-toggle-switch-wrap">
+              <input type="checkbox" id="pg-leader-toggle" style="display:none" onchange="toggleLeaderFields()">
+              <div class="pg-toggle-switch" id="pg-leader-switch"></div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Leader tile options (hidden until toggle on) -->
+        <div id="pg-leader-fields" style="display:none;background:var(--off);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px">&#127976; Leading Tile Settings</div>
+          <div class="frow" style="margin-bottom:10px">
+            <div class="fg"><label class="fl">Heading text</label><input type="text" class="fc" id="pg-leader-title" value="SALE" oninput="genGrid()" placeholder="e.g. SALE"></div>
+            <div class="fg"><label class="fl">Sub-text (optional)</label><input type="text" class="fc" id="pg-leader-sub" value="" oninput="genGrid()" placeholder="e.g. Up to 40% off"></div>
+          </div>
+          <div class="frow" style="margin-bottom:10px">
+            <div class="fg"><label class="fl">Background colour</label><div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="setLeaderColour('bg','#ffffff')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="setLeaderColour('bg','#000000')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="setLeaderColour('bg','#00edff')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="setLeaderColour('bg','#0097b0')"></button><button type="button" class="bc-swatch" style="background:#0C2340" title="Navy" onclick="setLeaderColour('bg','#0C2340')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="setLeaderColour('bg','#efefef')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="setLeaderColour('bg','#e0002b')"></button></div><div class="color-row"><div class="cswatch"><input type="color" id="pg-leader-bg" value="#0C2340" oninput="genGrid()"></div><input type="text" class="fc" style="width:90px" id="pg-leader-bghex" value="#0C2340" oninput="document.getElementById('pg-leader-bg').value=this.value;genGrid()"></div></div>
+            <div class="fg"><label class="fl">Text colour</label><div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="setLeaderColour('col','#ffffff')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="setLeaderColour('col','#000000')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="setLeaderColour('col','#00edff')"></button></div><div class="color-row"><div class="cswatch"><input type="color" id="pg-leader-col" value="#ffffff" oninput="genGrid()"></div><input type="text" class="fc" style="width:90px" id="pg-leader-colhex" value="#ffffff" oninput="document.getElementById('pg-leader-col').value=this.value;genGrid()"></div></div>
+          </div>
+          <div class="frow full" style="margin-bottom:10px"><div class="fg"><label class="fl">Link URL</label><input type="url" class="fc" id="pg-leader-url" value="" oninput="genGrid()" placeholder="https://portstore.com.au/sale/"></div></div>
+          <div class="frow full"><div class="fg"><label class="fl">Background image URL (optional — overrides colour)</label><input type="url" class="fc" id="pg-leader-img" value="" oninput="genGrid()" placeholder="https://cdn11.bigcommerce.com/..."><span class="fhint">If set, this image fills the tile instead of the colour + text. Same CDN URL from BC Image Manager.</span></div></div>
+
+          <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+              <div style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:5px 10px">&#128065; Text tile example</div>
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/sale-product-carousel.png?t=1787708645" style="width:100%;display:block">
+            </div>
+            <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+              <div style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:5px 10px">&#128065; Without leading tile</div>
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/standard-product-carousel.png?t=1787708649" style="width:100%;display:block">
+            </div>
+          </div>
+        </div>
         <div class="frow" style="margin-bottom:16px">
           <div class="fg"><label class="fl">Button colour</label><div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="document.getElementById('pg-btn').value='#ffffff';document.getElementById('pg-bchex').value='#ffffff';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('pg-btn').value='#000000';document.getElementById('pg-bchex').value='#000000';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('pg-btn').value='#00edff';document.getElementById('pg-bchex').value='#00edff';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="document.getElementById('pg-btn').value='#0097b0';document.getElementById('pg-bchex').value='#0097b0';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="document.getElementById('pg-btn').value='#efefef';document.getElementById('pg-bchex').value='#efefef';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#535353" title="Dark Grey" onclick="document.getElementById('pg-btn').value='#535353';document.getElementById('pg-bchex').value='#535353';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('pg-btn').value='#e0002b';document.getElementById('pg-bchex').value='#e0002b';syncC('pg-btn','pg-bchex')"></button></div><div class="color-row"><div class="cswatch"><input type="color" id="pg-btn" value="#000000" oninput="document.getElementById('pg-bchex').value=this.value"></div><input type="text" class="fc" id="pg-bchex" value="#000000" style="width:100px" oninput="syncC('pg-btn','pg-bchex')"></div></div>
           <div class="fg"><label class="fl">Button hover colour</label><div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="document.getElementById('pg-hov').value='#ffffff';document.getElementById('pg-hchex').value='#ffffff';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('pg-hov').value='#000000';document.getElementById('pg-hchex').value='#000000';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('pg-hov').value='#00edff';document.getElementById('pg-hchex').value='#00edff';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="document.getElementById('pg-hov').value='#0097b0';document.getElementById('pg-hchex').value='#0097b0';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="document.getElementById('pg-hov').value='#efefef';document.getElementById('pg-hchex').value='#efefef';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#535353" title="Dark Grey" onclick="document.getElementById('pg-hov').value='#535353';document.getElementById('pg-hchex').value='#535353';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('pg-hov').value='#e0002b';document.getElementById('pg-hchex').value='#e0002b';syncC('pg-hov','pg-hchex')"></button></div><div class="color-row"><div class="cswatch"><input type="color" id="pg-hov" value="#00edff" oninput="document.getElementById('pg-hchex').value=this.value"></div><input type="text" class="fc" id="pg-hchex" value="#00edff" style="width:100px" oninput="syncC('pg-hov','pg-hchex')"></div></div>
         </div>
         <div class="divider">Products</div>
-        <div class="img-upload-notice" style="margin:0 0 12px"><div class="img-upload-notice-row"><span class="img-upload-icon">&#128073;</span><div><div class="img-upload-title">Each product needs 4 things</div><div class="img-upload-steps" style="flex-direction:column;gap:3px"><span class="img-upload-step"><span class="img-upload-step-num">1</span><strong>Product name</strong></span><span class="img-upload-step"><span class="img-upload-step-num">2</span><strong>Price</strong> (e.g. $89.99)</span><span class="img-upload-step"><span class="img-upload-step-num">3</span><strong>Image URL</strong> - from BigCommerce (600x800px, under 1MB)</span><span class="img-upload-step"><span class="img-upload-step-num">4</span><strong>Product link</strong> - URL for the Shop Now button</span></div></div></div></div>
+        <div style="background:#f0f7ff;border:1px solid #bfdbfe;border-left:3px solid #3b82f6;border-radius:10px;padding:12px 14px;margin:0 0 12px">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-size:18px;flex-shrink:0">&#128073;</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#1e40af;margin-bottom:8px">Each product needs 4 things</div>
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#1d4ed8"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#3b82f6;color:#fff;font-size:10px;font-weight:700;flex-shrink:0">1</span><strong>Product name</strong></div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#1d4ed8"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#3b82f6;color:#fff;font-size:10px;font-weight:700;flex-shrink:0">2</span><strong>Price</strong> (e.g. $89.99)</div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#1d4ed8"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#3b82f6;color:#fff;font-size:10px;font-weight:700;flex-shrink:0">3</span><strong>Image URL</strong> - from BigCommerce (600x800px, under 1MB)</div>
+                <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#1d4ed8"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#3b82f6;color:#fff;font-size:10px;font-weight:700;flex-shrink:0">4</span><strong>Product link</strong> - URL for the Shop Now button</div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div id="pg-prods" style="display:flex;flex-direction:column;gap:11px"></div>
         <button class="add-btn" onclick="addProd()">+ Add Product</button>
       </div>
     </div>
-    <div class="mod-step-block"><div class="mod-step-header"><div class="mod-step-num">2</div><div><div class="mod-step-title">Generate the code</div></div></div><div class="mod-step-body"><button class="gen-btn" onclick="genGrid()">&#9889; Generate Product Grid Code</button></div></div>
+    <div class="mod-step-block"><div class="mod-step-header"><div class="mod-step-num">2</div><div><div class="mod-step-title">Generate the code</div></div></div><div class="mod-step-body"><button class="gen-btn" id="pg-genbtn" onclick="genGrid()">&#9889; Generate Product Grid Code</button></div></div>
     <div class="mod-step-block"><div class="mod-step-header"><div class="mod-step-num">3</div><div><div class="mod-step-title">Copy and paste into BigCommerce</div></div></div><div class="mod-step-body"><button class="copy-big-btn" id="pg-cpbtn" onclick="copyCode('pg-out','pg-cpbtn')">&#128203; Copy Product Grid Code</button><div class="code-output-block" style="margin-bottom:0"><div class="code-output-header"><span class="code-output-label">&#128196; Generated code</span><button class="code-toggle" onclick="toggleCode('pg-out-body',this)">Show code</button></div><div id="pg-out-body" class="code-collapsed"><div class="out-code" id="pg-out"></div></div></div></div></div>
-    <div class="gen-accordion mod-howto-accordion"><button class="gen-accordion-btn" onclick="toggleAccordion('grid-howto-body',this)"><span>&#128214; How to publish this to BigCommerce</span><span class="gen-accordion-arrow">&#8964;</span></button><div class="gen-accordion-body" id="grid-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Upload your images to BigCommerce first</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Content &rarr; Image Manager &rarr; Upload Files</div><div class="img-upload-notice"><div class="img-upload-notice-row"><span class="img-upload-icon">&#128190;</span><div><div class="img-upload-title">How to get your image URL from BigCommerce</div><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:100%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:100%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div></div>
+    <div class="gen-accordion mod-howto-accordion"><button class="gen-accordion-btn" onclick="toggleAccordion('grid-howto-body',this)"><span>&#128214; How to publish this to BigCommerce</span><span class="gen-accordion-arrow">&#8964;</span></button><div class="gen-accordion-body" id="grid-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Upload your images to BigCommerce first</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Content &rarr; Image Manager &rarr; Upload Files</div><div class="img-upload-notice img-upload-collapsible">
+                  <button class="img-upload-toggle" onclick="toggleImgGuide(this)" type="button">
+                    <span class="img-upload-icon" style="font-size:16px">&#128190;</span>
+                    <span style="font-size:13px;font-weight:700;color:#1e40af;flex:1;text-align:left">How to get your image URL from BigCommerce</span>
+                    <span class="img-upload-arrow">&#8964;</span>
+                  </button>
+                  <div class="img-upload-body" style="display:none"><div><div style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:100%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:100%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div></div>
   </div>
 </div>
 
@@ -1381,7 +1619,7 @@ body.edit-mode [contenteditable]:focus {
         <div class="gd-step"><div class="gd-sico gd-n">&#128229;</div><div class="gd-sbody"><div class="gd-stitle">Download the template</div><div class="gd-sdesc">Always start from the Port Store template. Column names must match exactly - don&rsquo;t rename or add columns.</div><a class="guide-dl-lnk" style="margin:8px 0 12px;display:inline-flex" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Upload%20Template.xlsx?d=wde106432a27f4e4d92ff8f55973c4d64&csf=1&web=1&e=3r8XQF" target="_blank">&#128229; Download Lightspeed Upload Template</a></div></div>
         <div class="gd-step"><div class="gd-sico gd-t">&#128196;</div><div class="gd-sbody"><div class="gd-stitle">One row per variant</div><div class="gd-sdesc">Each size gets its own row. Product name, category, prices, brand and supplier repeat on every row - only SKU, barcode and size change per row.</div><div class="gd-band gd-band-b"><span>&#8505;&#65039;</span><div>Products with no variants still get one row - leave <code>variant_option_one_name</code> and <code>variant_option_one_value</code> blank.</div></div></div></div>
         <div class="gd-step"><div class="gd-sico gd-b">&#128190;</div><div class="gd-sbody"><div class="gd-stitle">Save as CSV UTF-8</div><div class="gd-sdesc">Save using <code>File &rarr; Save As &rarr; CSV UTF-8 (Comma delimited)</code>.</div><div class="gd-band gd-band-a"><span>&#9888;&#65039;</span><div><strong>Don&rsquo;t use &ldquo;CSV (MS-DOS)&rdquo;</strong> - it breaks special characters on import.</div></div></div></div>
-        <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; Barcode column formatted as <strong>Text</strong> - prevents <code>8.05E+12</code></div><div class="gd-chk">&#128247; Every row has a unique <code>sku_code_custom</code></div><div class="gd-chk">&#128176; Prices are numbers only - no <code>$</code> symbols</div><div class="gd-chk">&#128221; Product names <strong>identical</strong> across all rows for the same product</div><div class="gd-chk">&#128247; Tags semicolon-separated: <code>2026 Macron Range;2026 SDNR</code></div></div></div></div>
+        <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; Barcode column formatted as <strong>Text</strong> - prevents <code>8.05E+12</code></div><div class="gd-chk">&#128247; Every row has a unique <code>sku_code_custom</code></div><div class="gd-chk">&#128176; Prices are numbers only - no <code>$</code> symbols</div><div class="gd-chk">&#128221; Product names <strong>identical</strong> across all rows for the same product</div><div class="gd-chk">&#128247; Tags semicolon-separated: <code>2026 Macron Range;2026 SDNR</code></div></div></div></div></div></div>
       </div>
     </div>
     <div class="gd-divider"></div>
@@ -1802,10 +2040,8 @@ function copyCode(outId,btnId){var el=document.getElementById(outId);if(!el||!el
 function syncC(pid,hid){
   var h=document.getElementById(hid).value.trim();
   if(/^#[0-9a-fA-F]{6}$/.test(h)) document.getElementById(pid).value=h;
-  var _ab=document.getElementById('annbar-preview-block');
-  var _gr=document.getElementById('grid-preview-block');
-  if(pid.indexOf('ab-')===0&&_ab&&_ab.style.display!=='none'){try{genAnnBar();}catch(e){}}
-  if(pid.indexOf('pg-')===0&&_gr&&_gr.style.display!=='none'){try{genGrid();}catch(e){}}
+  if(pid.indexOf('ab-')===0){try{genAnnBar();}catch(e){}}
+  if(pid.indexOf('pg-')===0){try{genGrid();}catch(e){}}
 }
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
@@ -1826,6 +2062,7 @@ function genBanner(){
     +'    </picture>\n  </a>\n</div>';
   document.getElementById('b-out').textContent=code;
   renderPreview('banner',code);
+  flashGenBtn('b-genbtn');
   showToast('&#9989; Banner code generated!');
 }
 
@@ -1851,7 +2088,7 @@ function renderMsgs(){
     c.appendChild(d);
   });
   document.getElementById('ab-addbtn').style.display=abMsgs.length>=5?'none':'flex';
-  var _apb=document.getElementById('annbar-preview-block');if(_apb&&_apb.style.display!=='none'){try{genAnnBar();}catch(e){}}
+  try{genAnnBar();}catch(e){}
 }
 function addMsg(){if(abMsgs.length>=5)return;abMsgs.push({text:'',lt:'',lu:''});renderMsgs();}
 function delMsg(i){abMsgs.splice(i,1);renderMsgs();}
@@ -1885,49 +2122,180 @@ function genAnnBar(){
     +'<scr'+'ipt>\n(function(){\n  var msgs=document.querySelectorAll(\'#bcAbMobile .bc-ab__mobile-msg\');\n  if(!msgs.length)return;\n  var cur=0;\n  setInterval(function(){msgs[cur].classList.remove(\'is-active\');cur=(cur+1)%msgs.length;msgs[cur].classList.add(\'is-active\');},'+spd+');\n})();\n<\/'+'script>';
   document.getElementById('ab-out').textContent=code;
   renderPreview('annbar',code);
+  flashGenBtn('ab-genbtn');
   showToast('&#9989; Announcement bar code generated!');
 }
 
 // ── PRODUCT GRID ─────────────────────────────
 var pgProds=[
-  {name:'PA Macron 2026 First Nations Guernsey - Adult',price:'$135.00 AUD',url:'https://portstore.com.au/pa-macron-2026-first-nations-guernsey-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0155.jpg?t=1778821345'},
-  {name:'PA 2026 First Nations Fleece Hoodie - Adult',price:'$80.00 AUD',url:'https://portstore.com.au/pa-2026-first-nations-fleece-hoodie-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0168.jpg?t=1778821347'},
-  {name:'PA Macron 2026 First Nations Guernsey LS - Adult',price:'$140.00 AUD',url:'https://portstore.com.au/pa-macron-2026-first-nations-guernsey-ls-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0162.jpg?t=1778821348'},
-  {name:'PA Macron 2026 First Nations Run Out Tee - Adult',price:'$80.00 AUD',url:'https://portstore.com.au/pa-macron-2026-first-nations-run-out-tee-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0150.jpg?t=1778821343'}
+  {name:'PA Macron 2026 First Nations Guernsey - Adult',price:'$135.00 AUD',salePrice:'',url:'https://portstore.com.au/pa-macron-2026-first-nations-guernsey-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0155.jpg?t=1778821345'},
+  {name:'PA 2026 First Nations Fleece Hoodie - Adult',price:'$80.00 AUD',salePrice:'',url:'https://portstore.com.au/pa-2026-first-nations-fleece-hoodie-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0168.jpg?t=1778821347'},
+  {name:'PA Macron 2026 First Nations Guernsey LS - Adult',price:'$140.00 AUD',salePrice:'',url:'https://portstore.com.au/pa-macron-2026-first-nations-guernsey-ls-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0162.jpg?t=1778821348'},
+  {name:'PA Macron 2026 First Nations Run Out Tee - Adult',price:'$80.00 AUD',salePrice:'',url:'https://portstore.com.au/pa-macron-2026-first-nations-run-out-tee-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0150.jpg?t=1778821343'}
 ];
 function renderProds(){
+  var isSale = document.getElementById('pg-sale-toggle') && document.getElementById('pg-sale-toggle').checked;
   var c=document.getElementById('pg-prods');c.innerHTML='';
   pgProds.forEach(function(p,i){
     var d=document.createElement('div');d.className='pblk';
-    d.innerHTML='<div class="blk-hdr"><span class="blk-n-teal">Product '+(i+1)+'</span>'
-      +(pgProds.length>1?'<button class="blk-del" onclick="delProd('+i+')">&times;</button>':'')+'</div>'
-      +'<div class="frow full"><div class="fg"><label class="fl">Product Name <span class="req">*</span></label>'
-      +'<input type="text" class="fc" value="'+esc(p.name)+'" oninput="pgProds['+i+'].name=this.value"></div></div>'
-      +'<div class="frow"><div class="fg"><label class="fl">Price</label>'
-      +'<input type="text" class="fc" placeholder="$80.00 AUD" value="'+esc(p.price)+'" oninput="pgProds['+i+'].price=this.value"></div>'
-      +'<div class="fg"><label class="fl">Product URL <span class="req">*</span></label>'
-      +'<input type="url" class="fc" value="'+esc(p.url)+'" oninput="pgProds['+i+'].url=this.value"></div></div>'
-      +'<div class="frow full"><div class="fg"><label class="fl">Image URL <span class="req">*</span></label>'
-      +'<input type="url" class="fc" placeholder="https://cdn11.bigcommerce.com/..." value="'+esc(p.img)+'" oninput="pgProds['+i+'].img=this.value">'
-      +'<span class="fhint">&#128190; Upload in BC &rarr; Content &rarr; Image Manager. Best: <strong>600&times;800px</strong>. Then paste the CDN URL.</span></div></div>';
+    var namePreview=p.name?'&nbsp;&mdash;&nbsp;<span class="pblk-name-preview">'+esc(p.name)+'</span>':'<span class="pblk-name-preview" style="font-style:italic;color:#aaa">unnamed</span>';
+    var salePriceRow = isSale
+      ? '<div class="frow full" style="margin-bottom:10px"><div class="fg"><label class="fl">Sale Price <span class="req">*</span></label>'
+        +'<input type="text" class="fc" placeholder="$59.99 AUD" value="'+esc(p.salePrice||'')+'" oninput="pgProds['+i+'].salePrice=this.value">'
+        +'<span class="fhint">The discounted sale price shown in red</span></div></div>'
+      : '';
+    d.innerHTML=
+      '<div class="pblk-hdr" onclick="toggleProd(this)">'
+        +'<div class="pblk-title"><span class="pblk-num">'+(i+1)+'</span>Product '+(i+1)+namePreview+'</div>'
+        +'<div class="pblk-actions">'
+          +(pgProds.length>1?'<button class="blk-del" onclick="event.stopPropagation();delProd('+i+')">&times;</button>':'')
+          +'<span class="pblk-toggle open">&#8964;</span>'
+        +'</div>'
+      +'</div>'
+      +'<div class="pblk-body">'
+        +'<div class="frow full" style="margin-bottom:10px"><div class="fg"><label class="fl">Product Name <span class="req">*</span></label>'
+        +'<input type="text" class="fc" value="'+esc(p.name)+'" oninput="pgProds['+i+'].name=this.value;updateProdPreview(this,'+i+')" placeholder="e.g. AFLW Training Tee"></div></div>'
+        +'<div class="frow" style="margin-bottom:10px"><div class="fg"><label class="fl">Original Price <span class="req">*</span></label>'
+        +'<input type="text" class="fc" placeholder="$80.00 AUD" value="'+esc(p.price)+'" oninput="pgProds['+i+'].price=this.value"></div>'
+        +'<div class="fg"><label class="fl">Product URL <span class="req">*</span></label>'
+        +'<input type="url" class="fc" value="'+esc(p.url)+'" oninput="pgProds['+i+'].url=this.value" placeholder="https://portstore.com.au/..."></div></div>'
+        +salePriceRow
+        +'<div class="frow full"><div class="fg"><label class="fl">Image URL <span class="req">*</span></label>'
+        +'<input type="url" class="fc" placeholder="https://cdn11.bigcommerce.com/..." value="'+esc(p.img)+'" oninput="pgProds['+i+'].img=this.value">'
+        +'<span class="fhint">&#128190; BC Image Manager &rarr; upload &rarr; copy CDN URL. Best: 600&times;800px.</span></div></div>'
+      +'</div>';
     c.appendChild(d);
   });
-  var _gpb=document.getElementById('grid-preview-block');if(_gpb&&_gpb.style.display!=='none'){try{genGrid();}catch(e){}}
+  try{genGrid();}catch(e){}
 }
+
 function addProd(){if(pgProds.length>=12){showToast('Maximum 12 products','err');return;}pgProds.push({name:'',price:'',url:'',img:''});renderProds();}
 function delProd(i){if(pgProds.length<=1)return;pgProds.splice(i,1);renderProds();}
 function genGrid(){
-  var cols=document.getElementById('pg-cols').value;
-  var mob=document.getElementById('pg-mob').value;
-  var btn=document.getElementById('pg-btn').value||'#000000';
-  var hov=document.getElementById('pg-hov').value||'#00edff';
-  var valid=pgProds.filter(function(p){return p.name.trim()&&p.url.trim();});
-  if(!valid.length){showToast('Add at least one product with name and URL','err');return;}
-  var cards=valid.map(function(p){return'\n    <div class="ps-card">\n      <a href="'+esc(p.url)+'">\n        <div class="ps-img-wrap"><img src="'+esc(p.img)+'" alt="'+esc(p.name)+'" loading="lazy"></div>\n      </a>\n      <div class="ps-card-info">\n        <p class="ps-name">'+p.name+'</p>\n        '+(p.price?'<p class="ps-price">'+p.price+'</p>\n':'')+        '        <a href="'+esc(p.url)+'" class="ps-btn">Shop Now</a>\n      </div>\n    </div>';}).join('\n');
-  var code='<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet">\n\n<div id="ps-fn-grid">\n  <style>\n    #ps-fn-grid{font-family:\'Jost\',sans-serif;width:100%;box-sizing:border-box;background:#fff;padding:20px}\n    #ps-fn-grid *{box-sizing:border-box}\n    #ps-fn-grid .ps-grid{display:grid;grid-template-columns:repeat('+cols+',1fr);gap:12px}\n    @media(max-width:640px){#ps-fn-grid .ps-grid{grid-template-columns:repeat('+mob+',1fr)}}\n    #ps-fn-grid .ps-card{background:#fff;border:1px solid #efefef;overflow:hidden;display:flex;flex-direction:column}\n    #ps-fn-grid .ps-img-wrap{padding:20px;background:#fff}\n    #ps-fn-grid .ps-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}\n    #ps-fn-grid .ps-card-info{padding:10px;display:flex;flex-direction:column;flex:1}\n    #ps-fn-grid .ps-name{font-family:\'Jost\',sans-serif;font-weight:700;font-size:14px;color:#000;margin:0 0 5px;line-height:1.3}\n    #ps-fn-grid .ps-price{font-family:\'Jost\',sans-serif;font-size:12px;color:#000;margin:0 0 10px}\n    #ps-fn-grid .ps-btn{display:block;background:'+btn+';color:#fff;font-family:\'Jost\',sans-serif;font-size:10px;font-weight:700;text-align:center;padding:8px 6px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;margin-top:auto;transition:background 0.2s,color 0.2s}\n    #ps-fn-grid .ps-btn:hover{background:'+hov+';color:#000}\n  </style>\n  <div class="ps-grid">'+cards+'\n  </div>\n</div>';
-  document.getElementById('pg-out').textContent=code;
-  renderPreview('grid',code);
+  var cols = document.getElementById('pg-cols').value;
+  var mob  = document.getElementById('pg-mob').value;
+  var btn  = document.getElementById('pg-btn').value  || '#000000';
+  var hov  = document.getElementById('pg-hov').value  || '#00edff';
+  var isSale    = document.getElementById('pg-sale-toggle')  && document.getElementById('pg-sale-toggle').checked;
+  var hasLeader = document.getElementById('pg-leader-toggle') && document.getElementById('pg-leader-toggle').checked;
+  var leaderTitle = (document.getElementById('pg-leader-title') && document.getElementById('pg-leader-title').value.trim()) || 'SALE';
+  var leaderSub   = (document.getElementById('pg-leader-sub')   && document.getElementById('pg-leader-sub').value.trim())   || '';
+  var leaderImg   = (document.getElementById('pg-leader-img')   && document.getElementById('pg-leader-img').value.trim())   || '';
+  var leaderUrl   = (document.getElementById('pg-leader-url')   && document.getElementById('pg-leader-url').value.trim())   || '';
+  var leaderBg    = (document.getElementById('pg-leader-bg')    && document.getElementById('pg-leader-bg').value)           || '#0C2340';
+  var leaderCol   = (document.getElementById('pg-leader-col')   && document.getElementById('pg-leader-col').value)          || '#ffffff';
+
+  var valid = pgProds.filter(function(p){ return p.name.trim() && p.url.trim(); });
+  if(!valid.length){ showToast('Add at least one product with name and URL','err'); return; }
+
+  // Build product cards
+  var cards = valid.map(function(p){
+    var priceHtml = '';
+    if(isSale && p.salePrice && p.salePrice.trim()){
+      priceHtml = '<p class="ps-price ps-was">'+esc(p.price)+'</p>\n        <p class="ps-price ps-sale">'+esc(p.salePrice)+'</p>\n';
+    } else if(p.price) {
+      priceHtml = '<p class="ps-price">'+esc(p.price)+'</p>\n';
+    }
+    return '\n    <div class="ps-card">'
+      +'\n      <a href="'+esc(p.url)+'">'
+      +'\n        <div class="ps-img-wrap"><img src="'+esc(p.img)+'" alt="'+esc(p.name)+'" loading="lazy"></div>'
+      +'\n      </a>'
+      +'\n      <div class="ps-card-info">'
+      +'\n        <p class="ps-name">'+p.name+'</p>'
+      +'\n        '+priceHtml
+      +'        <a href="'+esc(p.url)+'" class="ps-btn">Shop Now</a>'
+      +'\n      </div>'
+      +'\n    </div>';
+  }).join('\n');
+
+  // Build leader tile
+  var leaderHtml = '';
+  if(hasLeader){
+    var leaderInner = leaderImg
+      ? '<a href="'+esc(leaderUrl)+'" style="display:block;height:100%">'
+          +'<img src="'+esc(leaderImg)+'" alt="'+esc(leaderTitle)+'" style="width:100%;height:100%;object-fit:cover;display:block">'
+        +'</a>'
+      : '<a href="'+esc(leaderUrl)+'" class="ps-leader-link">'
+          +'<div class="ps-leader-inner">'
+            +'<div class="ps-leader-title">'+esc(leaderTitle)+'</div>'
+            +(leaderSub?'<div class="ps-leader-sub">'+esc(leaderSub)+'</div>':'')
+          +'</div>'
+        +'</a>';
+    leaderHtml = '\n    <div class="ps-card ps-leader" style="background:'+leaderBg+';min-height:260px">'
+      +'\n      '+leaderInner
+      +'\n    </div>';
+  }
+
+  // Sale badge extras
+  var saleCss = isSale
+    ? '\n    #ps-fn-grid .ps-price.ps-was{text-decoration:line-through;color:#999;font-size:11px;margin-bottom:2px}'
+      +'\n    #ps-fn-grid .ps-price.ps-sale{color:#e0002b;font-weight:700;font-size:14px;margin-bottom:8px}'
+    : '';
+
+  // Leader CSS
+  var leaderCss = hasLeader
+    ? '\n    #ps-fn-grid .ps-leader{display:flex;align-items:stretch;overflow:hidden;position:relative}'
+      +'\n    #ps-fn-grid .ps-leader-link{display:flex;align-items:center;justify-content:center;width:100%;height:100%;text-decoration:none;padding:24px;min-height:260px}'
+      +'\n    #ps-fn-grid .ps-leader-inner{text-align:center}'
+      +'\n    #ps-fn-grid .ps-leader-title{font-family:\'Jost\',sans-serif;font-size:36px;font-weight:800;color:'+leaderCol+';text-transform:uppercase;letter-spacing:.04em;line-height:1}'
+      +'\n    #ps-fn-grid .ps-leader-sub{font-family:\'Jost\',sans-serif;font-size:13px;color:'+leaderCol+';opacity:.75;margin-top:8px;text-transform:uppercase;letter-spacing:.1em}'
+    : '';
+
+  var code = '<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700;800&display=swap" rel="stylesheet">\n\n'
+    +'<div id="ps-fn-grid">\n  <style>\n'
+    +'    #ps-fn-grid{font-family:\'Jost\',sans-serif;width:100%;box-sizing:border-box;background:#fff;padding:20px}\n'
+    +'    #ps-fn-grid *{box-sizing:border-box}\n'
+    +'    #ps-fn-grid .ps-grid{display:grid;grid-template-columns:repeat('+cols+',1fr);gap:12px}\n'
+    +'    @media(max-width:640px){#ps-fn-grid .ps-grid{grid-template-columns:repeat('+mob+',1fr)}}\n'
+    +'    #ps-fn-grid .ps-card{background:#fff;border:1px solid #efefef;overflow:hidden;display:flex;flex-direction:column}\n'
+    +'    #ps-fn-grid .ps-img-wrap{padding:20px;background:#fff}\n'
+    +'    #ps-fn-grid .ps-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}\n'
+    +'    #ps-fn-grid .ps-card-info{padding:10px;display:flex;flex-direction:column;flex:1}\n'
+    +'    #ps-fn-grid .ps-name{font-family:\'Jost\',sans-serif;font-weight:700;font-size:14px;color:#000;margin:0 0 5px;line-height:1.3}\n'
+    +'    #ps-fn-grid .ps-price{font-family:\'Jost\',sans-serif;font-size:12px;color:#000;margin:0 0 10px}\n'
+    +'    #ps-fn-grid .ps-btn{display:block;background:'+btn+';color:#fff;font-family:\'Jost\',sans-serif;font-size:10px;font-weight:700;text-align:center;padding:8px 6px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;margin-top:auto;transition:background 0.2s,color 0.2s}\n'
+    +'    #ps-fn-grid .ps-btn:hover{background:'+hov+';color:#000}'
+    +saleCss+leaderCss+'\n'
+    +'  </style>\n'
+    +'  <div class="ps-grid">'+leaderHtml+cards+'\n  </div>\n</div>';
+
+  document.getElementById('pg-out').textContent = code;
+  renderPreview('grid', code);
+  flashGenBtn('pg-genbtn');
   showToast('&#9989; Product grid code generated!');
+}
+
+
+// ── GRID TOGGLE HELPERS ───────────────────────────────────────────────
+function toggleSaleMode(){
+  var cb = document.getElementById('pg-sale-toggle');
+  var sw = document.getElementById('pg-sale-switch');
+  cb.checked = !cb.checked;
+  if(sw) sw.classList.toggle('on', cb.checked);
+  renderProds();
+}
+function toggleLeaderMode(){
+  var cb = document.getElementById('pg-leader-toggle');
+  var sw = document.getElementById('pg-leader-switch');
+  cb.checked = !cb.checked;
+  if(sw) sw.classList.toggle('on', cb.checked);
+  toggleLeaderFields();
+}
+function toggleLeaderFields(){
+  var cb = document.getElementById('pg-leader-toggle');
+  var fields = document.getElementById('pg-leader-fields');
+  if(fields) fields.style.display = (cb && cb.checked) ? 'block' : 'none';
+  try{ genGrid(); }catch(e){}
+}
+function setLeaderColour(type, hex){
+  if(type==='bg'){
+    document.getElementById('pg-leader-bg').value = hex;
+    document.getElementById('pg-leader-bghex').value = hex;
+  } else {
+    document.getElementById('pg-leader-col').value = hex;
+    document.getElementById('pg-leader-colhex').value = hex;
+  }
+  genGrid();
 }
 
 // ── EDIT MODE ────────────────────────────────────────────────────────
@@ -2116,10 +2484,97 @@ function switchGuide(id) {
   if (gbtn) gbtn.classList.add('active');
 }
 
+function toggleImgGuide(btn) {
+  var body = btn.nextElementSibling;
+  var arrow = btn.querySelector('.img-upload-arrow');
+  var isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  if (arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+function flashGenBtn(id) {
+  var btn = document.getElementById(id);
+  if (!btn) return;
+  btn.textContent = '&#10003; Code Generated';
+  btn.innerHTML = '&#10003; Code Generated';
+  btn.style.background = '#16a34a';
+  setTimeout(function() {
+    btn.innerHTML = btn.getAttribute('data-orig') || btn.innerHTML.replace('&#10003; Code Generated', '&#9889; Generate ' + (id==='b-genbtn'?'Banner':id==='ab-genbtn'?'Announcement Bar':'Product Grid') + ' Code');
+    btn.style.background = '';
+  }, 2500);
+}
+
+// -- LIVE PREVIEW --
+var bannerPrevMode = 'desk';
+
+function renderPreview(module, code) {
+  var block = document.getElementById(module + '-preview-block');
+  var frame = document.getElementById(module + '-preview-frame');
+  if (!block || !frame) return;
+  block.style.display = 'block';
+  var iframe = frame.querySelector('iframe');
+  if (!iframe) {
+    iframe = document.createElement('iframe');
+    iframe.style.cssText = 'width:100%;border:none;display:block;transition:width .2s;min-height:60px;';
+    iframe.scrolling = 'no';
+    iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
+    frame.appendChild(iframe);
+  }
+  var doc = iframe.contentDocument || iframe.contentWindow.document;
+  doc.open();
+  doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>*{box-sizing:border-box;margin:0;padding:0}body{background:#fff;font-family:sans-serif}</style></head><body>' + code + '</body></html>');
+  doc.close();
+  if (module === 'banner') { applyBannerPrevMode(iframe); }
+  setTimeout(function(){
+    try {
+      var h = (iframe.contentDocument || iframe.contentWindow.document).body.scrollHeight;
+      if (h > 10) iframe.style.height = h + 'px';
+    } catch(e) {}
+  }, 350);
+}
+
+function togglePreviewSize(module, mode) {
+  if (module !== 'banner') return;
+  bannerPrevMode = mode;
+  var frame = document.getElementById('banner-preview-frame');
+  if (!frame) return;
+  var iframe = frame.querySelector('iframe');
+  if (iframe) applyBannerPrevMode(iframe);
+  var deskBtn = document.getElementById('banner-prev-desk');
+  var mobBtn  = document.getElementById('banner-prev-mob');
+  if (mode === 'desk') {
+    if (deskBtn) { deskBtn.style.borderColor='var(--teal)'; deskBtn.style.background='var(--teal-dim)'; deskBtn.style.color='var(--teal)'; }
+    if (mobBtn)  { mobBtn.style.borderColor='var(--border)'; mobBtn.style.background='var(--off)'; mobBtn.style.color='var(--muted)'; }
+  } else {
+    if (mobBtn)  { mobBtn.style.borderColor='var(--teal)'; mobBtn.style.background='var(--teal-dim)'; mobBtn.style.color='var(--teal)'; }
+    if (deskBtn) { deskBtn.style.borderColor='var(--border)'; deskBtn.style.background='var(--off)'; deskBtn.style.color='var(--muted)'; }
+  }
+}
+
+function applyBannerPrevMode(iframe) {
+  if (bannerPrevMode === 'mob') {
+    iframe.style.width = '375px';
+    iframe.style.maxWidth = '100%';
+    iframe.style.margin = '0 auto';
+    iframe.style.display = 'block';
+  } else {
+    iframe.style.width = '100%';
+    iframe.style.margin = '';
+  }
+  setTimeout(function(){
+    try {
+      var h = (iframe.contentDocument || iframe.contentWindow.document).body.scrollHeight;
+      if (h > 10) iframe.style.height = h + 'px';
+    } catch(e) {}
+  }, 350);
+}
+
 document.addEventListener("DOMContentLoaded", function() {
 renderMsgs();
 renderProds();
 genBanner();
+genAnnBar();
+genGrid();
 handleHash();
 });
 </script>

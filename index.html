@@ -1755,11 +1755,11 @@ body.edit-mode [contenteditable]:focus {
 
       <!-- ── BULK PRODUCT IMPORT ────────────────────────── -->
       <div class="bc-section">
-        <button class="bc-section-btn" onclick="toggleBcSection('awds-bulk',this)">
-          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128228;</span><span class="bc-section-title">Bulk Product Import</span></div>
+        <button class="bc-section-btn" onclick="toggleBcSection('awds-newproduct',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128228;</span><span class="bc-section-title">New Product Advice</span></div>
           <span class="bc-section-arrow"></span>
         </button>
-        <div class="bc-section-body" id="awds-bulk">
+        <div class="bc-section-body" id="awds-newproduct">
           <div style="display:flex;align-items:center;justify-content:space-between;margin:16px 0;flex-wrap:wrap;gap:10px">
           <div><div style="font-size:16px;font-weight:700">AWDS Bulk Product Import</div><div style="font-size:13px;color:var(--muted)">Warehouse System &middot; Process guide</div></div>
           <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/AWDS%20Product%20Template.csv?d=w1c8e8290cc324beabcc7717fa0f43b29&csf=1&web=1&e=tydLjF" target="_blank">&#128229; Download Template</a>
@@ -1804,6 +1804,45 @@ body.edit-mode [contenteditable]:focus {
           <div class="ghost-contact"><div class="ghost-av">AP</div><div><div class="ghost-name">Alex Perry</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div></div>
         </div>
         <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; AWDS &middot; Bulk Product Import Process</div>
+        </div>
+      </div>
+
+      <!-- ── LS → AWDS CONVERTER ─────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('awds-converter',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#9889;</span><span class="bc-section-title">Lightspeed CSV &rarr; AWDS Product Advice</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="awds-converter">
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Upload your completed Lightspeed bulk upload CSV and this tool will generate a ready-to-send AWDS Product Advice CSV for Alex Perry.</p>
+
+          <div style="background:var(--off);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px;font-size:12px;color:var(--muted)">
+            &#128161; The converter maps Lightspeed columns to AWDS format automatically. Check the preview before downloading &mdash; review any rows flagged in orange.
+          </div>
+
+          <!-- Upload area -->
+          <div id="awds-upload-area" style="border:2px dashed var(--border);border-radius:10px;padding:28px 20px;text-align:center;cursor:pointer;transition:border-color .15s;margin-bottom:14px" onclick="document.getElementById('awds-csv-input').click()" ondragover="event.preventDefault();this.style.borderColor='var(--teal)'" ondragleave="this.style.borderColor='var(--border)'" ondrop="awdsHandleDrop(event)">
+            <div style="font-size:28px;margin-bottom:8px">&#128228;</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Drop your Lightspeed CSV here</div>
+            <div style="font-size:12px;color:var(--muted)">or click to browse &mdash; CSV UTF-8 format</div>
+            <input type="file" id="awds-csv-input" accept=".csv" style="display:none" onchange="awdsLoadFile(this.files[0])">
+          </div>
+
+          <!-- Status + preview -->
+          <div id="awds-status" style="display:none;margin-bottom:12px"></div>
+          <div id="awds-preview-wrap" style="display:none">
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px">Preview <span id="awds-row-count"></span></div>
+            <div style="overflow-x:auto;border-radius:8px;border:1px solid var(--border)">
+              <table id="awds-preview-table" style="width:100%;border-collapse:collapse;font-size:12px">
+                <thead id="awds-preview-head" style="background:var(--navy);color:#fff"></thead>
+                <tbody id="awds-preview-body"></tbody>
+              </table>
+            </div>
+            <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+              <button id="awds-dl-btn" onclick="awdsDownload()" style="padding:10px 20px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:7px">&#128229; Download AWDS Product Advice CSV</button>
+              <button onclick="awdsReset()" style="padding:10px 16px;background:var(--off);color:var(--muted);border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:12px;cursor:pointer">&#8635; Start over</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -3118,6 +3157,162 @@ function toggleBcSection(id, btn) {
   body.classList.toggle('bc-open', !isOpen);
   var arrow = btn ? btn.querySelector('.bc-section-arrow') : null;
   if (arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+// ── AWDS CSV CONVERTER ────────────────────────────────────────────────
+var awdsRows = [];
+
+// Column mapping: AWDS column → Lightspeed source column (or fixed value)
+var AWDS_MAP = [
+  {awds: 'ProductCode',      ls: 'sku_code_custom',          fixed: null,    note: 'Unique SKU per variant'},
+  {awds: 'ItemBarcode',      ls: 'sku_code_barcode',         fixed: null,    note: 'EAN-13 barcode'},
+  {awds: 'Description',      ls: 'name',                     fixed: null,    note: 'Product name — must be identical across all variants'},
+  {awds: 'VariantSize',      ls: 'variant_option_one_value', fixed: null,    note: 'Size per variant row'},
+  {awds: 'RetailPrice',      ls: 'retail_price',             fixed: null,    note: 'Incl. GST'},
+  {awds: 'SupplyPrice',      ls: 'supply_price',             fixed: null,    note: 'Ex-GST cost price'},
+  {awds: 'DRCode',           ls: null,                       fixed: '3027',  note: 'Always 3027'},
+  {awds: 'Category',         ls: 'product_category',         fixed: null,    note: 'Lightspeed category'},
+  {awds: 'Brand',            ls: 'brand_name',               fixed: null,    note: 'Brand name'},
+  {awds: 'Tags',             ls: 'tags',                     fixed: null,    note: 'Semicolon-separated tags'},
+];
+
+function awdsHandleDrop(e) {
+  e.preventDefault();
+  document.getElementById('awds-upload-area').style.borderColor = 'var(--border)';
+  var file = e.dataTransfer.files[0];
+  if (file) awdsLoadFile(file);
+}
+
+function awdsLoadFile(file) {
+  if (!file || !file.name.endsWith('.csv')) {
+    awdsShowStatus('&#10060; Please upload a CSV file.', 'err');
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    awdsParseCSV(e.target.result);
+  };
+  reader.readAsText(file);
+}
+
+function awdsParseCSV(text) {
+  var lines = text.split(/\r?\n/).filter(function(l){ return l.trim(); });
+  if (lines.length < 2) { awdsShowStatus('&#10060; File appears to be empty.', 'err'); return; }
+
+  // Parse header
+  var headers = awdsParseRow(lines[0]);
+  var dataRows = lines.slice(1).map(function(l){ return awdsParseRow(l); });
+
+  // Build index of LS column → position
+  var lsIdx = {};
+  headers.forEach(function(h, i){ lsIdx[h.trim()] = i; });
+
+  // Check required columns present
+  var missing = [];
+  AWDS_MAP.forEach(function(m){
+    if (m.ls && lsIdx[m.ls] === undefined) missing.push(m.ls);
+  });
+  if (missing.length > 0) {
+    awdsShowStatus('&#9888;&#65039; Columns not found in your file: <strong>' + missing.join(', ') + '</strong>.<br>Check your CSV was exported from the Port Store Lightspeed template.', 'warn');
+  }
+
+  // Convert rows
+  awdsRows = dataRows.map(function(row){
+    var out = {};
+    var warnings = [];
+    AWDS_MAP.forEach(function(m){
+      if (m.fixed !== null) {
+        out[m.awds] = m.fixed;
+      } else if (m.ls && lsIdx[m.ls] !== undefined) {
+        out[m.awds] = (row[lsIdx[m.ls]] || '').trim();
+      } else {
+        out[m.awds] = '';
+      }
+      // Flag issues
+      if (m.awds === 'ItemBarcode' && out[m.awds] && isNaN(out[m.awds].replace(/\s/g,''))) {
+        warnings.push('Barcode may be invalid');
+      }
+      if (m.awds === 'ProductCode' && !out[m.awds]) warnings.push('Missing SKU');
+      if (m.awds === 'Description' && !out[m.awds]) warnings.push('Missing description');
+    });
+    out._warnings = warnings;
+    return out;
+  }).filter(function(r){ return r.ProductCode || r.Description; }); // skip blank rows
+
+  awdsShowPreview();
+}
+
+function awdsParseRow(line) {
+  var result = []; var cur = ''; var inQ = false;
+  for (var i = 0; i < line.length; i++) {
+    var c = line[i];
+    if (c === '"') { inQ = !inQ; }
+    else if (c === ',' && !inQ) { result.push(cur); cur = ''; }
+    else { cur += c; }
+  }
+  result.push(cur);
+  return result;
+}
+
+function awdsShowPreview() {
+  var cols = AWDS_MAP.map(function(m){ return m.awds; });
+  var head = document.getElementById('awds-preview-head');
+  var body = document.getElementById('awds-preview-body');
+  head.innerHTML = '<tr>' + cols.map(function(c){ return '<th style="padding:7px 10px;text-align:left;white-space:nowrap">' + c + '</th>'; }).join('') + '<th style="padding:7px 10px">Flags</th></tr>';
+  
+  var preview = awdsRows.slice(0, 8);
+  body.innerHTML = preview.map(function(row){
+    var bg = row._warnings.length ? 'background:#fffbeb' : '';
+    var cells = cols.map(function(c){
+      return '<td style="padding:6px 10px;border-top:1px solid #f0f0f0;white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis">' + esc(row[c] || '') + '</td>';
+    }).join('');
+    var flags = row._warnings.length ? '<td style="padding:6px 10px;border-top:1px solid #f0f0f0;color:#d97706;font-size:11px">&#9888; ' + row._warnings.join(', ') + '</td>' : '<td style="padding:6px 10px;border-top:1px solid #f0f0f0;color:#16a34a;font-size:11px">&#10003;</td>';
+    return '<tr style="' + bg + '">' + cells + flags + '</tr>';
+  }).join('');
+
+  document.getElementById('awds-row-count').textContent = '(' + awdsRows.length + ' rows' + (awdsRows.length > 8 ? ', showing first 8' : '') + ')';
+  document.getElementById('awds-preview-wrap').style.display = 'block';
+  document.getElementById('awds-status').style.display = 'none';
+  awdsShowStatus('&#9989; ' + awdsRows.length + ' rows converted successfully.', 'ok');
+  document.getElementById('awds-status').style.display = 'block';
+}
+
+function awdsDownload() {
+  if (!awdsRows.length) return;
+  var cols = AWDS_MAP.map(function(m){ return m.awds; });
+  var csv = cols.join(',') + '\n';
+  csv += awdsRows.map(function(row){
+    return cols.map(function(c){
+      var v = row[c] || '';
+      return v.includes(',') || v.includes('"') ? '"' + v.replace(/"/g,'""') + '"' : v;
+    }).join(',');
+  }).join('\n');
+
+  var today = new Date();
+  var d = today.getFullYear() + String(today.getMonth()+1).padStart(2,'0') + String(today.getDate()).padStart(2,'0');
+  var blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = d + '_AWDS_Product_Advice.csv';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+  showToast('&#9989; AWDS Product Advice CSV downloaded!');
+}
+
+function awdsReset() {
+  awdsRows = [];
+  document.getElementById('awds-preview-wrap').style.display = 'none';
+  document.getElementById('awds-status').style.display = 'none';
+  document.getElementById('awds-csv-input').value = '';
+}
+
+function awdsShowStatus(msg, type) {
+  var el = document.getElementById('awds-status');
+  if (!el) return;
+  var colours = {ok:'#f0fdf4;border-color:#86efac;color:#166534', warn:'#fffbeb;border-color:#fcd34d;color:#92400e', err:'#fef2f2;border-color:#fecaca;color:#991b1b'};
+  el.style.cssText = 'padding:10px 14px;border-radius:8px;font-size:13px;border:1px solid;background:' + (colours[type]||colours.ok) + ';margin-bottom:12px';
+  el.innerHTML = msg;
+  el.style.display = 'block';
 }
 
 function toggleSaleMode(){

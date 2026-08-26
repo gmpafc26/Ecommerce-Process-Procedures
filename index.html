@@ -1441,6 +1441,10 @@ body.edit-mode [contenteditable]:focus {
         <span class="gen-picker-icon">&#128717;</span>
         <span class="gen-picker-name">Product Carousel</span>
       </button>
+      <button class="gen-picker-tab" id="gpick-cats" onclick="switchModule('cats',this)">
+        <span class="gen-picker-icon">&#127991;</span>
+        <span class="gen-picker-name">Popular Categories</span>
+      </button>
     </div>
   </div>
 
@@ -1681,11 +1685,87 @@ body.edit-mode [contenteditable]:focus {
                   </button>
                   <div class="img-upload-body" style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:50%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:50%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div>
     </div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div></div>
+  
+
+  <div class="gen-module" id="gmod-cats">
+  <div style="padding:24px 28px">
+    <div class="mod-intro">
+      <div class="mod-intro-icon">&#127991;</div>
+      <div>
+        <div class="mod-intro-title">Popular Categories</div>
+        <div class="mod-intro-desc">The icon-based category navigation row on the homepage. Each tile shows a small graphic and a category label that links through to that category.</div>
+        <div class="mod-intro-location">&#128205; On the homepage, below the product carousel</div>
+      </div>
+    </div>
+    <div class="mod-reassure">
+      <span style="font-size:16px">&#9989;</span>
+      <div><strong>Nothing changes on the live site until you paste the code into BigCommerce and publish.</strong></div>
+    </div>
+
+    <div class="mod-step-block" id="cats-preview-block">
+      <div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you edit categories</div></div></div>
+      <div class="mod-step-body" style="padding:12px"><div id="cats-preview-frame" style="width:100%;border-radius:6px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div></div>
+    </div>
+
+    <div class="mod-step-block">
+      <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Edit your categories</div><div class="mod-step-sub">Update labels, URLs and icons. Drag order by re-numbering.</div></div></div>
+      <div class="mod-step-body">
+        <div style="background:var(--off);border-radius:8px;padding:14px;border:1px solid var(--border);margin-bottom:12px">
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px">&#128073; Each category needs a label, URL and icon image</div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:12px">Icons are small transparent PNG graphics uploaded to BC Image Manager. Two blank tile templates are available to edit — download them from SharePoint, add your graphic, then upload to BC.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+            <div style="border-radius:7px;overflow:hidden;border:1px solid var(--border);background:#fff">
+              <div style="background:#222;padding:5px 10px;font-size:10px;font-weight:700;text-transform:uppercase;color:#fff;letter-spacing:.05em">Black tile</div>
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/category-tile-black.png?t=1787710933" style="width:100%;height:auto;display:block">
+            </div>
+            <div style="border-radius:7px;overflow:hidden;border:1px solid var(--border);background:#fff">
+              <div style="background:#aaa;padding:5px 10px;font-size:10px;font-weight:700;text-transform:uppercase;color:#fff;letter-spacing:.05em">Grey tile</div>
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/category-tile-grey.png?t=1787710934" style="width:100%;height:auto;display:block">
+            </div>
+          </div>
+          <a href="https://portadelaidefc.sharepoint.com/:f:/r/Marketing%20%20Media/Ecom/Procedures%20%26%20Guidelines/Graphics?d=w7d6fdec551b8476da8e9aba4052bd49d&csf=1&web=1&e=0tXFF6" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;background:#f0fdf4;border:1px solid #86efac;border-radius:7px;font-size:13px;font-weight:600;color:#166534;text-decoration:none" onmouseover="this.style.background='#dcfce7'" onmouseout="this.style.background='#f0fdf4'">&#128229; Download blank tile templates from SharePoint</a>
+        </div>
+        <div id="pc-cats" style="display:flex;flex-direction:column;gap:10px"></div>
+        <button class="add-btn" onclick="addCat()" style="margin-top:10px">+ Add Category</button>
+      </div>
+    </div>
+
+    <div class="mod-step-block">
+      <div class="mod-step-header"><div class="mod-step-num">2</div><div><div class="mod-step-title">Generate &amp; copy the code</div><div class="mod-step-sub">Generate first, then copy and paste into BigCommerce</div></div></div>
+      <div class="mod-step-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+          <button class="gen-btn" id="pc-genbtn" onclick="genCats()">&#9889; Generate Categories Code</button>
+          <button class="copy-big-btn" id="pc-cpbtn" onclick="copyCode('pc-out','pc-cpbtn')">&#128203; Copy Code</button>
+        </div>
+        <div class="code-output-block" style="margin-bottom:0"><div class="code-output-header"><span class="code-output-label">&#128196; Generated code</span><button class="code-toggle" onclick="toggleCode('pc-out-body',this)">Show code</button></div><div id="pc-out-body" class="code-collapsed"><div class="out-code" id="pc-out"></div></div></div>
+      </div>
+    </div>
+
+    <div class="mod-howto-section">
+      <div class="mod-howto-header">
+        <div class="mod-intro-icon" style="font-size:20px">&#128214;</div>
+        <div>
+          <div class="mod-intro-title" style="font-size:14px">How to publish this to BigCommerce</div>
+          <div class="mod-intro-desc" style="font-size:12px">Paste the generated code into the Popular Categories HTML widget in Page Builder</div>
+        </div>
+      </div>
+      <div class="mod-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column">
+        <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div>
+        <div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Click the Popular Categories HTML Widget</div><div class="ht-sdesc">Hover over the categories section - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div>
+        <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div>
+        <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div>
+      </div></div></div>
+    </div>
+
   </div>
+  </div>
+</div>
 </div>
 </div>
 
 </div>
+
+
 
 <!-- ════════════════════════════════════════
      PRODUCT GUIDES
@@ -2229,6 +2309,88 @@ function genAnnBar(){
 }
 
 // ── PRODUCT GRID ─────────────────────────────
+// ── POPULAR CATEGORIES ───────────────────────────────────────────────
+var pcCats = [
+  {label:'APPAREL',    url:'/apparel/',               img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/apparel-1-.png?t=1770961027',    fontSize:'14px'},
+  {label:'HEADWEAR',   url:'/headwear/',              img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/headwear-1-.png?t=1764742957',   fontSize:'15px'},
+  {label:'AFL Guernseys', url:'/guernseys/',          img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/guernseys.png?t=1765768532',     fontSize:'15px'},
+  {label:'SCARVES',    url:'/accessories/scarves',    img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/icon-design.png?t=1759895127',   fontSize:'15px'},
+  {label:'FOOTBALLS',  url:'/merchandise/footballs',  img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/footballs-1-.png?t=1759896179',  fontSize:'15px'},
+  {label:'MERCHANDISE',url:'/merchandise',            img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/player-merch-1-.png?t=1759895598',fontSize:'15px'},
+  {label:'MAGPIES',    url:'/magpies',                img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/magpies.png?t=1759898195',       fontSize:'15px'},
+  {label:'BABIES & TODDLERS',url:'/accessories/youth-babies',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/baby-merch.png?t=1759896401',fontSize:'14px'}
+];
+
+function renderCats(){
+  var c = document.getElementById('pc-cats'); if(!c) return;
+  c.innerHTML = '';
+  pcCats.forEach(function(cat, i){
+    var d = document.createElement('div'); d.className = 'pblk';
+    var namePreview = cat.label ? '&nbsp;&mdash;&nbsp;<span class="pblk-name-preview">'+esc(cat.label)+'</span>' : '<span class="pblk-name-preview" style="font-style:italic;color:#aaa">unnamed</span>';
+    d.innerHTML =
+      '<div class="pblk-hdr" onclick="toggleProd(this)">'
+        +'<div class="pblk-title"><span class="pblk-num">'+(i+1)+'</span>Category '+(i+1)+namePreview+'</div>'
+        +'<div class="pblk-actions">'
+          +(pcCats.length>1?'<button class="blk-del" onclick="event.stopPropagation();delCat('+i+')">&times;</button>':'')
+          +'<span class="pblk-toggle open">&#8964;</span>'
+        +'</div>'
+      +'</div>'
+      +'<div class="pblk-body">'
+        +'<div class="frow full" style="margin-bottom:10px"><div class="fg"><label class="fl">Category Label <span class="req">*</span></label>'
+        +'<input type="text" class="fc" value="'+esc(cat.label)+'" oninput="pcCats['+i+'].label=this.value;updateProdPreview(this,'+i+')" placeholder="e.g. APPAREL"></div></div>'
+        +'<div class="frow full" style="margin-bottom:10px"><div class="fg"><label class="fl">Category URL <span class="req">*</span></label>'
+        +'<input type="url" class="fc" value="'+esc(cat.url)+'" oninput="pcCats['+i+'].url=this.value" placeholder="/apparel/"></div></div>'
+        +'<div class="frow" style="margin-bottom:10px">'
+          +'<div class="fg"><label class="fl">Icon image URL <span class="req">*</span></label>'
+          +'<input type="url" class="fc" value="'+esc(cat.img)+'" oninput="pcCats['+i+'].img=this.value">'
+          +'<span class="fhint">&#128190; Small icon/graphic from BC Image Manager</span></div>'
+          +'<div class="fg" style="max-width:140px"><label class="fl">Font size</label>'
+          +'<select class="fc" oninput="pcCats['+i+'].fontSize=this.value">'
+          +'<option value="13px"'+(cat.fontSize==='13px'?' selected':'')+'>Small (13px)</option>'
+          +'<option value="14px"'+(cat.fontSize==='14px'?' selected':'')+'>Medium (14px)</option>'
+          +'<option value="15px"'+(cat.fontSize==='15px'?' selected':'')+'>Large (15px)</option>'
+          +'</select></div>'
+        +'</div>'
+      +'</div>';
+    c.appendChild(d);
+  });
+  try { genCats(); } catch(e) {}
+}
+function addCat(){
+  if(pcCats.length>=12) return;
+  pcCats.push({label:'',url:'',img:'',fontSize:'15px'});
+  renderCats();
+}
+function delCat(i){
+  if(pcCats.length<=1) return;
+  pcCats.splice(i,1);
+  renderCats();
+}
+function genCats(){
+  var valid = pcCats.filter(function(c){ return c.label.trim() && c.url.trim(); });
+  if(!valid.length){ showToast('Add at least one category with label and URL','err'); return; }
+
+  var items = valid.map(function(cat, i){
+    return '\n    <a class="item-content halo-fadeInUp" data-halo-animate="'+i+'" href="'+esc(cat.url)+'">'
+      +'\n      <div class="item-img">'
+      +'\n        <img class="lazyload" src="https://cdn11.bigcommerce.com/s-ucs8oemrab/content/loading/loading.svg"'
+      +'\n          alt="'+esc(cat.label)+'"'
+      +'\n          data-src="'+esc(cat.img)+'">'
+      +'\n      </div>'
+      +'\n      <p class="item"><span class="text" style="font-size: '+cat.fontSize+';">'+esc(cat.label)+'</span></p>'
+      +'\n    </a>';
+  }).join('\n');
+
+  var code = '<div class="halo-block halo-home-section block-automotive-device">'
+    +'\n  <div class="container">'+items
+    +'\n  </div>\n</div>';
+
+  document.getElementById('pc-out').textContent = code;
+  renderPreview('cats', code);
+  flashGenBtn('pc-genbtn');
+  showToast('&#9989; Categories code generated!');
+}
+
 var pgProds=[
   {name:'PA Macron 2026 First Nations Guernsey - Adult',price:'$135.00 AUD',salePrice:'',url:'https://portstore.com.au/pa-macron-2026-first-nations-guernsey-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0155.jpg?t=1778821345'},
   {name:'PA 2026 First Nations Fleece Hoodie - Adult',price:'$80.00 AUD',salePrice:'',url:'https://portstore.com.au/pa-2026-first-nations-fleece-hoodie-adult',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/b9-2026.05.07-port-adelaide-football-club-0168.jpg?t=1778821347'},
@@ -2635,6 +2797,7 @@ function renderPreview(module, code) {
 document.addEventListener("DOMContentLoaded", function() {
 renderMsgs();
 renderProds();
+renderCats();
 genBanner();
 genAnnBar();
 genGrid();

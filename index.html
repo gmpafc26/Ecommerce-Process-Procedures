@@ -253,7 +253,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);mi
 
 /* HOW TO */
 .ht-wrap{padding:24px 28px}
-.ht-step{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--border)}
+.ht-step{display:flex;gap:20px;padding:16px 0;border-bottom:1px solid var(--border)}.ht-step:first-child{padding-top:20px}
 .ht-step:last-child{border-bottom:none}
 .ht-snum{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
 .ht-sbody{flex:1}
@@ -1175,7 +1175,8 @@ body.edit-mode [contenteditable]:focus {
 }
 .mod-howto-body {
   background: #fff;
-  padding: 0;
+  padding: 0 0 8px;
+  overflow: hidden;
 }
 
 
@@ -1504,7 +1505,7 @@ body.edit-mode [contenteditable]:focus {
           <div class="mod-intro-desc" style="font-size:12px">Step-by-step guide to pasting your generated code into Page Builder</div>
         </div>
       </div>
-      <div class="mod-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Upload your images to BigCommerce first</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Content &rarr; Image Manager &rarr; Upload Files</div><div class="img-upload-notice img-upload-collapsible">
+      <div class="mod-howto-body"><div style="padding:4px 20px 4px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Upload your images to BigCommerce first</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Content &rarr; Image Manager &rarr; Upload Files</div><div class="img-upload-notice img-upload-collapsible">
                   <button class="img-upload-toggle" onclick="toggleImgGuide(this)" type="button">
                     <span class="img-upload-icon" style="font-size:16px">&#128190;</span>
                     <span style="font-size:13px;font-weight:700;color:#1e40af;flex:1;text-align:left">How to get your image URL from BigCommerce</span>
@@ -1527,7 +1528,7 @@ body.edit-mode [contenteditable]:focus {
       <span style="font-size:16px">&#9989;</span>
       <div><strong>Nothing changes on the live site until you paste the code into BigCommerce and publish.</strong></div>
     </div>
-    <div class="mod-step-block" id="annbar-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you edit messages and colours</div></div></div><div class="mod-step-body" style="padding:12px"><div id="annbar-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div></div></div>
+    <div class="mod-step-block" id="annbar-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you edit messages and colours</div></div></div><div class="mod-step-body" style="padding:12px"><div id="annbar-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:56px;display:flex;align-items:center;justify-content:center"><span id="annbar-preview-placeholder" style="font-size:12px;color:#9ca3af">Click &#9889; Generate to preview your announcement bar</span></div></div></div>
     <div class="mod-step-block">
       <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Set up the bar</div><div class="mod-step-sub">Choose colours, speed, and messages</div></div></div>
       <div class="mod-step-body">
@@ -1561,7 +1562,7 @@ body.edit-mode [contenteditable]:focus {
           <div class="mod-intro-desc" style="font-size:12px">Step-by-step guide to pasting your generated code into Page Builder</div>
         </div>
       </div>
-      <div class="mod-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div>
+      <div class="mod-howto-body"><div style="padding:4px 20px 4px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div>
     </div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div></div>
   </div>
 
@@ -1580,7 +1581,7 @@ body.edit-mode [contenteditable]:focus {
       <span style="font-size:16px">&#9989;</span>
       <div><strong>Nothing changes on the live site until you paste the code into BigCommerce and publish.</strong></div>
     </div>
-    <div class="mod-step-block" id="grid-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you add products - loads your actual BigCommerce images</div></div></div><div class="mod-step-body" style="padding:12px"><div id="grid-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div></div></div>
+    <div class="mod-step-block" id="grid-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you add products - loads your actual BigCommerce images</div></div></div><div class="mod-step-body" style="padding:12px"><div id="grid-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:56px;display:flex;align-items:center;justify-content:center"><span id="grid-preview-placeholder" style="font-size:12px;color:#9ca3af">Click &#9889; Generate to preview your product carousel</span></div></div></div>
     <div class="mod-step-block">
       <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Set up the carousel</div><div class="mod-step-sub">Choose layout and colours, then add your products</div></div></div>
       <div class="mod-step-body">
@@ -1626,11 +1627,11 @@ body.edit-mode [contenteditable]:focus {
           <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
             <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
               <div style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:5px 10px">&#128065; Text tile example</div>
-              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/sale-product-carousel.png?t=1787708645" style="width:100%;display:block">
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/sale-product-carousel.png?t=1787708645" style="width:100%;max-width:40%;height:auto;display:block">
             </div>
             <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
               <div style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:5px 10px">&#128065; Without leading tile</div>
-              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/standard-product-carousel.png?t=1787708649" style="width:100%;display:block">
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/standard-product-carousel.png?t=1787708649" style="width:100%;max-width:40%;height:auto;display:block">
             </div>
           </div>
         </div>
@@ -1677,7 +1678,7 @@ body.edit-mode [contenteditable]:focus {
           <div class="mod-intro-desc" style="font-size:12px">Step-by-step guide to pasting your generated code into Page Builder</div>
         </div>
       </div>
-      <div class="mod-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Upload your images to BigCommerce first</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Content &rarr; Image Manager &rarr; Upload Files</div><div class="img-upload-notice img-upload-collapsible">
+      <div class="mod-howto-body"><div style="padding:4px 20px 4px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Upload your images to BigCommerce first</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Content &rarr; Image Manager &rarr; Upload Files</div><div class="img-upload-notice img-upload-collapsible">
                   <button class="img-upload-toggle" onclick="toggleImgGuide(this)" type="button">
                     <span class="img-upload-icon" style="font-size:16px">&#128190;</span>
                     <span style="font-size:13px;font-weight:700;color:#1e40af;flex:1;text-align:left">How to get your image URL from BigCommerce</span>
@@ -1704,7 +1705,7 @@ body.edit-mode [contenteditable]:focus {
 
     <div class="mod-step-block" id="cats-preview-block">
       <div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you edit categories</div></div></div>
-      <div class="mod-step-body" style="padding:12px"><div id="cats-preview-frame" style="width:100%;border-radius:6px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div></div>
+      <div class="mod-step-body" style="padding:12px"><div id="cats-preview-frame" style="width:100%;border-radius:6px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:56px;display:flex;align-items:center;justify-content:center"><span id="cats-preview-placeholder" style="font-size:12px;color:#9ca3af">Click &#9889; Generate to preview your categories</span></div></div>
     </div>
 
     <div class="mod-step-block">
@@ -1716,11 +1717,11 @@ body.edit-mode [contenteditable]:focus {
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
             <div style="border-radius:7px;overflow:hidden;border:1px solid var(--border);background:#fff">
               <div style="background:#222;padding:5px 10px;font-size:10px;font-weight:700;text-transform:uppercase;color:#fff;letter-spacing:.05em">Black tile</div>
-              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/category-tile-black.png?t=1787710933" style="width:100%;height:auto;display:block">
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/category-tile-black.png?t=1787710933" style="width:100%;max-width:25%;height:auto;display:block">
             </div>
             <div style="border-radius:7px;overflow:hidden;border:1px solid var(--border);background:#fff">
               <div style="background:#aaa;padding:5px 10px;font-size:10px;font-weight:700;text-transform:uppercase;color:#fff;letter-spacing:.05em">Grey tile</div>
-              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/category-tile-grey.png?t=1787710934" style="width:100%;height:auto;display:block">
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/category-tile-grey.png?t=1787710934" style="width:100%;max-width:25%;height:auto;display:block">
             </div>
           </div>
           <a href="https://portadelaidefc.sharepoint.com/:f:/r/Marketing%20%20Media/Ecom/Procedures%20%26%20Guidelines/Graphics?d=w7d6fdec551b8476da8e9aba4052bd49d&csf=1&web=1&e=0tXFF6" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;background:#f0fdf4;border:1px solid #86efac;border-radius:7px;font-size:13px;font-weight:600;color:#166534;text-decoration:none" onmouseover="this.style.background='#dcfce7'" onmouseout="this.style.background='#f0fdf4'">&#128229; Download blank tile templates from SharePoint</a>
@@ -1749,7 +1750,7 @@ body.edit-mode [contenteditable]:focus {
           <div class="mod-intro-desc" style="font-size:12px">Paste the generated code into the Popular Categories HTML widget in Page Builder</div>
         </div>
       </div>
-      <div class="mod-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column">
+      <div class="mod-howto-body"><div style="padding:4px 20px 4px"><div style="display:flex;flex-direction:column">
         <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div>
         <div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Click the Popular Categories HTML Widget</div><div class="ht-sdesc">Hover over the categories section - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div>
         <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div>
@@ -2683,6 +2684,15 @@ function switchModule(id, btn) {
   var mod = document.getElementById('gmod-' + id);
   if (mod) mod.classList.add('active');
   if (btn) btn.classList.add('active');
+  // Trigger preview generation when switching to a module
+  setTimeout(function(){
+    try{
+      if(id==='banner') genBanner();
+      else if(id==='annbar') genAnnBar();
+      else if(id==='grid') genGrid();
+      else if(id==='cats') genCats();
+    }catch(e){}
+  }, 100);
 }
 
 // ── ACCORDIONS / TOGGLES ──────────────────────────────────────────────
@@ -2760,6 +2770,9 @@ function renderPreview(module, code) {
       iframe.scrolling = 'no';
       iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
       container.appendChild(iframe);
+      // Remove placeholder text once iframe is created
+      var ph = container.querySelector('span[id$="-preview-placeholder"]');
+      if (ph) { ph.style.display = 'none'; container.style.alignItems = ''; container.style.justifyContent = ''; container.style.display = 'block'; }
     }
     // Set iframe width so media queries fire correctly inside it
     if (viewportWidth) {
@@ -2778,7 +2791,14 @@ function renderPreview(module, code) {
         var h = (iframe.contentDocument || iframe.contentWindow.document).body.scrollHeight;
         if (h > 10) iframe.style.height = h + 'px';
       } catch(e) {}
-    }, 400);
+    }, 800);
+    // Second pass after images load
+    setTimeout(function(){
+      try {
+        var h2 = (iframe.contentDocument || iframe.contentWindow.document).body.scrollHeight;
+        if (h2 > 10) iframe.style.height = h2 + 'px';
+      } catch(e) {}
+    }, 1800);
   }
 
   if (module === 'banner') {
@@ -2795,13 +2815,12 @@ function renderPreview(module, code) {
 // banner preview uses side-by-side desktop/mobile layout
 
 document.addEventListener("DOMContentLoaded", function() {
-renderMsgs();
-renderProds();
-renderCats();
-genBanner();
-genAnnBar();
-genGrid();
-handleHash();
+  renderMsgs();
+  renderProds();
+  renderCats();
+  handleHash();
+  // Generate banner preview after a short delay so DOM is settled
+  setTimeout(function(){ try{ genBanner(); } catch(e){} }, 200);
 });
 </script>
 </body>

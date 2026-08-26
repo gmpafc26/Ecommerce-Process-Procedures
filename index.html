@@ -1240,63 +1240,54 @@ body.edit-mode [contenteditable]:focus {
 
   <!-- Module editors -->
   <div class="gen-module active" id="gmod-banner">
-  <!-- BANNER EDITOR -->
     <div style="padding:24px 28px">
-
-      <!-- Module intro -->
       <div class="mod-intro">
         <div class="mod-intro-icon">&#128444;&#65039;</div>
         <div>
           <div class="mod-intro-title">Main Banner</div>
-          <div class="mod-intro-desc">The full-width hero image at the top of the Port Store homepage. It links customers through to a collection or campaign page when clicked. You need a separate image for desktop and mobile screens.</div>
-          <div class="mod-intro-location">&#128205; First section on the homepage, directly below the navigation</div>
+          <div class="mod-intro-desc">The full-width hero image at the top of the Port Store homepage. Links customers to a collection or campaign page. Uses separate images for desktop and mobile screens.</div>
+          <div class="mod-intro-location">&#128205; First section on the homepage, below navigation</div>
         </div>
       </div>
-
-      <!-- Reassurance -->
       <div class="mod-reassure">
         <span style="font-size:16px">&#9989;</span>
-        <div><strong>You can't break the live site by editing here.</strong> Nothing changes until you paste the generated code into BigCommerce and click Publish.</div>
+        <div><strong>Nothing changes on the live site until you paste the code into BigCommerce and publish.</strong></div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
-
-        <!-- LEFT: Current preview + steps -->
-        <div>
-          <!-- Current live preview -->
-          <div class="mod-step-block">
+          <div class="mod-step-block" id="banner-preview-block" style="display:none">
             <div class="mod-step-header">
-              <div class="mod-step-num" style="background:#10B981">&#9679;</div>
-              <div><div class="mod-step-title">Currently live on the store</div></div>
+              <div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div>
+              <div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates live as you fill in the fields. Toggle desktop/mobile to check both.</div></div>
             </div>
             <div class="mod-step-body" style="padding:12px">
-              <div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600">DESKTOP</div>
-              <img id="img-bp" src="AFLW-Banner-Desktop.png" alt="Banner Desktop" style="width:100%;border-radius:6px;display:block;margin-bottom:8px">
-              <div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600">MOBILE</div>
-              <img id="img-bp-mob" src="AFLW-Banner-Mobile.png" alt="Banner Mobile" style="max-height:140px;width:auto;border-radius:6px;display:block">
+              <div id="banner-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div>
+              <div style="margin-top:8px;display:flex;gap:6px">
+                <button id="banner-prev-desk" onclick="togglePreviewSize('banner','desk')" style="padding:4px 12px;border-radius:5px;border:1.5px solid var(--teal);background:var(--teal-dim);color:var(--teal);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer">&#128187; Desktop</button>
+                <button id="banner-prev-mob" onclick="togglePreviewSize('banner','mob')" style="padding:4px 12px;border-radius:5px;border:1.5px solid var(--border);background:var(--off);color:var(--muted);font-family:inherit;font-size:11px;font-weight:600;cursor:pointer">&#128247; Mobile (375px)</button>
+              </div>
             </div>
           </div>
 
-          <!-- Image size guide -->
+          <!-- Step 1: Image requirements + fill in -->
           <div class="mod-step-block">
             <div class="mod-step-header">
-              <div class="mod-step-num" style="background:#6366f1">&#128190;</div>
-              <div><div class="mod-step-title">Image requirements</div><div class="mod-step-sub">Upload images to BigCommerce first, then paste the URL below</div></div>
+              <div class="mod-step-num">1</div>
+              <div><div class="mod-step-title">Fill in the details</div><div class="mod-step-sub">Update the fields below - the preview above will update automatically</div></div>
             </div>
             <div class="mod-step-body">
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
                 <div style="background:var(--off);border-radius:8px;padding:10px 12px;border:1px solid var(--border)">
-                  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px">Desktop</div>
+                  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px">Desktop image</div>
                   <div style="font-size:14px;font-weight:700;color:var(--text)">2100 x 700 px</div>
                   <div style="font-size:11px;color:var(--muted);margin-top:2px">1-2 MB max. JPG or PNG.</div>
                 </div>
                 <div style="background:var(--off);border-radius:8px;padding:10px 12px;border:1px solid var(--border)">
-                  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px">Mobile</div>
+                  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px">Mobile image</div>
                   <div style="font-size:14px;font-weight:700;color:var(--text)">767 x 960 px</div>
-                  <div style="font-size:11px;color:var(--muted);margin-top:2px">Under 1 MB. Portrait format.</div>
+                  <div style="font-size:11px;color:var(--muted);margin-top:2px">Under 1 MB. Portrait.</div>
                 </div>
               </div>
-              <div class="img-upload-notice" style="margin-bottom:0">
+              <div class="img-upload-notice" style="margin-bottom:16px">
                 <div class="img-upload-notice-row">
                   <span class="img-upload-icon">&#128190;</span>
                   <div>
@@ -1308,32 +1299,19 @@ body.edit-mode [contenteditable]:focus {
                     </div>
                     <div class="img-upload-example">
                       <span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span>
-                      <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" alt="Navigating to Image Manager in BigCommerce" style="width:100%;border-radius:5px;display:block;margin:6px 0 12px">
+                      <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" alt="Navigating to Image Manager" style="width:100%;border-radius:5px;display:block;margin:6px 0 12px">
                       <span class="img-upload-example-lbl">Step 2 - Copy the image URL</span>
-                      <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" alt="Finding the image URL in BigCommerce" style="width:100%;border-radius:5px;display:block;margin:6px 0 10px">
+                      <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" alt="Finding the image URL" style="width:100%;border-radius:5px;display:block;margin:6px 0 10px">
                       <span class="img-upload-example-lbl">Example URL format</span>
                       <code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT: Edit steps -->
-        <div>
-          <!-- Step 1: Fill in details -->
-          <div class="mod-step-block">
-            <div class="mod-step-header">
-              <div class="mod-step-num">1</div>
-              <div><div class="mod-step-title">Fill in the details</div><div class="mod-step-sub">Update any fields you want to change</div></div>
-            </div>
-            <div class="mod-step-body">
               <div class="frow full" style="margin-bottom:14px"><div class="fg">
                 <label class="fl">Where does the banner link to? <span class="req">*</span></label>
                 <input type="url" class="fc" id="b-link" oninput="genBanner()" value="https://portstore.com.au/aflw/">
-                <span class="fhint">The page customers land on when they click the banner (e.g. a collection or campaign page)</span>
+                <span class="fhint">The page customers land on when they click the banner</span>
               </div></div>
               <div class="frow full" style="margin-bottom:14px"><div class="fg">
                 <label class="fl">Desktop image URL <span class="req">*</span></label>
@@ -1348,7 +1326,7 @@ body.edit-mode [contenteditable]:focus {
               <div class="frow full"><div class="fg">
                 <label class="fl">Image description (alt text)</label>
                 <input type="text" class="fc" id="b-alt" oninput="genBanner()" value="Promotional Banner">
-                <span class="fhint">A short description of the image for accessibility. E.g. "AFLW 2026 Range - Shop Now"</span>
+                <span class="fhint">Short description for accessibility. E.g. "AFLW 2026 Range"</span>
               </div></div>
             </div>
           </div>
@@ -1357,136 +1335,155 @@ body.edit-mode [contenteditable]:focus {
           <div class="mod-step-block">
             <div class="mod-step-header">
               <div class="mod-step-num">2</div>
-              <div><div class="mod-step-title">Generate the code</div><div class="mod-step-sub">Click the button to build your updated banner code</div></div>
+              <div><div class="mod-step-title">Generate the code</div><div class="mod-step-sub">Click to build the updated banner code</div></div>
             </div>
             <div class="mod-step-body">
               <button class="gen-btn" onclick="genBanner()">&#9889; Generate Banner Code</button>
             </div>
           </div>
 
-                    <!-- Preview -->
-          <div class="mod-step-block" id="banner-preview-block" style="display:none">
-            <div class="mod-step-header">
-              <div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div>
-              <div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you edit - uses your actual BigCommerce images</div></div>
-            </div>
-            <div class="mod-step-body" style="padding:12px">
-              <div id="banner-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:60px"></div>
-              <div style="margin-top:8px;display:flex;gap:6px">
-                <button id="banner-prev-desk" onclick="togglePreviewSize('banner','desk')" style="padding:4px 12px;border-radius:5px;border:1.5px solid var(--teal);background:var(--teal-dim);color:var(--teal);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer">&#128187; Desktop</button>
-                <button id="banner-prev-mob" onclick="togglePreviewSize('banner','mob')" style="padding:4px 12px;border-radius:5px;border:1.5px solid var(--border);background:var(--off);color:var(--muted);font-family:inherit;font-size:11px;font-weight:600;cursor:pointer">&#128247; Mobile (375px)</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 3: Copy & paste -->
           <div class="mod-step-block">
             <div class="mod-step-header">
               <div class="mod-step-num">3</div>
-              <div><div class="mod-step-title">Copy and paste into BigCommerce</div><div class="mod-step-sub">Copy the code, then follow the steps below to publish</div></div>
+              <div><div class="mod-step-title">Copy and paste into BigCommerce</div><div class="mod-step-sub">Copy the code below, then follow the steps to publish</div></div>
             </div>
             <div class="mod-step-body">
               <button class="copy-big-btn" id="b-cpbtn" onclick="copyCode('b-out','b-cpbtn')">&#128203; Copy Banner Code</button>
-              <!-- Collapsed code view -->
-              <div class="code-output-block" style="margin-bottom:14px">
+              <div class="code-output-block" style="margin-bottom:0">
                 <div class="code-output-header">
                   <span class="code-output-label">&#128196; Generated code</span>
-                  <button class="code-toggle" onclick="toggleCode('b-code-body',this)">Show code</button>
+                  <button class="code-toggle" onclick="toggleCode('b-out-body',this)">Show code</button>
                 </div>
-                <div id="b-code-body" class="code-collapsed">
+                <div id="b-out-body" class="code-collapsed">
                   <div class="out-code" id="b-out"></div>
-                </div>
-              </div>
-              <!-- Next steps -->
-              <div class="next-steps-panel">
-                <div class="next-steps-header">&#128205; How to publish in BigCommerce</div>
-                <div class="next-steps-body">
-                  <div class="next-step-row"><div class="next-step-n">1</div><div class="next-step-text">Open <strong>BigCommerce Admin</strong> and go to <strong>Storefront &rarr; Page Builder</strong>
-                    <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" alt="View on Storefront" style="width:100%;border-radius:6px;border:1px solid rgba(0,0,0,.1);display:block;margin-top:8px">
-                    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#1e3a5f;margin:8px 0 4px">Then click the paintbrush icon (top right)</div>
-                    <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" alt="Paintbrush icon to open Page Builder" style="width:100%;border-radius:6px;border:1px solid rgba(0,0,0,.1);display:block">
-                  </div></div>
-                  <div class="next-step-row"><div class="next-step-n">2</div><div class="next-step-text">Find the Hover over the <strong>Main Banner</strong> section - it highlights blue with "HTML" in the corner. Click it to open the editor, then click <strong>Expand HTML Editor</strong>.
-                    <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" alt="Hover to highlight the module" style="width:100%;border-radius:6px;border:1px solid rgba(0,0,0,.1);display:block;margin-top:8px">
-                    <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" alt="Expand HTML Editor" style="width:100%;border-radius:6px;border:1px solid rgba(0,0,0,.1);display:block;margin-top:6px">
-                  </div></div>
-                  <div class="next-step-row"><div class="next-step-n">3</div><div class="next-step-text">Select all the existing code inside the widget (<strong>Ctrl+A</strong> or <strong>Cmd+A</strong>) and delete it</div></div>
-                  <div class="next-step-row"><div class="next-step-n">4</div><div class="next-step-text">Paste your copied code (<strong>Ctrl+V</strong> or <strong>Cmd+V</strong>) and click <strong>Apply</strong></div></div>
-                  <div class="next-step-row"><div class="next-step-n">5</div><div class="next-step-text">Click <strong>Publish</strong> in the top right. Your banner is now live.</div></div>
-                  <button class="howto-link-btn" onclick="wmGo('howto')">&#128214; View full step-by-step guide</button>
                 </div>
               </div>
             </div>
           </div>
 
-        </div>
+
+          <div class="gen-accordion mod-howto-accordion">
+            <button class="gen-accordion-btn" onclick="toggleAccordion('banner-howto-body', this)">
+              <span>&#128214; How to publish this to BigCommerce</span>
+              <span class="gen-accordion-arrow">&#8964;</span>
+            </button>
+            <div class="gen-accordion-body" id="banner-howto-body">
+              <div style="padding:16px 20px">
+                <div style="display:flex;flex-direction:column">
+                  <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Upload your images to BigCommerce first</div><div class="ht-sdesc">Upload all images to BC Image Manager before generating code.</div><div class="ht-screen"><span class="hl">BC Admin</span> &#8594; Storefront &#8594; Image Manager &#8594; Upload Files<br>Click the image &#8594; copy URL starting with <span class="hl">cdn11.bigcommerce.com</span></div>
+              <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Where to find Image Manager</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" alt="Navigating to Image Manager" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">How to copy the image URL</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" alt="Copying the image URL in BigCommerce" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+              </div><div class="ht-tip">&#128161; Upload the largest version you have - BigCommerce resizes automatically.</div></div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &#8594; Storefront &#8594; My Themes &#8594; Customize<br>Navigate to the landing page URL inside Page Builder</div>
+              <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px">
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Step 1 - View on Storefront</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" alt="Navigating to View on Storefront in BigCommerce" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Step 2 - Click the paintbrush icon (top right)</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" alt="Click the paintbrush icon to open Page Builder" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+              </div>
+            </div></div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Click the correct HTML Widget</div>
+              <div class="ht-sdesc">Hover over the module section - it highlights blue with "HTML" in the top left corner. Click it to open the editor panel on the left, then click <strong>Expand HTML Editor</strong> to edit the code.</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Hover over the module - it highlights blue</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" alt="Hovering over a module in Page Builder" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Click it - then click Expand HTML Editor</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" alt="Expand HTML Editor panel" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+              </div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div class="ht-img"><img id="img-ht4" src="" alt="Ann bar"><div class="ht-img-cap">&#128226; Hover over the teal strip</div></div><div class="ht-img"><img id="img-ht5" src="" alt="Banner"><div class="ht-img-cap">&#128444;&#65039; Hover over the full-width image</div></div></div><div class="ht-img" style="margin-top:10px"><img id="img-ht6" src="" alt="Grid"><div class="ht-img-cap">&#128717; Hover over the product cards below the banner</div></div><div class="ht-warn">&#9888;&#65039; Make sure you click the <strong>correct</strong> widget. Check it visually matches what you want to change.</div></div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste in your new code</div>
+              <div class="ht-screen">Select all: <span class="hl">Ctrl + A</span> / <span class="hl">Cmd + A</span> &nbsp;&rarr;&nbsp; Delete &nbsp;&rarr;&nbsp; Paste: <span class="hl">Ctrl + V</span> / <span class="hl">Cmd + V</span> &nbsp;&rarr;&nbsp; click <span class="hl">Apply</span></div>
+              <div class="ht-tip">&#128161; <strong>Tip:</strong> Before deleting, copy the current code and paste it into a Word doc or Notepad as a backup. If anything looks wrong after publishing, you can simply paste the old code back in and re-apply.</div>
+            </div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">6</div><div class="ht-sbody"><div class="ht-stitle">Save widget, then Publish the page</div><div class="ht-screen">Widget editor &#8594; <span class="hl">Apply</span><br>Page Builder toolbar (top right) &#8594; <span class="hl">Publish</span></div><div class="ht-warn">&#9888;&#65039; <em>Apply</em> alone does <strong>not</strong> make it live. You must also click <strong>Publish</strong>.</div></div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">7</div><div class="ht-sbody"><div class="ht-stitle">Check the live store</div><div class="ht-screen">Hard refresh: <span class="hl">Ctrl+Shift+R</span> / <span class="hl">Cmd+Shift+R</span></div><div class="ht-tip">&#128161; Use F12 &#8594; mobile icon in DevTools to check mobile layout without a phone.</div></div></div>
+      </div>
+      <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128190; Quick Image Size Reference</div><table class="ref-table"><thead><tr><th>Module</th><th>Image</th><th>Size</th><th>Format</th><th>Max size</th></tr></thead><tbody><tr><td>&#128444;&#65039; Banner</td><td>Desktop</td><td><strong>2100&times;700px</strong></td><td>JPG/PNG</td><td>400KB</td></tr><tr><td>&#128444;&#65039; Banner</td><td>Mobile</td><td><strong>767&times;960px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128717; Grid</td><td>Per product</td><td><strong>600&times;800px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128226; Ann. Bar</td><td>Text only</td><td>No images</td><td>-</td><td>-</td></tr></tbody></table></div>
+    </div>
       </div>
     </div>
-  
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
   </div>
 
   <div class="gen-module" id="gmod-annbar">
-  <!-- ANNOUNCEMENT BMH EDITOR -->
-  <div class="subview" id="sv-annbar">
     <div style="padding:24px 28px">
-
       <div class="mod-intro">
         <div class="mod-intro-icon">&#128226;</div>
         <div>
           <div class="mod-intro-title">Announcement Bar</div>
-          <div class="mod-intro-desc">The teal strip that appears directly below the site header. It displays short messages to customers — promotions, shipping info, events. On desktop all messages show side by side, on mobile they rotate automatically.</div>
-          <div class="mod-intro-location">&#128205; Top of every page, directly below the site header</div>
+          <div class="mod-intro-desc">The coloured strip below the site header. Shows short messages to customers - promotions, shipping info, events. Messages sit side by side on desktop and rotate on mobile.</div>
+          <div class="mod-intro-location">&#128205; Top of every page, below the site header</div>
         </div>
       </div>
-
       <div class="mod-reassure">
         <span style="font-size:16px">&#9989;</span>
-        <div><strong>You can't break the live site by editing here.</strong> Nothing changes until you paste the generated code into BigCommerce and click Publish.</div>
+        <div><strong>Nothing changes on the live site until you paste the code into BigCommerce and publish.</strong></div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
-
-        <!-- LEFT: Preview + guide -->
-        <div>
-          <div class="mod-step-block">
+          <div class="mod-step-block" id="annbar-preview-block" style="display:none">
             <div class="mod-step-header">
-              <div class="mod-step-num" style="background:#10B981">&#9679;</div>
-              <div><div class="mod-step-title">Currently live on the store</div></div>
+              <div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div>
+              <div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you edit messages and colours</div></div>
             </div>
-            <div class="mod-step-body" style="padding:10px">
-              <img id="img-ap" src="" alt="Announcement Bar" style="width:100%;border-radius:4px;display:block;max-height:80px;object-fit:cover;object-position:bottom">
+            <div class="mod-step-body" style="padding:12px">
+              <div id="annbar-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div>
+              
             </div>
           </div>
-          <div class="mod-step-block">
-            <div class="mod-step-header">
-              <div class="mod-step-num" style="background:#6366f1">&#128161;</div>
-              <div><div class="mod-step-title">Tips for writing messages</div></div>
-            </div>
-            <div class="mod-step-body">
-              <div style="display:flex;flex-direction:column;gap:8px">
-                <div style="display:flex;gap:8px;font-size:13px;color:var(--text)"><span>&#128073;</span><span>Keep each message <strong>under 50 characters</strong> so it fits on smaller screens</span></div>
-                <div style="display:flex;gap:8px;font-size:13px;color:var(--text)"><span>&#128073;</span><span>You can add up to <strong>5 messages</strong></span></div>
-                <div style="display:flex;gap:8px;font-size:13px;color:var(--text)"><span>&#128073;</span><span>Each message can optionally <strong>link to a page</strong> - leave the link field blank if not needed</span></div>
-                <div style="display:flex;gap:8px;font-size:13px;color:var(--text)"><span>&#128073;</span><span>The background is currently <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:#0097B0;border-radius:2px;border:1px solid rgba(0,0,0,.15);display:inline-block"></span><strong>#0097B0</strong></span> - only change if you have a specific requirement</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- RIGHT: Edit steps -->
-        <div>
           <div class="mod-step-block">
             <div class="mod-step-header">
               <div class="mod-step-num">1</div>
-              <div><div class="mod-step-title">Edit your messages</div><div class="mod-step-sub">Update existing messages or add new ones</div></div>
+              <div><div class="mod-step-title">Set up the bar</div><div class="mod-step-sub">Choose colours, rotation speed and your messages</div></div>
             </div>
             <div class="mod-step-body">
-              <div class="frow" style="margin-bottom:12px">
-                <div class="fg"><label class="fl">Background colour</label><div class="color-row"><div class="cswatch"><input type="color" id="ab-bg" value="#0097B0" oninput="document.getElementById('ab-bghex').value=this.value"></div><input type="text" class="fc" id="ab-bghex" value="#0097B0" style="width:100px" oninput="syncC('ab-bg','ab-bghex')"></div><span class="fhint">Default teal - only change for special campaigns</span></div>
-                <div class="fg"><label class="fl">Text colour</label><div class="color-row"><div class="cswatch"><input type="color" id="ab-tc" value="#ffffff" oninput="document.getElementById('ab-tchex').value=this.value"></div><input type="text" class="fc" id="ab-tchex" value="#ffffff" style="width:100px" oninput="syncC('ab-tc','ab-tchex')"></div></div>
+              <div class="frow" style="margin-bottom:16px">
+                <div class="fg">
+                <label class="fl">Background colour</label>
+                <div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="document.getElementById('ab-bg').value='#ffffff';document.getElementById('ab-bghex').value='#ffffff';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('ab-bg').value='#000000';document.getElementById('ab-bghex').value='#000000';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('ab-bg').value='#00edff';document.getElementById('ab-bghex').value='#00edff';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="document.getElementById('ab-bg').value='#0097b0';document.getElementById('ab-bghex').value='#0097b0';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="document.getElementById('ab-bg').value='#efefef';document.getElementById('ab-bghex').value='#efefef';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#535353" title="Dark Grey" onclick="document.getElementById('ab-bg').value='#535353';document.getElementById('ab-bghex').value='#535353';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('ab-bg').value='#e0002b';document.getElementById('ab-bghex').value='#e0002b';syncC('ab-bg','ab-bghex')"></button></div>
+                <div class="color-row">
+                  <div class="cswatch"><input type="color" id="ab-bg" value="#0097B0" oninput="document.getElementById('ab-bghex').value=this.value"></div>
+                  <input type="text" class="fc" id="ab-bghex" value="#0097B0" style="width:100px" oninput="syncC('ab-bg','ab-bghex')">
+                </div>
               </div>
-              <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Mobile rotation speed</label><select class="fc" id="ab-spd"><option value="2500">Fast (2.5s)</option><option value="3500" selected>Normal (3.5s) - currently live</option><option value="5000">Slow (5s)</option><option value="7000">Very slow (7s)</option></select><span class="fhint">How long each message shows for on mobile before rotating to the next</span></div></div>
+                <div class="fg">
+                <label class="fl">Text colour</label>
+                <div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="document.getElementById('ab-tc').value='#ffffff';document.getElementById('ab-tchex').value='#ffffff';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('ab-tc').value='#000000';document.getElementById('ab-tchex').value='#000000';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('ab-tc').value='#00edff';document.getElementById('ab-tchex').value='#00edff';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="document.getElementById('ab-tc').value='#0097b0';document.getElementById('ab-tchex').value='#0097b0';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="document.getElementById('ab-tc').value='#efefef';document.getElementById('ab-tchex').value='#efefef';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#535353" title="Dark Grey" onclick="document.getElementById('ab-tc').value='#535353';document.getElementById('ab-tchex').value='#535353';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('ab-tc').value='#e0002b';document.getElementById('ab-tchex').value='#e0002b';syncC('ab-tc','ab-tchex')"></button></div>
+                <div class="color-row">
+                  <div class="cswatch"><input type="color" id="ab-tc" value="#ffffff" oninput="document.getElementById('ab-tchex').value=this.value"></div>
+                  <input type="text" class="fc" id="ab-tchex" value="#ffffff" style="width:100px" oninput="syncC('ab-tc','ab-tchex')">
+                </div>
+              </div>
+              </div>
+              <div class="frow full" style="margin-bottom:16px"><div class="fg"><label class="fl">Mobile rotation speed</label><select class="fc" id="ab-spd" oninput="genAnnBar()"><option value="2500">Fast (2.5s)</option><option value="3500" selected>Normal (3.5s)</option><option value="5000">Slow (5s)</option><option value="7000">Very slow (7s)</option></select><span class="fhint">How long each message shows before rotating on mobile</span></div></div>
               <div class="divider">Messages (up to 5)</div>
+              <div style="background:var(--off);border-radius:8px;padding:10px 12px;border:1px solid var(--border);margin-bottom:12px;font-size:12px;color:var(--muted)">
+                &#128073; Keep each message <strong>under 50 characters</strong>. Each message can optionally link to a page - leave the link field blank if not needed.
+              </div>
               <div id="ab-msgs" style="display:flex;flex-direction:column;gap:9px"></div>
               <button class="add-btn" id="ab-addbtn" onclick="addMsg()">+ Add Message</button>
             </div>
@@ -1502,56 +1499,80 @@ body.edit-mode [contenteditable]:focus {
             </div>
           </div>
 
-          <!-- Preview -->
-          <div class="mod-step-block" id="annbar-preview-block" style="display:none">
-            <div class="mod-step-header">
-              <div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div>
-              <div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you edit messages</div></div>
-            </div>
-            <div class="mod-step-body" style="padding:12px">
-              <div id="annbar-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div>
-            </div>
-          </div>
-
           <div class="mod-step-block">
             <div class="mod-step-header">
               <div class="mod-step-num">3</div>
-              <div><div class="mod-step-title">Copy and paste into BigCommerce</div></div>
+              <div><div class="mod-step-title">Copy and paste into BigCommerce</div><div class="mod-step-sub">Copy the code below, then follow the steps to publish</div></div>
             </div>
             <div class="mod-step-body">
               <button class="copy-big-btn" id="ab-cpbtn" onclick="copyCode('ab-out','ab-cpbtn')">&#128203; Copy Announcement Bar Code</button>
-              <div class="code-output-block" style="margin-bottom:14px">
+              <div class="code-output-block" style="margin-bottom:0">
                 <div class="code-output-header">
                   <span class="code-output-label">&#128196; Generated code</span>
-                  <button class="code-toggle" onclick="toggleCode('ab-code-body',this)">Show code</button>
+                  <button class="code-toggle" onclick="toggleCode('ab-out-body',this)">Show code</button>
                 </div>
-                <div id="ab-code-body" class="code-collapsed">
+                <div id="ab-out-body" class="code-collapsed">
                   <div class="out-code" id="ab-out"></div>
-                </div>
-              </div>
-              <div class="next-steps-panel">
-                <div class="next-steps-header">&#128205; How to publish in BigCommerce</div>
-                <div class="next-steps-body">
-                  <div class="next-step-row"><div class="next-step-n">1</div><div class="next-step-text">Open <strong>BigCommerce Admin</strong> and go to <strong>Storefront &rarr; Page Builder</strong>
-                    <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" alt="View on Storefront" style="width:100%;border-radius:6px;border:1px solid rgba(0,0,0,.1);display:block;margin-top:8px">
-                    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#1e3a5f;margin:8px 0 4px">Then click the paintbrush icon (top right)</div>
-                    <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" alt="Paintbrush icon to open Page Builder" style="width:100%;border-radius:6px;border:1px solid rgba(0,0,0,.1);display:block">
-                  </div></div>
-                  <div class="next-step-row"><div class="next-step-n">2</div><div class="next-step-text">Hover over the <strong>Announcement Bar</strong> section - it highlights blue with "HTML" in the corner. Click it to open the editor, then click <strong>Expand HTML Editor</strong>.
-                    <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" alt="Hover to highlight the module" style="width:100%;border-radius:6px;border:1px solid rgba(0,0,0,.1);display:block;margin-top:8px">
-                    <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" alt="Expand HTML Editor" style="width:100%;border-radius:6px;border:1px solid rgba(0,0,0,.1);display:block;margin-top:6px">
-                  </div></div>
-                  <div class="next-step-row"><div class="next-step-n">3</div><div class="next-step-text">Select all (<strong>Ctrl+A</strong> / <strong>Cmd+A</strong>), delete, paste your copied code, click <strong>Apply</strong></div></div>
-                  <div class="next-step-row"><div class="next-step-n">4</div><div class="next-step-text">Click <strong>Publish</strong> top right. Your announcement bar is now live.</div></div>
-                  <button class="howto-link-btn" onclick="wmGo('howto')">&#128214; View full step-by-step guide</button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+
+
+          <div class="gen-accordion mod-howto-accordion">
+            <button class="gen-accordion-btn" onclick="toggleAccordion('annbar-howto-body', this)">
+              <span>&#128214; How to publish this to BigCommerce</span>
+              <span class="gen-accordion-arrow">&#8964;</span>
+            </button>
+            <div class="gen-accordion-body" id="annbar-howto-body">
+              <div style="padding:16px 20px">
+                <div style="display:flex;flex-direction:column">
+                  
+                  <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &#8594; Storefront &#8594; My Themes &#8594; Customize<br>Navigate to the landing page URL inside Page Builder</div>
+              <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px">
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Step 1 - View on Storefront</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" alt="Navigating to View on Storefront in BigCommerce" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Step 2 - Click the paintbrush icon (top right)</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" alt="Click the paintbrush icon to open Page Builder" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+              </div>
+            </div></div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Click the correct HTML Widget</div>
+              <div class="ht-sdesc">Hover over the module section - it highlights blue with "HTML" in the top left corner. Click it to open the editor panel on the left, then click <strong>Expand HTML Editor</strong> to edit the code.</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Hover over the module - it highlights blue</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" alt="Hovering over a module in Page Builder" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Click it - then click Expand HTML Editor</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" alt="Expand HTML Editor panel" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+              </div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div class="ht-img"><img id="img-ht4" src="" alt="Ann bar"><div class="ht-img-cap">&#128226; Hover over the teal strip</div></div><div class="ht-img"><img id="img-ht5" src="" alt="Banner"><div class="ht-img-cap">&#128444;&#65039; Hover over the full-width image</div></div></div><div class="ht-img" style="margin-top:10px"><img id="img-ht6" src="" alt="Grid"><div class="ht-img-cap">&#128717; Hover over the product cards below the banner</div></div><div class="ht-warn">&#9888;&#65039; Make sure you click the <strong>correct</strong> widget. Check it visually matches what you want to change.</div></div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste in your new code</div>
+              <div class="ht-screen">Select all: <span class="hl">Ctrl + A</span> / <span class="hl">Cmd + A</span> &nbsp;&rarr;&nbsp; Delete &nbsp;&rarr;&nbsp; Paste: <span class="hl">Ctrl + V</span> / <span class="hl">Cmd + V</span> &nbsp;&rarr;&nbsp; click <span class="hl">Apply</span></div>
+              <div class="ht-tip">&#128161; <strong>Tip:</strong> Before deleting, copy the current code and paste it into a Word doc or Notepad as a backup. If anything looks wrong after publishing, you can simply paste the old code back in and re-apply.</div>
+            </div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">6</div><div class="ht-sbody"><div class="ht-stitle">Save widget, then Publish the page</div><div class="ht-screen">Widget editor &#8594; <span class="hl">Apply</span><br>Page Builder toolbar (top right) &#8594; <span class="hl">Publish</span></div><div class="ht-warn">&#9888;&#65039; <em>Apply</em> alone does <strong>not</strong> make it live. You must also click <strong>Publish</strong>.</div></div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">7</div><div class="ht-sbody"><div class="ht-stitle">Check the live store</div><div class="ht-screen">Hard refresh: <span class="hl">Ctrl+Shift+R</span> / <span class="hl">Cmd+Shift+R</span></div><div class="ht-tip">&#128161; Use F12 &#8594; mobile icon in DevTools to check mobile layout without a phone.</div></div></div>
+      </div>
+      <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128190; Quick Image Size Reference</div><table class="ref-table"><thead><tr><th>Module</th><th>Image</th><th>Size</th><th>Format</th><th>Max size</th></tr></thead><tbody><tr><td>&#128444;&#65039; Banner</td><td>Desktop</td><td><strong>2100&times;700px</strong></td><td>JPG/PNG</td><td>400KB</td></tr><tr><td>&#128444;&#65039; Banner</td><td>Mobile</td><td><strong>767&times;960px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128717; Grid</td><td>Per product</td><td><strong>600&times;800px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128226; Ann. Bar</td><td>Text only</td><td>No images</td><td>-</td><td>-</td></tr></tbody></table></div>
+    </div>
       </div>
     </div>
-  
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
   </div>
 
   <div class="gen-module" id="gmod-grid">
@@ -1640,9 +1661,23 @@ body.edit-mode [contenteditable]:focus {
                 <div class="fg"><label class="fl">Columns (desktop)</label><select class="fc" id="pg-cols"><option value="3">3 columns</option><option value="4" selected>4 columns - currently live</option><option value="5">5 columns</option></select></div>
                 <div class="fg"><label class="fl">Columns (mobile)</label><select class="fc" id="pg-mcols"><option value="1">1 column</option><option value="2" selected>2 columns - currently live</option><option value="3">3 columns</option></select></div>
               </div>
-              <div class="frow" style="margin-bottom:14px">
-                <div class="fg"><label class="fl">Button colour</label><div class="color-row"><div class="cswatch"><input type="color" id="pg-bc" value="#000000" oninput="document.getElementById('pg-bchex').value=this.value"></div><input type="text" class="fc" id="pg-bchex" value="#000000" style="width:100px" oninput="syncC('pg-bc','pg-bchex')"></div></div>
-                <div class="fg"><label class="fl">Button hover colour</label><div class="color-row"><div class="cswatch"><input type="color" id="pg-hc" value="#00edff" oninput="document.getElementById('pg-hchex').value=this.value"></div><input type="text" class="fc" id="pg-hchex" value="#00edff" style="width:100px" oninput="syncC('pg-hc','pg-hchex')"></div></div>
+              <div class="frow" style="margin-bottom:16px">
+                <div class="fg">
+                  <label class="fl">Button colour</label>
+                  <div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="document.getElementById('pg-btn').value='#ffffff';document.getElementById('pg-bchex').value='#ffffff';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('pg-btn').value='#000000';document.getElementById('pg-bchex').value='#000000';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('pg-btn').value='#00edff';document.getElementById('pg-bchex').value='#00edff';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="document.getElementById('pg-btn').value='#0097b0';document.getElementById('pg-bchex').value='#0097b0';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="document.getElementById('pg-btn').value='#efefef';document.getElementById('pg-bchex').value='#efefef';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#535353" title="Dark Grey" onclick="document.getElementById('pg-btn').value='#535353';document.getElementById('pg-bchex').value='#535353';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('pg-btn').value='#e0002b';document.getElementById('pg-bchex').value='#e0002b';syncC('pg-btn','pg-bchex')"></button></div>
+                  <div class="color-row">
+                    <div class="cswatch"><input type="color" id="pg-btn" value="#000000" oninput="document.getElementById('pg-bchex').value=this.value"></div>
+                    <input type="text" class="fc" id="pg-bchex" value="#000000" style="width:100px" oninput="syncC('pg-btn','pg-bchex')">
+                  </div>
+                </div>
+                <div class="fg">
+                  <label class="fl">Button hover colour</label>
+                  <div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="document.getElementById('pg-hov').value='#ffffff';document.getElementById('pg-hchex').value='#ffffff';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('pg-hov').value='#000000';document.getElementById('pg-hchex').value='#000000';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('pg-hov').value='#00edff';document.getElementById('pg-hchex').value='#00edff';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="document.getElementById('pg-hov').value='#0097b0';document.getElementById('pg-hchex').value='#0097b0';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="document.getElementById('pg-hov').value='#efefef';document.getElementById('pg-hchex').value='#efefef';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#535353" title="Dark Grey" onclick="document.getElementById('pg-hov').value='#535353';document.getElementById('pg-hchex').value='#535353';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('pg-hov').value='#e0002b';document.getElementById('pg-hchex').value='#e0002b';syncC('pg-hov','pg-hchex')"></button></div>
+                  <div class="color-row">
+                    <div class="cswatch"><input type="color" id="pg-hov" value="#00edff" oninput="document.getElementById('pg-hchex').value=this.value"></div>
+                    <input type="text" class="fc" id="pg-hchex" value="#00edff" style="width:100px" oninput="syncC('pg-hov','pg-hchex')">
+                  </div>
+                </div>
               </div>
               <div class="divider">Products</div>
               <div class="img-upload-notice" style="margin:0 0 12px">
@@ -1783,6 +1818,59 @@ body.edit-mode [contenteditable]:focus {
       <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128190; Quick Image Size Reference</div><table class="ref-table"><thead><tr><th>Module</th><th>Image</th><th>Size</th><th>Format</th><th>Max size</th></tr></thead><tbody><tr><td>&#128444;&#65039; Banner</td><td>Desktop</td><td><strong>2100&times;700px</strong></td><td>JPG/PNG</td><td>400KB</td></tr><tr><td>&#128444;&#65039; Banner</td><td>Mobile</td><td><strong>767&times;960px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128717; Grid</td><td>Per product</td><td><strong>600&times;800px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128226; Ann. Bar</td><td>Text only</td><td>No images</td><td>-</td><td>-</td></tr></tbody></table></div>
     </div>
       </div>
+
+          <div class="gen-accordion mod-howto-accordion">
+            <button class="gen-accordion-btn" onclick="toggleAccordion('grid-howto-body', this)">
+              <span>&#128214; How to publish this to BigCommerce</span>
+              <span class="gen-accordion-arrow">&#8964;</span>
+            </button>
+            <div class="gen-accordion-body" id="grid-howto-body">
+              <div style="padding:16px 20px">
+                <div style="display:flex;flex-direction:column">
+                  <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &#8594; Storefront &#8594; My Themes &#8594; Customize<br>Navigate to the landing page URL inside Page Builder</div>
+              <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px">
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Step 1 - View on Storefront</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" alt="Navigating to View on Storefront in BigCommerce" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Step 2 - Click the paintbrush icon (top right)</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" alt="Click the paintbrush icon to open Page Builder" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+              </div>
+            </div></div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Click the correct HTML Widget</div>
+              <div class="ht-sdesc">Hover over the module section - it highlights blue with "HTML" in the top left corner. Click it to open the editor panel on the left, then click <strong>Expand HTML Editor</strong> to edit the code.</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Hover over the module - it highlights blue</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" alt="Hovering over a module in Page Builder" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+                <div>
+                  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">Click it - then click Expand HTML Editor</div>
+                  <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" alt="Expand HTML Editor panel" style="width:100%;border-radius:7px;border:1px solid var(--border);display:block">
+                </div>
+              </div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div class="ht-img"><img id="img-ht4" src="" alt="Ann bar"><div class="ht-img-cap">&#128226; Hover over the teal strip</div></div><div class="ht-img"><img id="img-ht5" src="" alt="Banner"><div class="ht-img-cap">&#128444;&#65039; Hover over the full-width image</div></div></div><div class="ht-img" style="margin-top:10px"><img id="img-ht6" src="" alt="Grid"><div class="ht-img-cap">&#128717; Hover over the product cards below the banner</div></div><div class="ht-warn">&#9888;&#65039; Make sure you click the <strong>correct</strong> widget. Check it visually matches what you want to change.</div></div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste in your new code</div>
+              <div class="ht-screen">Select all: <span class="hl">Ctrl + A</span> / <span class="hl">Cmd + A</span> &nbsp;&rarr;&nbsp; Delete &nbsp;&rarr;&nbsp; Paste: <span class="hl">Ctrl + V</span> / <span class="hl">Cmd + V</span> &nbsp;&rarr;&nbsp; click <span class="hl">Apply</span></div>
+              <div class="ht-tip">&#128161; <strong>Tip:</strong> Before deleting, copy the current code and paste it into a Word doc or Notepad as a backup. If anything looks wrong after publishing, you can simply paste the old code back in and re-apply.</div>
+            </div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">6</div><div class="ht-sbody"><div class="ht-stitle">Save widget, then Publish the page</div><div class="ht-screen">Widget editor &#8594; <span class="hl">Apply</span><br>Page Builder toolbar (top right) &#8594; <span class="hl">Publish</span></div><div class="ht-warn">&#9888;&#65039; <em>Apply</em> alone does <strong>not</strong> make it live. You must also click <strong>Publish</strong>.</div></div></div>
+        
+                  <div class="ht-step"><div class="ht-snum">7</div><div class="ht-sbody"><div class="ht-stitle">Check the live store</div><div class="ht-screen">Hard refresh: <span class="hl">Ctrl+Shift+R</span> / <span class="hl">Cmd+Shift+R</span></div><div class="ht-tip">&#128161; Use F12 &#8594; mobile icon in DevTools to check mobile layout without a phone.</div></div></div>
+      </div>
+      <div class="icard" style="margin-top:8px"><div class="icard-ttl">&#128190; Quick Image Size Reference</div><table class="ref-table"><thead><tr><th>Module</th><th>Image</th><th>Size</th><th>Format</th><th>Max size</th></tr></thead><tbody><tr><td>&#128444;&#65039; Banner</td><td>Desktop</td><td><strong>2100&times;700px</strong></td><td>JPG/PNG</td><td>400KB</td></tr><tr><td>&#128444;&#65039; Banner</td><td>Mobile</td><td><strong>767&times;960px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128717; Grid</td><td>Per product</td><td><strong>600&times;800px</strong></td><td>JPG/PNG</td><td>200KB</td></tr><tr><td>&#128226; Ann. Bar</td><td>Text only</td><td>No images</td><td>-</td><td>-</td></tr></tbody></table></div>
+    </div>
+      </div>
+    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
     </div>
   </div>
 
@@ -2239,7 +2327,14 @@ Thanks, Port Store Team</div></div>
 
 function showToast(msg,type){var t=document.getElementById('toast');t.innerHTML=msg;t.className='toast show'+(type?' '+type:'');setTimeout(function(){t.className='toast'},3000);}
 function copyCode(outId,btnId){var el=document.getElementById(outId);if(!el||!el.textContent.trim()){showToast('Generate code first!','err');return;}navigator.clipboard.writeText(el.textContent).then(function(){var b=document.getElementById(btnId);b.textContent='Copied!';b.classList.add('copied');showToast('&#9989; Code copied to clipboard!');setTimeout(function(){b.innerHTML='&#128203; Copy';b.classList.remove('copied');},2200);});}
-function syncC(pid,hid){var h=document.getElementById(hid).value.trim();if(/^#[0-9a-fA-F]{6}$/.test(h))document.getElementById(pid).value=h;}
+function syncC(pid,hid){
+  var h=document.getElementById(hid).value.trim();
+  if(/^#[0-9a-fA-F]{6}$/.test(h)) document.getElementById(pid).value=h;
+  var _ab=document.getElementById('annbar-preview-block');
+  var _gr=document.getElementById('grid-preview-block');
+  if(pid.indexOf('ab-')===0&&_ab&&_ab.style.display!=='none'){try{genAnnBar();}catch(e){}}
+  if(pid.indexOf('pg-')===0&&_gr&&_gr.style.display!=='none'){try{genGrid();}catch(e){}}
+}
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
 // ── BANNER GENERATOR ────────────────────────
@@ -2461,144 +2556,6 @@ function exportHTML() {
   URL.revokeObjectURL(url);
   showToast('&#9989; File exported - push to GitHub to publish your changes.');
 }
-
-// -- LIVE PREVIEW --
-var bannerPrevMode = 'desk';
-
-function renderPreview(module, code) {
-  var block = document.getElementById(module + '-preview-block');
-  var frame = document.getElementById(module + '-preview-frame');
-  if (!block || !frame) return;
-  block.style.display = 'block';
-  var iframe = frame.querySelector('iframe');
-  if (!iframe) {
-    iframe = document.createElement('iframe');
-    iframe.style.cssText = 'width:100%;border:none;display:block;transition:width .2s;';
-    iframe.scrolling = 'no';
-    iframe.setAttribute('sandbox','allow-same-origin');
-    frame.appendChild(iframe);
-  }
-  var doc = iframe.contentDocument || iframe.contentWindow.document;
-  doc.open();
-  doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>*{box-sizing:border-box;margin:0;padding:0}body{background:#fff;font-family:sans-serif}</style></head><body>' + code + '</body></html>');
-  doc.close();
-  if (module === 'banner') { applyBannerPrevMode(iframe); }
-  setTimeout(function(){
-    try {
-      var h = (iframe.contentDocument||iframe.contentWindow.document).body.scrollHeight;
-      if (h > 10) iframe.style.height = h + 'px';
-    } catch(e) {}
-  }, 300);
-}
-
-function togglePreviewSize(module, mode) {
-  if (module !== 'banner') return;
-  bannerPrevMode = mode;
-  var frame = document.getElementById('banner-preview-frame');
-  if (!frame) return;
-  var iframe = frame.querySelector('iframe');
-  if (iframe) applyBannerPrevMode(iframe);
-  // Update button styles
-  var deskBtn = document.getElementById('banner-prev-desk');
-  var mobBtn = document.getElementById('banner-prev-mob');
-  if (mode === 'desk') {
-    if (deskBtn) { deskBtn.style.borderColor='var(--teal)'; deskBtn.style.background='var(--teal-dim)'; deskBtn.style.color='var(--teal)'; }
-    if (mobBtn) { mobBtn.style.borderColor='var(--border)'; mobBtn.style.background='var(--off)'; mobBtn.style.color='var(--muted)'; }
-  } else {
-    if (mobBtn) { mobBtn.style.borderColor='var(--teal)'; mobBtn.style.background='var(--teal-dim)'; mobBtn.style.color='var(--teal)'; }
-    if (deskBtn) { deskBtn.style.borderColor='var(--border)'; deskBtn.style.background='var(--off)'; deskBtn.style.color='var(--muted)'; }
-  }
-}
-
-function applyBannerPrevMode(iframe) {
-  if (bannerPrevMode === 'mob') {
-    iframe.style.width = '375px';
-    iframe.style.maxWidth = '100%';
-    iframe.style.display = 'block';
-    iframe.style.margin = '0 auto';
-    // Re-measure at mobile width
-    setTimeout(function(){
-      try { var h=(iframe.contentDocument||iframe.contentWindow.document).body.scrollHeight; if(h>10) iframe.style.height=h+'px'; } catch(e) {}
-    }, 300);
-  } else {
-    iframe.style.width = '100%';
-    iframe.style.margin = '';
-    setTimeout(function(){
-      try { var h=(iframe.contentDocument||iframe.contentWindow.document).body.scrollHeight; if(h>10) iframe.style.height=h+'px'; } catch(e) {}
-    }, 300);
-  }
-}
-
-function switchModule(id, btn) {
-  document.querySelectorAll('.gen-module').forEach(function(el){ el.classList.remove('active'); });
-  document.querySelectorAll('.gen-picker-tab').forEach(function(b){ b.classList.remove('active'); });
-  var mod = document.getElementById('gmod-' + id);
-  if (mod) mod.classList.add('active');
-  if (btn) btn.classList.add('active');
-}
-function toggleAccordion(bodyId, btn) {
-  var body = document.getElementById(bodyId);
-  if (!body) return;
-  var isOpen = body.classList.contains('open');
-  body.classList.toggle('open', !isOpen);
-  var arrow = btn ? btn.querySelector('.gen-accordion-arrow') : null;
-  if (arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
-}
-function toggleCode(bodyId, btn) {
-  var body = document.getElementById(bodyId);
-  if (!body) return;
-  var collapsed = body.classList.contains('code-collapsed');
-  body.classList.toggle('code-collapsed', !collapsed);
-  if (btn) btn.textContent = collapsed ? 'Hide code' : 'Show code';
-}
-function showScenario(n, btn) {
-  document.querySelectorAll('.stock-scenario').forEach(function(el){ el.classList.remove('active'); });
-  document.querySelectorAll('.stock-tab').forEach(function(b){ b.classList.remove('active'); });
-  var sc = document.getElementById('stock-sc-' + n);
-  if (sc) sc.classList.add('active');
-  if (btn) btn.classList.add('active');
-}
-function switchGuide(id) {
-  document.querySelectorAll('.guide-pane').forEach(function(el){ el.style.display='none'; });
-  document.querySelectorAll('.guide-nav-btn').forEach(function(b){ b.classList.remove('active'); });
-  document.getElementById('sg-'+id).style.display='block';
-  document.getElementById('gbtn-'+id).classList.add('active');
-}
-function csScroll(id) {
-  var el = document.getElementById(id);
-  if (el) { setTimeout(function(){ el.scrollIntoView({behavior:'smooth',block:'start'}); }, 80); }
-}
-function wmGo(id) {
-  document.querySelectorAll('#sec-website .subview').forEach(function(v){ v.classList.remove('active'); });
-  var bc = document.getElementById('wm-bc');
-  var bcLbl = document.getElementById('wm-bc-lbl');
-  if (id === 'home') {
-    document.getElementById('sv-home').classList.add('active');
-    if (bc) bc.style.display = 'none';
-  } else {
-    var sv = document.getElementById('sv-' + id);
-    if (sv) sv.classList.add('active');
-    if (bc) bc.style.display = 'flex';
-    var meta = WM_META[id];
-    if (bcLbl && meta) bcLbl.textContent = meta.label;
-  }
-}
-function switchTab(tab, btn) {
-  document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
-  document.querySelectorAll('.mtab').forEach(function(b){ b.classList.remove('active'); });
-  var sec = document.getElementById('sec-' + tab);
-  if (sec) sec.classList.add('active');
-  if (btn) btn.classList.add('active');
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-function handleHash() {
-  var hash = window.location.hash.replace('#','') || 'website';
-  var valid = ['website','generator','guides','cs'];
-  var tab = valid.indexOf(hash) >= 0 ? hash : 'website';
-  var btn = document.getElementById('mt-' + tab);
-  switchTab(tab, btn);
-}
-window.addEventListener('hashchange', handleHash);
 
 document.addEventListener("DOMContentLoaded", function() {
 renderMsgs();

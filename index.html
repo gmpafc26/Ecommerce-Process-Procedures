@@ -1273,6 +1273,27 @@ body.edit-mode [contenteditable]:focus {
 .bc-section-body { display: none; padding: 16px 18px; background: #fff; border-top: 1px solid var(--border); }
 .bc-section-body.bc-open { display: block; }
 
+
+/* -- CUSTOMER SERVICE TABS -- */
+.cs-tab {
+  padding: 10px 16px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s;
+  margin-bottom: -2px;
+}
+.cs-tab:hover { color: var(--text); }
+.cs-tab.active { color: var(--teal); border-bottom-color: var(--teal); }
+.cs-pane { display: none; }
+.cs-pane.active { display: block; }
+
 </style>
 </head>
 <body>
@@ -1290,7 +1311,6 @@ body.edit-mode [contenteditable]:focus {
 <nav class="main-tabs">
   <button class="mtab active" id="mt-website" onclick="switchTab('website',this)">&#127760; Website Operations</button>
   <button class="mtab" id="mt-generator" onclick="switchTab('generator',this)">&#9881;&#65039; BC Module Generator</button>
-  <button class="mtab" id="mt-guides" onclick="switchTab('guides',this)">&#128218; Product Guides</button>
   <button class="mtab" id="mt-cs" onclick="switchTab('cs',this)">&#128172; Customer Service</button>
 </nav>
 
@@ -1338,10 +1358,27 @@ body.edit-mode [contenteditable]:focus {
 
       </div>
 
-      <div class="wide-card" onclick="wmGo('ghost')">
-        <div class="wide-icon" style="background:#fdf4ff">&#128247;</div>
-        <div class="wide-body"><div class="wide-title">Ghost Imagery Requests</div><div class="wide-desc">Submit a ghost mannequin or flat lay shoot request to Virtue Creative Studios and manage the process end-to-end.</div></div>
-        <div class="wide-arrow"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div class="wide-card" onclick="wmGo('awds')">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="wide-icon" style="background:#fff8ed;font-size:22px">&#128666;</div>
+            <div class="wide-body">
+              <div class="wide-title">Warehousing — AWDS</div>
+              <div class="wide-desc">Managing stock, fulfilment and returns through the AWDS warehouse system.</div>
+            </div>
+            <div class="wide-arrow"></div>
+          </div>
+        </div>
+        <div class="wide-card" onclick="wmGo('ghost')">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="wide-icon" style="background:#fdf4ff;font-size:22px">&#128247;</div>
+            <div class="wide-body">
+              <div class="wide-title">Ghost Imagery Requests</div>
+              <div class="wide-desc">Submit ghost mannequin or flat lay requests to Virtue Creative Studios.</div>
+            </div>
+            <div class="wide-arrow"></div>
+          </div>
+        </div>
       </div>
       
 
@@ -1554,77 +1591,248 @@ body.edit-mode [contenteditable]:focus {
   <div class="subview" id="sv-lightspeed">
     <div style="padding:24px 28px">
 
-      <div class="icard" style="margin-bottom:20px">
+      <div class="icard" style="margin-bottom:16px">
         <div class="icard-ttl">&#128203; Lightspeed</div>
-        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-top:6px">Lightspeed is the source of truth for all product content. Any changes made here sync automatically into BigCommerce. Always start here when creating or updating products.</p>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-top:6px">Lightspeed is the source of truth for all product content. Changes made here sync automatically into BigCommerce. Always start here when creating or updating products.</p>
       </div>
 
-      <div class="pm-overwrite-warn" style="margin-bottom:24px">
+      <div class="pm-overwrite-warn" style="margin-bottom:16px">
         <div class="pm-overwrite-icon">&#8644;&#65039;</div>
         <div>
-          <div class="pm-overwrite-title">Lightspeed syncs one way into BigCommerce — not back</div>
+          <div class="pm-overwrite-title">Lightspeed syncs one way into BigCommerce &mdash; not back</div>
           <div class="pm-overwrite-body">Product names, descriptions, images and prices set here will overwrite BigCommerce on each sync. Changes made directly in BigCommerce to these fields will be lost. <strong>Always make product content changes here first.</strong></div>
         </div>
       </div>
 
-      <!-- What to manage in Lightspeed -->
-      <div class="icard" style="margin-bottom:8px"><div class="icard-ttl">&#9989; What to manage in Lightspeed</div></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
-        <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Product name</div><div class="pm-fd">Shown on storefront and search results. Keep consistent across variants.</div></div>
-        <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Description</div><div class="pm-fd">Rich text product description. Syncs to BC on the next update.</div></div>
-        <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Images</div><div class="pm-fd">Upload product images here — they sync through to BC automatically.</div></div>
-        <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Price &amp; sale price</div><div class="pm-fd">Retail and sale pricing. Numbers only, no $ symbol.</div></div>
-        <div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>SKU / barcode</div><div class="pm-fd">Internal product codes. Don&rsquo;t change SKU without checking inventory impact.</div></div>
-        <div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Brand &amp; tags</div><div class="pm-fd">Used for filtering in Back Office and synced to BC.</div></div>
+      <!-- ── MANAGING PRODUCTS ──────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('ls-products',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128230;</span><span class="bc-section-title">Managing Products</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="ls-products">
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Lightspeed manages all core product data. Any changes made here sync automatically to BigCommerce.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+            <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Product name</div><div class="pm-fd">Shown on storefront and search. Keep consistent across variants.</div></div>
+            <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Description</div><div class="pm-fd">Rich text description. Syncs to BC &mdash; don&rsquo;t edit in BC.</div></div>
+            <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Images</div><div class="pm-fd">Upload here &mdash; they sync through to BC automatically.</div></div>
+            <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Price &amp; sale price</div><div class="pm-fd">Retail and sale pricing. Numbers only, no $ symbol.</div></div>
+            <div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>SKU / barcode</div><div class="pm-fd">Don&rsquo;t change SKU without checking inventory impact.</div></div>
+            <div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Brand &amp; tags</div><div class="pm-fd">Used for filtering in Back Office and synced to BC.</div></div>
+          </div>
+        </div>
       </div>
 
-      <!-- Publishing process -->
-      <div class="icard" style="margin-bottom:8px"><div class="icard-ttl">&#128257; Publishing products from Lightspeed to BigCommerce</div></div>
-      <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;margin-bottom:20px;overflow:hidden">
-        <div class="csp-steps" style="padding:0 18px">
-          <div class="csp-step">
-            <div class="csp-num">1</div>
-            <div class="csp-body">
-              <div class="csp-stitle">Complete the product in Lightspeed</div>
-              <div class="csp-sdesc">Ensure name, description, images, price and categories are all set. The product should be in <strong>Active</strong> status.</div>
-            </div>
-          </div>
-          <div class="csp-step">
-            <div class="csp-num">2</div>
-            <div class="csp-body">
-              <div class="csp-stitle">Trigger a sync</div>
-              <div class="csp-sdesc">Lightspeed syncs to BigCommerce automatically when stock is updated. To force a manual sync, adjust the inventory quantity to the same number (e.g. set 5 &rarr; 5) to trigger an update without changing stock.</div>
-            </div>
-          </div>
-          <div class="csp-step">
-            <div class="csp-num">3</div>
-            <div class="csp-body">
-              <div class="csp-stitle">Check the product in BigCommerce</div>
-              <div class="csp-sdesc">Open BC Admin &rarr; Products and confirm the name, description, price and images have come through correctly.</div>
-            </div>
-          </div>
-          <div class="csp-step">
-            <div class="csp-num">4</div>
-            <div class="csp-body">
-              <div class="csp-stitle">Set visibility and channels in BigCommerce</div>
-              <div class="csp-sdesc">New products may not be visible by default. See the <strong>BigCommerce</strong> section for the visibility and channel steps.</div>
+      <!-- ── PUBLISHING TO BIGCOMMERCE ─────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('ls-publishing',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128257;</span><span class="bc-section-title">Publishing to BigCommerce</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="ls-publishing">
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Once a product is ready in Lightspeed, follow these steps to make it live on the Port Store website.</p>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden">
+            <div class="csp-steps" style="padding:0 18px">
+              <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Complete the product in Lightspeed</div><div class="csp-sdesc">Ensure name, description, images, price and categories are all set. The product should be in <strong>Active</strong> status.</div></div></div>
+              <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Trigger a sync</div><div class="csp-sdesc">Lightspeed syncs to BigCommerce automatically when stock is updated. To force a manual sync, adjust the inventory quantity to the same number (e.g. set 5 &rarr; 5) to trigger an update without changing stock.</div></div></div>
+              <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Check the product in BigCommerce</div><div class="csp-sdesc">Open BC Admin &rarr; Products and confirm the name, description, price and images have come through correctly.</div></div></div>
+              <div class="csp-step"><div class="csp-num">4</div><div class="csp-body"><div class="csp-stitle">Set visibility and channels in BigCommerce</div><div class="csp-sdesc">New products may not be visible by default. See <strong>BigCommerce &rarr; Products</strong> for the visibility and channel steps.</div></div></div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="icard"><div class="icard-ttl">&#128203; Quick Reference — what to manage in Lightspeed</div><table class="ref-table"><thead><tr><th>What</th><th>Notes</th></tr></thead><tbody>
-        <tr><td><strong>Product name</strong></td><td>Must be identical across all variant rows</td></tr>
-        <tr><td><strong>Description</strong></td><td>Syncs to BC — don&rsquo;t edit in BC</td></tr>
-        <tr><td><strong>Images</strong></td><td>Upload here, sync to BC — don&rsquo;t upload directly in BC</td></tr>
-        <tr><td><strong>Price &amp; sale price</strong></td><td>Numbers only, no $ symbol</td></tr>
-        <tr><td><strong>Stock levels</strong></td><td>Managed here, synced to BC</td></tr>
-        <tr><td><strong>SKU / barcode</strong></td><td>Don&rsquo;t change SKU without checking inventory impact</td></tr>
-        <tr><td><strong>Categories (Lightspeed)</strong></td><td>Used for Back Office filtering — separate from BC category pages</td></tr>
-      </tbody></table></div>
+      <!-- ── BULK PRODUCT UPLOAD ────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('ls-bulk',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128229;</span><span class="bc-section-title">Bulk Product Upload</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="ls-bulk">
+          <div id="sg-lightspeed" class="guide-pane" style="padding:0">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin:16px 0;flex-wrap:wrap;gap:10px">
+          <div><div style="font-size:16px;font-weight:700">Lightspeed Bulk Upload</div><div style="font-size:13px;color:var(--muted)">X Series &middot; Process guide</div></div>
+          <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Upload%20Template.xlsx?d=wde106432a27f4e4d92ff8f55973c4d64&csf=1&web=1&e=3r8XQF" target="_blank">&#128229; Download Template</a>
+        </div>
+        <div class="gd-flow">
+          <div class="gd-node"><div class="gd-ico gd-t">&#128203;</div><div class="gd-num">Stage 1</div><div class="gd-lbl">Prepare<br>the file</div></div><div class="gd-arr">&#8250;</div>
+          <div class="gd-node"><div class="gd-ico gd-b">&#128193;</div><div class="gd-num">Stage 2</div><div class="gd-lbl">Check<br>columns</div></div><div class="gd-arr">&#8250;</div>
+          <div class="gd-node"><div class="gd-ico gd-a">&#11014;&#65039;</div><div class="gd-num">Stage 3</div><div class="gd-lbl">Run the<br>import</div></div><div class="gd-arr">&#8250;</div>
+          <div class="gd-node"><div class="gd-ico gd-n">&#128269;</div><div class="gd-num">Verify</div><div class="gd-lbl">Check<br>results</div></div><div class="gd-arr">&#8250;</div>
+          <div class="gd-node"><div class="gd-ico gd-g">&#9989;</div><div class="gd-num">Done</div><div class="gd-lbl">Products<br>live</div></div>
+        </div>
+        <div class="gd-lbl-sec">Stage 1 &mdash; Prepare the file</div>
+        <div class="gd-card">
+          <div class="gd-steps">
+            <div class="gd-step"><div class="gd-sico gd-n">&#128229;</div><div class="gd-sbody"><div class="gd-stitle">Download the template</div><div class="gd-sdesc">Always start from the Port Store template. Column names must match exactly &mdash; don&rsquo;t rename or add columns.</div><a class="guide-dl-lnk" style="margin:8px 0 12px;display:inline-flex" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Upload%20Template.xlsx?d=wde106432a27f4e4d92ff8f55973c4d64&csf=1&web=1&e=3r8XQF" target="_blank">&#128229; Download Lightspeed Upload Template</a></div></div>
+            <div class="gd-step"><div class="gd-sico gd-t">&#128196;</div><div class="gd-sbody"><div class="gd-stitle">One row per variant</div><div class="gd-sdesc">Each size gets its own row. Product name, category, prices, brand and supplier repeat on every row &mdash; only SKU, barcode and size change per row.</div><div class="gd-band gd-band-b"><span>&#8505;&#65039;</span><div>Products with no variants still get one row &mdash; leave <code>variant_option_one_name</code> and <code>variant_option_one_value</code> blank.</div></div></div></div>
+            <div class="gd-step"><div class="gd-sico gd-b">&#128190;</div><div class="gd-sbody"><div class="gd-stitle">Save as CSV UTF-8</div><div class="gd-sdesc">Save using <code>File &rarr; Save As &rarr; CSV UTF-8 (Comma delimited)</code>.</div><div class="gd-band gd-band-a"><span>&#9888;&#65039;</span><div><strong>Don&rsquo;t use &ldquo;CSV (MS-DOS)&rdquo;</strong> &mdash; it breaks special characters on import.</div></div></div></div>
+            <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; Barcode column formatted as <strong>Text</strong> &mdash; prevents <code>8.05E+12</code></div><div class="gd-chk">&#128247; Every row has a unique <code>sku_code_custom</code></div><div class="gd-chk">&#128176; Prices are numbers only &mdash; no <code>$</code> symbols</div><div class="gd-chk">&#128221; Product names <strong>identical</strong> across all rows for the same product</div><div class="gd-chk">&#128247; Tags semicolon-separated: <code>2026 Macron Range;2026 SDNR</code></div></div></div></div>
+          </div>
+        </div>
+        <div class="gd-divider"></div>
+        <div class="gd-lbl-sec">Stage 2 &mdash; Column reference</div>
+        <div class="gd-card">
+          <div class="gd-band gd-band-t" style="margin-bottom:14px"><span>&#128161;</span><div>Column headers are <strong>case-sensitive</strong>. Copy directly from the template &mdash; don&rsquo;t rename them.</div></div>
+          <div class="gd-fixed-row"><div class="gd-fixed"><div class="gd-fixed-lbl">tax_name</div><div class="gd-fixed-val">Default Tax</div></div><div class="gd-fixed"><div class="gd-fixed-lbl">active</div><div class="gd-fixed-val">1</div></div><div class="gd-fixed"><div class="gd-fixed-lbl">track_inventory</div><div class="gd-fixed-val">1</div></div></div>
+          <table class="gd-table" style="margin-top:16px"><thead><tr><th>Column</th><th>Required?</th><th>Notes</th><th>Example</th></tr></thead><tbody>
+            <tr><td><code>sku_code_custom</code></td><td><span class="gpill gpill-r">Required</span></td><td>Unique per variant. No spaces.</td><td><code>PAM26SNDR01-M</code></td></tr>
+            <tr><td><code>sku_code_barcode</code></td><td><span class="gpill gpill-a">Optional</span></td><td>EAN-13. Format column as <strong>Text</strong>.</td><td><code>8051552560759</code></td></tr>
+            <tr><td><code>name</code></td><td><span class="gpill gpill-r">Required</span></td><td>Identical across all variant rows.</td><td><code>PA Macron 2026 SDNR Guernsey</code></td></tr>
+            <tr><td><code>product_category</code></td><td><span class="gpill gpill-r">Required</span></td><td>Must match existing Lightspeed category exactly.</td><td><code>AFL (MACRON) / Guernseys</code></td></tr>
+            <tr><td><code>variant_option_one_name</code></td><td><span class="gpill gpill-a">If sized</span></td><td>Use <code>Size</code> for apparel.</td><td><code>Size</code></td></tr>
+            <tr><td><code>variant_option_one_value</code></td><td><span class="gpill gpill-a">If sized</span></td><td>The size for this row.</td><td><code>M</code></td></tr>
+            <tr><td><code>supply_price</code></td><td><span class="gpill gpill-r">Required</span></td><td>Ex-GST cost price. Numbers only.</td><td><code>67</code></td></tr>
+            <tr><td><code>retail_price</code></td><td><span class="gpill gpill-r">Required</span></td><td>Incl. GST sell price. Numbers only.</td><td><code>135.00</code></td></tr>
+            <tr><td><code>tags</code></td><td><span class="gpill gpill-t">Optional</span></td><td>Semicolon-separated, no spaces.</td><td><code>2026 Macron Range;2026 SDNR</code></td></tr>
+            <tr><td><code>brand_name</code></td><td><span class="gpill gpill-t">Optional</span></td><td>Used for filtering in Back Office.</td><td><code>MACRON TECHNICAL SPORTSWEAR</code></td></tr>
+            <tr><td><code>supplier_name</code></td><td><span class="gpill gpill-a">If using POs</span></td><td>Must match existing supplier exactly.</td><td><code>MACRON TECHNICAL SPORTSWEAR</code></td></tr>
+          </tbody></table>
+        </div>
+        <div class="gd-divider"></div>
+        <div class="gd-lbl-sec">Stage 3 &mdash; Run the import</div>
+        <div class="gd-card">
+          <div class="gd-band gd-band-a" style="margin-bottom:14px"><span>&#9888;&#65039;</span><div><strong>Test first.</strong> Run a small file of 5&ndash;10 products before your full upload.</div></div>
+          <div class="gd-steps">
+            <div class="gd-step"><div class="gd-sico gd-t">&#128187;</div><div class="gd-sbody"><div class="gd-stitle">Navigate to the import tool</div><div style="display:flex;align-items:center;gap:6px;margin-top:5px;flex-wrap:wrap"><code>Products</code><span style="color:var(--muted)">&rsaquo;</span><code>Import / Export</code><span style="color:var(--muted)">&rsaquo;</span><code>Import Products</code></div></div></div>
+            <div class="gd-step"><div class="gd-sico gd-b">&#9745;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Select import type</div><div class="gd-sdesc">Choose <strong>Add new products</strong> for a new range.</div><div class="gd-band gd-band-r"><span>&#128683;</span><div><strong>Don&rsquo;t use &ldquo;Update existing&rdquo;</strong> for a new range &mdash; rows with no existing match are silently skipped.</div></div></div></div>
+            <div class="gd-step"><div class="gd-sico gd-t">&#128228;</div><div class="gd-sbody"><div class="gd-stitle">Upload CSV and confirm mapping</div><div class="gd-sdesc">Click <strong>Choose File</strong>, select your CSV, then <strong>Next</strong>. Manually assign anything showing &ldquo;Not mapped&rdquo;.</div></div></div>
+            <div class="gd-step last"><div class="gd-sico gd-n">&#9654;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Run the import</div><div class="gd-sdesc">Click <strong>Import</strong> and don&rsquo;t navigate away. Any skips above zero need investigating.</div></div></div>
+          </div>
+        </div>
+        <div class="gd-divider"></div>
+        <div class="gd-lbl-sec">Troubleshooting</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="gd-tr"><div class="gd-tr-q">&#9888;&#65039; Rows being skipped with no error</div><div class="gd-tr-a">Usually a column mapping issue or wrong import type. Check headers match the template exactly and confirm you chose <strong>Add new products</strong>.</div></div>
+          <div class="gd-tr"><div class="gd-tr-q">&#128290; Barcodes show as scientific notation (8.05E+12)</div><div class="gd-tr-a">The barcode column is formatted as a number. Select the column, format as <strong>Text</strong>, re-paste barcodes as values, then re-export the CSV.</div></div>
+          <div class="gd-tr"><div class="gd-tr-q">&#128196; Duplicate products instead of variants</div><div class="gd-tr-a">A variant row has a slightly different product name &mdash; even a trailing space causes Lightspeed to create a new product. Use Excel find-replace to standardise.</div></div>
+          <div class="gd-tr"><div class="gd-tr-q">&#128193; Category not found</div><div class="gd-tr-a">Category name doesn&rsquo;t exactly match Lightspeed. Pull the exact name from <code>Products &rarr; Categories</code> in Back Office.</div></div>
+          <div class="gd-tr"><div class="gd-tr-q">&#128176; Prices show as $0.00 after import</div><div class="gd-tr-a">Price columns contain a <code>$</code> symbol or comma. Remove with find-replace, re-export, then re-import using <strong>Update existing products</strong>.</div></div>
+        </div>
+        <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; Lightspeed X &middot; Bulk Upload Process</div>
+      </div>
+        </div>
+      </div>
+
+      <!-- ── QUICK REFERENCE ───────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('ls-quickref',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128203;</span><span class="bc-section-title">Quick Reference</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="ls-quickref">
+          <table class="ref-table"><thead><tr><th>What</th><th>Notes</th></tr></thead><tbody>
+            <tr><td><strong>Product name</strong></td><td>Must be identical across all variant rows. Syncs to BC.</td></tr>
+            <tr><td><strong>Description</strong></td><td>Syncs to BC &mdash; don&rsquo;t edit in BC</td></tr>
+            <tr><td><strong>Images</strong></td><td>Upload here, sync to BC &mdash; don&rsquo;t upload directly in BC</td></tr>
+            <tr><td><strong>Price &amp; sale price</strong></td><td>Numbers only, no $ symbol</td></tr>
+            <tr><td><strong>Stock levels</strong></td><td>Managed here, synced to BC</td></tr>
+            <tr><td><strong>SKU / barcode</strong></td><td>Don&rsquo;t change SKU without checking inventory impact</td></tr>
+            <tr><td><strong>Categories (Lightspeed)</strong></td><td>Used for Back Office filtering &mdash; separate from BC category pages</td></tr>
+          </tbody></table>
+        </div>
+      </div>
 
     </div>
   </div>
+
+
+
+
+  <!-- AWDS WAREHOUSING -->
+  <div class="subview" id="sv-awds">
+    <div style="padding:24px 28px">
+
+      <div class="icard" style="margin-bottom:16px">
+        <div class="icard-ttl">&#128666; Warehousing &mdash; AWDS</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-top:6px">AWDS manages fulfilment, stock and returns for Port Store ecommerce orders.</p>
+      </div>
+
+      <div style="margin-bottom:16px" class="ghost-contact">
+        <div class="ghost-av">AP</div>
+        <div><div class="ghost-name">Alex Perry &mdash; AWDS</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div>
+      </div>
+
+      <!-- ── BULK PRODUCT IMPORT ────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('awds-bulk',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128228;</span><span class="bc-section-title">Bulk Product Import</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="awds-bulk">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin:16px 0;flex-wrap:wrap;gap:10px">
+          <div><div style="font-size:16px;font-weight:700">AWDS Bulk Product Import</div><div style="font-size:13px;color:var(--muted)">Warehouse System &middot; Process guide</div></div>
+          <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/AWDS%20Product%20Template.csv?d=w1c8e8290cc324beabcc7717fa0f43b29&csf=1&web=1&e=tydLjF" target="_blank">&#128229; Download Template</a>
+        </div>
+        <div class="gd-flow">
+          <div class="gd-node"><div class="gd-ico gd-t">&#128202;</div><div class="gd-num">Stage 1</div><div class="gd-lbl">Get your<br>data</div></div><div class="gd-arr">&#8250;</div>
+          <div class="gd-node"><div class="gd-ico gd-b">&#128203;</div><div class="gd-num">Stage 2</div><div class="gd-lbl">Prepare<br>the file</div></div><div class="gd-arr">&#8250;</div>
+          <div class="gd-node"><div class="gd-ico gd-n">&#9993;&#65039;</div><div class="gd-num">Stage 3</div><div class="gd-lbl">Send to<br>AWDS</div></div><div class="gd-arr">&#8250;</div>
+          <div class="gd-node"><div class="gd-ico gd-g">&#9989;</div><div class="gd-num">Done</div><div class="gd-lbl">Products<br>in AWDS</div></div>
+        </div>
+        <div class="gd-lbl-sec">Stage 1 &mdash; Get your data</div>
+        <div class="gd-card">
+          <div class="gd-sdesc" style="margin-bottom:14px">Two ways to source product data &mdash; use the original product spreadsheet wherever possible.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+            <div style="border-radius:11px;border:1.5px solid var(--teal);background:var(--teal-dim);padding:15px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="font-size:18px">&#128202;</span><div style="font-size:13px;font-weight:700">From the product spreadsheet</div><span style="margin-left:auto;font-size:10px;font-weight:600;background:var(--teal);color:#fff;padding:2px 7px;border-radius:20px">Recommended</span></div>
+              <div style="font-size:13px;color:var(--teal);line-height:1.6;margin-bottom:7px">Use the pre-built range spreadsheet. SKUs, descriptions, categories and barcodes all in one place.</div>
+              <div style="font-size:12px;color:var(--teal)">&#10003; Barcodes already present<br>&#10003; Clean and consistently formatted<br>&#10003; Much faster for large ranges</div>
+            </div>
+            <div style="border-radius:11px;border:1px solid var(--border);background:#fff;padding:15px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="font-size:18px">&#128187;</span><div style="font-size:13px;font-weight:700">From a Lightspeed export</div></div>
+              <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:7px">Export from Lightspeed Back Office. Only use when you don&rsquo;t have the original spreadsheet.</div>
+              <div style="font-size:12px;color:var(--muted)">&#10003; Useful for products already in Lightspeed<br><span style="color:var(--red)">&#10007; <strong>Lightspeed does not export barcodes</strong></span></div>
+            </div>
+          </div>
+          <div class="gd-band gd-band-r"><span>&#9888;&#65039;</span><div>For any range larger than a handful of products, use the product spreadsheet path wherever possible.</div></div>
+        </div>
+        <div class="gd-divider"></div>
+        <div class="gd-lbl-sec">Stage 2 &mdash; Prepare the file</div>
+        <div class="gd-card">
+          <div class="gd-steps">
+            <div class="gd-step"><div class="gd-sico gd-n">&#128229;</div><div class="gd-sbody"><div class="gd-stitle">Download the AWDS template</div><div class="gd-sdesc">Always use the Port Store AWDS template. Column names and order must match exactly.</div><a class="guide-dl-lnk" style="margin:8px 0 12px;display:inline-flex" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/AWDS%20Product%20Template.csv?d=w1c8e8290cc324beabcc7717fa0f43b29&csf=1&web=1&e=tydLjF" target="_blank">&#128229; Download AWDS Product Template</a></div></div>
+            <div class="gd-step"><div class="gd-sico gd-t">&#128196;</div><div class="gd-sbody"><div class="gd-stitle">One row per variant</div><div class="gd-sdesc">Each size gets its own row with a unique <code>ProductCode</code> and <code>ItemBarcode</code>. Description repeats across all rows for the same product.</div><div class="gd-band gd-band-b"><span>&#8505;&#65039;</span><div>The <code>Description</code> must be identical across all variant rows &mdash; never include size in the description.</div></div></div></div>
+            <div class="gd-step"><div class="gd-sico gd-b">&#128190;</div><div class="gd-sbody"><div class="gd-stitle">Save as CSV UTF-8</div><div class="gd-sdesc">Save using <code>File &rarr; Save As &rarr; CSV UTF-8 (Comma delimited)</code>.</div></div></div>
+            <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; <code>ItemBarcode</code> column formatted as <strong>Text</strong></div><div class="gd-chk">&#128247; Every row has a unique <code>ProductCode</code></div><div class="gd-chk">&#128221; <code>Description</code> does <strong>not</strong> include size &mdash; identical across all rows for the same product</div><div class="gd-chk">&#128274; <code>DRCode</code> is <strong>3027</strong> on every row</div></div></div></div>
+          </div>
+        </div>
+        <div class="gd-divider"></div>
+        <div class="gd-lbl-sec">Stage 3 &mdash; Email to AWDS</div>
+        <div class="gd-card">
+          <div class="gd-sdesc" style="margin-bottom:14px">Once the CSV is complete and checked, email it to Alex Perry. File name: <code>YYYYMMDD_RangeName_AWDS_import.csv</code></div>
+          <div class="ghost-contact"><div class="ghost-av">AP</div><div><div class="ghost-name">Alex Perry</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div></div>
+        </div>
+        <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; AWDS &middot; Bulk Product Import Process</div>
+        </div>
+      </div>
+
+      <!-- ── FULFILMENT ─────────────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('awds-fulfilment',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128666;</span><span class="bc-section-title">Fulfilment</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="awds-fulfilment">
+          <div class="gd-band gd-band-t"><span>&#128221;</span><div>Content coming soon. Add AWDS fulfilment procedures here.</div></div>
+        </div>
+      </div>
+
+      <!-- ── RETURNS ────────────────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('awds-returns',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#8617;&#65039;</span><span class="bc-section-title">Returns</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="awds-returns">
+          <div class="gd-band gd-band-t"><span>&#128221;</span><div>Content coming soon. Add AWDS returns procedures here.</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
 
 
   <!-- GHOST IMAGERY (Website Operations subview) -->
@@ -2192,162 +2400,26 @@ body.edit-mode [contenteditable]:focus {
   </div>
   </div>
 </div>
-</div>
-</div>
-
-</div>
-
-
-<!-- ════════════════════════════════════════
-     PRODUCT GUIDES
-════════════════════════════════════════ -->
-<div class="section" id="sec-guides">
-  <div style="background:#fff;border-bottom:1px solid var(--border);padding:20px 28px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
-    <div style="font-size:18px;font-weight:700;margin-bottom:4px">&#128218; Product Guides</div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:14px">Bulk upload process guides for Lightspeed and AWDS</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;padding-bottom:16px">
-      <button onclick="switchGuide('lightspeed')" id="gbtn-lightspeed" class="guide-nav-btn active">&#128187; Lightspeed Bulk Upload</button>
-      <button onclick="switchGuide('awds')" id="gbtn-awds" class="guide-nav-btn">&#128228; AWDS Bulk Import</button>
-    </div>
-  </div>
-
-  <!-- LIGHTSPEED -->
-  <div id="sg-lightspeed" class="guide-pane" style="padding:24px 28px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
-      <div><div style="font-size:16px;font-weight:700">Lightspeed Bulk Upload</div><div style="font-size:13px;color:var(--muted)">X Series &middot; Process guide</div></div>
-      <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Upload%20Template.xlsx?d=wde106432a27f4e4d92ff8f55973c4d64&csf=1&web=1&e=3r8XQF" target="_blank">&#128229; Download Template</a>
-    </div>
-    <div class="gd-flow">
-      <div class="gd-node"><div class="gd-ico gd-t">&#128203;</div><div class="gd-num">Stage 1</div><div class="gd-lbl">Prepare<br>the file</div></div><div class="gd-arr">&#8250;</div>
-      <div class="gd-node"><div class="gd-ico gd-b">&#128193;</div><div class="gd-num">Stage 2</div><div class="gd-lbl">Check<br>columns</div></div><div class="gd-arr">&#8250;</div>
-      <div class="gd-node"><div class="gd-ico gd-a">&#11014;&#65039;</div><div class="gd-num">Stage 3</div><div class="gd-lbl">Run the<br>import</div></div><div class="gd-arr">&#8250;</div>
-      <div class="gd-node"><div class="gd-ico gd-n">&#128269;</div><div class="gd-num">Verify</div><div class="gd-lbl">Check<br>results</div></div><div class="gd-arr">&#8250;</div>
-      <div class="gd-node"><div class="gd-ico gd-g">&#9989;</div><div class="gd-num">Done</div><div class="gd-lbl">Products<br>live</div></div>
-    </div>
-    <div class="gd-lbl-sec">Stage 1 - Prepare the file</div>
-    <div class="gd-card">
-      <div class="gd-steps">
-        <div class="gd-step"><div class="gd-sico gd-n">&#128229;</div><div class="gd-sbody"><div class="gd-stitle">Download the template</div><div class="gd-sdesc">Always start from the Port Store template. Column names must match exactly - don&rsquo;t rename or add columns.</div><a class="guide-dl-lnk" style="margin:8px 0 12px;display:inline-flex" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Upload%20Template.xlsx?d=wde106432a27f4e4d92ff8f55973c4d64&csf=1&web=1&e=3r8XQF" target="_blank">&#128229; Download Lightspeed Upload Template</a></div></div>
-        <div class="gd-step"><div class="gd-sico gd-t">&#128196;</div><div class="gd-sbody"><div class="gd-stitle">One row per variant</div><div class="gd-sdesc">Each size gets its own row. Product name, category, prices, brand and supplier repeat on every row - only SKU, barcode and size change per row.</div><div class="gd-band gd-band-b"><span>&#8505;&#65039;</span><div>Products with no variants still get one row - leave <code>variant_option_one_name</code> and <code>variant_option_one_value</code> blank.</div></div></div></div>
-        <div class="gd-step"><div class="gd-sico gd-b">&#128190;</div><div class="gd-sbody"><div class="gd-stitle">Save as CSV UTF-8</div><div class="gd-sdesc">Save using <code>File &rarr; Save As &rarr; CSV UTF-8 (Comma delimited)</code>.</div><div class="gd-band gd-band-a"><span>&#9888;&#65039;</span><div><strong>Don&rsquo;t use &ldquo;CSV (MS-DOS)&rdquo;</strong> - it breaks special characters on import.</div></div></div></div>
-        <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; Barcode column formatted as <strong>Text</strong> - prevents <code>8.05E+12</code></div><div class="gd-chk">&#128247; Every row has a unique <code>sku_code_custom</code></div><div class="gd-chk">&#128176; Prices are numbers only - no <code>$</code> symbols</div><div class="gd-chk">&#128221; Product names <strong>identical</strong> across all rows for the same product</div><div class="gd-chk">&#128247; Tags semicolon-separated: <code>2026 Macron Range;2026 SDNR</code></div></div></div></div>
-      </div>
-    
-    <div class="gd-divider"></div>
-    <div class="gd-lbl-sec">Stage 2 - Column reference</div>
-    <div class="gd-card">
-      <div class="gd-band gd-band-t" style="margin-bottom:14px"><span>&#128161;</span><div>Column headers are <strong>case-sensitive</strong>. Copy directly from the template - don&rsquo;t rename them.</div></div>
-      <div class="gd-fixed-row"><div class="gd-fixed"><div class="gd-fixed-lbl">tax_name</div><div class="gd-fixed-val">Default Tax</div></div><div class="gd-fixed"><div class="gd-fixed-lbl">active</div><div class="gd-fixed-val">1</div></div><div class="gd-fixed"><div class="gd-fixed-lbl">track_inventory</div><div class="gd-fixed-val">1</div></div></div>
-      <table class="gd-table" style="margin-top:16px"><thead><tr><th>Column</th><th>Required?</th><th>Notes</th><th>Example</th></tr></thead><tbody>
-        <tr><td><code>sku_code_custom</code></td><td><span class="gpill gpill-r">Required</span></td><td>Unique per variant. No spaces.</td><td><code>PAM26SNDR01-M</code></td></tr>
-        <tr><td><code>sku_code_barcode</code></td><td><span class="gpill gpill-a">Optional</span></td><td>EAN-13. Format column as <strong>Text</strong>.</td><td><code>8051552560759</code></td></tr>
-        <tr><td><code>name</code></td><td><span class="gpill gpill-r">Required</span></td><td>Identical across all variant rows.</td><td><code>PA Macron 2026 SDNR Guernsey</code></td></tr>
-        <tr><td><code>product_category</code></td><td><span class="gpill gpill-r">Required</span></td><td>Must match existing Lightspeed category exactly.</td><td><code>AFL (MACRON) / Guernseys</code></td></tr>
-        <tr><td><code>variant_option_one_name</code></td><td><span class="gpill gpill-a">If sized</span></td><td>Use <code>Size</code> for apparel.</td><td><code>Size</code></td></tr>
-        <tr><td><code>variant_option_one_value</code></td><td><span class="gpill gpill-a">If sized</span></td><td>The size for this row.</td><td><code>M</code></td></tr>
-        <tr><td><code>supply_price</code></td><td><span class="gpill gpill-r">Required</span></td><td>Ex-GST cost price. Numbers only.</td><td><code>67</code></td></tr>
-        <tr><td><code>retail_price</code></td><td><span class="gpill gpill-r">Required</span></td><td>Incl. GST sell price. Numbers only.</td><td><code>135.00</code></td></tr>
-        <tr><td><code>tags</code></td><td><span class="gpill gpill-t">Optional</span></td><td>Semicolon-separated, no spaces.</td><td><code>2026 Macron Range;2026 SDNR</code></td></tr>
-        <tr><td><code>brand_name</code></td><td><span class="gpill gpill-t">Optional</span></td><td>Used for filtering in Back Office.</td><td><code>MACRON TECHNICAL SPORTSWEMH</code></td></tr>
-        <tr><td><code>supplier_name</code></td><td><span class="gpill gpill-a">If using POs</span></td><td>Must match existing supplier exactly.</td><td><code>MACRON TECHNICAL SPORTSWEMH</code></td></tr>
-      </tbody></table>
-    </div>
-    <div class="gd-divider"></div>
-    <div class="gd-lbl-sec">Stage 3 - Run the import</div>
-    <div class="gd-card">
-      <div class="gd-band gd-band-a" style="margin-bottom:14px"><span>&#9888;&#65039;</span><div><strong>Test first.</strong> Run a small file of 5&ndash;10 products before your full upload.</div></div>
-      <div class="gd-steps">
-        <div class="gd-step"><div class="gd-sico gd-t">&#128187;</div><div class="gd-sbody"><div class="gd-stitle">Navigate to the import tool</div><div style="display:flex;align-items:center;gap:6px;margin-top:5px;flex-wrap:wrap"><code>Products</code><span style="color:var(--muted)">&rsaquo;</span><code>Import / Export</code><span style="color:var(--muted)">&rsaquo;</span><code>Import Products</code></div></div></div>
-        <div class="gd-step"><div class="gd-sico gd-b">&#9745;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Select import type</div><div class="gd-sdesc">Choose <strong>Add new products</strong> for a new range.</div><div class="gd-band gd-band-r"><span>&#128683;</span><div><strong>Don&rsquo;t use &ldquo;Update existing&rdquo;</strong> for a new range - rows with no existing match are silently skipped.</div></div></div></div>
-        <div class="gd-step"><div class="gd-sico gd-t">&#128228;</div><div class="gd-sbody"><div class="gd-stitle">Upload CSV and confirm mapping</div><div class="gd-sdesc">Click <strong>Choose File</strong>, select your CSV, then <strong>Next</strong>. Manually assign anything showing &ldquo;Not mapped&rdquo;.</div></div></div>
-        <div class="gd-step last"><div class="gd-sico gd-n">&#9654;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Run the import</div><div class="gd-sdesc">Click <strong>Import</strong> and don&rsquo;t navigate away. Any skips above zero need investigating.</div></div></div>
-      </div>
-    </div>
-    <div class="gd-divider"></div>
-    <div class="gd-lbl-sec">Troubleshooting</div>
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <div class="gd-tr"><div class="gd-tr-q">&#9888;&#65039; Rows being skipped with no error</div><div class="gd-tr-a">Usually a column mapping issue or wrong import type. Check headers match the template exactly and confirm you chose <strong>Add new products</strong>.</div></div>
-      <div class="gd-tr"><div class="gd-tr-q">&#128290; Barcodes show as scientific notation (8.05E+12)</div><div class="gd-tr-a">The barcode column is formatted as a number. Select the column, format as <strong>Text</strong>, re-paste barcodes as values, then re-export the CSV.</div></div>
-      <div class="gd-tr"><div class="gd-tr-q">&#128196; Duplicate products instead of variants</div><div class="gd-tr-a">A variant row has a slightly different product name - even a trailing space causes Lightspeed to create a new product. Use Excel find-replace to standardise.</div></div>
-      <div class="gd-tr"><div class="gd-tr-q">&#128193; Category not found</div><div class="gd-tr-a">Category name doesn&rsquo;t exactly match Lightspeed. Pull the exact name from <code>Products &rarr; Categories</code> in Back Office.</div></div>
-      <div class="gd-tr"><div class="gd-tr-q">&#128176; Prices show as $0.00 after import</div><div class="gd-tr-a">Price columns contain a <code>$</code> symbol or comma. Remove with find-replace, re-export, then re-import using <strong>Update existing products</strong>.</div></div>
-    </div>
-    <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; Lightspeed X &middot; Bulk Upload Process</div>
-  </div>
-  
-
-  <!-- AWDS -->
-  <div id="sg-awds" class="guide-pane" style="display:none;padding:24px 28px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
-      <div><div style="font-size:16px;font-weight:700">AWDS Bulk Product Import</div><div style="font-size:13px;color:var(--muted)">Warehouse System &middot; Process guide</div></div>
-      <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/AWDS%20Product%20Template.csv?d=w1c8e8290cc324beabcc7717fa0f43b29&csf=1&web=1&e=tydLjF" target="_blank">&#128229; Download Template</a>
-    </div>
-    <div class="gd-flow">
-      <div class="gd-node"><div class="gd-ico gd-t">&#128202;</div><div class="gd-num">Stage 1</div><div class="gd-lbl">Get your<br>data</div></div><div class="gd-arr">&#8250;</div>
-      <div class="gd-node"><div class="gd-ico gd-b">&#128203;</div><div class="gd-num">Stage 2</div><div class="gd-lbl">Prepare<br>the file</div></div><div class="gd-arr">&#8250;</div>
-      <div class="gd-node"><div class="gd-ico gd-n">&#9993;&#65039;</div><div class="gd-num">Stage 3</div><div class="gd-lbl">Send to<br>AWDS</div></div><div class="gd-arr">&#8250;</div>
-      <div class="gd-node"><div class="gd-ico gd-g">&#9989;</div><div class="gd-num">Done</div><div class="gd-lbl">Products<br>in AWDS</div></div>
-    </div>
-    <div class="gd-lbl-sec">Stage 1 - Get your data</div>
-    <div class="gd-card">
-      <div class="gd-sdesc" style="margin-bottom:14px">Two ways to source product data - use the original product spreadsheet wherever possible.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-        <div style="border-radius:11px;border:1.5px solid var(--teal);background:var(--teal-dim);padding:15px">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="font-size:18px">&#128202;</span><div style="font-size:13px;font-weight:700">From the product spreadsheet</div><span style="margin-left:auto;font-size:10px;font-weight:600;background:var(--teal);color:#fff;padding:2px 7px;border-radius:20px">Recommended</span></div>
-          <div style="font-size:13px;color:var(--teal);line-height:1.6;margin-bottom:7px">Use the pre-built range spreadsheet. SKUs, descriptions, categories and barcodes all in one place.</div>
-          <div style="font-size:12px;color:var(--teal)">&#10003; Barcodes already present<br>&#10003; Clean and consistently formatted<br>&#10003; Much faster for large ranges</div>
-        </div>
-        <div style="border-radius:11px;border:1px solid var(--border);background:#fff;padding:15px">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="font-size:18px">&#128187;</span><div style="font-size:13px;font-weight:700">From a Lightspeed export</div></div>
-          <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:7px">Export from Lightspeed Back Office. Only use when you don&rsquo;t have the original spreadsheet.</div>
-          <div style="font-size:12px;color:var(--muted)">&#10003; Useful for products already in Lightspeed<br><span style="color:var(--red)">&#10007; <strong>Lightspeed does not export barcodes</strong></span></div>
-        </div>
-      </div>
-      <div class="gd-band gd-band-r"><span>&#9888;&#65039;</span><div>For any range larger than a handful of products, use the product spreadsheet path wherever possible.</div></div>
-    </div>
-    <div class="gd-divider"></div>
-    <div class="gd-lbl-sec">Stage 2 - Prepare the file</div>
-    <div class="gd-card">
-      <div class="gd-steps">
-        <div class="gd-step"><div class="gd-sico gd-n">&#128229;</div><div class="gd-sbody"><div class="gd-stitle">Download the AWDS template</div><div class="gd-sdesc">Always use the Port Store AWDS template. Column names and order must match exactly.</div><a class="guide-dl-lnk" style="margin:8px 0 12px;display:inline-flex" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/AWDS%20Product%20Template.csv?d=w1c8e8290cc324beabcc7717fa0f43b29&csf=1&web=1&e=tydLjF" target="_blank">&#128229; Download AWDS Product Template</a></div></div>
-        <div class="gd-step"><div class="gd-sico gd-t">&#128196;</div><div class="gd-sbody"><div class="gd-stitle">One row per variant</div><div class="gd-sdesc">Each size gets its own row with a unique <code>ProductCode</code> and <code>ItemBarcode</code>. Description repeats across all rows for the same product.</div><div class="gd-band gd-band-b"><span>&#8505;&#65039;</span><div>The <code>Description</code> must be identical across all variant rows - never include size in the description.</div></div></div></div>
-        <div class="gd-step"><div class="gd-sico gd-b">&#128190;</div><div class="gd-sbody"><div class="gd-stitle">Save as CSV UTF-8</div><div class="gd-sdesc">Save using <code>File &rarr; Save As &rarr; CSV UTF-8 (Comma delimited)</code>.</div></div></div>
-        <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; <code>ItemBarcode</code> column formatted as <strong>Text</strong></div><div class="gd-chk">&#128247; Every row has a unique <code>ProductCode</code></div><div class="gd-chk">&#128221; <code>Description</code> does <strong>not</strong> include size - identical across all rows for the same product</div><div class="gd-chk">&#128274; <code>DRCode</code> is <strong>3027</strong> on every row</div></div></div></div>
-      </div>
-    </div>
-    <div class="gd-divider"></div>
-    <div class="gd-lbl-sec">Stage 3 - Email to AWDS</div>
-    <div class="gd-card">
-      <div class="gd-sdesc" style="margin-bottom:14px">Once the CSV is complete and checked, email it to all three contacts. File name: <code>YYYYMMDD_RangeName_AWDS_import.csv</code></div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div class="ghost-contact"><div class="ghost-av">AP</div><div><div class="ghost-name">Alex Perry</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div></div>
-      </div>
-    </div>
-    <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; AWDS &middot; Bulk Product Import Process</div>
-  </div>
-</div>
-</div>
-</div>
 
 <!-- ════════════════════════════════════════
      CUSTOMER SERVICE
 ════════════════════════════════════════ -->
 <div class="section" id="sec-cs">
-  <div style="background:#fff;border-bottom:1px solid var(--border);padding:20px 28px 0;position:sticky;top:98px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
+    <div style="background:#fff;border-bottom:1px solid var(--border);padding:20px 28px 0;position:sticky;top:98px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
     <div style="font-size:18px;font-weight:700;margin-bottom:4px">&#128172; Customer Service Procedures</div>
     <div style="font-size:13px;color:var(--muted);margin-bottom:14px">AWDS Fulfilment &middot; Online Orders &middot; Internal Reference</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;padding-bottom:16px">
-      <a href="#" onclick="csScroll('csp-address');return false" class="csp-pill">&#128205; Address Issues</a>
-      <a href="#" onclick="csScroll('csp-intl');return false" class="csp-pill">&#9992;&#65039; International Tracking</a>
-      <a href="#" onclick="csScroll('csp-stock');return false" class="csp-pill">&#128230; Stock Issues</a>
-      <a href="#" onclick="csScroll('csp-cancel');return false" class="csp-pill">&#10060; Cancellations</a>
-      <a href="#" onclick="csScroll('csp-missing');return false" class="csp-pill">&#128269; Missing Orders</a>
-      <a href="#" onclick="csScroll('csp-returns');return false" class="csp-pill">&#8617;&#65039; Returns</a>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;padding-bottom:0">
+      <button class="cs-tab" id="cstab-address" onclick="showCsTab('address',this)">&#128205; Address Issues</button>
+      <button class="cs-tab" id="cstab-intl" onclick="showCsTab('intl',this)">&#9992;&#65039; International Tracking</button>
+      <button class="cs-tab" id="cstab-stock" onclick="showCsTab('stock',this)">&#128230; Stock Issues</button>
+      <button class="cs-tab" id="cstab-cancel" onclick="showCsTab('cancel',this)">&#10060; Cancellations</button>
+      <button class="cs-tab" id="cstab-missing" onclick="showCsTab('missing',this)">&#128269; Missing Orders</button>
+      <button class="cs-tab" id="cstab-returns" onclick="showCsTab('returns',this)">&#8617;&#65039; Returns</button>
     </div>
   </div>
   <div style="padding:24px 28px">
-
-    <div id="csp-address" class="csp-block">
+      <div class="cs-pane active" id="cspane-address">
+        <div id="csp-address" class="csp-block">
       <div class="csp-hdr"><div class="csp-ico">&#128205;</div><div><div class="csp-title">Address Issues</div><div class="csp-sub">Flagged by AWDS when a delivery address can&#8217;t be resolved</div></div></div>
       <div class="gd-band gd-band-b" style="margin-bottom:14px"><span>&#8505;&#65039;</span><div>AWDS will contact you directly when they can&#8217;t deliver to an address - typically the suburb, city or postcode was entered incorrectly at checkout.</div></div>
       <div class="csp-steps">
@@ -2362,9 +2434,10 @@ Thanks, Port Store Team</div></div>
         <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Update in BigCommerce and notify AWDS</div><div class="csp-sdesc">Once confirmed, update the shipping address on the order in BigCommerce and pass the corrected details back to AWDS so they can proceed with dispatch.</div></div></div>
       </div>
     </div>
-    <div class="csp-divider"></div>
+      </div>
 
-    <div id="csp-intl" class="csp-block">
+      <div class="cs-pane" id="cspane-intl">
+        <div id="csp-intl" class="csp-block">
       <div class="csp-hdr"><div class="csp-ico">&#9992;&#65039;</div><div><div class="csp-title">International Orders &amp; Tracking</div><div class="csp-sub">Tracking numbers don&#8217;t automatically appear in BigCommerce for international orders</div></div></div>
       <div class="gd-band gd-band-a" style="margin-bottom:14px"><span>&#9888;&#65039;</span><div><strong>Expected behaviour - not a system error.</strong> The customer receives a dispatch confirmation but without tracking. Must be sourced manually from AWDS.</div></div>
       <div class="csp-steps">
@@ -2375,9 +2448,10 @@ Thanks, Port Store Team</div></div>
         <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Forward the tracking number to the customer</div><div class="csp-sdesc">Once AWDS provides it, send the tracking number to the customer via email.</div></div></div>
       </div>
     </div>
-    <div class="csp-divider"></div>
+      </div>
 
-    <div id="csp-stock" class="csp-block">
+      <div class="cs-pane" id="cspane-stock">
+        <div id="csp-stock" class="csp-block">
       <div class="csp-hdr">
         <div class="csp-ico">&#128230;</div>
         <div>
@@ -2538,9 +2612,10 @@ Thanks, Port Store Team</div></div>
 
     </div>
     </div>
-    <div class="csp-divider"></div>
+      </div>
 
-    <div id="csp-cancel" class="csp-block">
+      <div class="cs-pane" id="cspane-cancel">
+        <div id="csp-cancel" class="csp-block">
       <div class="csp-hdr"><div class="csp-ico">&#10060;</div><div><div class="csp-title">Cancelling Orders</div><div class="csp-sub">We don&#8217;t officially offer cancellations, but we try to help wherever possible</div></div></div>
       <div class="gd-band gd-band-a" style="margin-bottom:14px"><span>&#9888;&#65039;</span><div><strong>Policy reminder:</strong> Our website states we do not facilitate cancellations. That said, always try to assist - the earlier the request, the more likely AWDS can hold the order before packing.</div></div>
       <div class="csp-steps">
@@ -2552,9 +2627,10 @@ Thanks, Port Store Team</div></div>
         </div></div>
       </div>
     </div>
-    <div class="csp-divider"></div>
+      </div>
 
-    <div id="csp-missing" class="csp-block">
+      <div class="cs-pane" id="cspane-missing">
+        <div id="csp-missing" class="csp-block">
       <div class="csp-hdr"><div class="csp-ico">&#128269;</div><div><div class="csp-title">Missing Orders &amp; Postal Issues</div><div class="csp-sub">When a customer says their order hasn&#8217;t arrived</div></div></div>
       <div class="csp-steps">
         <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Check tracking in BigCommerce before responding</div><div class="csp-sdesc">Look up the order and review the tracking status. In many cases the parcel has been delivered to the customer&#8217;s local post office and they haven&#8217;t been notified.</div>
@@ -2566,15 +2642,10 @@ Thanks, Port Store Team</div></div>
         </div></div>
       </div>
     </div>
+      </div>
 
-    <div class="csp-divider"></div>
-
-
-
-
-    <div class="csp-divider"></div>
-
-    <div id="csp-returns" class="csp-block">
+      <div class="cs-pane" id="cspane-returns">
+        <div id="csp-returns" class="csp-block">
       <div class="csp-hdr">
         <div class="csp-ico">&#8617;&#65039;</div>
         <div>
@@ -2614,11 +2685,19 @@ Thanks, Port Store Team</div></div>
         </div>
 
       </div>
-
+      </div>
     <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; Customer Service Procedures</div>
   </div>
-</div>
-
+    <div style="font-size:13px;color:var(--muted);margin-bottom:14px">AWDS Fulfilment &middot; Online Orders &middot; Internal Reference</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;padding-bottom:16px">
+      <a href="#" onclick="csScroll('csp-address');return false" class="csp-pill">&#128205; Address Issues</a>
+      <a href="#" onclick="csScroll('csp-intl');return false" class="csp-pill">&#9992;&#65039; International Tracking</a>
+      <a href="#" onclick="csScroll('csp-stock');return false" class="csp-pill">&#128230; Stock Issues</a>
+      <a href="#" onclick="csScroll('csp-cancel');return false" class="csp-pill">&#10060; Cancellations</a>
+      <a href="#" onclick="csScroll('csp-missing');return false" class="csp-pill">&#128269; Missing Orders</a>
+      <a href="#" onclick="csScroll('csp-returns');return false" class="csp-pill">&#8617;&#65039; Returns</a>
+    </div>
+  </div>
 
 <script>
 
@@ -3173,7 +3252,7 @@ function switchTab(tab, btn) {
 }
 function handleHash() {
   var hash = window.location.hash.replace('#','') || 'website';
-  var valid = ['website','generator','guides','cs'];
+  var valid = ['website','generator','cs'];
   var tab = valid.indexOf(hash) >= 0 ? hash : 'website';
   switchTab(tab, document.getElementById('mt-' + tab));
 }
@@ -3181,8 +3260,10 @@ window.addEventListener('hashchange', handleHash);
 
 // ── WEBSITE OPERATIONS NAV ────────────────────────────────────────────
 var WM_META = {
-  products: {label:'Managing Products', icon:'&#128230;'},
-  ghost:    {label:'Ghost Imagery', icon:'&#128247;'}
+  bigcommerce: {label:'BigCommerce',           icon:'&#127760;'},
+  lightspeed:  {label:'Lightspeed',            icon:'&#128203;'},
+  awds:        {label:'Warehousing — AWDS',    icon:'&#128666;'},
+  ghost:       {label:'Ghost Imagery',         icon:'&#128247;'}
 };
 function wmGo(id) {
   document.querySelectorAll('#sec-website .subview').forEach(function(v){ v.classList.remove('active'); });
@@ -3240,6 +3321,16 @@ function toggleCode(bodyId, btn) {
 function csScroll(id) {
   var el = document.getElementById(id);
   if (el) setTimeout(function(){ el.scrollIntoView({behavior:'smooth', block:'start'}); }, 80);
+}
+function showCsTab(id, btn) {
+  document.querySelectorAll('.cs-pane').forEach(function(el){ el.classList.remove('active'); });
+  document.querySelectorAll('.cs-tab').forEach(function(b){ b.classList.remove('active'); });
+  var pane = document.getElementById('cspane-' + id);
+  if (pane) pane.classList.add('active');
+  if (btn) btn.classList.add('active');
+  // Scroll to top of content
+  var sec = document.getElementById('sec-cs');
+  if (sec) window.scrollTo({top: sec.getBoundingClientRect().top + window.scrollY - 100, behavior:'smooth'});
 }
 function showScenario(n, btn) {
   document.querySelectorAll('.stock-scenario').forEach(function(el){ el.classList.remove('active'); });

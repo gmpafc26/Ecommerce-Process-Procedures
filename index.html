@@ -1295,6 +1295,7 @@ body.edit-mode [contenteditable]:focus {
 .cs-pane.active { display: block; }
 
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
 
@@ -1753,9 +1754,9 @@ body.edit-mode [contenteditable]:focus {
       <div class="bc-section">
         <button class="bc-section-btn" onclick="toggleBcSection('awds-newproduct',this)">
           <div class="bc-section-btn-left"><span class="bc-section-icon">&#128228;</span><span class="bc-section-title">New Product Advice</span></div>
-          <span class="bc-section-arrow"></span>
+          <span class="bc-section-arrow" style="transform:rotate(180deg)"></span>
         </button>
-        <div class="bc-section-body" id="awds-newproduct">
+        <div class="bc-section-body bc-open" id="awds-newproduct">
           <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px">Choose how you want to create the AWDS Product Advice file.</p>
 
           <!-- Method toggle -->
@@ -1863,6 +1864,10 @@ body.edit-mode [contenteditable]:focus {
         </div>
         <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; AWDS &middot; Bulk Product Import Process</div>
         </div>
+      </div>
+
+      <div style="margin-top:8px;margin-bottom:4px;padding:10px 0 4px;border-top:2px solid var(--border)">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Other AWDS Procedures</div>
       </div>
 
       <!-- ── FULFILMENT ─────────────────────────────────── -->
@@ -1990,6 +1995,8 @@ body.edit-mode [contenteditable]:focus {
     </div>
   </div>
 
+</div>
+</div>
 </div>
 
 <!-- ════════════════════════════════════════
@@ -2467,7 +2474,7 @@ body.edit-mode [contenteditable]:focus {
     <div style="font-size:18px;font-weight:700;margin-bottom:4px">&#128172; Customer Service Procedures</div>
     <div style="font-size:13px;color:var(--muted);margin-bottom:14px">AWDS Fulfilment &middot; Online Orders &middot; Internal Reference</div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;padding-bottom:0">
-      <button class="cs-tab" id="cstab-address" onclick="showCsTab('address',this)">&#128205; Address Issues</button>
+      <button class="cs-tab active" id="cstab-address" onclick="showCsTab('address',this)">&#128205; Address Issues</button>
       <button class="cs-tab" id="cstab-intl" onclick="showCsTab('intl',this)">&#9992;&#65039; International Tracking</button>
       <button class="cs-tab" id="cstab-stock" onclick="showCsTab('stock',this)">&#128230; Stock Issues</button>
       <button class="cs-tab" id="cstab-cancel" onclick="showCsTab('cancel',this)">&#10060; Cancellations</button>
@@ -3226,6 +3233,10 @@ function awdsLoadFile(file) {
   var name = file.name.toLowerCase();
   if (name.endsWith('.xlsx') || name.endsWith('.xls')) {
     // Excel: read as ArrayBuffer and parse with SheetJS loaded inline
+    if (typeof XLSX === 'undefined') {
+      awdsShowStatus('&#10060; Excel library not loaded yet — please wait a moment and try again, or save your file as CSV.', 'err');
+      return;
+    }
     var reader = new FileReader();
     reader.onload = function(e) {
       try {
@@ -3235,7 +3246,7 @@ function awdsLoadFile(file) {
         var csv = XLSX.utils.sheet_to_csv(ws);
         awdsParseCSV(csv);
       } catch(err) {
-        awdsShowStatus('&#10060; Could not read Excel file. Try saving as CSV first.', 'err');
+        awdsShowStatus('&#10060; Could not read the Excel file: ' + (err.message || err) + '. Try saving as CSV UTF-8.', 'err');
       }
     };
     reader.readAsArrayBuffer(file);

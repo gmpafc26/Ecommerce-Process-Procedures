@@ -567,7 +567,7 @@ body.edit-mode [contenteditable]:focus {
 }
 .img-upload-step-sep { color: #93c5fd; font-size: 14px; }
 .img-upload-example { background: #fff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px; }
-.img-upload-example-lbl { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #93c5fd; margin-bottom: 4px; }
+.img-upload-example-lbl { display: inline-block; font-size: 12px; font-weight: 700; color: var(--text); background: #f0f0f0; border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; margin: 12px 0 8px; }
 .img-upload-url { font-family: 'DM Mono', monospace; font-size: 11px; color: #1e40af; word-break: break-all; line-height: 1.6; }
 .img-upload-url strong { color: #1d4ed8; }
 
@@ -1115,6 +1115,26 @@ body.edit-mode [contenteditable]:focus {
 }
 
 
+/* -- PREVIEW FRAME NON-INTERACTIVE -- */
+#banner-preview-frame,
+#banner-preview-mob-frame,
+#annbar-preview-frame,
+#grid-preview-frame {
+  position: relative;
+  pointer-events: none;
+  user-select: none;
+}
+#banner-preview-frame::after,
+#banner-preview-mob-frame::after,
+#annbar-preview-frame::after,
+#grid-preview-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: default;
+}
+
 /* -- COLLAPSIBLE IMAGE GUIDE -- */
 .img-upload-collapsible { padding: 0 !important; }
 .img-upload-toggle {
@@ -1156,6 +1176,20 @@ body.edit-mode [contenteditable]:focus {
 .mod-howto-body {
   background: #fff;
   padding: 0;
+}
+
+
+/* -- SCREENSHOT STEP LABELS -- */
+.sc-step-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  background: #f0f0f0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  margin: 14px 0 8px;
 }
 
 </style>
@@ -1405,7 +1439,7 @@ body.edit-mode [contenteditable]:focus {
       </button>
       <button class="gen-picker-tab" id="gpick-grid" onclick="switchModule('grid',this)">
         <span class="gen-picker-icon">&#128717;</span>
-        <span class="gen-picker-name">Product Grid</span>
+        <span class="gen-picker-name">Product Carousel</span>
       </button>
     </div>
   </div>
@@ -1472,9 +1506,8 @@ body.edit-mode [contenteditable]:focus {
                     <span style="font-size:13px;font-weight:700;color:#1e40af;flex:1;text-align:left">How to get your image URL from BigCommerce</span>
                     <span class="img-upload-arrow">&#8964;</span>
                   </button>
-                  <div class="img-upload-body" style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:50%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:50%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div>
-    </div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div></div>
-  
+                  <div class="img-upload-body" style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:50%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:50%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div>
+    </div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div>
 
   <div class="gen-module" id="gmod-annbar">
   <div style="padding:24px 28px">
@@ -1524,17 +1557,17 @@ body.edit-mode [contenteditable]:focus {
           <div class="mod-intro-desc" style="font-size:12px">Step-by-step guide to pasting your generated code into Page Builder</div>
         </div>
       </div>
-      <div class="mod-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div>
+      <div class="mod-howto-body"><div style="padding:16px 20px"><div style="display:flex;flex-direction:column"><div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div>
     </div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div></div>
   </div>
-</div>
+
 
   <div class="gen-module" id="gmod-grid">
   <div style="padding:24px 28px">
     <div class="mod-intro">
       <div class="mod-intro-icon">&#128717;</div>
       <div>
-        <div class="mod-intro-title">Product Grid</div>
+        <div class="mod-intro-title">Product Carousel</div>
         <div class="mod-intro-desc">A featured product grid below the main banner. Each card shows an image, product name, price and a Shop Now button. Use it to highlight key products or bestsellers.</div>
         <div class="mod-intro-location">&#128205; Below the main banner on the homepage</div>
       </div>
@@ -1545,7 +1578,7 @@ body.edit-mode [contenteditable]:focus {
     </div>
     <div class="mod-step-block" id="grid-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you add products - loads your actual BigCommerce images</div></div></div><div class="mod-step-body" style="padding:12px"><div id="grid-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:40px"></div></div></div>
     <div class="mod-step-block">
-      <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Set up the grid</div><div class="mod-step-sub">Choose layout and colours, then add your products</div></div></div>
+      <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Set up the carousel</div><div class="mod-step-sub">Choose layout and colours, then add your products</div></div></div>
       <div class="mod-step-body">
         <div class="frow" style="margin-bottom:16px">
           <div class="fg"><label class="fl">Columns (desktop)</label><select class="fc" id="pg-cols" oninput="genGrid()"><option value="3">3 columns</option><option value="4" selected>4 columns</option><option value="5">5 columns</option></select></div>
@@ -1583,16 +1616,8 @@ body.edit-mode [contenteditable]:focus {
         <!-- Leader tile options (hidden until toggle on) -->
         <div id="pg-leader-fields" style="display:none;background:var(--off);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px">
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px">&#127976; Leading Tile Settings</div>
-          <div class="frow" style="margin-bottom:10px">
-            <div class="fg"><label class="fl">Heading text</label><input type="text" class="fc" id="pg-leader-title" value="SALE" oninput="genGrid()" placeholder="e.g. SALE"></div>
-            <div class="fg"><label class="fl">Sub-text (optional)</label><input type="text" class="fc" id="pg-leader-sub" value="" oninput="genGrid()" placeholder="e.g. Up to 40% off"></div>
-          </div>
-          <div class="frow" style="margin-bottom:10px">
-            <div class="fg"><label class="fl">Background colour</label><div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="setLeaderColour('bg','#ffffff')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="setLeaderColour('bg','#000000')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="setLeaderColour('bg','#00edff')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="setLeaderColour('bg','#0097b0')"></button><button type="button" class="bc-swatch" style="background:#0C2340" title="Navy" onclick="setLeaderColour('bg','#0C2340')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="setLeaderColour('bg','#efefef')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="setLeaderColour('bg','#e0002b')"></button></div><div class="color-row"><div class="cswatch"><input type="color" id="pg-leader-bg" value="#0C2340" oninput="genGrid()"></div><input type="text" class="fc" style="width:90px" id="pg-leader-bghex" value="#0C2340" oninput="document.getElementById('pg-leader-bg').value=this.value;genGrid()"></div></div>
-            <div class="fg"><label class="fl">Text colour</label><div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="setLeaderColour('col','#ffffff')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="setLeaderColour('col','#000000')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="setLeaderColour('col','#00edff')"></button></div><div class="color-row"><div class="cswatch"><input type="color" id="pg-leader-col" value="#ffffff" oninput="genGrid()"></div><input type="text" class="fc" style="width:90px" id="pg-leader-colhex" value="#ffffff" oninput="document.getElementById('pg-leader-col').value=this.value;genGrid()"></div></div>
-          </div>
-          <div class="frow full" style="margin-bottom:10px"><div class="fg"><label class="fl">Link URL</label><input type="url" class="fc" id="pg-leader-url" value="" oninput="genGrid()" placeholder="https://portstore.com.au/sale/"></div></div>
-          <div class="frow full"><div class="fg"><label class="fl">Background image URL (optional — overrides colour)</label><input type="url" class="fc" id="pg-leader-img" value="" oninput="genGrid()" placeholder="https://cdn11.bigcommerce.com/..."><span class="fhint">If set, this image fills the tile instead of the colour + text. Same CDN URL from BC Image Manager.</span></div></div>
+          <div class="frow full" style="margin-bottom:10px"><div class="fg"><label class="fl">Graphic image URL <span class="req">*</span></label><input type="url" class="fc" id="pg-leader-img" value="" oninput="genGrid()" placeholder="https://cdn11.bigcommerce.com/..."><span class="fhint">Upload your graphic to BC Image Manager and paste the CDN URL here. It will fill the entire leading tile.</span></div></div>
+          <div class="frow full"><div class="fg"><label class="fl">Link URL (optional)</label><input type="url" class="fc" id="pg-leader-url" value="" oninput="genGrid()" placeholder="https://portstore.com.au/sale/"><span class="fhint">Where customers go when they click the tile</span></div></div>
 
           <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
             <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
@@ -1606,6 +1631,7 @@ body.edit-mode [contenteditable]:focus {
           </div>
         </div>
         <div class="frow" style="margin-bottom:16px">
+          <div class="fg"><label class="fl">Text colour</label><div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="document.getElementById('pg-txt').value='#ffffff';document.getElementById('pg-txthex').value='#ffffff';syncC('pg-txt','pg-txthex')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('pg-txt').value='#000000';document.getElementById('pg-txthex').value='#000000';syncC('pg-txt','pg-txthex')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('pg-txt').value='#00edff';document.getElementById('pg-txthex').value='#00edff';syncC('pg-txt','pg-txthex')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="document.getElementById('pg-txt').value='#0097b0';document.getElementById('pg-txthex').value='#0097b0';syncC('pg-txt','pg-txthex')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="document.getElementById('pg-txt').value='#efefef';document.getElementById('pg-txthex').value='#efefef';syncC('pg-txt','pg-txthex')"></button><button type="button" class="bc-swatch" style="background:#535353" title="Dark Grey" onclick="document.getElementById('pg-txt').value='#535353';document.getElementById('pg-txthex').value='#535353';syncC('pg-txt','pg-txthex')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('pg-txt').value='#e0002b';document.getElementById('pg-txthex').value='#e0002b';syncC('pg-txt','pg-txthex')"></button></div><div class="color-row"><div class="cswatch"><input type="color" id="pg-txt" value="#000000" oninput="document.getElementById('pg-txthex').value=this.value"></div><input type="text" class="fc" id="pg-txthex" value="#000000" style="width:100px" oninput="syncC('pg-txt','pg-txthex')"></div></div>
           <div class="fg"><label class="fl">Button colour</label><div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="document.getElementById('pg-btn').value='#ffffff';document.getElementById('pg-bchex').value='#ffffff';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('pg-btn').value='#000000';document.getElementById('pg-bchex').value='#000000';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('pg-btn').value='#00edff';document.getElementById('pg-bchex').value='#00edff';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="document.getElementById('pg-btn').value='#0097b0';document.getElementById('pg-bchex').value='#0097b0';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="document.getElementById('pg-btn').value='#efefef';document.getElementById('pg-bchex').value='#efefef';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#535353" title="Dark Grey" onclick="document.getElementById('pg-btn').value='#535353';document.getElementById('pg-bchex').value='#535353';syncC('pg-btn','pg-bchex')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('pg-btn').value='#e0002b';document.getElementById('pg-bchex').value='#e0002b';syncC('pg-btn','pg-bchex')"></button></div><div class="color-row"><div class="cswatch"><input type="color" id="pg-btn" value="#000000" oninput="document.getElementById('pg-bchex').value=this.value"></div><input type="text" class="fc" id="pg-bchex" value="#000000" style="width:100px" oninput="syncC('pg-btn','pg-bchex')"></div></div>
           <div class="fg"><label class="fl">Button hover colour</label><div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="document.getElementById('pg-hov').value='#ffffff';document.getElementById('pg-hchex').value='#ffffff';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('pg-hov').value='#000000';document.getElementById('pg-hchex').value='#000000';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('pg-hov').value='#00edff';document.getElementById('pg-hchex').value='#00edff';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="document.getElementById('pg-hov').value='#0097b0';document.getElementById('pg-hchex').value='#0097b0';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="document.getElementById('pg-hov').value='#efefef';document.getElementById('pg-hchex').value='#efefef';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#535353" title="Dark Grey" onclick="document.getElementById('pg-hov').value='#535353';document.getElementById('pg-hchex').value='#535353';syncC('pg-hov','pg-hchex')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('pg-hov').value='#e0002b';document.getElementById('pg-hchex').value='#e0002b';syncC('pg-hov','pg-hchex')"></button></div><div class="color-row"><div class="cswatch"><input type="color" id="pg-hov" value="#00edff" oninput="document.getElementById('pg-hchex').value=this.value"></div><input type="text" class="fc" id="pg-hchex" value="#00edff" style="width:100px" oninput="syncC('pg-hov','pg-hchex')"></div></div>
         </div>
@@ -1653,7 +1679,7 @@ body.edit-mode [contenteditable]:focus {
                     <span style="font-size:13px;font-weight:700;color:#1e40af;flex:1;text-align:left">How to get your image URL from BigCommerce</span>
                     <span class="img-upload-arrow">&#8964;</span>
                   </button>
-                  <div class="img-upload-body" style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:50%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:50%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div>
+                  <div class="img-upload-body" style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:50%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:50%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div></div></div><div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open Page Builder in BigCommerce</div><div class="ht-screen"><span class="hl">BC Admin</span> &rarr; Storefront &rarr; My Themes &rarr; Customize</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Step 1 - View on Storefront</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-storefront.png?t=1787704970" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Step 2 - Click the paintbrush icon</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101403.png?t=1787705078" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div></div><div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Click the HTML Widget</div><div class="ht-sdesc">Hover over the module - it highlights blue. Click it, then click <strong>Expand HTML Editor</strong>.</div><div style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><div><div class="sc-step-label">Hover to highlight blue</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101743.png?t=1787705294" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div><div><div class="sc-step-label">Click - then Expand HTML Editor</div><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-101904.png?t=1787705418" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block"></div></div></div>
     </div></div><div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody"><div class="ht-stitle">Delete the old code and paste your new code</div><div class="ht-screen">Select all: <span class="hl">Ctrl+A</span> / <span class="hl">Cmd+A</span> &rarr; Delete &rarr; Paste: <span class="hl">Ctrl+V</span> / <span class="hl">Cmd+V</span> &rarr; click <span class="hl">Apply</span></div><div class="ht-tip">&#128161; Tip: Copy the current code into a Word doc first as a backup.</div></div></div><div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody"><div class="ht-stitle">Publish the page</div><div class="ht-screen">Click <span class="hl">Publish</span> in the top right of Page Builder</div></div></div></div></div></div></div>
   </div>
 </div>
@@ -1789,6 +1815,7 @@ body.edit-mode [contenteditable]:focus {
     </div>
     <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; AWDS &middot; Bulk Product Import Process</div>
   </div>
+</div>
 </div>
 </div>
 
@@ -2251,14 +2278,11 @@ function genGrid(){
   var mob  = document.getElementById('pg-mob').value;
   var btn  = document.getElementById('pg-btn').value  || '#000000';
   var hov  = document.getElementById('pg-hov').value  || '#00edff';
+  var txt  = document.getElementById('pg-txt') ? document.getElementById('pg-txt').value || '#000000' : '#000000';
   var isSale    = document.getElementById('pg-sale-toggle')  && document.getElementById('pg-sale-toggle').checked;
   var hasLeader = document.getElementById('pg-leader-toggle') && document.getElementById('pg-leader-toggle').checked;
-  var leaderTitle = (document.getElementById('pg-leader-title') && document.getElementById('pg-leader-title').value.trim()) || 'SALE';
-  var leaderSub   = (document.getElementById('pg-leader-sub')   && document.getElementById('pg-leader-sub').value.trim())   || '';
-  var leaderImg   = (document.getElementById('pg-leader-img')   && document.getElementById('pg-leader-img').value.trim())   || '';
-  var leaderUrl   = (document.getElementById('pg-leader-url')   && document.getElementById('pg-leader-url').value.trim())   || '';
-  var leaderBg    = (document.getElementById('pg-leader-bg')    && document.getElementById('pg-leader-bg').value)           || '#0C2340';
-  var leaderCol   = (document.getElementById('pg-leader-col')   && document.getElementById('pg-leader-col').value)          || '#ffffff';
+  var leaderImg   = (document.getElementById('pg-leader-img') && document.getElementById('pg-leader-img').value.trim()) || '';
+  var leaderUrl   = (document.getElementById('pg-leader-url') && document.getElementById('pg-leader-url').value.trim()) || '';
 
   var valid = pgProds.filter(function(p){ return p.name.trim() && p.url.trim(); });
   if(!valid.length){ showToast('Add at least one product with name and URL','err'); return; }
@@ -2287,16 +2311,11 @@ function genGrid(){
   var leaderHtml = '';
   if(hasLeader){
     var leaderInner = leaderImg
-      ? '<a href="'+esc(leaderUrl)+'" style="display:block;height:100%">'
-          +'<img src="'+esc(leaderImg)+'" alt="'+esc(leaderTitle)+'" style="width:100%;height:100%;object-fit:cover;display:block">'
+      ? '<a href="'+esc(leaderUrl)+'" style="display:block;">'
+          +'<img src="'+esc(leaderImg)+'" alt="Leading tile graphic" style="width:100%;height:auto;display:block;">'
         +'</a>'
-      : '<a href="'+esc(leaderUrl)+'" class="ps-leader-link">'
-          +'<div class="ps-leader-inner">'
-            +'<div class="ps-leader-title">'+esc(leaderTitle)+'</div>'
-            +(leaderSub?'<div class="ps-leader-sub">'+esc(leaderSub)+'</div>':'')
-          +'</div>'
-        +'</a>';
-    leaderHtml = '\n    <div class="ps-card ps-leader" style="background:'+leaderBg+';min-height:260px">'
+      : '<div style="background:#e5e7eb;min-height:260px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#6b7280">Paste an image URL above to preview</div>';
+    leaderHtml = '\n    <div class="ps-card ps-leader">'
       +'\n      '+leaderInner
       +'\n    </div>';
   }
@@ -2308,13 +2327,7 @@ function genGrid(){
     : '';
 
   // Leader CSS
-  var leaderCss = hasLeader
-    ? '\n    #ps-fn-grid .ps-leader{display:flex;align-items:stretch;overflow:hidden;position:relative}'
-      +'\n    #ps-fn-grid .ps-leader-link{display:flex;align-items:center;justify-content:center;width:100%;height:100%;text-decoration:none;padding:24px;min-height:260px}'
-      +'\n    #ps-fn-grid .ps-leader-inner{text-align:center}'
-      +'\n    #ps-fn-grid .ps-leader-title{font-family:\'Jost\',sans-serif;font-size:36px;font-weight:800;color:'+leaderCol+';text-transform:uppercase;letter-spacing:.04em;line-height:1}'
-      +'\n    #ps-fn-grid .ps-leader-sub{font-family:\'Jost\',sans-serif;font-size:13px;color:'+leaderCol+';opacity:.75;margin-top:8px;text-transform:uppercase;letter-spacing:.1em}'
-    : '';
+  var leaderCss = hasLeader ? '\n    #ps-fn-grid .ps-leader{overflow:hidden}' : '';
 
   var code = '<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700;800&display=swap" rel="stylesheet">\n\n'
     +'<div id="ps-fn-grid">\n  <style>\n'
@@ -2323,11 +2336,11 @@ function genGrid(){
     +'    #ps-fn-grid .ps-grid{display:grid;grid-template-columns:repeat('+cols+',1fr);gap:12px}\n'
     +'    @media(max-width:640px){#ps-fn-grid .ps-grid{grid-template-columns:repeat('+mob+',1fr)}}\n'
     +'    #ps-fn-grid .ps-card{background:#fff;border:1px solid #efefef;overflow:hidden;display:flex;flex-direction:column}\n'
-    +'    #ps-fn-grid .ps-img-wrap{padding:20px;background:#fff}\n'
-    +'    #ps-fn-grid .ps-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}\n'
+    +'    #ps-fn-grid .ps-img-wrap{background:#fff}\n'
+    +'    #ps-fn-grid .ps-card img{width:100%;height:auto;display:block}\n'
     +'    #ps-fn-grid .ps-card-info{padding:10px;display:flex;flex-direction:column;flex:1}\n'
-    +'    #ps-fn-grid .ps-name{font-family:\'Jost\',sans-serif;font-weight:700;font-size:14px;color:#000;margin:0 0 5px;line-height:1.3}\n'
-    +'    #ps-fn-grid .ps-price{font-family:\'Jost\',sans-serif;font-size:12px;color:#000;margin:0 0 10px}\n'
+    +'    #ps-fn-grid .ps-name{font-family:\'Jost\',sans-serif;font-weight:700;font-size:14px;color:'+txt+';margin:0 0 5px;line-height:1.3}\n'
+    +'    #ps-fn-grid .ps-price{font-family:\'Jost\',sans-serif;font-size:12px;color:'+txt+';margin:0 0 10px}\n'
     +'    #ps-fn-grid .ps-btn{display:block;background:'+btn+';color:#fff;font-family:\'Jost\',sans-serif;font-size:10px;font-weight:700;text-align:center;padding:8px 6px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;margin-top:auto;transition:background 0.2s,color 0.2s}\n'
     +'    #ps-fn-grid .ps-btn:hover{background:'+hov+';color:#000}'
     +saleCss+leaderCss+'\n'
@@ -2337,7 +2350,7 @@ function genGrid(){
   document.getElementById('pg-out').textContent = code;
   renderPreview('grid', code);
   flashGenBtn('pg-genbtn');
-  showToast('&#9989; Product grid code generated!');
+  showToast('&#9989; Carousel code generated!');
 }
 
 
@@ -2362,16 +2375,7 @@ function toggleLeaderFields(){
   if(fields) fields.style.display = (cb && cb.checked) ? 'block' : 'none';
   try{ genGrid(); }catch(e){}
 }
-function setLeaderColour(type, hex){
-  if(type==='bg'){
-    document.getElementById('pg-leader-bg').value = hex;
-    document.getElementById('pg-leader-bghex').value = hex;
-  } else {
-    document.getElementById('pg-leader-col').value = hex;
-    document.getElementById('pg-leader-colhex').value = hex;
-  }
-  genGrid();
-}
+// setLeaderColour removed - leader tile is graphic only
 
 // ── EDIT MODE ────────────────────────────────────────────────────────
 var editModeActive = false;
@@ -2590,25 +2594,29 @@ function renderPreview(module, code) {
     var iframe = container.querySelector('iframe');
     if (!iframe) {
       iframe = document.createElement('iframe');
-      iframe.style.cssText = 'width:100%;border:none;display:block;min-height:40px;';
+      iframe.style.cssText = 'border:none;display:block;min-height:40px;pointer-events:none;';
       iframe.scrolling = 'no';
       iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
       container.appendChild(iframe);
     }
-    // For mobile preview, simulate narrow viewport via wrapper
-    var wrappedCode = viewportWidth
-      ? '<div style="width:' + viewportWidth + 'px;overflow:hidden">' + code + '</div>'
-      : code;
+    // Set iframe width so media queries fire correctly inside it
+    if (viewportWidth) {
+      iframe.style.width = viewportWidth + 'px';
+      iframe.style.maxWidth = '100%';
+    } else {
+      iframe.style.width = '100%';
+    }
+    var vw = viewportWidth ? viewportWidth : 1200;
     var doc = iframe.contentDocument || iframe.contentWindow.document;
     doc.open();
-    doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>*{box-sizing:border-box;margin:0;padding:0}body{background:#fff;font-family:sans-serif;overflow-x:hidden}</style></head><body>' + wrappedCode + '</body></html>');
+    doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=' + vw + ',initial-scale=1"><style>*{box-sizing:border-box;margin:0;padding:0}body{background:#fff;font-family:sans-serif;overflow-x:hidden}</style></head><body>' + code + '</body></html>');
     doc.close();
     setTimeout(function(){
       try {
         var h = (iframe.contentDocument || iframe.contentWindow.document).body.scrollHeight;
         if (h > 10) iframe.style.height = h + 'px';
       } catch(e) {}
-    }, 350);
+    }, 400);
   }
 
   if (module === 'banner') {

@@ -1303,9 +1303,7 @@ body.edit-mode [contenteditable]:focus {
   <div class="hdr-logo"><div class="hdr-icon">&#128722;</div>Port Store - Website &amp; Operations</div>
   <span class="hdr-badge">Internal Tool</span>
   <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
-    <button id="edit-toggle-btn" onclick="toggleEditMode()" style="display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:6px;border:1.5px solid rgba(255,255,255,0.25);background:transparent;color:rgba(255,255,255,0.65);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;white-space:nowrap">&#9998; Edit</button>
     <button id="export-btn" onclick="exportHTML()" style="display:none;align-items:center;gap:5px;height:30px;padding:0 12px;border-radius:6px;border:none;background:#10B981;color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap">&#8595; Export</button>
-    <button id="cancel-edit-btn" onclick="cancelEditMode()" style="display:none;align-items:center;gap:5px;height:30px;padding:0 12px;border-radius:6px;border:1.5px solid rgba(255,100,100,0.4);background:transparent;color:rgba(255,150,150,0.9);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap">&#10005; Cancel</button>
   </div>
 </header>
 
@@ -1627,6 +1625,34 @@ body.edit-mode [contenteditable]:focus {
           <span class="bc-section-arrow"></span>
         </button>
         <div class="bc-section-body" id="ls-publishing">
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Once a product is ready in Lightspeed, follow these steps to push it across to BigCommerce.</p>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden">
+            <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody">
+              <div class="pm-stitle">Navigate to the Products page in Lightspeed</div>
+              <div class="pm-sdesc">Open Lightspeed Back Office and go to the Products section.</div>
+              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/lightspeed-products-page.png?t=1788738521" style="width:50%;display:block;border-radius:6px;border:1px solid var(--border)"></div>
+            </div></div>
+            <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody">
+              <div class="pm-stitle">Press the &ldquo;Publish to BigCommerce&rdquo; pill</div>
+              <div class="pm-sdesc">Under the product, there is a grey pill labelled <strong>Publish to BigCommerce</strong>. Click it to push the product across. This usually takes around 30 seconds.</div>
+            </div></div>
+            <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody">
+              <div class="pm-stitle">Confirm it&rsquo;s live — pill turns green</div>
+              <div class="pm-sdesc">Once complete, the pill will turn green and change to <strong>View on BigCommerce</strong>. You can click it to go directly to the product on the storefront.</div>
+              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-bigcommerce.png?t=1788738520" style="width:50%;display:block;border-radius:6px;border:1px solid var(--border)"></div>
+            </div></div>
+            <div class="pm-step"><div class="pm-snum">4</div><div class="pm-sbody">
+              <div class="pm-stitle">Check the product in BigCommerce</div>
+              <div class="pm-sdesc">Navigate to <strong>Products &rarr; View</strong> in BC Admin — the newly published product should appear at the top of the list. From here you can set visibility, categories and channels.</div>
+              <div class="pm-screen"><span class="pm-hl">BC Admin</span> &rarr; Products &rarr; View</div>
+              <div class="pm-tip" style="margin-top:8px">&#128161; New products may not be visible to customers by default — see <strong>BigCommerce &rarr; Products</strong> for visibility and channel steps.</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="ls-publishing">
           <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Once a product is ready in Lightspeed, follow these steps to make it live on the Port Store website.</p>
           <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden">
             <div class="csp-steps" style="padding:0 18px">
@@ -1819,6 +1845,8 @@ body.edit-mode [contenteditable]:focus {
           </div>
 
           <!-- Manual process panel -->
+      </div>
+
           <div id="awds-panel-manual" style="display:none">
             <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Use this process when you don&rsquo;t have a Lightspeed CSV, or want to create the AWDS Product Advice file manually from the AWDS template.</p>
 
@@ -1852,15 +1880,55 @@ body.edit-mode [contenteditable]:focus {
               </div></div>
             </div>
           </div>
-      </div>
 
 
 
     </div>
   </div>
 
+      <!-- ── GOODS INWARDS ────────────────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('awds-gi',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128230;</span><span class="bc-section-title">Goods Inwards Template</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="awds-gi">
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Download a Goods Inwards template pre-filled with product names and SKUs. Open it in Excel, fill in the quantities, then submit.</p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+            <!-- From New Product Advice -->
+            <div style="background:var(--off);border:1.5px solid var(--border);border-radius:10px;padding:16px">
+              <div style="font-size:13px;font-weight:700;margin-bottom:6px">&#128229; From New Product Advice</div>
+              <div style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Uses the product names &amp; SKUs from your current New Product Advice — generate that first, then download the GI template here.</div>
+              <div id="gi-np-status" style="display:none;margin-bottom:10px"></div>
+              <button onclick="giDownloadFromNP()" style="width:100%;padding:9px 14px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">&#128229; Download GI Template</button>
+            </div>
+
+            <!-- From Lightspeed CSV -->
+            <div style="background:var(--off);border:1.5px solid var(--border);border-radius:10px;padding:16px">
+              <div style="font-size:13px;font-weight:700;margin-bottom:6px">&#128228; From Lightspeed CSV</div>
+              <div style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Upload a transfer or new order CSV from Lightspeed Back Office to generate the template.</div>
+              <div id="gi-ls-status" style="display:none;margin-bottom:8px"></div>
+              <div id="gi-ls-upload-area" style="border:2px dashed var(--border);border-radius:8px;padding:14px;text-align:center;cursor:pointer;transition:border-color .15s;background:#fff;margin-bottom:0" onclick="document.getElementById('gi-ls-input').click()" ondragover="event.preventDefault();this.style.borderColor='var(--teal)'" ondragleave="this.style.borderColor='var(--border)'" ondrop="giHandleDrop(event)">
+                <div style="font-size:11px;color:var(--muted)">Drop CSV / Excel here or click to browse</div>
+                <input type="file" id="gi-ls-input" accept=".csv,.xlsx,.xls" style="display:none" onchange="giLoadFile(this.files[0])">
+              </div>
+            </div>
+          </div>
+
+          <!-- Column mapping (shown when LS file needs mapping) -->
+          <div id="gi-ls-mapping" style="display:none;margin-bottom:16px"></div>
+
+        </div>
+      </div>
 
 
+
+
+  <!-- GHOST IMAGERY (Website Operations subview) -->
+
+</div>
+</div>
 
   <!-- GHOST IMAGERY (Website Operations subview) -->
   <div class="subview" id="sv-ghost">
@@ -1958,9 +2026,6 @@ body.edit-mode [contenteditable]:focus {
       </div>
     </div>
   </div>
-
-</div>
-</div>
 </div>
 
 <!-- ════════════════════════════════════════
@@ -2029,10 +2094,10 @@ body.edit-mode [contenteditable]:focus {
                     <span class="img-upload-arrow"></span>
                   </button>
                   <div class="img-upload-body" style="display:none"><div class="img-upload-steps"><span class="img-upload-step"><span class="img-upload-step-num">1</span>BC Admin &rarr; <strong>Content &rarr; Image Manager</strong></span><span class="img-upload-step-sep">&rarr;</span><span class="img-upload-step"><span class="img-upload-step-num">2</span>Upload image &rarr; copy the CDN URL</span></div><div class="img-upload-example"><span class="img-upload-example-lbl">Step 1 - Navigate to Image Manager</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/navigating-to-image-manager.jpg?t=1787704674" style="width:50%;border-radius:5px;display:block;margin:6px 0 12px"><span class="img-upload-example-lbl">Step 2 - Copy the image URL</span><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/image-url-in-bigcom.jpg?t=1787704672" style="width:50%;border-radius:5px;display:block;margin:6px 0 10px"><span class="img-upload-example-lbl">Example URL format</span><code class="img-upload-url">https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/<strong>your-filename.png</strong></code></div></div></div></div>
-        <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Where does the banner link to? <span class="req">*</span></label><input type="url" class="fc" id="b-link" oninput="genBanner()" value="https://portstore.com.au/aflw/"><span class="fhint">The page customers land on when they click the banner</span></div></div>
-        <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Desktop image URL <span class="req">*</span></label><input type="url" class="fc" id="b-desk" oninput="genBanner()" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner-26-1-.png?t=1786696060"><span class="fhint">2100 x 700px - paste the BigCommerce CDN URL</span></div></div>
-        <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Mobile image URL <span class="req">*</span></label><input type="url" class="fc" id="b-mob" oninput="genBanner()" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner.png?t=1786695857"><span class="fhint">767 x 960px - paste the BigCommerce CDN URL</span></div></div>
-        <div class="frow full"><div class="fg"><label class="fl">Image description (alt text)</label><input type="text" class="fc" id="b-alt" oninput="genBanner()" value="Promotional Banner"><span class="fhint">Short description for accessibility</span></div></div>
+        <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Where does the banner link to? <span class="req">*</span></label><input type="url" class="fc" id="b-link" oninput="genBannerSilent()" value="https://portstore.com.au/aflw/"><span class="fhint">The page customers land on when they click the banner</span></div></div>
+        <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Desktop image URL <span class="req">*</span></label><input type="url" class="fc" id="b-desk" oninput="genBannerSilent()" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner-26-1-.png?t=1786696060"><span class="fhint">2100 x 700px - paste the BigCommerce CDN URL</span></div></div>
+        <div class="frow full" style="margin-bottom:14px"><div class="fg"><label class="fl">Mobile image URL <span class="req">*</span></label><input type="url" class="fc" id="b-mob" oninput="genBannerSilent()" value="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/aflw-banner.png?t=1786695857"><span class="fhint">767 x 960px - paste the BigCommerce CDN URL</span></div></div>
+        <div class="frow full"><div class="fg"><label class="fl">Image description (alt text)</label><input type="text" class="fc" id="b-alt" oninput="genBannerSilent()" value="Promotional Banner"><span class="fhint">Short description for accessibility</span></div></div>
       </div>
     </div>
     <div class="mod-step-block">
@@ -2085,7 +2150,7 @@ body.edit-mode [contenteditable]:focus {
           <div class="fg"><label class="fl">Background colour</label><div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="document.getElementById('ab-bg').value='#ffffff';document.getElementById('ab-bghex').value='#ffffff';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('ab-bg').value='#000000';document.getElementById('ab-bghex').value='#000000';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('ab-bg').value='#00edff';document.getElementById('ab-bghex').value='#00edff';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="document.getElementById('ab-bg').value='#0097b0';document.getElementById('ab-bghex').value='#0097b0';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="document.getElementById('ab-bg').value='#efefef';document.getElementById('ab-bghex').value='#efefef';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#535353" title="Dark Grey" onclick="document.getElementById('ab-bg').value='#535353';document.getElementById('ab-bghex').value='#535353';syncC('ab-bg','ab-bghex')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('ab-bg').value='#e0002b';document.getElementById('ab-bghex').value='#e0002b';syncC('ab-bg','ab-bghex')"></button></div><div class="color-row"><div class="cswatch"><input type="color" id="ab-bg" value="#0097B0" oninput="document.getElementById('ab-bghex').value=this.value"></div><input type="text" class="fc" id="ab-bghex" value="#0097B0" style="width:100px" oninput="syncC('ab-bg','ab-bghex')"></div></div>
           <div class="fg"><label class="fl">Text colour</label><div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff" title="White" onclick="document.getElementById('ab-tc').value='#ffffff';document.getElementById('ab-tchex').value='#ffffff';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('ab-tc').value='#000000';document.getElementById('ab-tchex').value='#000000';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('ab-tc').value='#00edff';document.getElementById('ab-tchex').value='#00edff';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#0097b0" title="Classic Teal" onclick="document.getElementById('ab-tc').value='#0097b0';document.getElementById('ab-tchex').value='#0097b0';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#efefef" title="Light Grey" onclick="document.getElementById('ab-tc').value='#efefef';document.getElementById('ab-tchex').value='#efefef';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#535353" title="Dark Grey" onclick="document.getElementById('ab-tc').value='#535353';document.getElementById('ab-tchex').value='#535353';syncC('ab-tc','ab-tchex')"></button><button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('ab-tc').value='#e0002b';document.getElementById('ab-tchex').value='#e0002b';syncC('ab-tc','ab-tchex')"></button></div><div class="color-row"><div class="cswatch"><input type="color" id="ab-tc" value="#ffffff" oninput="document.getElementById('ab-tchex').value=this.value"></div><input type="text" class="fc" id="ab-tchex" value="#ffffff" style="width:100px" oninput="syncC('ab-tc','ab-tchex')"></div></div>
         </div>
-        <div class="frow full" style="margin-bottom:16px"><div class="fg"><label class="fl">Mobile rotation speed</label><select class="fc" id="ab-spd" oninput="genAnnBar()"><option value="2500">Fast (2.5s)</option><option value="3500" selected>Normal (3.5s)</option><option value="5000">Slow (5s)</option><option value="7000">Very slow (7s)</option></select><span class="fhint">How long each message shows before rotating on mobile</span></div></div>
+        <div class="frow full" style="margin-bottom:16px"><div class="fg"><label class="fl">Mobile rotation speed</label><select class="fc" id="ab-spd" oninput="genAnnBarSilent()"><option value="2500">Fast (2.5s)</option><option value="3500" selected>Normal (3.5s)</option><option value="5000">Slow (5s)</option><option value="7000">Very slow (7s)</option></select><span class="fhint">How long each message shows before rotating on mobile</span></div></div>
         <div class="divider">Messages (up to 5)</div>
         <div style="background:var(--off);border-radius:8px;padding:10px 12px;border:1px solid var(--border);margin-bottom:12px;font-size:12px;color:var(--muted)">&#128073; Keep each message <strong>under 50 characters</strong>. Leave the link field blank if not linking anywhere.</div>
         <div id="ab-msgs" style="display:flex;flex-direction:column;gap:9px"></div>
@@ -2135,8 +2200,8 @@ body.edit-mode [contenteditable]:focus {
       <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Set up the carousel</div><div class="mod-step-sub">Choose layout and colours, then add your products</div></div></div>
       <div class="mod-step-body">
         <div class="frow" style="margin-bottom:16px">
-          <div class="fg"><label class="fl">Columns (desktop)</label><select class="fc" id="pg-cols" oninput="genGrid()"><option value="3">3 columns</option><option value="4" selected>4 columns</option><option value="5">5 columns</option></select></div>
-          <div class="fg"><label class="fl">Columns (mobile)</label><select class="fc" id="pg-mob" oninput="genGrid()"><option value="1">1 column</option><option value="2" selected>2 columns</option><option value="3">3 columns</option></select></div>
+          <div class="fg"><label class="fl">Columns (desktop)</label><select class="fc" id="pg-cols" oninput="genGridSilent()"><option value="3">3 columns</option><option value="4" selected>4 columns</option><option value="5">5 columns</option></select></div>
+          <div class="fg"><label class="fl">Columns (mobile)</label><select class="fc" id="pg-mob" oninput="genGridSilent()"><option value="1">1 column</option><option value="2" selected>2 columns</option><option value="3">3 columns</option></select></div>
         </div>
 
         <!-- Grid type options -->
@@ -2170,8 +2235,8 @@ body.edit-mode [contenteditable]:focus {
         <!-- Leader tile options (hidden until toggle on) -->
         <div id="pg-leader-fields" style="display:none;background:var(--off);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px">
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px">&#127976; Leading Tile Settings</div>
-          <div class="frow full" style="margin-bottom:10px"><div class="fg"><label class="fl">Graphic image URL <span class="req">*</span></label><input type="url" class="fc" id="pg-leader-img" value="" oninput="genGrid()" placeholder="https://cdn11.bigcommerce.com/..."><span class="fhint">Upload your graphic to BC Image Manager and paste the CDN URL here. It will fill the entire leading tile.</span></div></div>
-          <div class="frow full"><div class="fg"><label class="fl">Link URL (optional)</label><input type="url" class="fc" id="pg-leader-url" value="" oninput="genGrid()" placeholder="https://portstore.com.au/sale/"><span class="fhint">Where customers go when they click the tile</span></div></div>
+          <div class="frow full" style="margin-bottom:10px"><div class="fg"><label class="fl">Graphic image URL <span class="req">*</span></label><input type="url" class="fc" id="pg-leader-img" value="" oninput="genGridSilent()" placeholder="https://cdn11.bigcommerce.com/..."><span class="fhint">Upload your graphic to BC Image Manager and paste the CDN URL here. It will fill the entire leading tile.</span></div></div>
+          <div class="frow full"><div class="fg"><label class="fl">Link URL (optional)</label><input type="url" class="fc" id="pg-leader-url" value="" oninput="genGridSilent()" placeholder="https://portstore.com.au/sale/"><span class="fhint">Where customers go when they click the tile</span></div></div>
 
           <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
             <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
@@ -2342,7 +2407,7 @@ body.edit-mode [contenteditable]:focus {
         <div class="frow full">
           <div class="fg">
             <label class="fl">Category heading text <span class="req">*</span></label>
-            <input type="text" class="fc" id="cb-text" value="ALL AFL" oninput="genCatBanner()" placeholder="e.g. ALL AFL, HEADWEAR, APPAREL" style="font-size:18px;font-weight:700;letter-spacing:.05em">
+            <input type="text" class="fc" id="cb-text" value="ALL AFL" oninput="genCatBannerSilent()" placeholder="e.g. ALL AFL, HEADWEAR, APPAREL" style="font-size:18px;font-weight:700;letter-spacing:.05em">
             <span class="fhint">Displayed in large bold white text over the banner. Use uppercase to match the live site style.</span>
           </div>
         </div>
@@ -2779,8 +2844,7 @@ function genBanner(){
     +'    </picture>\n  </a>\n</div>';
   document.getElementById('b-out').textContent=code;
   renderPreview('banner',code);
-  flashGenBtn('b-genbtn');
-  showToast('&#9989; Banner code generated!');
+  if(!genAutoTriggered){flashGenBtn('b-genbtn');showToast('&#9989; Banner code generated!');}
 }
 
 // ── ANNOUNCEMENT BMH ────────────────────────
@@ -2839,8 +2903,7 @@ function genAnnBar(){
     +'<scr'+'ipt>\n(function(){\n  var msgs=document.querySelectorAll(\'#bcAbMobile .bc-ab__mobile-msg\');\n  if(!msgs.length)return;\n  var cur=0;\n  setInterval(function(){msgs[cur].classList.remove(\'is-active\');cur=(cur+1)%msgs.length;msgs[cur].classList.add(\'is-active\');},'+spd+');\n})();\n<\/'+'script>';
   document.getElementById('ab-out').textContent=code;
   renderPreview('annbar',code);
-  flashGenBtn('ab-genbtn');
-  showToast('&#9989; Announcement bar code generated!');
+  if(!genAutoTriggered){flashGenBtn('ab-genbtn');showToast('&#9989; Announcement bar code generated!');}
 }
 
 // ── PRODUCT GRID ─────────────────────────────
@@ -2878,8 +2941,7 @@ function genCatBanner(){
 
   document.getElementById('cb-out').textContent = code;
   renderPreview('catbanner', code);
-  flashGenBtn('cb-genbtn');
-  showToast('&#9989; Category header code generated!');
+  if(!genAutoTriggered){flashGenBtn('cb-genbtn');showToast('&#9989; Category header code generated!');}
 }
 
 // ── POPULAR CATEGORIES ───────────────────────────────────────────────
@@ -2960,8 +3022,7 @@ function genCats(){
 
   document.getElementById('pc-out').textContent = code;
   renderPreview('cats', code);
-  flashGenBtn('pc-genbtn');
-  showToast('&#9989; Categories code generated!');
+  if(!genAutoTriggered){flashGenBtn('pc-genbtn');showToast('&#9989; Categories code generated!');}
 }
 
 var pgProds=[
@@ -3134,8 +3195,7 @@ function genGrid(){
 
   document.getElementById('pg-out').textContent = code;
   renderPreview('grid', code);
-  flashGenBtn('pg-genbtn');
-  showToast('&#9989; Carousel code generated!');
+  if(!genAutoTriggered){flashGenBtn('pg-genbtn');showToast('&#9989; Carousel code generated!');}
 }
 
 
@@ -3147,6 +3207,128 @@ function toggleBcSection(id, btn) {
   body.classList.toggle('bc-open', !isOpen);
   var arrow = btn ? btn.querySelector('.bc-section-arrow') : null;
   if (arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+// ── GOODS INWARDS ─────────────────────────────────────────────────────
+function giDownloadFromNP() {
+  var statusEl = document.getElementById('gi-np-status');
+  if (!awdsRows || !awdsRows.length) {
+    if (statusEl) {
+      statusEl.style.cssText = 'padding:8px 12px;border-radius:7px;font-size:12px;border:1px solid #fcd34d;background:#fffbeb;color:#92400e;display:block';
+      statusEl.innerHTML = '&#9888; No product data yet — generate a New Product Advice file first, then come back here.';
+    }
+    return;
+  }
+  if (statusEl) statusEl.style.display = 'none';
+  // Deduplicate by SKU
+  var seen = {};
+  var rows = awdsRows.filter(function(r){
+    if (!r.ProductCode || seen[r.ProductCode]) return false;
+    seen[r.ProductCode] = true; return true;
+  });
+  giGenerateDownload(rows.map(function(r){ return {name:r.Description||'', sku:r.ProductCode||''}; }));
+}
+
+function giHandleDrop(e) {
+  e.preventDefault();
+  document.getElementById('gi-ls-upload-area').style.borderColor = 'var(--border)';
+  var file = e.dataTransfer.files[0];
+  if (file) giLoadFile(file);
+}
+
+function giLoadFile(file) {
+  if (!file) return;
+  var name = file.name.toLowerCase();
+  if (name.endsWith('.xlsx') || name.endsWith('.xls')) {
+    if (typeof XLSX === 'undefined') { giShowStatus('&#10060; Excel library not loaded. Try CSV.', 'err'); return; }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        var data = new Uint8Array(e.target.result);
+        var wb = XLSX.read(data, {type:'array'});
+        var ws = wb.Sheets[wb.SheetNames[0]];
+        giParseCSV(XLSX.utils.sheet_to_csv(ws));
+      } catch(err) { giShowStatus('&#10060; Could not read file.', 'err'); }
+    };
+    reader.readAsArrayBuffer(file);
+  } else {
+    var reader = new FileReader();
+    reader.onload = function(e) { giParseCSV(e.target.result); };
+    reader.readAsText(file);
+  }
+}
+
+function giParseCSV(text) {
+  var lines = text.split(/\r?\n/).filter(function(l){ return l.trim(); });
+  if (lines.length < 2) { giShowStatus('&#10060; File is empty.', 'err'); return; }
+  var headers = awdsParseRow(lines[0]).map(function(h){ return h.trim(); });
+  var dataRows = lines.slice(1).map(function(l){ return awdsParseRow(l); });
+
+  var nameCol = giFindCol(headers, ['name','product name','product_name','description','item']);
+  var skuCol  = giFindCol(headers, ['sku','sku_code_custom','productcode','product code','code','item code']);
+
+  if (nameCol < 0 || skuCol < 0) {
+    giShowMappingUI(headers, nameCol, skuCol, dataRows);
+    return;
+  }
+  var rows = dataRows.map(function(r){ return {name:(r[nameCol]||'').trim(), sku:(r[skuCol]||'').trim()}; }).filter(function(r){ return r.sku||r.name; });
+  giGenerateDownload(rows);
+}
+
+function giShowMappingUI(headers, nameCol, skuCol, dataRows) {
+  var wrap = document.getElementById('gi-ls-mapping');
+  var makeSelect = function(id, label, cur) {
+    var opts = '<option value="">— not mapped —</option>' + headers.map(function(h,i){ return '<option value="'+i+'"'+(i===cur?' selected':'')+'>'+esc(h)+'</option>'; }).join('');
+    return '<div style="margin-bottom:8px"><label class="fl">'+label+'</label><select class="fc" id="gi-map-'+id+'">'+opts+'</select></div>';
+  };
+  wrap.innerHTML = '<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px">&#128279; Choose which columns to use</div>'
+    + makeSelect('name','Product Name <span class="req">*</span>', nameCol)
+    + makeSelect('sku', 'SKU <span class="req">*</span>', skuCol)
+    + '<button onclick="giApplyMapping('+JSON.stringify(dataRows)+')" style="margin-top:6px;padding:8px 16px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">&#9889; Generate &amp; Download</button>';
+  wrap.style.display = 'block';
+}
+
+function giApplyMapping(dataRows) {
+  var n = parseInt(document.getElementById('gi-map-name').value);
+  var s = parseInt(document.getElementById('gi-map-sku').value);
+  if (isNaN(n) || isNaN(s)) { giShowStatus('&#10060; Please map Name and SKU.', 'err'); return; }
+  var rows = dataRows.map(function(r){ return {name:(r[n]||'').trim(), sku:(r[s]||'').trim()}; }).filter(function(r){ return r.sku||r.name; });
+  document.getElementById('gi-ls-mapping').style.display = 'none';
+  giGenerateDownload(rows);
+}
+
+function giFindCol(headers, variants) {
+  for (var i=0; i<headers.length; i++) {
+    var h = headers[i].toLowerCase().replace(/[^a-z0-9]/g,'');
+    for (var j=0; j<variants.length; j++) {
+      if (h === variants[j].replace(/[^a-z0-9]/g,'')) return i;
+    }
+  }
+  return -1;
+}
+
+function giGenerateDownload(rows) {
+  if (!rows.length) { giShowStatus('&#10060; No products to export.', 'err'); return; }
+  var csv = 'Product Name,SKU,Quantity\n'
+    + rows.map(function(r){
+        var n = (r.name||'').includes(',') ? '"'+(r.name||'').replace(/"/g,'""')+'"' : (r.name||'');
+        return n + ',' + (r.sku||'') + ',';
+      }).join('\n');
+  var today = new Date();
+  var d = today.getFullYear() + String(today.getMonth()+1).padStart(2,'0') + String(today.getDate()).padStart(2,'0');
+  var blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a'); a.href=url; a.download=d+'_Goods_Inwards_Template.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+  showToast('&#9989; Goods Inwards template downloaded — open in Excel and fill in quantities.');
+  giShowStatus('&#9989; Downloaded ' + rows.length + ' rows. Open the file and fill in the Quantity column.', 'ok');
+}
+
+function giShowStatus(msg, type) {
+  var el = document.getElementById('gi-ls-status'); if(!el) return;
+  var c = {ok:'#f0fdf4;border-color:#86efac;color:#166534', warn:'#fffbeb;border-color:#fcd34d;color:#92400e', err:'#fef2f2;border-color:#fecaca;color:#991b1b'};
+  el.style.cssText = 'padding:8px 12px;border-radius:7px;font-size:12px;border:1px solid;background:'+(c[type]||c.ok)+';margin-bottom:8px;display:block';
+  el.innerHTML = msg;
 }
 
 // ── AWDS CSV CONVERTER ────────────────────────────────────────────────
@@ -3579,6 +3761,12 @@ function wmGo(id) {
 
 // ── MODULE GENERATOR NAV ──────────────────────────────────────────────
 var genAutoTriggered = false;
+// Silent wrappers for oninput-triggered generation
+function genBannerSilent(){ genAutoTriggered=true; try{genBanner();}catch(e){} genAutoTriggered=false; }
+function genAnnBarSilent(){ genAutoTriggered=true; try{genAnnBar();}catch(e){} genAutoTriggered=false; }
+function genGridSilent(){   genAutoTriggered=true; try{genGrid();}catch(e){}   genAutoTriggered=false; }
+function genCatsSilent(){   genAutoTriggered=true; try{genCats();}catch(e){}   genAutoTriggered=false; }
+function genCatBannerSilent(){ genAutoTriggered=true; try{genCatBanner();}catch(e){} genAutoTriggered=false; }
 function switchModule(id, btn) {
   document.querySelectorAll('.gen-module').forEach(function(el){ el.classList.remove('active'); });
   document.querySelectorAll('.gen-picker-tab').forEach(function(b){ b.classList.remove('active'); });

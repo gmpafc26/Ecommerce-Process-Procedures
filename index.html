@@ -1623,7 +1623,7 @@ body.edit-mode [contenteditable]:focus {
         <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-top:6px">Lightspeed is the source of truth for all product content. Changes made here sync automatically into BigCommerce. Always start here when creating or updating products.</p>
       </div>
 
-      <div class="pm-overwrite-warn" style="margin-bottom:16px">
+      <div class="pm-overwrite-warn" style="margin-bottom:20px">
         <div class="pm-overwrite-icon">&#8644;&#65039;</div>
         <div>
           <div class="pm-overwrite-title">Lightspeed syncs one way into BigCommerce - not back</div>
@@ -1631,64 +1631,33 @@ body.edit-mode [contenteditable]:focus {
         </div>
       </div>
 
-      <!-- ── MANAGING PRODUCTS ──────────────────────────── -->
+      <!-- ── CREATING PRODUCTS ──────────────────────────── -->
       <div class="bc-section">
-        <button class="bc-section-btn" onclick="toggleBcSection('ls-products',this)">
-          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128230;</span><span class="bc-section-title">Managing Products</span></div>
-          <span class="bc-section-arrow"></span>
+        <button class="bc-section-btn" onclick="toggleBcSection('ls-creating',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#10133;</span><span class="bc-section-title">Creating Products</span></div>
+          <span class="bc-section-arrow" style="transform:rotate(180deg)"></span>
         </button>
-        <div class="bc-section-body" id="ls-products">
-          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Lightspeed manages all core product data. Any changes made here sync automatically to BigCommerce.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
-            <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Product name</div><div class="pm-fd">Shown on storefront and search. Keep consistent across variants.</div></div>
-            <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Description</div><div class="pm-fd">Rich text description. Syncs to BC - don&rsquo;t edit in BC.</div></div>
-            <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Images</div><div class="pm-fd">Upload here - they sync through to BC automatically.</div></div>
-            <div class="pm-fc"><div class="pm-fn"><span class="req-dot"></span>Price &amp; sale price</div><div class="pm-fd">Retail and sale pricing. Numbers only, no $ symbol.</div></div>
-            <div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>SKU / barcode</div><div class="pm-fd">Don&rsquo;t change SKU without checking inventory impact.</div></div>
-            <div class="pm-fc"><div class="pm-fn"><span class="opt-dot"></span>Brand &amp; tags</div><div class="pm-fd">Used for filtering in Back Office and synced to BC.</div></div>
-          </div>
-        </div>
-      </div>
+        <div class="bc-section-body bc-open" id="ls-creating">
 
-      <!-- ── PUBLISHING TO BIGCOMMERCE ─────────────────── -->
-      <div class="bc-section">
-        <button class="bc-section-btn" onclick="toggleBcSection('ls-publishing',this)">
-          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128257;</span><span class="bc-section-title">Publishing to BigCommerce</span></div>
-          <span class="bc-section-arrow"></span>
-        </button>
-        <div class="bc-section-body" id="ls-publishing">
-          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Once a product is ready in Lightspeed, follow these steps to push it across to BigCommerce.</p>
-          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden">
-            <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody">
-              <div class="pm-stitle">Navigate to the Products page in Lightspeed</div>
-              <div class="pm-sdesc">Open Lightspeed Back Office and go to the Products section.</div>
-              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/lightspeed-products-page.png?t=1788738521" style="width:50%;display:block;border-radius:6px;border:1px solid var(--border)"></div>
-            </div></div>
-            <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody">
-              <div class="pm-stitle">Press the &ldquo;Publish to BigCommerce&rdquo; pill</div>
-              <div class="pm-sdesc">Under the product, there is a grey pill labelled <strong>Publish to BigCommerce</strong>. Click it to push the product across. This usually takes around 30 seconds.</div>
-              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/sell-on-bigcom.png?t=1788738520" style="width:50%;display:block;border-radius:6px;border:1px solid var(--border)"></div>
-            </div></div>
-            <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody">
-              <div class="pm-stitle">Confirm it&rsquo;s live - pill turns green</div>
-              <div class="pm-sdesc">Once complete, the pill will turn green and change to <strong>View on BigCommerce</strong>. You can click it to go directly to the product on the storefront.</div>
-              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-bigcommerce.png?t=1788738520" style="width:50%;display:block;border-radius:6px;border:1px solid var(--border)"></div>
-            </div></div>
-            <div class="pm-step"><div class="pm-snum">4</div><div class="pm-sbody">
-              <div class="pm-stitle">Check the product in BigCommerce</div>
-              <div class="pm-sdesc">Navigate to <strong>Products &rarr; View</strong> in BC Admin - the newly published product should appear at the top of the list. From here you can set visibility, categories and channels.</div>
-              <div class="pm-screen"><span class="pm-hl">BC Admin</span> &rarr; Products &rarr; View</div>
-              <div class="pm-tip" style="margin-top:8px">&#128161; New products may not be visible to customers by default - see <strong>BigCommerce &rarr; Products</strong> for visibility and channel steps.</div>
-            </div></div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Two ways to create products in Lightspeed - use bulk upload for new ranges, manual entry for one-off additions.</p>
+
+          <!-- Method chooser -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
+            <div id="ls-create-bulk-card" onclick="lsSwitchCreate('bulk')" style="border:2px solid var(--teal);background:var(--teal-dim);border-radius:10px;padding:14px;cursor:pointer;transition:all .15s">
+              <div style="font-size:20px;margin-bottom:6px">&#128229;</div>
+              <div style="font-size:13px;font-weight:700;color:var(--text)">Bulk Upload</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:3px">Upload a CSV to create multiple products at once - use for new ranges or large catalogues</div>
+            </div>
+            <div id="ls-create-manual-card" onclick="lsSwitchCreate('manual')" style="border:2px solid var(--border);background:#fff;border-radius:10px;padding:14px;cursor:pointer;transition:all .15s">
+              <div style="font-size:20px;margin-bottom:6px">&#128196;</div>
+              <div style="font-size:13px;font-weight:700;color:var(--text)">Manual Entry</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:3px">Create a single product directly in Lightspeed Back Office</div>
+            </div>
           </div>
-        </div>
-      </div><div class="bc-section">
-        <button class="bc-section-btn" onclick="toggleBcSection('ls-bulk',this)">
-          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128229;</span><span class="bc-section-title">Bulk Product Upload</span></div>
-          <span class="bc-section-arrow"></span>
-        </button>
-        <div class="bc-section-body" id="ls-bulk">
-          <div id="sg-lightspeed" class="guide-pane" style="padding:0">
+
+          <!-- Bulk upload panel -->
+          <div id="ls-panel-bulk">
+            <div id="sg-lightspeed" class="guide-pane" style="padding:0">
         <div style="display:flex;align-items:center;justify-content:space-between;margin:16px 0;flex-wrap:wrap;gap:10px">
           <div><div style="font-size:16px;font-weight:700">Lightspeed Bulk Upload</div><div style="font-size:13px;color:var(--muted)">X Series &middot; Process guide</div></div>
           <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Upload%20Template.xlsx?d=wde106432a27f4e4d92ff8f55973c4d64&csf=1&web=1&e=3r8XQF" target="_blank">&#128229; Download Template</a>
@@ -1750,30 +1719,113 @@ body.edit-mode [contenteditable]:focus {
         </div>
         <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; Lightspeed X &middot; Bulk Upload Process</div>
       </div>
+          </div>
+
+          <!-- Manual entry panel -->
+          <div id="ls-panel-manual" style="display:none">
+            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Use this method when adding one or a small number of products directly in Lightspeed Back Office.</p>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden">
+              <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody">
+                <div class="pm-stitle">Navigate to Products</div>
+                <div class="pm-sdesc">In Lightspeed Back Office, go to <strong>Products</strong> in the left sidebar, then click <strong>New Product</strong>.</div>
+                <div class="pm-screen"><span class="pm-hl">Back Office</span> - Products - New Product</div>
+              </div></div>
+              <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody">
+                <div class="pm-stitle">Enter the product details</div>
+                <div class="pm-sdesc">Fill in the core product fields. These sync directly to BigCommerce so get them right here first.</div>
+                <table class="ref-table" style="margin-top:10px"><thead><tr><th>Field</th><th>Notes</th></tr></thead><tbody>
+                  <tr><td><strong>Name</strong></td><td>Full product name - must be identical across all variant rows</td></tr>
+                  <tr><td><strong>Description</strong></td><td>Product description shown on the website - syncs to BC</td></tr>
+                  <tr><td><strong>Category</strong></td><td>Must match an existing Lightspeed category exactly</td></tr>
+                  <tr><td><strong>Brand</strong></td><td>Used for filtering in Back Office</td></tr>
+                  <tr><td><strong>Supplier</strong></td><td>Required if using purchase orders</td></tr>
+                  <tr><td><strong>Retail price</strong></td><td>Incl. GST - numbers only, no $ symbol</td></tr>
+                  <tr><td><strong>Supply price</strong></td><td>Ex-GST cost price</td></tr>
+                  <tr><td><strong>SKU</strong></td><td>Unique per variant - no spaces</td></tr>
+                  <tr><td><strong>Barcode</strong></td><td>EAN-13 - format as Text to prevent scientific notation</td></tr>
+                </tbody></table>
+              </div></div>
+              <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody">
+                <div class="pm-stitle">Add variants (if sized)</div>
+                <div class="pm-sdesc">If the product comes in multiple sizes, add each as a variant under the same product. Each variant gets its own SKU, barcode and stock level. Use <strong>Size</strong> as the variant option name.</div>
+                <div class="pm-tip" style="margin-top:8px">&#128161; Keep the product name identical across all variants - even a trailing space will create a duplicate product.</div>
+              </div></div>
+              <div class="pm-step"><div class="pm-snum">4</div><div class="pm-sbody">
+                <div class="pm-stitle">Upload images</div>
+                <div class="pm-sdesc">Add product images here in Lightspeed - they will sync through to BigCommerce automatically. Don&rsquo;t upload images directly in BC as they&rsquo;ll be overwritten on the next sync.</div>
+              </div></div>
+              <div class="pm-step"><div class="pm-snum">5</div><div class="pm-sbody">
+                <div class="pm-stitle">Save the product</div>
+                <div class="pm-sdesc">Click <strong>Save</strong>. The product is now in Lightspeed and ready to publish to BigCommerce - see the <strong>Publishing to BigCommerce</strong> section below.</div>
+              </div></div>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <!-- ── QUICK REFERENCE ───────────────────────────── -->
+      <!-- ── MANAGING PRODUCTS ──────────────────────────── -->
       <div class="bc-section">
-        <button class="bc-section-btn" onclick="toggleBcSection('ls-quickref',this)">
-          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128203;</span><span class="bc-section-title">Quick Reference</span></div>
+        <button class="bc-section-btn" onclick="toggleBcSection('ls-managing',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128230;</span><span class="bc-section-title">Managing Products</span></div>
           <span class="bc-section-arrow"></span>
         </button>
-        <div class="bc-section-body" id="ls-quickref">
-          <table class="ref-table"><thead><tr><th>What</th><th>Notes</th></tr></thead><tbody>
-            <tr><td><strong>Product name</strong></td><td>Must be identical across all variant rows. Syncs to BC.</td></tr>
-            <tr><td><strong>Description</strong></td><td>Syncs to BC - don&rsquo;t edit in BC</td></tr>
-            <tr><td><strong>Images</strong></td><td>Upload here, sync to BC - don&rsquo;t upload directly in BC</td></tr>
-            <tr><td><strong>Price &amp; sale price</strong></td><td>Numbers only, no $ symbol</td></tr>
-            <tr><td><strong>Stock levels</strong></td><td>Managed here, synced to BC</td></tr>
-            <tr><td><strong>SKU / barcode</strong></td><td>Don&rsquo;t change SKU without checking inventory impact</td></tr>
-            <tr><td><strong>Categories (Lightspeed)</strong></td><td>Used for Back Office filtering - separate from BC category pages</td></tr>
+        <div class="bc-section-body" id="ls-managing">
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Use Lightspeed for all product content changes. These fields sync to BigCommerce - editing them in BC directly will be overwritten on the next sync.</p>
+          <table class="ref-table"><thead><tr><th>Field</th><th>Where to edit</th><th>Notes</th></tr></thead><tbody>
+            <tr><td><strong>Product name</strong></td><td>Lightspeed</td><td>Must be identical across all variant rows. Syncs to BC.</td></tr>
+            <tr><td><strong>Description</strong></td><td>Lightspeed</td><td>Syncs to BC - don&rsquo;t edit in BC</td></tr>
+            <tr><td><strong>Images</strong></td><td>Lightspeed</td><td>Upload here - syncs to BC. Don&rsquo;t upload directly in BC.</td></tr>
+            <tr><td><strong>Price &amp; sale price</strong></td><td>Lightspeed</td><td>Numbers only, no $ symbol. Syncs to BC.</td></tr>
+            <tr><td><strong>Stock levels</strong></td><td>Lightspeed</td><td>Managed here, synced to BC.</td></tr>
+            <tr><td><strong>SKU / barcode</strong></td><td>Lightspeed</td><td>Don&rsquo;t change SKU without checking inventory impact.</td></tr>
+            <tr><td><strong>Category (LS)</strong></td><td>Lightspeed</td><td>Back Office filtering only - separate from BC category pages.</td></tr>
+            <tr><td><strong>Visibility</strong></td><td>BigCommerce</td><td>Set in BC - not affected by sync.</td></tr>
+            <tr><td><strong>BC Categories</strong></td><td>BigCommerce</td><td>Which collection pages the product appears on - set in BC.</td></tr>
+            <tr><td><strong>Channels</strong></td><td>BigCommerce</td><td>Which storefronts the product is published to - set in BC.</td></tr>
           </tbody></table>
+          <div class="pm-tip" style="margin-top:14px">&#128161; Quick rule: if it affects how a product <em>looks</em> on the website, edit it in Lightspeed. If it affects where or whether it <em>appears</em>, edit it in BigCommerce.</div>
+        </div>
+      </div>
+
+      <!-- ── PUBLISHING TO BIGCOMMERCE ─────────────────── -->
+      <div class="bc-section">
+        <button class="bc-section-btn" onclick="toggleBcSection('ls-publishing',this)">
+          <div class="bc-section-btn-left"><span class="bc-section-icon">&#128257;</span><span class="bc-section-title">Publishing to BigCommerce</span></div>
+          <span class="bc-section-arrow"></span>
+        </button>
+        <div class="bc-section-body" id="ls-publishing">
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Once a product is ready in Lightspeed, follow these steps to push it across to BigCommerce.</p>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden">
+            <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody">
+              <div class="pm-stitle">Navigate to the Products page in Lightspeed</div>
+              <div class="pm-sdesc">Open Lightspeed Back Office and go to the Products section.</div>
+              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/lightspeed-products-page.png?t=1788738521" style="width:50%;display:block;border-radius:6px;border:1px solid var(--border)"></div>
+            </div></div>
+            <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody">
+              <div class="pm-stitle">Press the &ldquo;Publish to BigCommerce&rdquo; pill</div>
+              <div class="pm-sdesc">Under the product, there is a grey pill labelled <strong>Publish to BigCommerce</strong>. Click it to push the product across. This usually takes around 30 seconds.</div>
+              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/sell-on-bigcom.png?t=1788738520" style="width:50%;display:block;border-radius:6px;border:1px solid var(--border)"></div>
+            </div></div>
+            <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody">
+              <div class="pm-stitle">Confirm it&rsquo;s live - pill turns green</div>
+              <div class="pm-sdesc">Once complete, the pill will turn green and change to <strong>View on BigCommerce</strong>. You can click it to go directly to the product on the storefront.</div>
+              <div class="pm-img" style="margin-top:10px"><img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/view-on-bigcommerce.png?t=1788738520" style="width:50%;display:block;border-radius:6px;border:1px solid var(--border)"></div>
+            </div></div>
+            <div class="pm-step"><div class="pm-snum">4</div><div class="pm-sbody">
+              <div class="pm-stitle">Check the product in BigCommerce</div>
+              <div class="pm-sdesc">Navigate to <strong>Products &rarr; View</strong> in BC Admin - the newly published product should appear at the top of the list. From here you can set visibility, categories and channels.</div>
+              <div class="pm-screen"><span class="pm-hl">BC Admin</span> &rarr; Products &rarr; View</div>
+              <div class="pm-tip" style="margin-top:8px">&#128161; New products may not be visible to customers by default - see <strong>BigCommerce &rarr; Products</strong> for visibility and channel steps.</div>
+            </div></div>
+          </div>
         </div>
       </div>
 
     </div>
   </div>
+
+
 
 
 
@@ -3372,6 +3424,23 @@ var AWDS_MAP = [
   {awds: 'OutersPerPallet',  ls: null,                       fixed: '100',    note: 'Always 100'},
   {awds: 'ItemBarcode',      ls: 'sku_code_barcode',         fixed: null,     note: 'Barcode - from sku_code_barcode'},
 ];
+
+function lsSwitchCreate(method) {
+  var bulkCard   = document.getElementById('ls-create-bulk-card');
+  var manualCard = document.getElementById('ls-create-manual-card');
+  var bulkPanel  = document.getElementById('ls-panel-bulk');
+  var manualPanel= document.getElementById('ls-panel-manual');
+  if (!bulkCard) return;
+  if (method === 'bulk') {
+    bulkCard.style.border   = '2px solid var(--teal)'; bulkCard.style.background = 'var(--teal-dim)';
+    manualCard.style.border = '2px solid var(--border)'; manualCard.style.background = '#fff';
+    bulkPanel.style.display   = 'block'; manualPanel.style.display = 'none';
+  } else {
+    manualCard.style.border   = '2px solid var(--teal)'; manualCard.style.background = 'var(--teal-dim)';
+    bulkCard.style.border   = '2px solid var(--border)'; bulkCard.style.background = '#fff';
+    manualPanel.style.display = 'block'; bulkPanel.style.display = 'none';
+  }
+}
 
 function awdsSwitchMethod(method) {
   var autoCard   = document.getElementById('awds-method-auto-card');

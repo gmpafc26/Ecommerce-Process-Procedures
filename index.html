@@ -1532,16 +1532,46 @@ body.edit-mode [contenteditable]:focus {
       </div>
 
       <!-- ── CUSTOMERS ─────────────────────────────────────────── -->
-      <div class="bc-section">
+            <div class="bc-section">
         <button class="bc-section-btn" onclick="toggleBcSection('bc-customers',this)">
           <div class="bc-section-btn-left"><span class="bc-section-icon">&#128100;</span><span class="bc-section-title">Customers</span></div>
           <span class="bc-section-arrow"></span>
         </button>
         <div class="bc-section-body" id="bc-customers">
-          <div class="gd-band gd-band-t" style="margin-bottom:0">
-            <span>&#128221;</span>
-            <div>Content coming soon. Add customer management procedures here.</div>
+
+          <div class="gd-band gd-band-b" style="margin-bottom:16px"><span>&#8505;&#65039;</span><div>We don&rsquo;t use this area of BigCommerce very often. It&rsquo;s useful for looking up customer info, past orders and membership status.</div></div>
+
+          <div class="icard" style="margin-bottom:8px"><div class="icard-ttl">&#128270; Looking up a customer</div></div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden;margin-bottom:16px">
+            <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody">
+              <div class="pm-stitle">Navigate to Customers</div>
+              <div class="pm-sdesc">From the BC Admin home page, go to <strong>Customers</strong> then <strong>All Customers</strong>.</div>
+              <div class="pm-screen"><span class="pm-hl">BC Admin</span> - Customers - All Customers</div>
+            </div></div>
+            <div class="pm-step"><div class="pm-snum">2</div><div class="pm-sbody">
+              <div class="pm-stitle">Search by email or name</div>
+              <div class="pm-sdesc">Use the search bar to find a customer by email address or name. Click through to view their profile, past orders and account details.</div>
+            </div></div>
+            <div class="pm-step"><div class="pm-snum">3</div><div class="pm-sbody">
+              <div class="pm-stitle">Check the Group column for customer type</div>
+              <div class="pm-sdesc">The <strong>Group</strong> column shows whether a customer is a current member, past member or standard customer. The three groups we use are:</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+                <div style="background:var(--teal-dim);border:1px solid var(--teal);border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--teal)">Club Member</div>
+                <div style="background:var(--off);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--muted)">Normal</div>
+                <div style="background:var(--off);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--muted)">Not Current Membership</div>
+              </div>
+            </div></div>
           </div>
+
+          <div class="icard" style="margin-bottom:8px"><div class="icard-ttl">&#128101; Viewing Customer Groups</div></div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden">
+            <div class="pm-step"><div class="pm-snum">1</div><div class="pm-sbody">
+              <div class="pm-stitle">Navigate to Customer Groups</div>
+              <div class="pm-sdesc">Go to <strong>Customers</strong> then <strong>Customer Groups</strong> to view and manage the groups. This is also where you manage category visibility for each group - see <strong>BigCommerce - Categories</strong> for more detail.</div>
+              <div class="pm-screen"><span class="pm-hl">BC Admin</span> - Customers - Customer Groups</div>
+            </div></div>
+          </div>
+
         </div>
       </div>
 

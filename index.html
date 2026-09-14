@@ -2744,7 +2744,7 @@ body.edit-mode [contenteditable]:focus {
 <div class="section" id="sec-cs">
     <div style="background:#fff;border-bottom:1px solid var(--border);padding:20px 28px 0;position:sticky;top:98px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
     <div style="font-size:18px;font-weight:700;margin-bottom:4px">&#128172; Customer Service Procedures</div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:14px">AWDS Fulfilment &middot; Online Orders &middot; Internal Reference</div>
+    
     <div style="display:flex;gap:6px;flex-wrap:wrap;padding-bottom:0">
       <button class="cs-tab active" id="cstab-address" onclick="showCsTab('address',this)">&#128205; Address Issues</button>
       <button class="cs-tab" id="cstab-intl" onclick="showCsTab('intl',this)">&#9992;&#65039; International Tracking</button>
@@ -2787,168 +2787,55 @@ Thanks, Port Store Team</div></div>
     </div>
       </div>
 
-      <div class="cs-pane" id="cspane-stock">
+      <div class="cs-pane active" id="cspane-stock">
         <div id="csp-stock" class="csp-block">
-      <div class="csp-hdr">
-        <div class="csp-ico">&#128230;</div>
-        <div>
-          <div class="csp-title">Stock Issues</div>
-          <div class="csp-sub">When AWDS can&#8217;t fulfil an item - process differs based on order size</div>
-        </div>
-      </div>
+          <div class="csp-hdr"><div class="csp-ico">&#128230;</div><div><div class="csp-title">Stock Issues</div><div class="csp-sub">Flagged by AWDS when they are unable to fulfil an order due to stock discrepancy</div></div></div>
 
-      <div class="gd-band gd-band-t" style="margin-bottom:20px">
-        <span>&#128161;</span>
-        <div><strong>Always check before adjusting inventory.</strong> If the system shows 2+ units in stock but AWDS is showing zero, ask AWDS to do a physical stock check before making any Lightspeed changes.</div>
-      </div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">AWDS will send an email if they are unable to fulfil an order due to a stock discrepancy. Follow the steps below based on the number of items in the order.</p>
 
-      <!-- Scenario picker tabs -->
-      <div class="stock-tabs">
-        <button class="stock-tab active" onclick="showScenario(1,this)">
-          <div class="stock-tab-num">1</div>
-          <div class="stock-tab-label">Single item<br><span>order can&#8217;t be fulfilled</span></div>
-        </button>
-        <button class="stock-tab" onclick="showScenario(2,this)">
-          <div class="stock-tab-num">2</div>
-          <div class="stock-tab-label">Two item order<br><span>one item can&#8217;t be fulfilled</span></div>
-        </button>
-        <button class="stock-tab" onclick="showScenario(3,this)">
-          <div class="stock-tab-num">3</div>
-          <div class="stock-tab-label">3+ item order<br><span>one item can&#8217;t be fulfilled</span></div>
-        </button>
-      </div>
-
-      <!-- Scenario 1 -->
-      <div class="stock-scenario active" id="stock-sc-1">
-        <div class="stock-sc-header stock-sc-header-1">
-          <strong>Single item order</strong> - AWDS can&#8217;t fulfil the item
-        </div>
-        <div class="stock-sc-body">
-          <div class="csp-steps">
-            <div class="csp-step">
-              <div class="csp-num">1</div>
-              <div class="csp-body">
-                <div class="csp-stitle">Ask AWDS to remove the order from their system</div>
-              </div>
-            </div>
-            <div class="csp-step">
-              <div class="csp-num">2</div>
-              <div class="csp-body">
-                <div class="csp-stitle">Fulfil from Alberton - Samuel adds tracking in BigCommerce</div>
-                <div class="csp-sdesc">Pick and dispatch from Alberton Oval. Samuel will enter the tracking number into BigCommerce once sent.</div>
-              </div>
-            </div>
-            <div class="csp-step">
-              <div class="csp-num">3</div>
-              <div class="csp-body">
-                <div class="csp-stitle">Transfer stock from Online to Alberton in Lightspeed</div>
-                <div class="stock-dc-grid">
-                  <div class="stock-dc stock-dc-warn">
-                    <div class="stock-dc-icon">&#9888;&#65039;</div>
-                    <div><div class="stock-dc-title">System shows 1 in stock (Online)</div><div class="stock-dc-desc">Remove this unit from the Online location in Lightspeed - it&#8217;s being fulfilled from Alberton.</div></div>
-                  </div>
-                  <div class="stock-dc stock-dc-info">
-                    <div class="stock-dc-icon">&#128269;</div>
-                    <div><div class="stock-dc-title">System shows 2+ but AWDS has zero</div><div class="stock-dc-desc">Ask AWDS for a physical stock check before making any changes.</div></div>
-                  </div>
-                </div>
-              </div>
+          <!-- Single item -->
+          <div style="margin-bottom:20px">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px"><span style="background:var(--navy);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</span> Single Item Order</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden">
+              <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Ask AWDS to cancel the order</div><div class="csp-sdesc">Ask AWDS to cancel the order on their end. This does not impact our system or stock levels - they are not linked.</div></div></div>
+              <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Fulfil from Alberton if possible</div><div class="csp-sdesc">If we can fulfil the item from Alberton, do so. Tracking will need to be manually added to the order in BigCommerce.</div></div></div>
+              <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Adjust stock in Lightspeed</div><div class="csp-sdesc">Check the online stock level for the affected item or variant in Lightspeed. If it is showing stock, adjust it to <strong>0</strong>.</div></div></div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Scenario 2 -->
-      <div class="stock-scenario" id="stock-sc-2">
-        <div class="stock-sc-header stock-sc-header-2">
-          <strong>Two item order</strong> - one item can&#8217;t be fulfilled by AWDS
-        </div>
-        <div class="stock-sc-body">
-          <div class="gd-band gd-band-b" style="margin-bottom:16px">
-            <span>&#128161;</span>
-            <div>Use your judgment based on the value difference between the two items. The goal is always the best outcome for the customer.</div>
-          </div>
-          <div class="csp-steps">
-            <div class="csp-step">
-              <div class="csp-num">1</div>
-              <div class="csp-body">
-                <div class="csp-stitle">Assess which item is unavailable</div>
-                <div class="stock-dc-grid">
-                  <div class="stock-dc stock-dc-warn">
-                    <div class="stock-dc-icon">&#129405;</div>
-                    <div><div class="stock-dc-title">High-value item unavailable (e.g. jacket)</div><div class="stock-dc-desc">Email the customer and ask how they&#8217;d like to proceed. They likely won&#8217;t want to pay full shipping for just a keyring.</div></div>
-                  </div>
-                  <div class="stock-dc stock-dc-green">
-                    <div class="stock-dc-icon">&#128273;</div>
-                    <div><div class="stock-dc-title">Low-value item unavailable (e.g. keyring)</div><div class="stock-dc-desc">Email to advise you&#8217;ve refunded the unavailable item and dispatched the main item. Refund in BigCommerce.</div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="csp-step">
-              <div class="csp-num">2</div>
-              <div class="csp-body">
-                <div class="csp-stitle">Adjust inventory in Lightspeed if needed</div>
-                <div class="stock-dc-grid">
-                  <div class="stock-dc stock-dc-info">
-                    <div class="stock-dc-icon">&#128269;</div>
-                    <div><div class="stock-dc-title">System shows 2+ but AWDS has zero</div><div class="stock-dc-desc">Ask AWDS for a physical stock check before adjusting. Transfer Online to Alberton once confirmed.</div></div>
-                  </div>
-                </div>
-              </div>
+          <!-- Two item -->
+          <div style="margin-bottom:20px">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px"><span style="background:var(--navy);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</span> Two Item Order</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden">
+              <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Assess whether the customer still wants the order</div><div class="csp-sdesc">If only one item is unavailable, consider whether the customer would still want the remaining item. For example, if they ordered a keyring and a guernsey but the guernsey is unavailable, they most likely don&rsquo;t want to pay $15 shipping for just a keyring.</div></div></div>
+              <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Contact the customer</div><div class="csp-sdesc">Based on the items ordered and your judgement, contact the customer to ask whether they&rsquo;d still like their order, or let them know you will process a refund for the unavailable item.</div></div></div>
+              <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Process refund if needed</div><div class="csp-sdesc">If refunding, action in BigCommerce. Once a partial refund is processed for the unavailable item, it will restock in Lightspeed. Ensure inventory is adjusted to reflect actual stock levels.</div></div></div>
+              <div class="csp-step"><div class="csp-num">4</div><div class="csp-body"><div class="csp-stitle">Notify AWDS</div><div class="csp-sdesc">Let AWDS know whether to ship the one remaining item or cancel the entire order, based on your judgement and customer communication.</div></div></div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Scenario 3 -->
-      <div class="stock-scenario" id="stock-sc-3">
-        <div class="stock-sc-header stock-sc-header-3">
-          <strong>Three or more item order</strong> - one item can&#8217;t be fulfilled by AWDS
-        </div>
-        <div class="stock-sc-body">
-          <div class="csp-steps">
-            <div class="csp-step">
-              <div class="csp-num">1</div>
-              <div class="csp-body">
-                <div class="csp-stitle">Email the customer - notify and refund the unavailable item</div>
-                <div class="csp-email"><div class="csp-email-lbl">&#128231; Suggested email</div><div class="csp-email-body">Hi [Name],
-
-Thank you for your recent Port Store order. Unfortunately we&#8217;re unable to fulfil [item name] as it&#8217;s no longer available. We&#8217;ve processed a refund of [amount] back to your original payment method - this should appear within 3&#8211;5 business days.
-
-The rest of your order has been dispatched and you&#8217;ll receive tracking shortly.
-
-Thanks, Port Store Team</div></div>
-              </div>
-            </div>
-            <div class="csp-step">
-              <div class="csp-num">2</div>
-              <div class="csp-body">
-                <div class="csp-stitle">Tell AWDS to ship the remainder of the order</div>
-              </div>
-            </div>
-            <div class="csp-step">
-              <div class="csp-num">3</div>
-              <div class="csp-body">
-                <div class="csp-stitle">Adjust inventory in Lightspeed</div>
-                <div class="stock-dc-grid">
-                  <div class="stock-dc stock-dc-warn">
-                    <div class="stock-dc-icon">&#9888;&#65039;</div>
-                    <div><div class="stock-dc-title">System shows 1 in stock (Online)</div><div class="stock-dc-desc">Remove from the Online location in Lightspeed.</div></div>
-                  </div>
-                  <div class="stock-dc stock-dc-info">
-                    <div class="stock-dc-icon">&#128269;</div>
-                    <div><div class="stock-dc-title">System shows 2+ but AWDS has zero</div><div class="stock-dc-desc">Ask AWDS for a physical stock check first.</div></div>
-                  </div>
+          <!-- Three+ item -->
+          <div style="margin-bottom:20px">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px"><span style="background:var(--navy);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3+</span> Three or More Item Order</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden">
+              <div class="csp-step"><div class="csp-num">1</div><div class="csp-body">
+                <div class="csp-stitle">Email the customer</div>
+                <div class="csp-sdesc">Let them know an item from their order is unavailable. Use the template below:</div>
+                <div style="margin-top:10px;background:var(--off);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:13px;line-height:1.8;color:var(--text)">
+                  Hi [Name],<br><br>
+                  Thank you for your recent Port Store order. Unfortunately we&rsquo;re unable to fulfil <strong>[item name]</strong> as it&rsquo;s no longer available. We&rsquo;ve processed a refund of <strong>[amount]</strong> back to your original payment method - this should appear within 3-5 business days.<br><br>
+                  The rest of your order has been dispatched and you&rsquo;ll receive tracking shortly.<br><br>
+                  Thanks,<br>Port Store Team
                 </div>
-              </div>
+                <button onclick="navigator.clipboard.writeText('Hi [Name],\n\nThank you for your recent Port Store order. Unfortunately we\'re unable to fulfil [item name] as it\'s no longer available. We\'ve processed a refund of [amount] back to your original payment method - this should appear within 3-5 business days.\n\nThe rest of your order has been dispatched and you\'ll receive tracking shortly.\n\nThanks,\nPort Store Team').then(function(){ showToast(\'&#9989; Template copied!\'); })" style="margin-top:8px;padding:7px 14px;background:var(--off);border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;color:var(--text)">&#128203; Copy template</button>
+              </div></div>
+              <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Refund and adjust stock</div><div class="csp-sdesc">Process the refund for the unavailable item in BigCommerce, then adjust inventory in Lightspeed to reflect the current stock level.</div></div></div>
+              <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Notify AWDS</div><div class="csp-sdesc">Let AWDS know they can fulfil the remaining items in the order.</div></div></div>
             </div>
           </div>
+
         </div>
       </div>
-
-    </div>
-    </div>
       </div>
 
       <div class="cs-pane" id="cspane-cancel">

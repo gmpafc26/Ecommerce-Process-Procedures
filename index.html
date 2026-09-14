@@ -1655,12 +1655,12 @@ body.edit-mode [contenteditable]:focus {
             <div id="sg-lightspeed" class="guide-pane" style="padding:0">
         <div style="display:flex;align-items:center;justify-content:space-between;margin:16px 0;flex-wrap:wrap;gap:10px">
           <div><div style="font-size:16px;font-weight:700">Lightspeed Bulk Upload</div><div style="font-size:13px;color:var(--muted)">X Series &middot; Process guide</div></div>
-          <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Upload%20Template.xlsx?d=wde106432a27f4e4d92ff8f55973c4d64&csf=1&web=1&e=3r8XQF" target="_blank">&#128229; Download Template</a>
+          <a class="guide-dl-lnk" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Product%20Upload%20Template.xlsx?d=wa7f6eb1e4020436294c25fd7c052a674&csf=1&web=1&e=EBbT9A&download=1" target="_blank">&#128229; Download Template</a>
         </div>
         <div class="gd-flow">
           <div class="gd-node"><div class="gd-ico gd-t">&#128203;</div><div class="gd-num">Stage 1</div><div class="gd-lbl">Prepare<br>the file</div></div><div class="gd-arr">&#8250;</div>
           <div class="gd-node"><div class="gd-ico gd-b">&#128193;</div><div class="gd-num">Stage 2</div><div class="gd-lbl">Check<br>columns</div></div><div class="gd-arr">&#8250;</div>
-          <div class="gd-node"><div class="gd-ico gd-n">&#128290;</div><div class="gd-num">Stage 3</div><div class="gd-lbl">Barcodes<br>(Macron)</div></div><div class="gd-arr">&#8250;</div>
+          <div class="gd-node"><div class="gd-ico gd-n">&#128290;</div><div class="gd-num">Stage 3</div><div class="gd-lbl">Match<br>barcodes</div></div><div class="gd-arr">&#8250;</div>
           <div class="gd-node"><div class="gd-ico gd-a">&#11014;&#65039;</div><div class="gd-num">Stage 4</div><div class="gd-lbl">Run the<br>import</div></div><div class="gd-arr">&#8250;</div>
           <div class="gd-node"><div class="gd-ico gd-s">&#128269;</div><div class="gd-num">Verify</div><div class="gd-lbl">Check<br>results</div></div><div class="gd-arr">&#8250;</div>
           <div class="gd-node"><div class="gd-ico gd-g">&#9989;</div><div class="gd-num">Done</div><div class="gd-lbl">Products<br>live</div></div>
@@ -1668,7 +1668,7 @@ body.edit-mode [contenteditable]:focus {
         <div class="gd-lbl-sec">Stage 1 - Prepare the file</div>
         <div class="gd-card">
           <div class="gd-steps">
-            <div class="gd-step"><div class="gd-sico gd-n">&#128229;</div><div class="gd-sbody"><div class="gd-stitle">Download the template</div><div class="gd-sdesc">Always start from the Port Store template. Column names must match exactly - don&rsquo;t rename or add columns.</div><a class="guide-dl-lnk" style="margin:8px 0 12px;display:inline-flex" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Upload%20Template.xlsx?d=wde106432a27f4e4d92ff8f55973c4d64&csf=1&web=1&e=3r8XQF" target="_blank">&#128229; Download Lightspeed Upload Template</a></div></div>
+            <div class="gd-step"><div class="gd-sico gd-n">&#128229;</div><div class="gd-sbody"><div class="gd-stitle">Download the template</div><div class="gd-sdesc">Always start from the Port Store template. Column names must match exactly - don&rsquo;t rename or add columns.</div><a class="guide-dl-lnk" style="margin:8px 0 12px;display:inline-flex" href="https://portadelaidefc.sharepoint.com/:x:/r/Consumer%20Business/Processes%20%26%20Guides/Lightspeed%20Product%20Upload%20Template.xlsx?d=wa7f6eb1e4020436294c25fd7c052a674&csf=1&web=1&e=EBbT9A&download=1" target="_blank">&#128229; Download Lightspeed Upload Template</a></div></div>
             <div class="gd-step"><div class="gd-sico gd-t">&#128196;</div><div class="gd-sbody"><div class="gd-stitle">One row per variant</div><div class="gd-sdesc">Each size gets its own row. Product name, category, prices, brand and supplier repeat on every row - only SKU, barcode and size change per row.</div><div class="gd-band gd-band-b"><span>&#8505;&#65039;</span><div>Products with no variants still get one row - leave <code>variant_option_one_name</code> and <code>variant_option_one_value</code> blank.</div></div></div></div>
             <div class="gd-step"><div class="gd-sico gd-b">&#128190;</div><div class="gd-sbody"><div class="gd-stitle">Save as CSV UTF-8</div><div class="gd-sdesc">Save using <code>File &rarr; Save As &rarr; CSV UTF-8 (Comma delimited)</code>.</div><div class="gd-band gd-band-a"><span>&#9888;&#65039;</span><div><strong>Don&rsquo;t use &ldquo;CSV (MS-DOS)&rdquo;</strong> - it breaks special characters on import.</div></div></div></div>
             <div class="gd-step last"><div class="gd-sico gd-a">&#10004;&#65039;</div><div class="gd-sbody"><div class="gd-stitle">Quick checks before you save</div><div class="gd-checks"><div class="gd-chk">&#128290; Barcode column formatted as <strong>Text</strong> - prevents <code>8.05E+12</code></div><div class="gd-chk">&#128247; Every row has a unique <code>sku_code_custom</code></div><div class="gd-chk">&#128176; Prices are numbers only - no <code>$</code> symbols</div><div class="gd-chk">&#128221; Product names <strong>identical</strong> across all rows for the same product</div><div class="gd-chk">&#128247; Tags semicolon-separated: <code>2026 Macron Range;2026 SDNR</code></div></div></div></div>
@@ -1694,9 +1694,9 @@ body.edit-mode [contenteditable]:focus {
           </tbody></table>
         </div>
         <div class="gd-divider"></div>
-        <div class="gd-lbl-sec">Stage 3 - Add barcodes (Macron products)</div>
+        <div class="gd-lbl-sec">Stage 3 - Match barcodes from supplier</div>
         <div class="gd-card">
-          <div class="gd-band gd-band-b" style="margin-bottom:14px"><span>&#128161;</span><div>This step is <strong>Macron-specific</strong>. Macron sends barcodes in a separate document in a different format. Use a VLOOKUP to match them to your products before importing. Skip this step for non-Macron ranges.</div></div>
+          <div class="gd-band gd-band-b" style="margin-bottom:14px"><span>&#128161;</span><div>Some suppliers send barcodes in a separate document that doesn't match the Lightspeed template format. Use a VLOOKUP to match them to your products before importing. The steps below use <strong>Macron</strong> as a worked example - apply the same process for any supplier that sends barcodes separately.</div></div>
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px">Three files you need</div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
             <div style="background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:10px 12px"><div style="font-size:12px;font-weight:700;margin-bottom:3px">&#128203; Lightspeed upload</div><div style="font-size:11px;color:var(--muted)">Your product list - the file that ultimately needs the barcodes</div></div>
@@ -2009,31 +2009,65 @@ body.edit-mode [contenteditable]:focus {
           <span class="bc-section-arrow"></span>
         </button>
         <div class="bc-section-body" id="awds-gi">
-          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Download a Goods Inwards template pre-filled with product names and SKUs. Open it in Excel, fill in the quantities, then submit.</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Generate a Goods Inwards template with product name, SKU and quantity pre-filled. Open in Excel, adjust quantities if needed, then submit.</p>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
-            <!-- From New Product Advice -->
-            <div style="background:var(--off);border:1.5px solid var(--border);border-radius:10px;padding:16px">
-              <div style="font-size:13px;font-weight:700;margin-bottom:6px">&#128229; From New Product Advice</div>
-              <div style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Uses the product names &amp; SKUs from your current New Product Advice - generate that first, then download the GI template here.</div>
-              <div id="gi-np-status" style="display:none;margin-bottom:10px"></div>
-              <button onclick="giDownloadFromNP()" style="width:100%;padding:9px 14px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">&#128229; Download GI Template</button>
+          <!-- Source chooser — 3 options -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px">
+            <div id="gi-src-np" onclick="giSwitchSource('np')" style="border:2px solid var(--teal);background:var(--teal-dim);border-radius:10px;padding:12px;cursor:pointer;transition:all .15s">
+              <div style="font-size:18px;margin-bottom:5px">&#128229;</div>
+              <div style="font-size:12px;font-weight:700;color:var(--text)">From New Product Advice</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:3px">Uses products already generated above</div>
             </div>
-
-            <!-- From Lightspeed CSV -->
-            <div style="background:var(--off);border:1.5px solid var(--border);border-radius:10px;padding:16px">
-              <div style="font-size:13px;font-weight:700;margin-bottom:6px">&#128228; From Lightspeed CSV</div>
-              <div style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Upload a transfer or new order CSV from Lightspeed Back Office to generate the template.</div>
-              <div id="gi-ls-status" style="display:none;margin-bottom:8px"></div>
-              <div id="gi-ls-upload-area" style="border:2px dashed var(--border);border-radius:8px;padding:14px;text-align:center;cursor:pointer;transition:border-color .15s;background:#fff;margin-bottom:0" onclick="document.getElementById('gi-ls-input').click()" ondragover="event.preventDefault();this.style.borderColor='var(--teal)'" ondragleave="this.style.borderColor='var(--border)'" ondrop="giHandleDrop(event)">
-                <div style="font-size:11px;color:var(--muted)">Drop CSV / Excel here or click to browse</div>
-                <input type="file" id="gi-ls-input" accept=".csv,.xlsx,.xls" style="display:none" onchange="giLoadFile(this.files[0])">
-              </div>
+            <div id="gi-src-bulk" onclick="giSwitchSource('bulk')" style="border:2px solid var(--border);background:#fff;border-radius:10px;padding:12px;cursor:pointer;transition:all .15s">
+              <div style="font-size:18px;margin-bottom:5px">&#128228;</div>
+              <div style="font-size:12px;font-weight:700;color:var(--text)">Bulk Product Upload CSV</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:3px">Upload your Lightspeed bulk upload file</div>
+            </div>
+            <div id="gi-src-transfer" onclick="giSwitchSource('transfer')" style="border:2px solid var(--border);background:#fff;border-radius:10px;padding:12px;cursor:pointer;transition:all .15s">
+              <div style="font-size:18px;margin-bottom:5px">&#128260;</div>
+              <div style="font-size:12px;font-weight:700;color:var(--text)">Product Transfer Export</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:3px">Upload a transfer or order CSV from Lightspeed</div>
             </div>
           </div>
 
-          <!-- Column mapping (shown when LS file needs mapping) -->
-          <div id="gi-ls-mapping" style="display:none;margin-bottom:16px"></div>
+          <!-- From New Product Advice -->
+          <div id="gi-panel-np">
+            <div id="gi-np-msg" style="display:none;padding:10px 14px;border-radius:8px;font-size:12px;border:1px solid #fcd34d;background:#fffbeb;color:#92400e;margin-bottom:10px"></div>
+            <button onclick="giDownloadFromNP()" style="width:100%;padding:10px 14px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">&#128229; Download Goods Inwards Template</button>
+          </div>
+
+          <!-- Bulk Product Upload CSV -->
+          <div id="gi-panel-bulk" style="display:none">
+            <div style="font-size:12px;color:var(--muted);background:var(--off);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:10px">
+              Columns used: <strong>name</strong> (product name), <strong>sku_code_custom</strong> (SKU). Quantity will be left blank for manual entry.
+            </div>
+            <div id="gi-bulk-upload" style="border:2px dashed var(--border);border-radius:8px;padding:20px;text-align:center;cursor:pointer;background:#fff;margin-bottom:10px" onclick="document.getElementById('gi-bulk-input').click()" ondragover="event.preventDefault();this.style.borderColor='var(--teal)'" ondragleave="this.style.borderColor='var(--border)'" ondrop="giHandleDropBulk(event)">
+              <div style="font-size:12px;color:var(--muted)">Drop CSV / Excel here or click to browse</div>
+              <input type="file" id="gi-bulk-input" accept=".csv,.xlsx,.xls" style="display:none" onchange="giLoadBulk(this.files[0])">
+            </div>
+            <div id="gi-bulk-mapping" style="display:none;margin-bottom:10px"></div>
+            <div id="gi-bulk-status" style="display:none;margin-bottom:10px"></div>
+          </div>
+
+          <!-- Product Transfer Export -->
+          <div id="gi-panel-transfer" style="display:none">
+            <div style="font-size:12px;color:var(--muted);background:var(--off);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:10px">
+              Default columns: <strong>product</strong> (Col C, product name), <strong>sku</strong>, <strong>quantity</strong>. You can remap if your export uses different column names.
+            </div>
+            <div id="gi-transfer-upload" style="border:2px dashed var(--border);border-radius:8px;padding:20px;text-align:center;cursor:pointer;background:#fff;margin-bottom:10px" onclick="document.getElementById('gi-transfer-input').click()" ondragover="event.preventDefault();this.style.borderColor='var(--teal)'" ondragleave="this.style.borderColor='var(--border)'" ondrop="giHandleDropTransfer(event)">
+              <div style="font-size:12px;color:var(--muted)">Drop CSV / Excel here or click to browse</div>
+              <input type="file" id="gi-transfer-input" accept=".csv,.xlsx,.xls" style="display:none" onchange="giLoadTransfer(this.files[0])">
+            </div>
+            <div id="gi-transfer-mapping" style="display:none;margin-bottom:10px"></div>
+            <div id="gi-transfer-status" style="display:none;margin-bottom:10px"></div>
+          </div>
+
+          <!-- Manual option -->
+          <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px">&#128196; Download a blank template</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:10px">Download an empty template with the correct columns and fill it in manually.</div>
+            <button onclick="giDownloadBlank()" style="padding:8px 16px;background:var(--off);color:var(--text);border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer">&#128229; Download blank template</button>
+          </div>
 
         </div>
       </div>
@@ -3339,94 +3373,134 @@ function toggleBcSection(id, btn) {
 }
 
 // ── GOODS INWARDS ─────────────────────────────────────────────────────
+var giCurrentSource = 'np';
+
+function giSwitchSource(src) {
+  giCurrentSource = src;
+  ['np','bulk','transfer'].forEach(function(s){
+    var card  = document.getElementById('gi-src-' + s);
+    var panel = document.getElementById('gi-panel-' + s);
+    if (!card || !panel) return;
+    var active = s === src;
+    card.style.border     = active ? '2px solid var(--teal)' : '2px solid var(--border)';
+    card.style.background = active ? 'var(--teal-dim)' : '#fff';
+    panel.style.display   = active ? 'block' : 'none';
+  });
+}
+
 function giDownloadFromNP() {
-  var statusEl = document.getElementById('gi-np-status');
+  var msgEl = document.getElementById('gi-np-msg');
   if (!awdsRows || !awdsRows.length) {
-    if (statusEl) {
-      statusEl.style.cssText = 'padding:8px 12px;border-radius:7px;font-size:12px;border:1px solid #fcd34d;background:#fffbeb;color:#92400e;display:block';
-      statusEl.innerHTML = '&#9888; No product data yet - generate a New Product Advice file first, then come back here.';
-    }
+    if (msgEl) { msgEl.innerHTML = '&#9888; No New Product Advice data found. Generate a product list in the New Product Advice section first.'; msgEl.style.display = 'block'; }
     return;
   }
-  if (statusEl) statusEl.style.display = 'none';
-  // Deduplicate by SKU
+  if (msgEl) msgEl.style.display = 'none';
   var seen = {};
   var rows = awdsRows.filter(function(r){
     if (!r.ProductCode || seen[r.ProductCode]) return false;
     seen[r.ProductCode] = true; return true;
-  });
-  giGenerateDownload(rows.map(function(r){ return {name:r.Description||'', sku:r.ProductCode||''}; }));
+  }).map(function(r){ return {name: r.Description||'', sku: r.ProductCode||'', qty: ''}; });
+  giGenerateDownload(rows);
 }
 
-function giHandleDrop(e) {
+function giHandleDropBulk(e) {
   e.preventDefault();
-  document.getElementById('gi-ls-upload-area').style.borderColor = 'var(--border)';
-  var file = e.dataTransfer.files[0];
-  if (file) giLoadFile(file);
+  document.getElementById('gi-bulk-upload').style.borderColor = 'var(--border)';
+  if (e.dataTransfer.files[0]) giLoadBulk(e.dataTransfer.files[0]);
+}
+function giHandleDropTransfer(e) {
+  e.preventDefault();
+  document.getElementById('gi-transfer-upload').style.borderColor = 'var(--border)';
+  if (e.dataTransfer.files[0]) giLoadTransfer(e.dataTransfer.files[0]);
 }
 
-function giLoadFile(file) {
-  if (!file) return;
+function giReadFile(file, callback) {
   var name = file.name.toLowerCase();
   if (name.endsWith('.xlsx') || name.endsWith('.xls')) {
-    if (typeof XLSX === 'undefined') { giShowStatus('&#10060; Excel library not loaded. Try CSV.', 'err'); return; }
+    if (typeof XLSX === 'undefined') { callback(null, 'Excel library not loaded. Try CSV.'); return; }
     var reader = new FileReader();
     reader.onload = function(e) {
       try {
-        var data = new Uint8Array(e.target.result);
-        var wb = XLSX.read(data, {type:'array'});
-        var ws = wb.Sheets[wb.SheetNames[0]];
-        giParseCSV(XLSX.utils.sheet_to_csv(ws));
-      } catch(err) { giShowStatus('&#10060; Could not read file.', 'err'); }
+        var wb = XLSX.read(new Uint8Array(e.target.result), {type:'array'});
+        callback(XLSX.utils.sheet_to_csv(wb.Sheets[wb.SheetNames[0]]), null);
+      } catch(err) { callback(null, 'Could not read file: ' + err.message); }
     };
     reader.readAsArrayBuffer(file);
   } else {
     var reader = new FileReader();
-    reader.onload = function(e) { giParseCSV(e.target.result); };
+    reader.onload = function(e) { callback(e.target.result, null); };
     reader.readAsText(file);
   }
 }
 
-function giParseCSV(text) {
-  var lines = text.split(/\r?\n/).filter(function(l){ return l.trim(); });
-  if (lines.length < 2) { giShowStatus('&#10060; File is empty.', 'err'); return; }
-  var headers = awdsParseRow(lines[0]).map(function(h){ return h.trim(); });
-  var dataRows = lines.slice(1).map(function(l){ return awdsParseRow(l); });
-
-  var nameCol = giFindCol(headers, ['name','product name','product_name','description','item']);
-  var skuCol  = giFindCol(headers, ['sku','sku_code_custom','productcode','product code','code','item code']);
-
-  if (nameCol < 0 || skuCol < 0) {
-    giShowMappingUI(headers, nameCol, skuCol, dataRows);
-    return;
-  }
-  var rows = dataRows.map(function(r){ return {name:(r[nameCol]||'').trim(), sku:(r[skuCol]||'').trim()}; }).filter(function(r){ return r.sku||r.name; });
-  giGenerateDownload(rows);
+function giLoadBulk(file) {
+  giReadFile(file, function(csv, err) {
+    if (err) { giShowStatus('bulk', '&#10060; ' + err, 'err'); return; }
+    var lines = csv.split(/\r?\n/).filter(function(l){ return l.trim(); });
+    if (lines.length < 2) { giShowStatus('bulk','&#10060; File appears empty.','err'); return; }
+    var headers = awdsParseRow(lines[0]).map(function(h){ return h.trim(); });
+    var dataRows = lines.slice(1).map(function(l){ return awdsParseRow(l); });
+    // Auto-detect: bulk upload uses name + sku_code_custom (qty blank)
+    var nameCol = giFindColGI(headers, ['name','product name','product_name','description']);
+    var skuCol  = giFindColGI(headers, ['sku_code_custom','sku','productcode','product code']);
+    if (nameCol < 0 || skuCol < 0) {
+      giShowMappingUI('bulk', headers, dataRows, nameCol, skuCol, -1, false);
+    } else {
+      var rows = dataRows.map(function(r){ return {name:(r[nameCol]||'').trim(), sku:(r[skuCol]||'').trim(), qty:''}; }).filter(function(r){ return r.sku||r.name; });
+      giGenerateDownload(rows);
+    }
+  });
 }
 
-function giShowMappingUI(headers, nameCol, skuCol, dataRows) {
-  var wrap = document.getElementById('gi-ls-mapping');
-  var makeSelect = function(id, label, cur) {
-    var opts = '<option value="">- not mapped -</option>' + headers.map(function(h,i){ return '<option value="'+i+'"'+(i===cur?' selected':'')+'>'+esc(h)+'</option>'; }).join('');
-    return '<div style="margin-bottom:8px"><label class="fl">'+label+'</label><select class="fc" id="gi-map-'+id+'">'+opts+'</select></div>';
+function giLoadTransfer(file) {
+  giReadFile(file, function(csv, err) {
+    if (err) { giShowStatus('transfer', '&#10060; ' + err, 'err'); return; }
+    var lines = csv.split(/\r?\n/).filter(function(l){ return l.trim(); });
+    if (lines.length < 2) { giShowStatus('transfer','&#10060; File appears empty.','err'); return; }
+    var headers = awdsParseRow(lines[0]).map(function(h){ return h.trim(); });
+    var dataRows = lines.slice(1).map(function(l){ return awdsParseRow(l); });
+    // Auto-detect: transfer uses product (Col C) + sku + quantity
+    var nameCol = giFindColGI(headers, ['product','name','product name','description']);
+    var skuCol  = giFindColGI(headers, ['sku','sku_code_custom','productcode']);
+    var qtyCol  = giFindColGI(headers, ['quantity','qty','units','ordered']);
+    if (nameCol < 0 || skuCol < 0) {
+      giShowMappingUI('transfer', headers, dataRows, nameCol, skuCol, qtyCol, true);
+    } else {
+      var rows = dataRows.map(function(r){ return {name:(r[nameCol]||'').trim(), sku:(r[skuCol]||'').trim(), qty: qtyCol >= 0 ? (r[qtyCol]||'').trim() : ''}; }).filter(function(r){ return r.sku||r.name; });
+      giGenerateDownload(rows);
+    }
+  });
+}
+
+function giShowMappingUI(side, headers, dataRows, nameCol, skuCol, qtyCol, showQty) {
+  window['_giRows_' + side] = dataRows;
+  var wrap = document.getElementById('gi-' + side + '-mapping');
+  var makeSelect = function(id, label, cur, required) {
+    var opts = (required ? '' : '<option value="">— not mapped —</option>')
+      + headers.map(function(h,i){ return '<option value="'+i+'"'+(i===cur?' selected':'')+'>'+esc(h)+'</option>'; }).join('');
+    return '<div style="margin-bottom:8px"><label class="fl">'+label+'</label><select class="fc" id="gi-map-'+side+'-'+id+'">'+opts+'</select></div>';
   };
-  wrap.innerHTML = '<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px">&#128279; Choose which columns to use</div>'
-    + makeSelect('name','Product Name <span class="req">*</span>', nameCol)
-    + makeSelect('sku', 'SKU <span class="req">*</span>', skuCol)
-    + '<button onclick="giApplyMapping('+JSON.stringify(dataRows)+')" style="margin-top:6px;padding:8px 16px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">&#9889; Generate &amp; Download</button>';
+  wrap.innerHTML = '<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px">&#128279; Map your columns</div>'
+    + makeSelect('name', 'Product Name <span class="req">*</span>', nameCol, true)
+    + makeSelect('sku',  'SKU <span class="req">*</span>', skuCol, true)
+    + (showQty ? makeSelect('qty', 'Quantity', qtyCol, false) : '')
+    + '<button onclick="giApplyMapping(\x27' + side + '\x27)" style="margin-top:6px;padding:8px 16px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">&#9889; Generate &amp; Download</button>';
   wrap.style.display = 'block';
 }
 
-function giApplyMapping(dataRows) {
-  var n = parseInt(document.getElementById('gi-map-name').value);
-  var s = parseInt(document.getElementById('gi-map-sku').value);
-  if (isNaN(n) || isNaN(s)) { giShowStatus('&#10060; Please map Name and SKU.', 'err'); return; }
-  var rows = dataRows.map(function(r){ return {name:(r[n]||'').trim(), sku:(r[s]||'').trim()}; }).filter(function(r){ return r.sku||r.name; });
-  document.getElementById('gi-ls-mapping').style.display = 'none';
+function giApplyMapping(side) {
+  var dataRows = window['_giRows_' + side] || [];
+  var n = parseInt(document.getElementById('gi-map-'+side+'-name').value);
+  var s = parseInt(document.getElementById('gi-map-'+side+'-sku').value);
+  var qEl = document.getElementById('gi-map-'+side+'-qty');
+  var q = qEl ? parseInt(qEl.value) : NaN;
+  if (isNaN(n) || isNaN(s)) { giShowStatus(side,'&#10060; Please map Name and SKU.','err'); return; }
+  var rows = dataRows.map(function(r){ return {name:(r[n]||'').trim(), sku:(r[s]||'').trim(), qty:(!isNaN(q)&&r[q])?(r[q]||'').trim():''}; }).filter(function(r){ return r.sku||r.name; });
+  document.getElementById('gi-' + side + '-mapping').style.display = 'none';
   giGenerateDownload(rows);
 }
 
-function giFindCol(headers, variants) {
+function giFindColGI(headers, variants) {
   for (var i=0; i<headers.length; i++) {
     var h = headers[i].toLowerCase().replace(/[^a-z0-9]/g,'');
     for (var j=0; j<variants.length; j++) {
@@ -3437,11 +3511,11 @@ function giFindCol(headers, variants) {
 }
 
 function giGenerateDownload(rows) {
-  if (!rows.length) { giShowStatus('&#10060; No products to export.', 'err'); return; }
+  if (!rows.length) { return; }
   var csv = 'Product Name,SKU,Quantity\n'
     + rows.map(function(r){
         var n = (r.name||'').includes(',') ? '"'+(r.name||'').replace(/"/g,'""')+'"' : (r.name||'');
-        return n + ',' + (r.sku||'') + ',';
+        return n + ',' + (r.sku||'') + ',' + (r.qty||'');
       }).join('\n');
   var today = new Date();
   var d = today.getFullYear() + String(today.getMonth()+1).padStart(2,'0') + String(today.getDate()).padStart(2,'0');
@@ -3449,14 +3523,21 @@ function giGenerateDownload(rows) {
   var url = URL.createObjectURL(blob);
   var a = document.createElement('a'); a.href=url; a.download=d+'_Goods_Inwards_Template.csv';
   document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-  showToast('&#9989; Goods Inwards template downloaded - open in Excel and fill in quantities.');
-  giShowStatus('&#9989; Downloaded ' + rows.length + ' rows. Open the file and fill in the Quantity column.', 'ok');
+  showToast('&#9989; Goods Inwards template downloaded!');
 }
 
-function giShowStatus(msg, type) {
-  var el = document.getElementById('gi-ls-status'); if(!el) return;
-  var c = {ok:'#f0fdf4;border-color:#86efac;color:#166534', warn:'#fffbeb;border-color:#fcd34d;color:#92400e', err:'#fef2f2;border-color:#fecaca;color:#991b1b'};
-  el.style.cssText = 'padding:8px 12px;border-radius:7px;font-size:12px;border:1px solid;background:'+(c[type]||c.ok)+';margin-bottom:8px;display:block';
+function giDownloadBlank() {
+  var csv = 'Product Name,SKU,Quantity\n';
+  var blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a'); a.href=url; a.download='Goods_Inwards_Template.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function giShowStatus(side, msg, type) {
+  var el = document.getElementById('gi-' + side + '-status'); if (!el) return;
+  var c = {ok:'#f0fdf4;border-color:#86efac;color:#166534',warn:'#fffbeb;border-color:#fcd34d;color:#92400e',err:'#fef2f2;border-color:#fecaca;color:#991b1b'};
+  el.style.cssText = 'padding:8px 12px;border-radius:7px;font-size:12px;border:1px solid;background:'+(c[type]||c.ok)+';display:block';
   el.innerHTML = msg;
 }
 

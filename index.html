@@ -1679,7 +1679,7 @@ body.edit-mode [contenteditable]:focus {
           <div style="margin:16px 0 12px;font-size:12px;font-weight:700;color:var(--text)">What type of upload are you doing?</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
             <div id="s1-macron-card" onclick="s1SwitchType('macron')" style="border:2px solid var(--teal);background:var(--teal-dim);border-radius:10px;padding:12px;cursor:pointer;transition:all .15s">
-              <div style="font-size:18px;margin-bottom:4px">&#128122;</div>
+              <div style="margin-bottom:6px"><img src="https://www.freelogovectors.net/wp-content/uploads/2022/11/macron-logo-freelogovectors.net_-768x192.png" style="height:22px;width:auto;display:block" alt="Macron"></div>
               <div style="font-size:12px;font-weight:700;color:var(--text)">Macron Bulk Product Upload</div>
               <div style="font-size:11px;color:var(--muted);margin-top:2px">Working from a Macron order form</div>
             </div>
@@ -1995,7 +1995,14 @@ body.edit-mode [contenteditable]:focus {
 
           <!-- Auto converter panel -->
           <div id="awds-panel-auto">
-            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Upload your completed Lightspeed bulk upload CSV and this tool will generate a ready-to-send AWDS Product Advice CSV for Alex Perry.</p>
+            <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px">Upload your completed Lightspeed bulk upload CSV and this tool will generate a ready-to-send AWDS Product Advice CSV for Alex Perry.</p>
+            <div style="background:var(--off);border:1px solid var(--border);border-radius:9px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:var(--text);line-height:1.7">
+              <strong>Two ways to get your file:</strong>
+              <ul style="margin:8px 0 0 18px;color:var(--muted);font-size:13px">
+                <li style="margin-bottom:6px"><strong style="color:var(--text)">Upload your Lightspeed Bulk Upload CSV</strong> - use the file you prepared for importing products into Lightspeed.</li>
+                <li><strong style="color:var(--text)">Export directly from Lightspeed</strong> - navigate to Products, filter and select the products to include, then click <strong>Export List</strong>. Upload that file here.</li>
+              </ul>
+            </div>
 
           <div style="background:var(--off);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px;font-size:12px;color:var(--muted)">
             <div style="font-weight:700;color:var(--text);margin-bottom:8px">&#128161; How it works</div>

@@ -1630,9 +1630,9 @@ body.edit-mode [contenteditable]:focus {
       <div class="bc-section">
         <button class="bc-section-btn" onclick="toggleBcSection('ls-creating',this)">
           <div class="bc-section-btn-left"><span class="bc-section-icon">&#10133;</span><span class="bc-section-title">Creating Products</span></div>
-          <span class="bc-section-arrow" style="transform:rotate(180deg)"></span>
+          <span class="bc-section-arrow"></span>
         </button>
-        <div class="bc-section-body bc-open" id="ls-creating">
+        <div class="bc-section-body" id="ls-creating">
 
           <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Two ways to create products in Lightspeed - use bulk upload for new ranges, manual entry for one-off additions.</p>
 
@@ -1901,7 +1901,7 @@ body.edit-mode [contenteditable]:focus {
           <table class="ref-table"><thead><tr><th>Field</th><th>Where to edit</th><th>Notes</th></tr></thead><tbody>
             <tr><td><strong>Product name</strong></td><td>Lightspeed</td><td>Must be identical across all variant rows. Syncs to BC.</td></tr>
             <tr><td><strong>Description</strong></td><td>Lightspeed</td><td>Syncs to BC - don&rsquo;t edit in BC</td></tr>
-            <tr><td><strong>Images</strong></td><td>Lightspeed</td><td>Upload here - syncs to BC. Don&rsquo;t upload directly in BC.</td></tr>
+            <tr><td><strong>Images</strong></td><td>Lightspeed</td><td>Upload here - syncs to BC. Don&rsquo;t upload directly in BC. Product imagery must be square (1:1 ratio, 1000px x 1000px).</td></tr>
             <tr><td><strong>Price &amp; sale price</strong></td><td>Lightspeed</td><td>Numbers only, no $ symbol. Syncs to BC.</td></tr>
             <tr><td><strong>Stock levels</strong></td><td>Lightspeed</td><td>Managed here, synced to BC.</td></tr>
             <tr><td><strong>SKU / barcode</strong></td><td>Lightspeed</td><td>Don&rsquo;t change SKU without checking inventory impact.</td></tr>
@@ -1974,9 +1974,9 @@ body.edit-mode [contenteditable]:focus {
       <div class="bc-section">
         <button class="bc-section-btn" onclick="toggleBcSection('awds-newproduct',this)">
           <div class="bc-section-btn-left"><span class="bc-section-icon">&#128228;</span><span class="bc-section-title">New Product Advice</span></div>
-          <span class="bc-section-arrow" style="transform:rotate(180deg)"></span>
+          <span class="bc-section-arrow"></span>
         </button>
-        <div class="bc-section-body bc-open" id="awds-newproduct">
+        <div class="bc-section-body" id="awds-newproduct">
           <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px">Choose how you want to create the AWDS Product Advice file.</p>
 
           <!-- Method toggle -->
@@ -2798,12 +2798,12 @@ Thanks, Port Store Team</div></div>
         <div id="csp-stock" class="csp-block">
           <div class="csp-hdr"><div class="csp-ico">&#128230;</div><div><div class="csp-title">Stock Issues</div><div class="csp-sub">Flagged by AWDS when they are unable to fulfil an order due to stock discrepancy</div></div></div>
 
-          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">AWDS will send an email if they are unable to fulfil an order due to a stock discrepancy. Follow the steps below based on the number of items in the order.</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px">AWDS will send an email if they are unable to fulfil an order due to a stock discrepancy. Follow the steps below based on the number of items in the order.</p>
 
           <!-- Single item -->
-          <div style="margin-bottom:20px">
-            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px"><span style="background:var(--navy);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</span> Single Item Order</div>
-            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden">
+          <div style="margin-bottom:24px">
+            <div style="background:var(--navy);color:#fff;border-radius:8px 8px 0 0;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:.02em">&#128230; Single Item Order</div>
+            <div style="background:#fff;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;overflow:hidden">
               <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Ask AWDS to cancel the order</div><div class="csp-sdesc">Ask AWDS to cancel the order on their end. This does not impact our system or stock levels - they are not linked.</div></div></div>
               <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Fulfil from Alberton if possible</div><div class="csp-sdesc">If we can fulfil the item from Alberton, do so. Tracking will need to be manually added to the order in BigCommerce.</div></div></div>
               <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Adjust stock in Lightspeed</div><div class="csp-sdesc">Check the online stock level for the affected item or variant in Lightspeed. If it is showing stock, adjust it to <strong>0</strong>.</div></div></div>
@@ -2811,9 +2811,9 @@ Thanks, Port Store Team</div></div>
           </div>
 
           <!-- Two item -->
-          <div style="margin-bottom:20px">
-            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px"><span style="background:var(--navy);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</span> Two Item Order</div>
-            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden">
+          <div style="margin-bottom:24px">
+            <div style="background:var(--navy);color:#fff;border-radius:8px 8px 0 0;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:.02em">&#128101; Two Item Order</div>
+            <div style="background:#fff;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;overflow:hidden">
               <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Assess whether the customer still wants the order</div><div class="csp-sdesc">If only one item is unavailable, consider whether the customer would still want the remaining item. For example, if they ordered a keyring and a guernsey but the guernsey is unavailable, they most likely don&rsquo;t want to pay $15 shipping for just a keyring.</div></div></div>
               <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Contact the customer</div><div class="csp-sdesc">Based on the items ordered and your judgement, contact the customer to ask whether they&rsquo;d still like their order, or let them know you will process a refund for the unavailable item.</div></div></div>
               <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Process refund if needed</div><div class="csp-sdesc">If refunding, action in BigCommerce. Once a partial refund is processed for the unavailable item, it will restock in Lightspeed. Ensure inventory is adjusted to reflect actual stock levels.</div></div></div>
@@ -2822,9 +2822,9 @@ Thanks, Port Store Team</div></div>
           </div>
 
           <!-- Three+ item -->
-          <div style="margin-bottom:20px">
-            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px"><span style="background:var(--navy);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3+</span> Three or More Item Order</div>
-            <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden">
+          <div style="margin-bottom:8px">
+            <div style="background:var(--navy);color:#fff;border-radius:8px 8px 0 0;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:.02em">&#128218; Three or More Item Order</div>
+            <div style="background:#fff;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;overflow:hidden">
               <div class="csp-step"><div class="csp-num">1</div><div class="csp-body">
                 <div class="csp-stitle">Email the customer</div>
                 <div class="csp-sdesc">Let them know an item from their order is unavailable. Use the template below:</div>
@@ -2847,17 +2847,11 @@ Thanks, Port Store Team</div></div>
 
       <div class="cs-pane" id="cspane-cancel">
         <div id="csp-cancel" class="csp-block">
-      <div class="csp-hdr"><div class="csp-ico">&#10060;</div><div><div class="csp-title">Cancelling Orders</div><div class="csp-sub">We don&#8217;t officially offer cancellations, but we try to help wherever possible</div></div></div>
-      <div class="gd-band gd-band-a" style="margin-bottom:14px"><span>&#9888;&#65039;</span><div><strong>Policy reminder:</strong> Our website states we do not facilitate cancellations. That said, always try to assist - the earlier the request, the more likely AWDS can hold the order before packing.</div></div>
-      <div class="csp-steps">
-        <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Contact Steve &amp; Rebecca at AWDS immediately</div><div class="csp-sdesc">Email AWDS with the order number and ask whether it&#8217;s been packed yet.</div>
-          <div class="ghost-contact"><div class="ghost-av">AP</div><div><div class="ghost-name">Alex Perry</div><a href="mailto:aperry@awds.com.au" class="ghost-email">aperry@awds.com.au</a></div></div>
-        </div></div>
-        <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Respond to the customer based on AWDS&#8217;s answer</div>
-          <div class="csp-dc-row"><div class="csp-dc csp-dc-g"><div class="csp-dc-t">&#9989; Not yet packed - can cancel</div><div class="csp-dc-d">Confirm cancellation to the customer. Cancel in BigCommerce and process any applicable refund.</div></div><div class="csp-dc csp-dc-w"><div class="csp-dc-t">&#128666; Already dispatched - can&#8217;t cancel</div><div class="csp-dc-d">Advise the customer the order is already on its way. Direct to returns process if needed.</div></div></div>
-        </div></div>
-      </div>
-    </div>
+          <div class="csp-hdr"><div class="csp-ico">&#10060;</div><div><div class="csp-title">Cancelling Orders</div><div class="csp-sub">For cancellation requests from customers</div></div></div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:4px">
+            <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">Check with AWDS first</div><div class="csp-sdesc">Email AWDS with the order number and ask whether it has been packed yet.</div></div></div>
+          </div>
+        </div>
       </div>
 
       <div class="cs-pane" id="cspane-missing">
@@ -2877,49 +2871,15 @@ Thanks, Port Store Team</div></div>
 
       <div class="cs-pane" id="cspane-returns">
         <div id="csp-returns" class="csp-block">
-      <div class="csp-hdr">
-        <div class="csp-ico">&#8617;&#65039;</div>
-        <div>
-          <div class="csp-title">Returns</div>
-          <div class="csp-sub">Ecommerce returns managed via AWDS warehouse</div>
-        </div>
-      </div>
-
-      <div class="gd-band gd-band-b" style="margin-bottom:16px">
-        <span>&#8505;&#65039;</span>
-        <div>AWDS manage all ecommerce returns at the warehouse and will email you with a list of items received. They also log returns directly into the shared register.</div>
-      </div>
-
-      <div class="csp-steps">
-
-        <div class="csp-step">
-          <div class="csp-num">1</div>
-          <div class="csp-body">
-            <div class="csp-stitle">AWDS receive the return &amp; email you a list</div>
-            <div class="csp-sdesc">When returned parcels arrive at the AWDS warehouse, they email you with a list of items received and log them in the shared returns register. AWDS automatically return the stock to their system at this point.</div>
-            <a href="https://docs.google.com/spreadsheets/d/1bDn5F35szqt8iwiD8qifDZA0zbGQRPgVEH7VfX5eowo/edit?gid=936710020#gid=936710020" target="_blank" style="display:inline-flex;align-items:center;gap:7px;margin-top:8px;padding:8px 14px;background:#f0fdf4;border:1px solid #86efac;border-radius:7px;font-size:13px;font-weight:600;color:#166534;text-decoration:none;transition:all .15s" onmouseover="this.style.background='#dcfce7'" onmouseout="this.style.background='#f0fdf4'">
-              &#128202; View Returns Register
-            </a>
+          <div class="csp-hdr"><div class="csp-ico">&#8617;&#65039;</div><div><div class="csp-title">Returns</div><div class="csp-sub">Managed through AWDS warehouse</div></div></div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:4px">
+            <div class="csp-step"><div class="csp-num">1</div><div class="csp-body"><div class="csp-stitle">AWDS notifies you of a return</div><div class="csp-sdesc">AWDS will email when they have received a return.</div></div></div>
+            <div class="csp-step"><div class="csp-num">2</div><div class="csp-body"><div class="csp-stitle">Confirm the item can be returned to stock</div><div class="csp-sdesc">If happy to accept the return, let AWDS know the item can be returned to stock.</div></div></div>
+            <div class="csp-step"><div class="csp-num">3</div><div class="csp-body"><div class="csp-stitle">Process the refund in BigCommerce</div><div class="csp-sdesc">Process the refund or return in BigCommerce. Items refunded will automatically be added back to stock, and the customer will receive a refund notification via email.</div></div></div>
           </div>
         </div>
-
-        <div class="csp-step">
-          <div class="csp-num">2</div>
-          <div class="csp-body">
-            <div class="csp-stitle">Refund the order in BigCommerce &amp; change status to Refunded</div>
-            <div class="csp-sdesc">Go through the list of returns from AWDS and for each one: process the refund in BigCommerce and update the order status to <strong>Refunded</strong>.</div>
-            <div class="gd-band gd-band-a" style="margin-top:10px">
-              <span>&#9888;&#65039;</span>
-              <div><strong>Stock won&#8217;t be available to customers until you complete this step.</strong> Even though AWDS have returned the item to their system, it won&#8217;t appear as available stock in Lightspeed until the return is processed on our side in BigCommerce.</div>
-            </div>
-          </div>
-        </div>
-
       </div>
-      </div>
-    <div style="margin-top:36px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Port Adelaide FC &middot; Retail Ops &middot; Internal Use Only &middot; Customer Service Procedures</div>
-  </div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:14px">AWDS Fulfilment &middot; Online Orders &middot; Internal Reference</div>
+
     <div style="display:flex;gap:8px;flex-wrap:wrap;padding-bottom:16px">
       <a href="#" onclick="csScroll('csp-address');return false" class="csp-pill">&#128205; Address Issues</a>
       <a href="#" onclick="csScroll('csp-intl');return false" class="csp-pill">&#9992;&#65039; International Tracking</a>

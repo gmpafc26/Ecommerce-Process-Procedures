@@ -2713,60 +2713,103 @@ body.edit-mode [contenteditable]:focus {
         <div class="mod-intro-icon" style="font-size:20px">&#128214;</div>
         <div>
           <div class="mod-intro-title" style="font-size:14px">How to publish this to BigCommerce</div>
-          <div class="mod-intro-desc" style="font-size:12px">The category must be active and visible before you can add a header - hidden categories won&rsquo;t appear in Page Builder</div>
+          <div class="mod-intro-desc" style="font-size:12px">Select whether you are adding a header to a new category page, or updating an existing one</div>
         </div>
       </div>
       <div class="mod-howto-body"><div style="padding:8px 24px 16px"><div style="display:flex;flex-direction:column">
 
-        <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody">
-          <div class="ht-stitle">Generate and copy your category header code</div>
-          <div class="ht-sdesc">Use the generator above to enter the category name, click Generate, then Copy Code.</div>
-          <div class="ht-warn">&#9888;&#65039; The category must be <strong>active and visible</strong> before continuing. If the category isn&rsquo;t showing on the storefront yet, enable visibility first - see BigCommerce &rarr; Products &rarr; Visibility.</div>
-        </div></div>
-
-        <div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody">
-          <div class="ht-stitle">Open the category in Page Builder</div>
-          <div class="ht-sdesc">Go to <strong>Products &rarr; Categories</strong>. Find your category, click the <strong>three dots</strong> on the right and select <strong>View in Page Builder</strong>.</div>
-          <div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BC Admin</span> &rarr; Products &rarr; Categories &rarr; &hellip; &rarr; <span class="pm-hl">View in Page Builder</span></div>
-          <div style="margin-top:10px">
-            <div class="sc-step-label">Three dots menu &rarr; View in Page Builder</div>
-            <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-144855.png?t=1787721671" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
+        <!-- Method chooser -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
+          <div id="cb-method-new" onclick="cbSwitchMethod('new')" style="border:2px solid var(--teal);background:var(--teal-dim);border-radius:10px;padding:12px;cursor:pointer;transition:all .15s">
+            <div style="font-size:18px;margin-bottom:4px">&#10133;</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text)">New category page</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">Adding a header for the first time</div>
           </div>
-        </div></div>
-
-        <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody">
-          <div class="ht-stitle">Drag a Layout module to the top of the page</div>
-          <div class="ht-sdesc">In Page Builder, find the <strong>Layout</strong> module in the left panel and drag it to the very top of the page - above the existing content.</div>
-          <div style="margin-top:10px">
-            <div class="sc-step-label">Drag Layout to top of page</div>
-            <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/page-builder-for-category-pages.jpg?t=1787721896" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
+          <div id="cb-method-update" onclick="cbSwitchMethod('update')" style="border:2px solid var(--border);background:#fff;border-radius:10px;padding:12px;cursor:pointer;transition:all .15s">
+            <div style="font-size:18px;margin-bottom:4px">&#9998;</div>
+            <div style="font-size:12px;font-weight:700;color:var(--text)">Update existing header</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">Category already has a header in Page Builder</div>
           </div>
-        </div></div>
+        </div>
 
-        <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody">
-          <div class="ht-stitle">Change the layout to 1 column</div>
-          <div class="ht-sdesc">The layout will default to 2 columns. Click it to select it and change to <strong>1 column</strong>.</div>
-          <div style="margin-top:10px">
-            <div class="sc-step-label">Change from 2 columns to 1 column</div>
-            <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-145254.png?t=1787721999" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
-          </div>
-        </div></div>
+        <!-- New category panel -->
+        <div id="cb-panel-new">
+          <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody">
+            <div class="ht-stitle">Generate and copy your category header code</div>
+            <div class="ht-sdesc">Use the generator above to enter the category name, click Generate, then Copy Code.</div>
+            <div class="ht-warn">&#9888;&#65039; The category must be <strong>active and visible</strong> before continuing. If it isn&rsquo;t showing on the storefront yet, enable visibility first - see BigCommerce - Products - Visibility.</div>
+          </div></div>
 
-        <div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody">
-          <div class="ht-stitle">Drag an HTML module inside the layout</div>
-          <div class="ht-sdesc">From the left panel, drag an <strong>HTML</strong> module into the single-column layout you just created.</div>
-          <div style="margin-top:10px">
-            <div class="sc-step-label">Drag HTML module into the layout column</div>
-            <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/html-element.png?t=1787722105" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
-          </div>
-        </div></div>
+          <div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody">
+            <div class="ht-stitle">Open the category in Page Builder</div>
+            <div class="ht-sdesc">Go to <strong>Products - Categories</strong>. Find your category, click the <strong>three dots</strong> on the right and select <strong>View in Page Builder</strong>.</div>
+            <div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BC Admin</span> - Products - Categories - &hellip; - <span class="pm-hl">View in Page Builder</span></div>
+            <div style="margin-top:10px">
+              <div class="sc-step-label">Three dots menu - View in Page Builder</div>
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-144855.png?t=1787721671" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
+            </div>
+          </div></div>
 
-        <div class="ht-step"><div class="ht-snum">6</div><div class="ht-sbody">
-          <div class="ht-stitle">Paste your code and publish</div>
-          <div class="ht-sdesc">Click the HTML module to open it, paste your copied code, and click <strong>Apply</strong>. Then click <strong>Publish</strong> in the top right to make it live.</div>
-          <div class="pm-screen" style="margin-top:8px">Paste code &rarr; click <span class="pm-hl">Apply</span> &rarr; click <span class="pm-hl">Publish</span></div>
-          <div class="ht-tip" style="margin-top:8px">&#128161; Repeat this process for each new category - the layout and HTML module only need to be added once per category page.</div>
-        </div></div>
+          <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody">
+            <div class="ht-stitle">Drag a Layout module to the top of the page</div>
+            <div class="ht-sdesc">In Page Builder, find the <strong>Layout</strong> module in the left panel and drag it to the very top of the page - above any existing content.</div>
+            <div style="margin-top:10px">
+              <div class="sc-step-label">Drag Layout to top of page</div>
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/page-builder-for-category-pages.jpg?t=1787721896" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
+            </div>
+          </div></div>
+
+          <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody">
+            <div class="ht-stitle">Change the layout to 1 column</div>
+            <div class="ht-sdesc">The layout will default to 2 columns. Click it to select it and change to <strong>1 column</strong>.</div>
+            <div style="margin-top:10px">
+              <div class="sc-step-label">Change from 2 columns to 1 column</div>
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/screenshot-2026-08-26-145254.png?t=1787721999" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
+            </div>
+          </div></div>
+
+          <div class="ht-step"><div class="ht-snum">5</div><div class="ht-sbody">
+            <div class="ht-stitle">Drag an HTML module inside the layout</div>
+            <div class="ht-sdesc">From the left panel, drag an <strong>HTML</strong> module into the single-column layout you just created.</div>
+            <div style="margin-top:10px">
+              <div class="sc-step-label">Drag HTML module into the layout column</div>
+              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/html-element.png?t=1787722105" style="width:50%;border-radius:7px;border:1px solid var(--border);display:block">
+            </div>
+          </div></div>
+
+          <div class="ht-step"><div class="ht-snum">6</div><div class="ht-sbody">
+            <div class="ht-stitle">Paste your code and publish</div>
+            <div class="ht-sdesc">Click the HTML module to open it, paste your copied code, and click <strong>Apply</strong>. Then click <strong>Publish</strong> in the top right to make it live.</div>
+            <div class="pm-screen" style="margin-top:8px">Paste code - click <span class="pm-hl">Apply</span> - click <span class="pm-hl">Publish</span></div>
+            <div class="ht-tip" style="margin-top:8px">&#128161; The layout and HTML module only need to be set up once per category page - next time you update it just follow the &ldquo;Update existing header&rdquo; steps.</div>
+          </div></div>
+        </div>
+
+        <!-- Update existing panel -->
+        <div id="cb-panel-update" style="display:none">
+          <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody">
+            <div class="ht-stitle">Generate and copy your new category header code</div>
+            <div class="ht-sdesc">Use the generator above to update the category name or settings, click Generate, then Copy Code.</div>
+          </div></div>
+
+          <div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody">
+            <div class="ht-stitle">Open the category in Page Builder</div>
+            <div class="ht-sdesc">Go to <strong>Products - Categories</strong>. Find your category, click the <strong>three dots</strong> on the right and select <strong>View in Page Builder</strong>.</div>
+            <div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BC Admin</span> - Products - Categories - &hellip; - <span class="pm-hl">View in Page Builder</span></div>
+          </div></div>
+
+          <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody">
+            <div class="ht-stitle">Click the existing HTML module</div>
+            <div class="ht-sdesc">In Page Builder, click the existing HTML module at the top of the category page to open it. Select all the existing code inside it and delete it.</div>
+            <div class="pm-screen" style="margin-top:8px">Click HTML module - <span class="pm-hl">Ctrl+A</span> / <span class="pm-hl">Cmd+A</span> to select all - Delete</div>
+          </div></div>
+
+          <div class="ht-step"><div class="ht-snum">4</div><div class="ht-sbody">
+            <div class="ht-stitle">Paste your new code and publish</div>
+            <div class="ht-sdesc">Paste your copied code into the HTML module and click <strong>Apply</strong>. Then click <strong>Publish</strong> in the top right to make it live.</div>
+            <div class="pm-screen" style="margin-top:8px">Paste code - click <span class="pm-hl">Apply</span> - click <span class="pm-hl">Publish</span></div>
+          </div></div>
+        </div>
 
       </div></div></div>
     </div>
@@ -3569,6 +3612,18 @@ var AWDS_MAP = [
   {awds: 'OutersPerPallet',  ls: null,                       fixed: '100',    note: 'Always 100'},
   {awds: 'ItemBarcode',      ls: 'sku_code_barcode',         fixed: null,     note: 'Barcode - from sku_code_barcode'},
 ];
+
+function cbSwitchMethod(method) {
+  ['new','update'].forEach(function(m){
+    var card  = document.getElementById('cb-method-' + m);
+    var panel = document.getElementById('cb-panel-' + m);
+    if (!card || !panel) return;
+    var active = m === method;
+    card.style.border     = active ? '2px solid var(--teal)' : '2px solid var(--border)';
+    card.style.background = active ? 'var(--teal-dim)' : '#fff';
+    panel.style.display   = active ? 'block' : 'none';
+  });
+}
 
 function s1SwitchType(type) {
   ['macron','other'].forEach(function(t){

@@ -3575,8 +3575,60 @@ function giFindColGI(headers, variants) {
   return -1;
 }
 
+
+// ── SKU SORT ──────────────────────────────────────────────────────────
+// Sorts rows by base SKU (everything before last -SIZE), then by size order.
+// Keeps all variants of the same product grouped and consecutive.
+var SKU_SIZE_ORDER = [
+  '3XS','2XS','XXS','XS','S','M','L','XL','XXL','2XL','3XL','4XL','5XL','6XL',
+  'JXS','JS','JM','JL','JXL',
+  '2','4','6','8','10','12','14','16',
+  '000','00','0','1',
+  'ONE','ONESIZE','OS'];
+
+function skuSortRows(rows, skuKey) {
+  skuKey = skuKey || 'sku';
+  function parseSkuParts(sku) {
+    if (!sku) return { base: '', size: '' };
+    var parts = sku.trim().toUpperCase().split('-');
+    var last = parts[parts.length - 1];
+    var sizeIdx = SKU_SIZE_ORDER.indexOf(last);
+    if (sizeIdx >= 0 || /^\d+XL$/.test(last) || /^\d+$/.test(last)) {
+      return { base: parts.slice(0, -1).join('-'), size: last };
+    }
+    return { base: sku.trim().toUpperCase(), size: '' };
+  }
+  function sizeRank(size) {
+    var s = (size||'').toUpperCase().replace(/\s/g,'');
+    var idx = SKU_SIZE_ORDER.indexOf(s);
+    if (idx >= 0) return idx;
+    // numeric sizes (e.g. 8, 10, 12) or NXL patterns
+    var nxl = s.match(/^(\d+)XL$/);
+    if (nxl) return 100 + parseInt(nxl[1]);
+    var num = s.match(/^(\d+)$/);
+    if (num) return 200 + parseInt(num[1]);
+    return 999;
+  }
+  // Stable sort: preserve original group order, sort within each base SKU group
+  var groups = {};
+  var groupOrder = [];
+  rows.forEach(function(r) {
+    var sku = r[skuKey] || '';
+    var parts = parseSkuParts(sku);
+    if (!groups[parts.base]) { groups[parts.base] = []; groupOrder.push(parts.base); }
+    groups[parts.base].push({ row: r, size: parts.size });
+  });
+  var sorted = [];
+  groupOrder.forEach(function(base) {
+    groups[base].sort(function(a, b) { return sizeRank(a.size) - sizeRank(b.size); });
+    groups[base].forEach(function(item) { sorted.push(item.row); });
+  });
+  return sorted;
+}
+
 function giGenerateDownload(rows) {
   if (!rows.length) { return; }
+  rows = skuSortRows(rows, 'sku');
   var csv = 'Product Name,SKU,Quantity\n'
     + rows.map(function(r){
         var n = (r.name||'').includes(',') ? '"'+(r.name||'').replace(/"/g,'""')+'"' : (r.name||'');
@@ -3833,6 +3885,7 @@ function awdsApplyMappingResolved(resolvedIdx) {
   }).filter(function(r){ return r.ProductCode || r.Description; });
 
   document.getElementById('awds-mapping-wrap').style.display = 'none';
+  awdsRows = skuSortRows(awdsRows, 'ProductCode');
   awdsShowPreview();
 }
 

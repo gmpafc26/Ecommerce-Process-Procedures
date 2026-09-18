@@ -3257,32 +3257,37 @@ function genGrid(){
   var hov  = document.getElementById('pg-hov').value  || '#00edff';
   var txt  = document.getElementById('pg-txt') ? document.getElementById('pg-txt').value || '#000000' : '#000000';
 
+  // Build unique instance ID early so cards can use it
+  var pgIdInput = document.getElementById('pg-instance-id');
+  var rawId = (pgIdInput && pgIdInput.value.trim()) ? pgIdInput.value.trim() : 'sale1';
+  var instanceId = 'zest-' + rawId.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
   var valid = pgProds.filter(function(p){ return p.name.trim() && p.url.trim(); });
   if(!valid.length){ showToast('Add at least one product with name and URL','err'); return; }
 
   // Build product cards - zest-sale1 style
   var cards = valid.map(function(p){
     var badgeHtml = (isSale && p.discount && p.discount.trim())
-      ? '\n      <span class="zest-sale1__badge">'+esc(p.discount)+'</span>' : '';
+      ? '\n      <span class="+instanceId+"__badge">'+esc(p.discount)+'</span>' : '';
     var priceHtml = '';
     if(isSale && p.salePrice && p.salePrice.trim()){
-      priceHtml = '\n        <span class="zest-sale1__price">'
-        +'<span class="zest-sale1__was">'+esc(p.price)+'</span>'
-        +'<span class="zest-sale1__now">'+esc(p.salePrice)+'</span>'
+      priceHtml = '\n        <span class="+instanceId+"__price">'
+        +'<span class="+instanceId+"__was">'+esc(p.price)+'</span>'
+        +'<span class="+instanceId+"__now">'+esc(p.salePrice)+'</span>'
         +'</span>';
     } else if(p.price){
-      priceHtml = '\n        <span class="zest-sale1__price">'
-        +'<span class="zest-sale1__now" style="color:#fff">'+esc(p.price)+'</span>'
+      priceHtml = '\n        <span class="+instanceId+"__price">'
+        +'<span class="+instanceId+"__now" style="color:#fff">'+esc(p.price)+'</span>'
         +'</span>';
     }
     return '\n    <!-- '+esc(p.name)+' -->'
-      +'\n    <a href="'+esc(p.url)+'" class="zest-sale1__card'+(p.name?' zest-sale1__card--has-label':'')+'">'
-      +'\n      <div class="zest-sale1__img" style="background-image: url(\''+esc(p.img)+'\');"></div>'
+      +'\n    <a href="'+esc(p.url)+'" class="+instanceId+"__card'+(p.name?' zest-sale1__card--has-label':'')+'">'
+      +'\n      <div class="+instanceId+"__img" style="background-image: url(\''+esc(p.img)+'\');"></div>'
       +badgeHtml
-      +(p.name ? '\n      <div class="zest-sale1__label">'
-        +'\n        <span class="zest-sale1__name">'+esc(p.name)+'</span>'
+      +(p.name ? '\n      <div class="+instanceId+"__label">'
+        +'\n        <span class="+instanceId+"__name">'+esc(p.name)+'</span>'
         +priceHtml
-        +'\n        <span class="zest-sale1__cta">Shop Now &rarr;</span>'
+        +'\n        <span class="+instanceId+"__cta">Shop Now &rarr;</span>'
         +'\n      </div>' : '')
       +'\n    </a>';
   }).join('\n');
@@ -3291,16 +3296,13 @@ function genGrid(){
   var leaderHtml = '';
   if(hasLeader){
     var leaderInner = leaderImg
-      ? '\n      <div class="zest-sale1__img" style="background-image: url(\''+esc(leaderImg)+'\');"></div>'
+      ? '\n      <div class="+instanceId+"__img" style="background-image: url(\''+esc(leaderImg)+'\');"></div>'
       : '\n      <div style="position:absolute;inset:0;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:12px;color:#6b7280">Paste an image URL</div>';
     leaderHtml = '\n    <!-- LEADING TILE -->'
-      +'\n    <a href="'+esc(leaderUrl)+'" class="zest-sale1__card">'+leaderInner+'\n    </a>';
+      +'\n    <a href="'+esc(leaderUrl)+'" class="+instanceId+"__card">'+leaderInner+'\n    </a>';
   }
 
-  // Build unique instance ID from first product name or fallback
-  var pgIdInput = document.getElementById('pg-instance-id');
-  var rawId = (pgIdInput && pgIdInput.value.trim()) ? pgIdInput.value.trim() : 'zest-sale1';
-  var instanceId = 'zest-' + rawId.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  // instanceId already computed above
 
   var code = '<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700;800&display=swap" rel="stylesheet">\n\n'
     +'<style>\n'

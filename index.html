@@ -3275,29 +3275,29 @@ function genGrid(){
   var valid = pgProds.filter(function(p){ return p.name.trim() && p.url.trim(); });
   if(!valid.length){ showToast('Add at least one product with name and URL','err'); return; }
 
-  // Build product cards - zest-sale1 style
+  // Build product cards
   var cards = valid.map(function(p){
     var badgeHtml = (isSale && p.discount && p.discount.trim())
-      ? '\n      <span class="+instanceId+"__badge">'+esc(p.discount)+'</span>' : '';
+      ? '\n      <span class="'+instanceId+'__badge">'+esc(p.discount)+'</span>' : '';
     var priceHtml = '';
     if(isSale && p.salePrice && p.salePrice.trim()){
-      priceHtml = '\n        <span class="+instanceId+"__price">'
-        +'<span class="+instanceId+"__was">'+esc(p.price)+'</span>'
-        +'<span class="+instanceId+"__now">'+esc(p.salePrice)+'</span>'
+      priceHtml = '\n        <span class="'+instanceId+'__price">'
+        +'<span class="'+instanceId+'__was">'+esc(p.price)+'</span>'
+        +'<span class="'+instanceId+'__now">'+esc(p.salePrice)+'</span>'
         +'</span>';
     } else if(p.price){
-      priceHtml = '\n        <span class="+instanceId+"__price">'
-        +'<span class="+instanceId+"__now" style="color:#fff">'+esc(p.price)+'</span>'
+      priceHtml = '\n        <span class="'+instanceId+'__price">'
+        +'<span class="'+instanceId+'__now" style="color:#fff">'+esc(p.price)+'</span>'
         +'</span>';
     }
     return '\n    <!-- '+esc(p.name)+' -->'
-      +'\n    <a href="'+esc(p.url)+'" class="+instanceId+"__card'+(p.name?' zest-sale1__card--has-label':'')+'">'
-      +'\n      <div class="+instanceId+"__img" style="background-image: url(\''+esc(p.img)+'\');"></div>'
+      +'\n    <a href="'+esc(p.url)+'" class="'+instanceId+'__card'+(p.name?' '+instanceId+'__card--has-label':'')+'">'
+      +'\n      <div class="'+instanceId+'__img" style="background-image: url(\''+esc(p.img)+'\');"></div>'
       +badgeHtml
-      +(p.name ? '\n      <div class="+instanceId+"__label">'
-        +'\n        <span class="+instanceId+"__name">'+esc(p.name)+'</span>'
+      +(p.name ? '\n      <div class="'+instanceId+'__label">'
+        +'\n        <span class="'+instanceId+'__name">'+esc(p.name)+'</span>'
         +priceHtml
-        +'\n        <span class="+instanceId+"__cta">Shop Now &rarr;</span>'
+        +'\n        <span class="'+instanceId+'__cta">Shop Now &rarr;</span>'
         +'\n      </div>' : '')
       +'\n    </a>';
   }).join('\n');
@@ -3306,12 +3306,11 @@ function genGrid(){
   var leaderHtml = '';
   if(hasLeader){
     var leaderInner = leaderImg
-      ? '\n      <div class="+instanceId+"__img" style="background-image: url(\''+esc(leaderImg)+'\');"></div>'
+      ? '\n      <div class="'+instanceId+'__img" style="background-image: url(\''+esc(leaderImg)+'\');"></div>'
       : '\n      <div style="position:absolute;inset:0;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:12px;color:#6b7280">Paste an image URL</div>';
     leaderHtml = '\n    <!-- LEADING TILE -->'
-      +'\n    <a href="'+esc(leaderUrl)+'" class="+instanceId+"__card">'+leaderInner+'\n    </a>';
+      +'\n    <a href="'+esc(leaderUrl)+'" class="'+instanceId+'__card">'+leaderInner+'\n    </a>';
   }
-
   // instanceId already computed above
 
   var code = '<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700;800&display=swap" rel="stylesheet">\n\n'

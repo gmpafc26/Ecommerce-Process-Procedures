@@ -1153,11 +1153,6 @@ body.edit-mode [contenteditable]:focus {
   pointer-events: none;
   user-select: none;
 }
-#splitimg-preview-frame iframe {
-  transform: scale(0.5);
-  transform-origin: top left;
-  width: 200% !important;
-}
 #banner-preview-frame::after,
 #banner-preview-mob-frame::after,
 #annbar-preview-frame::after,
@@ -3147,7 +3142,7 @@ body.edit-mode [contenteditable]:focus {
     </div>
 
     <!-- Preview -->
-    <div class="mod-step-block" id="splitimg-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you fill in the details</div></div></div><div class="mod-step-body" style="padding:12px"><div id="splitimg-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:56px;display:flex;align-items:center;justify-content:center;max-height:280px"><span id="splitimg-preview-placeholder" style="font-size:12px;color:#9ca3af">Fill in the fields below to preview your banner</span></div></div></div>
+    <div class="mod-step-block" id="splitimg-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you fill in the details</div></div></div><div class="mod-step-body" style="padding:12px"><div id="splitimg-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:56px;display:flex;align-items:center;justify-content:center"><span id="splitimg-preview-placeholder" style="font-size:12px;color:#9ca3af">Fill in the fields below to preview your banner</span></div></div></div>
 
     <div class="gen-step-title">&#9312; Fill in the banner details</div>
 
@@ -4853,6 +4848,20 @@ function genSplitImg() {
   var outCode = document.getElementById('si-out');
   if (outCode) outCode.textContent = code;
   renderPreview('splitimg', code);
+  // Scale preview down to thumbnail size
+  setTimeout(function(){
+    var frame = document.getElementById('splitimg-preview-frame');
+    if (frame) {
+      var iframe = frame.querySelector('iframe');
+      if (iframe) {
+        iframe.style.height = '240px';
+        iframe.style.width = '100%';
+        iframe.style.transform = 'none';
+        frame.style.height = '240px';
+        frame.style.overflow = 'hidden';
+      }
+    }
+  }, 300);
   if (!genAutoTriggered) { flashGenBtn('btn-splitimg'); showToast('\u2705 Split Image & Text code generated!'); }
 }
 

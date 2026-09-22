@@ -1143,7 +1143,8 @@ body.edit-mode [contenteditable]:focus {
 #banner-preview-frame,
 #banner-preview-mob-frame,
 #annbar-preview-frame,
-#grid-preview-frame {
+#grid-preview-frame,
+#splitimg-preview-frame {
   position: relative;
   pointer-events: none;
   user-select: none;
@@ -2631,6 +2632,10 @@ body.edit-mode [contenteditable]:focus {
         <span class="gen-picker-icon">&#127991;</span>
         <span class="gen-picker-name">Popular Categories</span>
       </button>
+      <button class="gen-picker-tab" id="gpick-splitimg" onclick="switchModule('splitimg',this)">
+        <span class="gen-picker-icon">&#9646;</span>
+        <span class="gen-picker-label" style="text-transform:none">Split Image<br>&amp; Text</span>
+      </button>
       <button class="gen-picker-tab" id="gpick-catbanner" onclick="switchModule('catbanner',this)">
         <span class="gen-picker-icon">&#127991;&#65039;</span>
         <span class="gen-picker-name">Category Header</span>
@@ -3125,6 +3130,125 @@ body.edit-mode [contenteditable]:focus {
 
   </div>
   </div>
+
+      <!-- ── SPLIT IMAGE & TEXT ──────────────────────────── -->
+      <div class="gen-module" id="gmod-splitimg">
+  <div style="padding:24px 28px">
+
+    <div class="mod-intro">
+      <div class="mod-intro-icon">&#9646;</div>
+      <div>
+        <div class="mod-intro-title">Split Image &amp; Text</div>
+        <div class="mod-intro-desc">A two-column banner with an image on one side and heading, text and button on the other. Use for product launches or featured ranges.</div>
+        <div class="mod-intro-location">&#128205; Any page in BigCommerce Page Builder via HTML widget</div>
+      </div>
+    </div>
+
+    <div class="mod-reassure" style="display:flex;align-items:flex-start;gap:10px;background:var(--off);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:12px;color:var(--muted)">
+      <span style="font-size:16px">&#128247;</span>
+      <span>No Canva template for this module. Prepare your image as a square at <strong>900px x 900px</strong> minimum before uploading to BC Image Manager.</span>
+    </div>
+
+    <!-- Preview -->
+    <div class="mod-step-block" id="splitimg-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you fill in the details</div></div></div><div class="mod-step-body" style="padding:12px"><div id="splitimg-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:56px;display:flex;align-items:center;justify-content:center"><span id="splitimg-preview-placeholder" style="font-size:12px;color:#9ca3af">Fill in the fields below to preview your banner</span></div></div></div>
+
+    <div class="gen-step-title">&#9312; Fill in the banner details</div>
+
+    <div class="frow full" style="margin-bottom:10px">
+      <div class="fg" style="padding:10px 12px;background:var(--off);border:1px solid var(--border);border-radius:8px">
+        <label class="fl" style="font-weight:700">Unique Banner ID <span class="req">*</span></label>
+        <input class="fc" id="si-id" type="text" placeholder="e.g. pear-range, aflw-launch" oninput="genSplitImgSilent()" style="font-family:monospace">
+        <span class="fhint">Each banner on the same page must have a different ID. Lowercase, hyphens only, no spaces.</span>
+      </div>
+    </div>
+
+    <div class="frow full" style="margin-bottom:10px"><div class="fg">
+      <label class="fl">Image URL <span class="req">*</span></label>
+      <input class="fc" id="si-img" type="url" placeholder="https://cdn11.bigcommerce.com/..." oninput="genSplitImgSilent()">
+      <span class="fhint">Upload a square image (900x900px minimum) to BC Image Manager and paste the CDN URL.</span>
+    </div></div>
+
+    <div class="frow full" style="margin-bottom:10px"><div class="fg">
+      <label class="fl">Heading <span class="req">*</span></label>
+      <input class="fc" id="si-heading" type="text" placeholder="e.g. 2026 Pear Range" oninput="genSplitImgSilent()">
+      <span class="fhint">The first word will be underlined with your chosen underline colour.</span>
+    </div></div>
+
+    <div class="frow full" style="margin-bottom:10px"><div class="fg">
+      <label class="fl">Body text</label>
+      <textarea class="fc" id="si-text" rows="3" placeholder="e.g. Designed with our supporters in mind, shop the range online or in-store." oninput="genSplitImgSilent()"></textarea>
+    </div></div>
+
+    <div class="frow full" style="margin-bottom:10px"><div class="fg">
+      <label class="fl">Button text</label>
+      <input class="fc" id="si-btntxt" type="text" value="Shop Now" oninput="genSplitImgSilent()">
+    </div></div>
+
+    <div class="frow full" style="margin-bottom:10px"><div class="fg">
+      <label class="fl">Button URL <span class="req">*</span></label>
+      <input class="fc" id="si-btnurl" type="url" placeholder="https://portstore.com.au/..." oninput="genSplitImgSilent()">
+    </div></div>
+
+    <div class="frow full" style="margin-bottom:10px"><div class="fg">
+      <label class="fl">Image position</label>
+      <select class="fc" id="si-reverse" onchange="genSplitImgSilent()">
+        <option value="left">Image on left, text on right</option>
+        <option value="right">Image on right, text on left</option>
+      </select>
+    </div></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+      <div class="fg"><label class="fl">Background colour</label>
+        <div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#ffffff;border:1px solid #ccc;" title="White" onclick="document.getElementById('si-bg').value='#ffffff';document.getElementById('si-bghex').value='#ffffff';syncC('si-bg','si-bghex');genSplitImgSilent()"></button><button type="button" class="bc-swatch" style="background:#000000;" title="Black" onclick="document.getElementById('si-bg').value='#000000';document.getElementById('si-bghex').value='#000000';syncC('si-bg','si-bghex');genSplitImgSilent()"></button><button type="button" class="bc-swatch" style="background:#efefef;" title="Light Grey" onclick="document.getElementById('si-bg').value='#efefef';document.getElementById('si-bghex').value='#efefef';syncC('si-bg','si-bghex');genSplitImgSilent()"></button><button type="button" class="bc-swatch" style="background:#1a2e4a;" title="Navy" onclick="document.getElementById('si-bg').value='#1a2e4a';document.getElementById('si-bghex').value='#1a2e4a';syncC('si-bg','si-bghex');genSplitImgSilent()"></button><button type="button" class="bc-swatch" style="background:#00edff;" title="Charged Teal" onclick="document.getElementById('si-bg').value='#00edff';document.getElementById('si-bghex').value='#00edff';syncC('si-bg','si-bghex');genSplitImgSilent()"></button></div>
+        <div class="color-row"><div class="cswatch"><input type="color" id="si-bg" value="#ffffff" oninput="document.getElementById('si-bghex').value=this.value;genSplitImgSilent()"></div>
+        <input type="text" class="fc" id="si-bghex" value="#ffffff" style="width:100px" oninput="syncC('si-bg','si-bghex');genSplitImgSilent()"></div></div>
+      <div class="fg"><label class="fl">Heading text colour</label>
+        <div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#000000;" title="Black" onclick="document.getElementById('si-hdg').value='#000000';document.getElementById('si-hdghex').value='#000000';syncC('si-hdg','si-hdghex');genSplitImgSilent()"></button><button type="button" class="bc-swatch" style="background:#ffffff;border:1px solid #ccc;" title="White" onclick="document.getElementById('si-hdg').value='#ffffff';document.getElementById('si-hdghex').value='#ffffff';syncC('si-hdg','si-hdghex');genSplitImgSilent()"></button><button type="button" class="bc-swatch" style="background:#1a2e4a;" title="Navy" onclick="document.getElementById('si-hdg').value='#1a2e4a';document.getElementById('si-hdghex').value='#1a2e4a';syncC('si-hdg','si-hdghex');genSplitImgSilent()"></button></div>
+        <div class="color-row"><div class="cswatch"><input type="color" id="si-hdg" value="#000000" oninput="document.getElementById('si-hdghex').value=this.value;genSplitImgSilent()"></div>
+        <input type="text" class="fc" id="si-hdghex" value="#000000" style="width:100px" oninput="syncC('si-hdg','si-hdghex');genSplitImgSilent()"></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+      <div class="fg"><label class="fl">Underline colour</label>
+        <div class="bc-swatches"><button type="button" class="bc-swatch" style="background:#00edff;" title="Charged Teal" onclick="document.getElementById('si-ul').value='#00edff';document.getElementById('si-ulhex').value='#00edff';syncC('si-ul','si-ulhex');genSplitImgSilent()"></button><button type="button" class="bc-swatch" style="background:#000000;" title="Black" onclick="document.getElementById('si-ul').value='#000000';document.getElementById('si-ulhex').value='#000000';syncC('si-ul','si-ulhex');genSplitImgSilent()"></button><button type="button" class="bc-swatch" style="background:#ffffff;border:1px solid #ccc;" title="White" onclick="document.getElementById('si-ul').value='#ffffff';document.getElementById('si-ulhex').value='#ffffff';syncC('si-ul','si-ulhex');genSplitImgSilent()"></button><button type="button" class="bc-swatch" style="background:#e0002b;" title="Red" onclick="document.getElementById('si-ul').value='#e0002b';document.getElementById('si-ulhex').value='#e0002b';syncC('si-ul','si-ulhex');genSplitImgSilent()"></button></div>
+        <div class="color-row"><div class="cswatch"><input type="color" id="si-ul" value="#00edff" oninput="document.getElementById('si-ulhex').value=this.value;genSplitImgSilent()"></div>
+        <input type="text" class="fc" id="si-ulhex" value="#00edff" style="width:100px" oninput="syncC('si-ul','si-ulhex');genSplitImgSilent()"></div></div>
+      <div class="fg"><label class="fl">Button style</label>
+        <select class="fc" id="si-btnstyle" onchange="genSplitImgSilent()">
+          <option value="black">Black button, white text</option>
+          <option value="white">White button, black text</option>
+          <option value="teal">Bright blue button, black text</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Generate -->
+    <div class="mod-gen-section">
+      <div class="gen-step-title">&#9313; Generate &amp; copy your code</div>
+      <button class="gen-btn" id="btn-splitimg" onclick="genSplitImg()">&#9889; Generate Code</button>
+      <div class="gen-output-wrap" id="out-splitimg" style="display:none">
+        <textarea class="gen-output" id="code-splitimg" readonly></textarea>
+        <button class="copy-btn" onclick="copyCode('code-splitimg','btn-copy-splitimg')"><span id="btn-copy-splitimg">&#128203; Copy Code</span></button>
+      </div>
+    </div>
+
+    <!-- How to publish -->
+    <div class="mod-howto-section">
+      <div class="mod-howto-header">
+        <div class="mod-intro-icon" style="font-size:20px">&#128214;</div>
+        <div>
+          <div class="mod-intro-title" style="font-size:14px">How to publish this to BigCommerce</div>
+          <div class="mod-intro-desc" style="font-size:12px">Add this banner to any page using BigCommerce Page Builder</div>
+        </div>
+      </div>
+      <div class="mod-howto-body"><div style="padding:8px 24px 16px"><div style="display:flex;flex-direction:column">
+        <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Generate and copy your code</div><div class="ht-sdesc">Fill in the details above, click Generate, then Copy Code.</div></div></div>
+        <div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open the page in Page Builder</div><div class="ht-sdesc">In BC Admin, navigate to the page and open it in Page Builder.</div><div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BC Admin</span> - Storefront - My Themes - Customize</div></div></div>
+        <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Add an HTML widget and paste</div><div class="ht-sdesc">Drag an <strong>HTML</strong> widget to the desired position, paste your copied code, click <strong>Apply</strong>, then <strong>Publish</strong>.</div></div></div>
+      </div></div></div>
+    </div>
+
+  </div>
+</div>
 
       <!-- ── SPLIT BANNER: IMAGE & TEXT ──────────────────── -->
       
@@ -4676,11 +4800,82 @@ function genBannerSilent(){ genAutoTriggered=true; try{genBanner();}catch(e){} g
 function genAnnBarSilent(){ genAutoTriggered=true; try{genAnnBar();}catch(e){} genAutoTriggered=false; }
 function genGridSilent(){   genAutoTriggered=true; try{genGrid();}catch(e){}   genAutoTriggered=false; }
 function genCatsSilent(){   genAutoTriggered=true; try{genCats();}catch(e){}   genAutoTriggered=false; }
+function genSplitImg() {
+  var rawId   = (document.getElementById('si-id')      || {value:''}).value.trim();
+  var ns      = 'zest-' + (rawId ? rawId.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') : 'banner1');
+  var img     = (document.getElementById('si-img')     || {value:''}).value.trim();
+  var heading = (document.getElementById('si-heading') || {value:''}).value.trim();
+  var text    = (document.getElementById('si-text')    || {value:''}).value.trim();
+  var btntxt  = (document.getElementById('si-btntxt')  || {value:'Shop Now'}).value.trim() || 'Shop Now';
+  var btnurl  = (document.getElementById('si-btnurl')  || {value:'#'}).value.trim() || '#';
+  var reverse = (document.getElementById('si-reverse') || {value:'left'}).value === 'right';
+  var bg      = (document.getElementById('si-bghex')   || {value:'#ffffff'}).value.trim() || '#ffffff';
+  var hdg     = (document.getElementById('si-hdghex')  || {value:'#000000'}).value.trim() || '#000000';
+  var ul      = (document.getElementById('si-ulhex')   || {value:'#00edff'}).value.trim() || '#00edff';
+  var btnstyle= (document.getElementById('si-btnstyle')|| {value:'black'}).value;
+  var btnBg   = btnstyle==='white' ? '#ffffff' : btnstyle==='teal' ? '#00edff' : '#000000';
+  var btnTc   = btnstyle==='black' ? '#ffffff' : '#000000';
+  var btnHovBg= btnstyle==='black' ? '#00edff' : '#000000';
+  var btnHovTc= '#ffffff';
+
+  // Split heading: first word gets underline span
+  var headingHtml = '';
+  if (heading) {
+    var parts = heading.split(' ');
+    headingHtml = '<span>' + esc(parts[0]) + '</span>';
+    if (parts.length > 1) headingHtml += ' ' + esc(parts.slice(1).join(' '));
+  }
+
+  var code = '<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700;800&display=swap" rel="stylesheet">\n\n'
+    + '<style>\n'
+    + '  .' + ns + ' { width:100%; background:' + bg + '; font-family:\'Jost\',sans-serif; }\n'
+    + '  .' + ns + '__inner { display:grid; grid-template-columns:1fr 1fr; align-items:stretch; gap:0; overflow:hidden; }\n'
+    + (reverse ? '  .' + ns + '--reverse .' + ns + '__media { order:2; }\n' : '')
+    + '  .' + ns + '__media { position:relative; aspect-ratio:1/1; background:#f5f5f5; overflow:hidden; }\n'
+    + '  .' + ns + '__img { position:absolute; inset:0; background-size:cover; background-position:center; background-image:url("' + img + '"); }\n'
+    + '  .' + ns + '__content { display:flex; flex-direction:column; justify-content:center; padding:48px clamp(24px,4vw,64px); background:' + bg + '; }\n'
+    + '  .' + ns + '__heading { font-size:clamp(26px,3vw,40px); font-weight:800; color:' + hdg + '; letter-spacing:0em; line-height:1.1; margin:0 0 28px; }\n'
+    + '  .' + ns + '__heading span { border-bottom:3px solid ' + ul + '; padding-bottom:2px; }\n'
+    + '  .' + ns + '__text { font-size:clamp(14px,1.2vw,16px); font-weight:400; color:' + hdg + '; line-height:1.6; margin:0 0 40px; max-width:48ch; }\n'
+    + '  .' + ns + '__btn { display:inline-block; align-self:flex-start; background:' + btnBg + '; color:' + btnTc + '; font-family:\'Jost\',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; padding:14px 34px; transition:background 0.2s,color 0.2s; }\n'
+    + '  .' + ns + '__btn:hover { background:' + btnHovBg + '; color:' + btnHovTc + '; }\n'
+    + '  @media(max-width:680px) {\n'
+    + '    .' + ns + '__inner { grid-template-columns:1fr; align-items:start; }\n'
+    + '    .' + ns + '__media { width:100%; }\n'
+    + '    .' + ns + '__media,' + (reverse ? '.' + ns + '--reverse .' + ns + '__media' : '') + ' { order:0; }\n'
+    + '    .' + ns + '__content { padding:32px 12px; }\n'
+    + '  }\n'
+    + '</style>\n\n'
+    + '<section class="' + ns + (reverse ? ' ' + ns + '--reverse' : '') + '">\n'
+    + '  <div class="' + ns + '__inner">\n'
+    + '    <div class="' + ns + '__media"><div class="' + ns + '__img"></div></div>\n'
+    + '    <div class="' + ns + '__content">\n'
+    + (heading ? '      <h2 class="' + ns + '__heading">' + headingHtml + '</h2>\n' : '')
+    + (text    ? '      <p class="' + ns + '__text">' + esc(text) + '</p>\n' : '')
+    + '      <a href="' + btnurl + '" class="' + ns + '__btn">' + esc(btntxt) + '</a>\n'
+    + '    </div>\n'
+    + '  </div>\n'
+    + '</section>';
+
+  var outWrap = document.getElementById('out-splitimg');
+  var outCode = document.getElementById('code-splitimg');
+  if (outWrap) outWrap.style.display = 'block';
+  if (outCode) outCode.value = code;
+  renderPreview('splitimg', code);
+  if (!genAutoTriggered) { flashGenBtn('btn-splitimg'); showToast('\u2705 Split Image & Text code generated!'); }
+}
+
+function genSplitImgSilent() {
+  genAutoTriggered = true;
+  try { genSplitImg(); } catch(e) {}
+  genAutoTriggered = false;
+}
+
 function genCatBannerSilent(){ genAutoTriggered=true; try{genCatBanner();}catch(e){} genAutoTriggered=false; }
 function switchModule(id, btn) {
   // Auto-generate after switching to restore preview
   setTimeout(function(){
-    var fns = {banner:genBannerSilent,annbar:genAnnBarSilent,grid:genGridSilent,cats:genCatsSilent,catbanner:genCatBannerSilent};
+    var fns = {banner:genBannerSilent,annbar:genAnnBarSilent,grid:genGridSilent,cats:genCatsSilent,catbanner:genCatBannerSilent,splitimg:genSplitImgSilent};
     if(fns[id]) { genAutoTriggered=true; try{fns[id]();}catch(e){} genAutoTriggered=false; }
   }, 50);
   document.querySelectorAll('.gen-module').forEach(function(el){ el.classList.remove('active'); });
@@ -4849,7 +5044,8 @@ var GEN_FIELDS = {
   banner:    ['b-link','b-desk','b-mob','b-alt'],
   annbar:    ['ab-bg','ab-bghex','ab-tc','ab-tchex','ab-spd'],
   grid:      ['pg-instance-id','pg-cols','pg-mob','pg-sale-toggle','pg-leader-toggle','pg-leader-img','pg-leader-url','pg-txt','pg-txthex','pg-btn','pg-bchex','pg-hov','pg-hchex','pg-price','pg-pricehex'],
-  catbanner: ['cb-text']
+  catbanner: ['cb-text'],
+  splitimg: ['si-id','si-img','si-heading','si-text','si-btntxt','si-btnurl','si-reverse','si-bghex','si-hdghex','si-ulhex','si-btnstyle']
 };
 // Announcement bar messages are dynamic so stored separately
 var ANNBAR_MSG_KEY = 'portstore_gen_annbar_msgs';

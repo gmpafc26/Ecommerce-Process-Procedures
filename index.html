@@ -4863,7 +4863,7 @@ function switchModule(id, btn) {
   setTimeout(function(){
     var fns = {banner:genBannerSilent,annbar:genAnnBarSilent,grid:genGridSilent,cats:genCatsSilent,catbanner:genCatBannerSilent,splitimg:genSplitImgSilent};
     if(fns[id]) { genAutoTriggered=true; try{fns[id]();}catch(e){} genAutoTriggered=false; }
-  }, 50);
+  }, 200);
   document.querySelectorAll('.gen-module').forEach(function(el){ el.classList.remove('active'); });
   document.querySelectorAll('.gen-picker-tab').forEach(function(b){ b.classList.remove('active'); });
   var mod = document.getElementById('gmod-' + id);
@@ -5000,7 +5000,7 @@ function renderPreview(module, code) {
   }
 
   if (module === 'splitimg') {
-    writeIframe(frame, 680);
+    writeIframe(frame, 900);
     return;
   }
   if (module === 'banner') {

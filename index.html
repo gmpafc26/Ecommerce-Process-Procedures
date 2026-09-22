@@ -1151,7 +1151,7 @@ body.edit-mode [contenteditable]:focus {
 #banner-preview-frame::after,
 #banner-preview-mob-frame::after,
 #annbar-preview-frame::after,
-#grid-preview-frame::after {
+#grid-preview-frame::after::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -2631,10 +2631,6 @@ body.edit-mode [contenteditable]:focus {
         <span class="gen-picker-icon">&#127991;</span>
         <span class="gen-picker-name">Popular Categories</span>
       </button>
-      <button class="gen-picker-tab" id="gpick-splitbanner" onclick="switchModule('splitbanner',this)">
-        <span class="gen-picker-icon">&#9632;</span>
-        <span class="gen-picker-label">Split Banner</span>
-      </button>
       <button class="gen-picker-tab" id="gpick-catbanner" onclick="switchModule('catbanner',this)">
         <span class="gen-picker-icon">&#127991;&#65039;</span>
         <span class="gen-picker-name">Category Header</span>
@@ -3131,112 +3127,7 @@ body.edit-mode [contenteditable]:focus {
   </div>
 
       <!-- ── SPLIT BANNER: IMAGE & TEXT ──────────────────── -->
-      <div class="gen-module" id="gmod-splitbanner">
-
-        <!-- Canva template link -->
-        <div class="mod-canva-row">
-          <span class="mod-canva-label">&#127912; Canva template</span>
-          <a href="https://www.canva.com" target="_blank" class="mod-canva-btn">Open in Canva &#8599;</a>
-        </div>
-
-        <!-- Inputs -->
-        <div class="mod-inputs">
-          <div class="gen-step-title">&#9312; Fill in the banner details</div>
-
-          <div class="fg" style="margin-bottom:12px;padding:10px 12px;background:var(--off);border:1px solid var(--border);border-radius:8px"><label class="fl" style="font-weight:700">Unique Banner ID <span class="req">*</span></label><input class="fc" id="sb-instance-id" type="text" placeholder="e.g. player-merch, aflw-launch" oninput="genSplitBannerSilent()" style="font-family:monospace"><span class="fhint">Each split banner on the same page must have a different ID. Lowercase, hyphens only, no spaces.</span></div>
-
-          <div class="fg"><label class="fl">Image URL <span class="req">*</span></label>
-            <input class="fc" id="sb-img" type="url" placeholder="https://cdn11.bigcommerce.com/..." oninput="genSplitBannerSilent()">
-            <span class="fhint">Upload to BC Image Manager and paste the CDN URL. Square image recommended (900x900px).</span>
-          </div>
-
-          <div class="fg"><label class="fl">Strip text</label>
-            <input class="fc" id="sb-strip" type="text" placeholder="e.g. Online &amp;bull;&amp; In-store" oninput="genSplitBannerSilent()">
-            <span class="fhint">Small strip overlaid at the bottom of the image. Leave blank to hide.</span>
-          </div>
-
-          <div class="fg"><label class="fl">Heading</label>
-            <input class="fc" id="sb-heading" type="text" placeholder="e.g. 2026 Player Merch" oninput="genSplitBannerSilent()">
-            <span class="fhint">Displays in bold. Leave blank if not needed.</span>
-          </div>
-
-          <div class="fg"><label class="fl">Brand / subtitle</label>
-            <input class="fc" id="sb-brand" type="text" placeholder="e.g. Port Adelaide FC" oninput="genSplitBannerSilent()">
-            <span class="fhint">Small uppercase text below the heading.</span>
-          </div>
-
-          <div class="fg"><label class="fl">Price</label>
-            <input class="fc" id="sb-price" type="text" placeholder="e.g. From $49" oninput="genSplitBannerSilent()">
-          </div>
-
-          <div class="fg"><label class="fl">Description</label>
-            <textarea class="fc" id="sb-desc" rows="3" placeholder="e.g. Shop Bobbleheads, Can Coolers, Flags &amp; more..." oninput="genSplitBannerSilent()"></textarea>
-          </div>
-
-          <div class="fg"><label class="fl">Button text</label>
-            <input class="fc" id="sb-btntxt" type="text" placeholder="e.g. Shop Now" oninput="genSplitBannerSilent()" value="Shop Now">
-          </div>
-
-          <div class="fg"><label class="fl">Button URL <span class="req">*</span></label>
-            <input class="fc" id="sb-btnurl" type="url" placeholder="https://portstore.com.au/..." oninput="genSplitBannerSilent()">
-          </div>
-
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div class="fg"><label class="fl">Button colour</label>
-              <div class="bc-swatches">
-                <button type="button" class="bc-swatch" style="background:#00edff" title="Charged Teal" onclick="document.getElementById('sb-btnc').value='#00edff';document.getElementById('sb-btnchex').value='#00edff';syncC('sb-btnc','sb-btnchex')"></button>
-                <button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('sb-btnc').value='#000000';document.getElementById('sb-btnchex').value='#000000';syncC('sb-btnc','sb-btnchex')"></button>
-                <button type="button" class="bc-swatch" style="background:#ffffff;border:1px solid #ccc" title="White" onclick="document.getElementById('sb-btnc').value='#ffffff';document.getElementById('sb-btnchex').value='#ffffff';syncC('sb-btnc','sb-btnchex')"></button>
-                <button type="button" class="bc-swatch" style="background:#e0002b" title="Red" onclick="document.getElementById('sb-btnc').value='#e0002b';document.getElementById('sb-btnchex').value='#e0002b';syncC('sb-btnc','sb-btnchex')"></button>
-              </div>
-              <div class="color-row"><div class="cswatch"><input type="color" id="sb-btnc" value="#00edff" oninput="document.getElementById('sb-btnchex').value=this.value;genSplitBannerSilent()"></div>
-              <input type="text" class="fc" id="sb-btnchex" value="#00edff" style="width:100px" oninput="syncC('sb-btnc','sb-btnchex');genSplitBannerSilent()"></div>
-            </div>
-            <div class="fg"><label class="fl">Button text colour</label>
-              <div class="bc-swatches">
-                <button type="button" class="bc-swatch" style="background:#000000" title="Black" onclick="document.getElementById('sb-btntc').value='#000000';document.getElementById('sb-btntchex').value='#000000';syncC('sb-btntc','sb-btntchex')"></button>
-                <button type="button" class="bc-swatch" style="background:#ffffff;border:1px solid #ccc" title="White" onclick="document.getElementById('sb-btntc').value='#ffffff';document.getElementById('sb-btntchex').value='#ffffff';syncC('sb-btntc','sb-btntchex')"></button>
-              </div>
-              <div class="color-row"><div class="cswatch"><input type="color" id="sb-btntc" value="#000000" oninput="document.getElementById('sb-btntchex').value=this.value;genSplitBannerSilent()"></div>
-              <input type="text" class="fc" id="sb-btntchex" value="#000000" style="width:100px" oninput="syncC('sb-btntc','sb-btntchex');genSplitBannerSilent()"></div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Preview -->
-        <div class="mod-preview-section">
-          <div class="mod-preview-label">&#128065;&#65039; Preview <span class="mod-preview-sub">Updates as you fill in the details</span></div>
-          <div class="mod-preview-frame"><iframe id="prev-splitbanner" class="mod-preview-iframe" sandbox="allow-same-origin allow-scripts"></iframe></div>
-        </div>
-
-        <!-- Generate -->
-        <div class="mod-gen-section">
-          <div class="gen-step-title">&#9313; Generate &amp; copy your code</div>
-          <button class="gen-btn" id="btn-splitbanner" onclick="genSplitBanner()">&#9889; Generate Code</button>
-          <div class="gen-output-wrap" id="out-splitbanner" style="display:none">
-            <textarea class="gen-output" id="code-splitbanner" readonly></textarea>
-            <button class="copy-btn" onclick="copyCode('code-splitbanner','btn-copy-splitbanner')"><span id="btn-copy-splitbanner">&#128203; Copy Code</span></button>
-          </div>
-        </div>
-
-        <!-- How to publish -->
-        <div class="mod-howto-section">
-          <div class="mod-howto-header">
-            <div class="mod-intro-icon" style="font-size:20px">&#128214;</div>
-            <div>
-              <div class="mod-intro-title" style="font-size:14px">How to publish this to BigCommerce</div>
-              <div class="mod-intro-desc" style="font-size:12px">Add this banner to any page using BigCommerce Page Builder</div>
-            </div>
-          </div>
-          <div class="mod-howto-body"><div style="padding:8px 24px 16px"><div style="display:flex;flex-direction:column">
-            <div class="ht-step"><div class="ht-snum">1</div><div class="ht-sbody"><div class="ht-stitle">Generate and copy your code</div><div class="ht-sdesc">Fill in the details above, click Generate, then Copy Code.</div></div></div>
-            <div class="ht-step"><div class="ht-snum">2</div><div class="ht-sbody"><div class="ht-stitle">Open the page in Page Builder</div><div class="ht-sdesc">In BC Admin, navigate to the page you want to add the banner to and open it in Page Builder.</div><div class="pm-screen" style="margin-top:8px"><span class="pm-hl">BC Admin</span> - Storefront - My Themes - Customize</div></div></div>
-            <div class="ht-step"><div class="ht-snum">3</div><div class="ht-sbody"><div class="ht-stitle">Add an HTML widget and paste</div><div class="ht-sdesc">Drag an <strong>HTML</strong> widget to the desired position, paste your copied code, click <strong>Apply</strong>, then <strong>Publish</strong>.</div></div></div>
-          </div></div></div>
-        </div>
-
-      </div>
+      
 </div>
 
 <!-- ════════════════════════════════════════
@@ -4785,86 +4676,11 @@ function genBannerSilent(){ genAutoTriggered=true; try{genBanner();}catch(e){} g
 function genAnnBarSilent(){ genAutoTriggered=true; try{genAnnBar();}catch(e){} genAutoTriggered=false; }
 function genGridSilent(){   genAutoTriggered=true; try{genGrid();}catch(e){}   genAutoTriggered=false; }
 function genCatsSilent(){   genAutoTriggered=true; try{genCats();}catch(e){}   genAutoTriggered=false; }
-function genSplitBanner() {
-  var rawId   = (document.getElementById('sb-instance-id') || {value:''}).value.trim();
-  var sbId    = 'bc-sb2-' + (rawId ? rawId.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') : 'banner');
-  var img     = (document.getElementById('sb-img')     || {value:''}).value.trim();
-  var strip   = (document.getElementById('sb-strip')   || {value:''}).value.trim();
-  var heading = (document.getElementById('sb-heading') || {value:''}).value.trim();
-  var brand   = (document.getElementById('sb-brand')   || {value:''}).value.trim();
-  var price   = (document.getElementById('sb-price')   || {value:''}).value.trim();
-  var desc    = (document.getElementById('sb-desc')    || {value:''}).value.trim();
-  var btntxt  = (document.getElementById('sb-btntxt')  || {value:'Shop Now'}).value.trim() || 'Shop Now';
-  var btnurl  = (document.getElementById('sb-btnurl')  || {value:'#'}).value.trim() || '#';
-  var btnc    = (document.getElementById('sb-btnchex') || {value:'#00edff'}).value.trim() || '#00edff';
-  var btntc   = (document.getElementById('sb-btntchex')|| {value:'#000000'}).value.trim() || '#000000';
-
-  var stripHtml = strip ? '<div class="bc-sb2__strip"><span class="bc-sb2__strip-label">Available</span><span>' + esc(strip) + '</span></div>' : '';
-  var headingHtml = heading ? '<h2 class="bc-sb2__heading"><strong>' + esc(heading) + '</strong></h2>' : '';
-  var brandHtml = brand ? '<span class="bc-sb2__brand">' + esc(brand) + '</span>' : '';
-  var priceHtml = price ? '<span class="bc-sb2__price">' + esc(price) + '</span>' : '';
-  var descHtml  = desc  ? '<p class="bc-sb2__desc">' + esc(desc) + '</p>' : '';
-
-  var c = sbId; // shorthand for class prefix
-  var stripHtmlScoped  = strip   ? '<div class="'+c+'__strip"><span class="'+c+'__strip-label">Available</span><span>' + esc(strip) + '</span></div>' : '';
-  var headingHtmlScoped= heading ? '<h2 class="'+c+'__heading"><strong>' + esc(heading) + '</strong></h2>' : '';
-  var brandHtmlScoped  = brand   ? '<span class="'+c+'__brand">' + esc(brand) + '</span>' : '';
-  var priceHtmlScoped  = price   ? '<span class="'+c+'__price">' + esc(price) + '</span>' : '';
-  var descHtmlScoped   = desc    ? '<p class="'+c+'__desc">' + esc(desc) + '</p>' : '';
-
-  var code = '<style>\n'
-    + '  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}\n'
-    + '  .'+c+'{--pad-top:72px;--pad-bottom:72px;width:100%;background:#ffffff;display:grid;grid-template-columns:1fr 1fr;align-items:stretch}\n'
-    + '  .'+c+'__image{position:relative;overflow:hidden;background:#f5f5f5;aspect-ratio:1/1;width:100%}\n'
-    + '  .'+c+'__image-bg{position:absolute;inset:0;background-image:url(" + img + ");background-size:cover;background-position:center;transition:transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)}\n'
-    + '  .'+c+'__image:hover .'+c+'__image-bg{transform:scale(1.03)}\n'
-    + '  .'+c+'__strip{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.65);padding:13px 20px;display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#ffffff}\n'
-    + '  .'+c+'__strip-label{color:#888888;flex-shrink:0}\n'
-    + '  .'+c+'__content{display:flex;flex-direction:column;justify-content:center;padding:var(--pad-top) 6vw var(--pad-bottom) 5vw;background:#ffffff}\n'
-    + '  .'+c+'__heading{font-size:clamp(28px,3.5vw,50px);font-weight:300;color:#111111;letter-spacing:-0.025em;line-height:1.08;margin-bottom:8px}\n'
-    + '  .'+c+'__heading strong{font-weight:600}\n'
-    + '  .'+c+'__brand{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;color:#aaaaaa;margin-bottom:20px;display:block}\n'
-    + '  .'+c+'__price{font-size:16px;font-weight:500;color:#111111;letter-spacing:-0.01em;margin-bottom:24px;display:block}\n'
-    + '  .'+c+'__rule{width:36px;height:1.5px;background:#e0e0e0;margin-bottom:22px}\n'
-    + '  .'+c+'__desc{font-size:15px;color:#555555;line-height:1.78;margin-bottom:36px;max-width:400px}\n'
-    + '  .'+c+'__btn{display:inline-block;padding:14px 32px;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;text-decoration:none;border:1.5px solid ' + btnc + ';background:' + btnc + ';color:' + btntc + ';transition:all 0.22s ease;line-height:1;align-self:flex-start}\n'
-    + '  .'+c+'__btn:hover{background:transparent;color:#111111}\n'
-    + '  @media(max-width:768px){.'+c+'{grid-template-columns:1fr;grid-template-areas:"image" "content"}.'+c+'__image{grid-area:image;aspect-ratio:1/1;width:100%}.'+c+'__content{grid-area:content;padding:40px 24px 48px}.'+c+'__heading{font-size:28px}.'+c+'__price{font-size:16px}.'+c+'__desc{max-width:100%}}\n'
-    + '</style>\n\n'
-    + '<div class="'+c+'">\n'
-    + '  <div class="'+c+'__image">\n'
-    + '    <div class="'+c+'__image-bg"></div>\n'
-    + (strip ? '    ' + stripHtmlScoped + '\n' : '')
-    + '  </div>\n'
-    + '  <div class="'+c+'__content">\n'
-    + (headingHtmlScoped ? '    ' + headingHtmlScoped + '\n' : '')
-    + (brandHtmlScoped   ? '    ' + brandHtmlScoped   + '\n' : '')
-    + (priceHtmlScoped   ? '    ' + priceHtmlScoped   + '\n' : '')
-    + '    <div class="'+c+'__rule"></div>\n'
-    + (descHtmlScoped    ? '    ' + descHtmlScoped    + '\n' : '')
-    + '    <a href="' + btnurl + '" class="'+c+'__btn">' + esc(btntxt) + '</a>\n'
-    + '  </div>\n'
-    + '</div>';
-
-  var outWrap = document.getElementById('out-splitbanner');
-  var outCode = document.getElementById('code-splitbanner');
-  if (outWrap) outWrap.style.display = 'block';
-  if (outCode) outCode.value = code;
-  renderPreview('splitbanner', code);
-  if (!genAutoTriggered) { flashGenBtn('btn-splitbanner'); showToast('&#9989; Split Banner code generated!'); }
-}
-
-function genSplitBannerSilent() {
-  genAutoTriggered = true;
-  try { genSplitBanner(); } catch(e) {}
-  genAutoTriggered = false;
-}
-
 function genCatBannerSilent(){ genAutoTriggered=true; try{genCatBanner();}catch(e){} genAutoTriggered=false; }
 function switchModule(id, btn) {
   // Auto-generate after switching to restore preview
   setTimeout(function(){
-    var fns = {banner:genBannerSilent,annbar:genAnnBarSilent,grid:genGridSilent,cats:genCatsSilent,catbanner:genCatBannerSilent,splitbanner:genSplitBannerSilent};
+    var fns = {banner:genBannerSilent,annbar:genAnnBarSilent,grid:genGridSilent,cats:genCatsSilent,catbanner:genCatBannerSilent};
     if(fns[id]) { genAutoTriggered=true; try{fns[id]();}catch(e){} genAutoTriggered=false; }
   }, 50);
   document.querySelectorAll('.gen-module').forEach(function(el){ el.classList.remove('active'); });
@@ -5033,8 +4849,7 @@ var GEN_FIELDS = {
   banner:    ['b-link','b-desk','b-mob','b-alt'],
   annbar:    ['ab-bg','ab-bghex','ab-tc','ab-tchex','ab-spd'],
   grid:      ['pg-instance-id','pg-cols','pg-mob','pg-sale-toggle','pg-leader-toggle','pg-leader-img','pg-leader-url','pg-txt','pg-txthex','pg-btn','pg-bchex','pg-hov','pg-hchex','pg-price','pg-pricehex'],
-  catbanner: ['cb-text'],
-  splitbanner: ['sb-instance-id','sb-img','sb-strip','sb-heading','sb-brand','sb-price','sb-desc','sb-btntxt','sb-btnurl','sb-btnchex','sb-btntchex']
+  catbanner: ['cb-text']
 };
 // Announcement bar messages are dynamic so stored separately
 var ANNBAR_MSG_KEY = 'portstore_gen_annbar_msgs';

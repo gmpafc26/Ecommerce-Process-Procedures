@@ -1143,11 +1143,20 @@ body.edit-mode [contenteditable]:focus {
 #banner-preview-frame,
 #banner-preview-mob-frame,
 #annbar-preview-frame,
-#grid-preview-frame,
+#grid-preview-frame {
+  position: relative;
+  pointer-events: none;
+  user-select: none;
+}
 #splitimg-preview-frame {
   position: relative;
   pointer-events: none;
   user-select: none;
+}
+#splitimg-preview-frame iframe {
+  transform: scale(0.5);
+  transform-origin: top left;
+  width: 200% !important;
 }
 #banner-preview-frame::after,
 #banner-preview-mob-frame::after,
@@ -2634,7 +2643,7 @@ body.edit-mode [contenteditable]:focus {
       </button>
       <button class="gen-picker-tab" id="gpick-splitimg" onclick="switchModule('splitimg',this)">
         <span class="gen-picker-icon">&#9646;</span>
-        <span class="gen-picker-label" style="text-transform:none">Split Image<br>&amp; Text</span>
+        <span class="gen-picker-name">Split Image &amp; Text</span>
       </button>
       <button class="gen-picker-tab" id="gpick-catbanner" onclick="switchModule('catbanner',this)">
         <span class="gen-picker-icon">&#127991;&#65039;</span>
@@ -2919,20 +2928,8 @@ body.edit-mode [contenteditable]:focus {
     <div class="mod-step-block">
       <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Edit your categories</div><div class="mod-step-sub">Update labels, URLs and icons. Drag order by re-numbering.</div></div></div>
       <div class="mod-step-body">
-        <div style="background:var(--off);border-radius:8px;padding:14px;border:1px solid var(--border);margin-bottom:12px">
-          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px">&#128073; Each category needs a label, URL and icon image</div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:12px">Icons are small transparent PNG graphics uploaded to BC Image Manager. Two blank tile templates are available to edit - download them from SharePoint, add your graphic, then upload to BC.</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
-            <div style="border-radius:7px;overflow:hidden;border:1px solid var(--border);background:#fff">
-              <div style="background:#222;padding:5px 10px;font-size:10px;font-weight:700;text-transform:uppercase;color:#fff;letter-spacing:.05em">Black tile</div>
-              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/category-tile-black.png?t=1787710933" style="width:100%;max-width:25%;height:auto;display:block">
-            </div>
-            <div style="border-radius:7px;overflow:hidden;border:1px solid var(--border);background:#fff">
-              <div style="background:#aaa;padding:5px 10px;font-size:10px;font-weight:700;text-transform:uppercase;color:#fff;letter-spacing:.05em">Grey tile</div>
-              <img src="https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/category-tile-grey.png?t=1787710934" style="width:100%;max-width:25%;height:auto;display:block">
-            </div>
-          </div>
-          <a href="https://portadelaidefc.sharepoint.com/:f:/r/Marketing%20%20Media/Ecom/Procedures%20%26%20Guidelines/Graphics?d=w7d6fdec551b8476da8e9aba4052bd49d&csf=1&web=1&e=0tXFF6" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;background:#f0fdf4;border:1px solid #86efac;border-radius:7px;font-size:13px;font-weight:600;color:#166534;text-decoration:none" onmouseover="this.style.background='#dcfce7'" onmouseout="this.style.background='#f0fdf4'">&#128229; Download blank tile templates from SharePoint</a>
+        <div style="background:var(--off);border-radius:8px;padding:12px 14px;border:1px solid var(--border);margin-bottom:12px;font-size:12px;color:var(--muted)">
+          &#128073; Each category needs a label, URL and icon image. Icons are small transparent PNG graphics uploaded to BC Image Manager. Use the Canva template above to create your icons.
         </div>
         <div id="pc-cats" style="display:flex;flex-direction:column;gap:10px"></div>
         <button class="add-btn" onclick="addCat()" style="margin-top:10px">+ Add Category</button>
@@ -3150,7 +3147,7 @@ body.edit-mode [contenteditable]:focus {
     </div>
 
     <!-- Preview -->
-    <div class="mod-step-block" id="splitimg-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you fill in the details</div></div></div><div class="mod-step-body" style="padding:12px"><div id="splitimg-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:56px;display:flex;align-items:center;justify-content:center"><span id="splitimg-preview-placeholder" style="font-size:12px;color:#9ca3af">Fill in the fields below to preview your banner</span></div></div></div>
+    <div class="mod-step-block" id="splitimg-preview-block"><div class="mod-step-header"><div class="mod-step-num" style="background:#6366f1">&#128065;&#65039;</div><div><div class="mod-step-title">Preview</div><div class="mod-step-sub">Updates as you fill in the details</div></div></div><div class="mod-step-body" style="padding:12px"><div id="splitimg-preview-frame" style="width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#f8f8f8;min-height:56px;display:flex;align-items:center;justify-content:center;max-height:280px"><span id="splitimg-preview-placeholder" style="font-size:12px;color:#9ca3af">Fill in the fields below to preview your banner</span></div></div></div>
 
     <div class="gen-step-title">&#9312; Fill in the banner details</div>
 
@@ -3222,12 +3219,14 @@ body.edit-mode [contenteditable]:focus {
     </div>
 
     <!-- Generate -->
-    <div class="mod-gen-section">
-      <div class="gen-step-title">&#9313; Generate &amp; copy your code</div>
-      <button class="gen-btn" id="btn-splitimg" onclick="genSplitImg()">&#9889; Generate Code</button>
-      <div class="gen-output-wrap" id="out-splitimg" style="display:none">
-        <textarea class="gen-output" id="code-splitimg" readonly></textarea>
-        <button class="copy-btn" onclick="copyCode('code-splitimg','btn-copy-splitimg')"><span id="btn-copy-splitimg">&#128203; Copy Code</span></button>
+    <div class="mod-step-block">
+      <div class="mod-step-header"><div class="mod-step-num">2</div><div><div class="mod-step-title">Generate &amp; copy the code</div><div class="mod-step-sub">Generate first, then copy and paste into BigCommerce</div></div></div>
+      <div class="mod-step-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+          <button class="gen-btn" id="btn-splitimg" onclick="genSplitImg()">&#9889; Generate</button>
+          <button class="copy-big-btn" id="si-cpbtn" onclick="copyCode('si-out','si-cpbtn')">&#128203; Copy Code</button>
+        </div>
+        <div class="code-output-block" style="margin-bottom:0"><div class="code-output-header"><span class="code-output-label">&#128196; Generated code</span><button class="code-toggle" onclick="toggleCode('si-out-body',this)">Show code</button></div><div id="si-out-body" class="code-collapsed"><div class="out-code" id="si-out"></div></div></div>
       </div>
     </div>
 
@@ -3588,12 +3587,6 @@ function renderCats(){
           +'<div class="fg"><label class="fl">Icon image URL <span class="req">*</span></label>'
           +'<input type="url" class="fc" value="'+esc(cat.img)+'" oninput="pcCats['+i+'].img=this.value">'
           +'<span class="fhint">&#128190; Small icon/graphic from BC Image Manager</span></div>'
-          +'<div class="fg" style="max-width:140px"><label class="fl">Font size</label>'
-          +'<select class="fc" oninput="pcCats['+i+'].fontSize=this.value">'
-          +'<option value="13px"'+(cat.fontSize==='13px'?' selected':'')+'>Small (13px)</option>'
-          +'<option value="14px"'+(cat.fontSize==='14px'?' selected':'')+'>Medium (14px)</option>'
-          +'<option value="15px"'+(cat.fontSize==='15px'?' selected':'')+'>Large (15px)</option>'
-          +'</select></div>'
         +'</div>'
       +'</div>';
     c.appendChild(d);
@@ -3621,7 +3614,7 @@ function genCats(){
       +'\n          alt="'+esc(cat.label)+'"'
       +'\n          style="max-width:88px;max-height:83px;object-fit:contain">'
       +'\n      </div>'
-      +'\n      <p class="item"><span class="text" style="font-size: '+cat.fontSize+';">'+esc(cat.label)+'</span></p>'
+      +'\n      <p class="item"><span class="text" style="font-size: 15px;">'+esc(cat.label)+'</span></p>'
       +'\n    </a>';
   }).join('\n');
 
@@ -4857,10 +4850,8 @@ function genSplitImg() {
     + '  </div>\n'
     + '</section>';
 
-  var outWrap = document.getElementById('out-splitimg');
-  var outCode = document.getElementById('code-splitimg');
-  if (outWrap) outWrap.style.display = 'block';
-  if (outCode) outCode.value = code;
+  var outCode = document.getElementById('si-out');
+  if (outCode) outCode.textContent = code;
   renderPreview('splitimg', code);
   if (!genAutoTriggered) { flashGenBtn('btn-splitimg'); showToast('\u2705 Split Image & Text code generated!'); }
 }

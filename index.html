@@ -2924,7 +2924,7 @@ body.edit-mode [contenteditable]:focus {
       <div class="mod-step-header"><div class="mod-step-num">1</div><div><div class="mod-step-title">Edit your categories</div><div class="mod-step-sub">Update labels, URLs and icons. Drag order by re-numbering.</div></div></div>
       <div class="mod-step-body">
         <div style="background:var(--off);border-radius:8px;padding:12px 14px;border:1px solid var(--border);margin-bottom:12px;font-size:12px;color:var(--muted)">
-          &#128073; Each category needs a label, URL and icon image. Icons are small transparent PNG graphics uploaded to BC Image Manager. Use the Canva template above to create your icons.
+          &#128073; Each category needs a label, URL and icon image. Icons are transparent PNG graphics uploaded to BC Image Manager, displayed at <strong>176x166px</strong>. Labels are fixed at <strong>13px</strong>. On mobile, categories swipe horizontally showing 2 at a time. Use the Canva template above to create your icons.
         </div>
         <div id="pc-cats" style="display:flex;flex-direction:column;gap:10px"></div>
         <button class="add-btn" onclick="addCat()" style="margin-top:10px">+ Add Category</button>
@@ -3548,14 +3548,14 @@ function genCatBanner(){
 
 // ── POPULAR CATEGORIES ───────────────────────────────────────────────
 var pcCats = [
-  {label:'APPAREL',    url:'/apparel/',               img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/apparel-1-.png?t=1770961027',    fontSize:'14px'},
-  {label:'HEADWEAR',   url:'/headwear/',              img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/headwear-1-.png?t=1764742957',   fontSize:'15px'},
-  {label:'AFL Guernseys', url:'/guernseys/',          img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/guernseys.png?t=1765768532',     fontSize:'15px'},
-  {label:'SCARVES',    url:'/accessories/scarves',    img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/icon-design.png?t=1759895127',   fontSize:'15px'},
-  {label:'FOOTBALLS',  url:'/merchandise/footballs',  img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/footballs-1-.png?t=1759896179',  fontSize:'15px'},
-  {label:'MERCHANDISE',url:'/merchandise',            img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/player-merch-1-.png?t=1759895598',fontSize:'15px'},
-  {label:'MAGPIES',    url:'/magpies',                img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/magpies.png?t=1759898195',       fontSize:'15px'},
-  {label:'BABIES & TODDLERS',url:'/accessories/youth-babies',img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/baby-merch.png?t=1759896401',fontSize:'14px'}
+  {label:'APPAREL',         url:'https://portstore.com.au/supporter-wear/', img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/popular-cateogries-apparel.png?t=1790125594'},
+  {label:'HEADWEAR',        url:'/headwear/',                               img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/popular-cateogries-headwear.png?t=1790125597'},
+  {label:'AFLW Guernseys',  url:'https://portstore.com.au/aflw/guernseys/', img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/popular-cateogries-aflw.png?t=1790125593'},
+  {label:'SCARVES',         url:'/accessories/scarves',                    img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/popular-cateogries-scarves.png?t=1790125600'},
+  {label:'SALE',            url:'https://portstore.com.au/sale/',          img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/popular-cateogries-sale.png?t=1790125599'},
+  {label:'MERCHANDISE',     url:'/merchandise',                            img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/popular-cateogries-merch.png?t=1790125598'},
+  {label:'TONAL',           url:'https://portstore.com.au/tonal-range/',   img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/popular-cateogries-tonal.png?t=1790125601'},
+  {label:'FOOTBALLS',       url:'/merchandise/footballs',                  img:'https://cdn11.bigcommerce.com/s-03dhqvtsze/images/stencil/original/image-manager/popular-cateogries-footballs.png?t=1790125596'}
 ];
 
 function renderCats(){

@@ -3603,18 +3603,33 @@ function genCats(){
   if(!valid.length){ showToast('Add at least one category with label and URL','err'); return; }
 
   var items = valid.map(function(cat, i){
-    return '\n    <a class="item-content halo-fadeInUp" data-halo-animate="'+i+'" href="'+esc(cat.url)+'">'
-      +'\n      <div class="item-img">'
+    return '\n    <a class="item-content halo-fadeInUp zest-pc__item" data-halo-animate="'+i+'" href="'+esc(cat.url)+'">'
+      +'\n      <div class="item-img zest-pc__img-wrap">'
       +'\n        <img src="'+esc(cat.img)+'"'
       +'\n          alt="'+esc(cat.label)+'"'
-      +'\n          style="max-width:88px;max-height:83px;object-fit:contain">'
+      +'\n          class="zest-pc__img">'
       +'\n      </div>'
-      +'\n      <p class="item"><span class="text">'+esc(cat.label)+'</span></p>'
+      +'\n      <p class="item"><span class="text zest-pc__label">'+esc(cat.label)+'</span></p>'
       +'\n    </a>';
   }).join('\n');
 
-  var code = '<div class="halo-block halo-home-section block-automotive-device">'
-    +'\n  <div class="container">'+items
+  var code = '<style>\n'
+    + '  .zest-pc__container{display:flex;flex-wrap:nowrap;gap:16px;justify-content:center;width:100%}\n'
+    + '  .zest-pc__item{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;flex:1 1 0;min-width:0}\n'
+    + '  .zest-pc__img-wrap{display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:176/166;max-width:176px}\n'
+    + '  .zest-pc__img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain}\n'
+    + '  .zest-pc__label{font-size:13px !important;font-weight:700;text-align:center;white-space:nowrap}\n'
+    + '  @media(max-width:680px){\n'
+    + '    .zest-pc__container{overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;justify-content:flex-start;padding:0 12px;gap:12px;width:auto}\n'
+    + '    .zest-pc__container::-webkit-scrollbar{display:none}\n'
+    + '    .zest-pc__item{flex:0 0 calc(50% - 6px)}\n'
+    + '    .zest-pc__item{scroll-snap-align:start}\n'
+    + '    .zest-pc__img-wrap{width:100%;max-width:176px;margin:0 auto}\n'
+    + '    .zest-pc__label{white-space:normal}\n'
+    + '  }\n'
+    + '</style>\n\n'
+    + '<div class="halo-block halo-home-section block-automotive-device">'
+    +'\n  <div class="container zest-pc__container">'+items
     +'\n  </div>\n</div>';
 
   document.getElementById('pc-out').textContent = code;
